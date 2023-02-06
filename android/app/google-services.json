@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "818234242728",
+    "project_id": "ahar-social-app",
+    "storage_bucket": "ahar-social-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818234242728:android:49616f600a990833d3349d",
+        "android_client_info": {
+          "package_name": "com.ahar.social"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "818234242728-qffm0n0db55hs27natutgs1k8v05gmjt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6l7cr6m1oiN01eB9TBxrH5BFQ70osZKI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "818234242728-qffm0n0db55hs27natutgs1k8v05gmjt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
