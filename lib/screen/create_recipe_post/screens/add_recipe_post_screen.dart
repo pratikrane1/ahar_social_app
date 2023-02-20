@@ -25,7 +25,7 @@ class AddRecipePostScreen extends StatelessWidget {
               child: Lottie.asset("assets/anim/recipe.json"),
             ),
             Text(
-              'Create your food recipe',
+              'Create your Post',
               style:
                   Theme.of(context).textTheme.headline1!.copyWith(height: 1.1),
               textAlign: TextAlign.center,
@@ -54,7 +54,7 @@ class AddRecipePostScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Add Your Recipe',
+                          'Add Your Post',
                           style:
                               Theme.of(context).textTheme.headline2!.copyWith(
                                     fontWeight: FontWeight.w600,

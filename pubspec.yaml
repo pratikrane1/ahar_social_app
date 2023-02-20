@@ -69,6 +69,13 @@ dependencies:
   lottie:
   flutter_localizations:
     sdk: flutter
+  share_plus: ^4.0.10
+  firebase_dynamic_links: ^5.0.1
+  flat_icons_flutter:
+  pin_code_fields: ^7.4.0
+  persistent_bottom_nav_bar: ^5.0.2
+
+
 
 dev_dependencies:
   flutter_test:
@@ -102,6 +109,14 @@ flutter:
     - assets/anim/recipe.json
     - assets/anim/forgetpassword.json
 
+  fonts:
+    - family: Open Sans
+      fonts:
+        - asset: assets/fonts/OpenSans-Bold.ttf
+        - asset: assets/fonts/OpenSans-ExtraBold.ttf
+        - asset: assets/fonts/OpenSans-Light.ttf
+        - asset: assets/fonts/Poppins-Bold.ttf
+        - asset: assets/fonts/Poppins-Light.ttf
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

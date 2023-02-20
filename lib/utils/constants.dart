@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:socialrecipe/utils/theme_colors.dart';
 
 const kOrangeColor = Color.fromARGB(255, 0, 137, 123);
 const kOrangeColorTint = Color.fromARGB(255, 0, 137, 123);
@@ -16,20 +17,20 @@ const kGreyColor7 = Color.fromARGB(255, 247, 247, 247);
 
 OutlineInputBorder kFocusedErrorBorder = OutlineInputBorder(
   borderSide: BorderSide(color: Colors.grey.shade800),
-  borderRadius: BorderRadius.circular(10),
+  borderRadius: BorderRadius.circular(80),
 );
 OutlineInputBorder kErrorBorder = OutlineInputBorder(
   borderSide: const BorderSide(color: kGreyColor),
-  borderRadius: BorderRadius.circular(10),
+  borderRadius: BorderRadius.circular(80),
 );
 OutlineInputBorder kEnabledBorder = OutlineInputBorder(
-  borderSide: const BorderSide(color: kGreyColor),
-  borderRadius: BorderRadius.circular(10),
+  borderRadius: BorderRadius.all(Radius.circular(30.0)),
+  borderSide: BorderSide(color: ThemeColors.textFieldBackgroundColor),
 );
 OutlineInputBorder kFocusedBorder = OutlineInputBorder(
-  borderSide: BorderSide(color: Colors.grey.shade800),
-  borderRadius: BorderRadius.circular(10),
+  borderSide: BorderSide(color: ThemeColors.textFieldBackgroundColor),
+  borderRadius: BorderRadius.all(Radius.circular(80.0)),
 );
 OutlineInputBorder kBorder = OutlineInputBorder(
-  borderRadius: BorderRadius.circular(10),
+  borderRadius: BorderRadius.all(Radius.circular(80.0)),
 );

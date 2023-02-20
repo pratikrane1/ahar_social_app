@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:socialrecipe/screen/authentication/widgets/log_in_form.dart';
 import 'package:socialrecipe/screen/authentication/widgets/log_in_form_old.dart';
 
-class LogInScreen extends StatefulWidget {
-  const LogInScreen({Key? key}) : super(key: key);
+class LogInScreenOld extends StatefulWidget {
+  const LogInScreenOld({Key? key}) : super(key: key);
 
   @override
-  State<LogInScreen> createState() => _LogInScreenState();
+  State<LogInScreenOld> createState() => _LogInScreenOldState();
 }
 
-class _LogInScreenState extends State<LogInScreen> {
-  late TextEditingController _phoneController;
+class _LogInScreenOldState extends State<LogInScreenOld> {
+  late TextEditingController _emailController;
+  late TextEditingController _passwordController;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
-    _phoneController = TextEditingController();
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
     super.dispose();
-    _phoneController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
   }
 
   @override
@@ -34,9 +36,10 @@ class _LogInScreenState extends State<LogInScreen> {
           height: MediaQuery.of(context).size.height / 40,
         ),
         resizeToAvoidBottomInset: false,
-        body: LoginForm(
+        body: LoginFormOld(
           formKey: _formKey,
-          phoneController: _phoneController,
+          emailController: _emailController,
+          passwordController: _passwordController,
         ),
       ),
     );

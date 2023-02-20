@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
+import 'package:socialrecipe/screen/authentication/screens/verify_number.dart';
 import 'package:socialrecipe/utils/app_pages.dart';
 import 'package:socialrecipe/utils/constants.dart';
 
@@ -12,18 +13,19 @@ import 'package:socialrecipe/providers/settings_provider.dart';
 import 'package:socialrecipe/providers/user_provider.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:socialrecipe/utils/images.dart';
+import 'package:socialrecipe/utils/theme_colors.dart';
+import 'package:socialrecipe/widget/app_button.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({
     Key? key,
     required this.formKey,
-    required this.emailController,
-    required this.passwordController,
+    required this.phoneController,
   }) : super(key: key);
 
   final GlobalKey<FormState> formKey;
-  final TextEditingController emailController;
-  final TextEditingController passwordController;
+  final TextEditingController phoneController;
 
   @override
   State<LoginForm> createState() => _LoginFormState();
@@ -35,254 +37,150 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     UserProvider userProvider =
-        Provider.of<UserProvider>(context, listen: false);
+    Provider.of<UserProvider>(context, listen: false);
     AuthProvider appState = Provider.of<AuthProvider>(context, listen: false);
     final settingsManager =
-        Provider.of<SettingsProvider>(context, listen: false);
-    return Stack(
-      children: [
-        SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(18.0).copyWith(top: 8),
-            child: Form(
-              key: widget.formKey,
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      child: Lottie.asset("assets/anim/login.json"),
-                    ),
-                    Text(
-                      'Sign In',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline1!
-                          .copyWith(fontSize: 34),
-                    ),
-                    const SizedBox(height: 40),
+    Provider.of<SettingsProvider>(context, listen: false);
+    return Scaffold(
+      body: Container(
+          // height: MediaQuery.of(context).size.height,
+        constraints: const BoxConstraints.expand(),
 
-                    // !: Email field
-                    Container(
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                        Radius.circular(10),
-                      )),
-                      child: TextFormField(
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Email Required';
-                          }
-                          return null;
-                        },
-                        controller: widget.emailController,
-                        textAlign: TextAlign.start,
-                        textAlignVertical: TextAlignVertical.center,
-                        style: Theme.of(context).textTheme.headline3!.copyWith(
-                              fontWeight: FontWeight.w600,
-                            ),
-                        // controller: _nameController,
-                        cursorColor: kOrangeColor,
-                        autofocus: false,
-                        autocorrect: false,
-                        keyboardType: TextInputType.emailAddress,
-
-                        obscureText: false,
-                        textInputAction: TextInputAction.done,
-                        decoration: InputDecoration(
-                          counterText: ' ',
-                          fillColor: settingsManager.darkMode
-                              ? kGreyColor
-                              : kGreyColor4,
-                          filled: true,
-                          isCollapsed: true,
-                          contentPadding: const EdgeInsets.all(18),
-                          hintText: 'Your Email',
-                          hintStyle:
-                              Theme.of(context).textTheme.headline4!.copyWith(
-                                    fontSize: 15,
-                                    color: Colors.grey.shade600,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                          focusedErrorBorder: kFocusedErrorBorder,
-                          errorBorder: kErrorBorder,
-                          enabledBorder: kEnabledBorder,
-                          focusedBorder: kFocusedBorder,
-                          border: kBorder,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-                    // !: Password field
-                    Container(
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                        Radius.circular(10),
-                      )),
-                      child: TextFormField(
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Password Required';
-                          }
-                          return null;
-                        },
-                        controller: widget.passwordController,
-                        textAlign: TextAlign.start,
-                        textAlignVertical: TextAlignVertical.center,
-                        style: Theme.of(context).textTheme.headline3!.copyWith(
-                              fontWeight: FontWeight.w600,
-                            ),
-                        // controller: _nameController,
-                        cursorColor: kOrangeColor,
-                        autofocus: false,
-                        autocorrect: false,
-                        keyboardType: TextInputType.visiblePassword,
-                        obscureText: _obscureText,
-                        textInputAction: TextInputAction.done,
-                        decoration: InputDecoration(
-                          counterText: ' ',
-                          fillColor: settingsManager.darkMode
-                              ? kGreyColor
-                              : kGreyColor4,
-                          filled: true,
-                          isCollapsed: true,
-                          suffixIcon: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              IconButton(
-                                splashRadius: 20,
-                                onPressed: () {
-                                  setState(() {
-                                    _obscureText = !_obscureText;
-                                  });
-                                },
-                                icon: _obscureText
-                                    ? FaIcon(
-                                        FontAwesomeIcons.eyeSlash,
-                                        color: settingsManager.darkMode
-                                            ? Colors.grey.shade400
-                                            : Colors.grey.shade800,
-                                        size: 20,
-                                      )
-                                    : FaIcon(
-                                        FontAwesomeIcons.eye,
-                                        color: settingsManager.darkMode
-                                            ? Colors.grey.shade400
-                                            : Colors.grey.shade800,
-                                        size: 20,
-                                      ),
-                              ),
-                            ],
-                          ),
-                          contentPadding: const EdgeInsets.all(18),
-                          hintText: 'Your Password',
-                          hintStyle:
-                              Theme.of(context).textTheme.headline4!.copyWith(
-                                    fontSize: 15,
-                                    color: Colors.grey.shade600,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                          focusedErrorBorder: kFocusedErrorBorder,
-                          errorBorder: kErrorBorder,
-                          enabledBorder: kEnabledBorder,
-                          focusedBorder: kFocusedBorder,
-                          border: kBorder,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: RichText(
-                        text: TextSpan(
-                          text: 'Forget Password?',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline4!
-                              .copyWith(
-                                color: const Color.fromARGB(183, 78, 76, 76),
-                                fontSize: 14,
-                              ),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              Navigator.pushNamed(
-                                  context, AppPages.forgetPasswordPath,
-                                  arguments: true);
-                            },
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    AuthConfirmButton(
-                      title: 'Sign In',
-                      callBack: () async {
-                        final navigator = Navigator.of(context);
-                        FocusManager.instance.primaryFocus?.unfocus();
-                        final isValidForm =
-                            widget.formKey.currentState!.validate();
-                        if (isValidForm) {
-                          setState(() {
-                            _isLoading = true;
-                          });
-                          final output = await appState.logInUser(
-                            userEmail: widget.emailController.text.trim(),
-                            userPassword: widget.passwordController.text,
-                          );
-                          await userProvider.refreshUser();
-                          if (output == null) {
-                            navigator.pushReplacementNamed(AppPages.home);
-                          }
-                          setState(() {
-                            _isLoading = false;
-                          });
-                          if (output != null) {
-                            Get.snackbar(
-                              'Error',
-                              output,
-                              snackPosition: SnackPosition.TOP,
-                              forwardAnimationCurve: Curves.elasticInOut,
-                              reverseAnimationCurve: Curves.easeOut,
-                              colorText: settingsManager.darkMode
-                                  ? Colors.white
-                                  : Colors.black,
-                            );
-                          }
-                        }
-                      },
-                    ),
-                    const SizedBox(height: 50),
-                    AuthBottomRichText(
-                      detailText: 'Don\'t have account? ',
-                      clickableText: 'Sign up',
-                      onTap: () {
-                        Navigator.pushNamed(context, AppPages.signupPath);
-                      },
-                      darkColor: Colors.white54,
-                      lightColor: Colors.grey.shade800,
-                    ),
-                  ],
+        decoration:  const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(Images.loginBackground),
+                    fit: BoxFit.fill,
+                    // fit: BoxFit.cover,
+                  ),
                 ),
+        child: Padding(
+          padding: const EdgeInsets.all(18.0).copyWith(top: 140),
+          child: Form(
+            key: widget.formKey,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+
+                  Text(
+                    'Welcome back, ',
+                    style: TextStyle(
+                      fontSize: 34,
+                      fontFamily: 'OpenSans-ExtraBold',),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    'Please login to your account to continue',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: ThemeColors.greyTextColor,
+                      fontFamily: 'OpenSans-Light',
+                    ),
+
+                  ),
+                  const SizedBox(height: 50),
+
+                  Text(
+                    'Mobile No.',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: 'OpenSans-Light',
+                    ),
+                  ),
+
+                  const SizedBox(height: 10),
+
+                  // !: Mobile No field
+                  Container(
+                    decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(50),
+                        )),
+                    child: TextFormField(
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Phone Number Required';
+                        }
+                        return null;
+                      },
+                      controller: widget.phoneController,
+                      textAlign: TextAlign.start,
+                      textAlignVertical: TextAlignVertical.center,
+                      style: Theme.of(context).textTheme.headline3!.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                      // controller: _nameController,
+                      cursorColor: kOrangeColor,
+                      autofocus: false,
+                      autocorrect: false,
+                      keyboardType: TextInputType.number,
+
+                      obscureText: false,
+                      textInputAction: TextInputAction.done,
+                      decoration:
+                      InputDecoration(
+                        counterText: ' ',
+                        fillColor: settingsManager.darkMode
+                            ? kGreyColor
+                            : ThemeColors.textFieldBackgroundColor,
+                        filled: true,
+                        // isCollapsed: true,
+                        contentPadding: const EdgeInsets.all(18),
+                        hintText: 'Your Mobile Number',
+                        hintStyle:
+                        Theme.of(context).textTheme.headline4!.copyWith(
+                          fontSize: 16,
+                          color: ThemeColors.greyTextColor,
+                          // fontWeight: FontWeight.bold,
+                        ),
+                        focusedErrorBorder: kFocusedErrorBorder,
+                        errorBorder: kErrorBorder,
+                        enabledBorder: kEnabledBorder,
+                        focusedBorder: kFocusedBorder,
+                        border: kBorder,
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 30),
+
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 30.0,right: 30.0),
+                    child: AppButton(
+                      onPressed: () async {
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>
+                            VerifyNumberScreen()));
+                      },
+                      height: 60,
+                      width: MediaQuery.of(context).size.width,
+                      text: Text('Next',style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,fontFamily: 'OpenSans-ExtraBold',
+                          fontWeight: FontWeight.w700) ,),
+                      loading: true,
+                      style: ElevatedButton.styleFrom(
+                        side: BorderSide(color: ThemeColors.buttonColor, width: 1),
+                        backgroundColor: ThemeColors.buttonColor,
+                        // color:Colors.red,
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                            BorderRadius.all(Radius.circular(50))),
+                      ),
+
+
+                    ),
+                  ),
+
+
+                ],
               ),
             ),
           ),
         ),
-        Positioned(
-          top: 0,
-          left: 0,
-          right: 0,
-          child: _isLoading == true
-              ? LinearProgressIndicator(
-                  backgroundColor: settingsManager.darkMode
-                      ? Colors.white
-                      : Colors.grey.shade300,
-                )
-              : const Padding(
-                  padding: EdgeInsets.only(top: 4),
-                ),
-        ),
-      ],
+      ),
     );
+
   }
 }
