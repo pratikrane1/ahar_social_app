@@ -37,150 +37,165 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     UserProvider userProvider =
-    Provider.of<UserProvider>(context, listen: false);
+        Provider.of<UserProvider>(context, listen: false);
     AuthProvider appState = Provider.of<AuthProvider>(context, listen: false);
     final settingsManager =
-    Provider.of<SettingsProvider>(context, listen: false);
-    return Scaffold(
-      body: Container(
-          // height: MediaQuery.of(context).size.height,
-        constraints: const BoxConstraints.expand(),
+        Provider.of<SettingsProvider>(context, listen: false);
+    return Stack(
+      children: [
+        SafeArea(
+          child: Image.asset(
+            Images.loginBackground,
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            fit: BoxFit.fill,
+          ),
+        ),
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          extendBodyBehindAppBar: true,
+          body: Container(
+            // height: MediaQuery.of(context).size.height,
+            // constraints: const BoxConstraints.expand(),
+            //
+            // decoration:  const BoxDecoration(
+            //           image: DecorationImage(
+            //             image: AssetImage(Images.loginBackground),
+            //             fit: BoxFit.fill,
+            //             // fit: BoxFit.cover,
+            //           ),
+            //         ),
+            child: Padding(
+              padding: const EdgeInsets.all(18.0).copyWith(top: 200),
+              child: Form(
+                key: widget.formKey,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Welcome back, ',
+                        style: TextStyle(
+                          fontSize: 34,
+                          fontFamily: 'OpenSans-ExtraBold',
+                        ),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        'Please login to your account to continue',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: ThemeColors.greyTextColor,
+                          fontFamily: 'OpenSans-Light',
+                        ),
+                      ),
+                      const SizedBox(height: 50),
 
-        decoration:  const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(Images.loginBackground),
-                    fit: BoxFit.fill,
-                    // fit: BoxFit.cover,
-                  ),
-                ),
-        child: Padding(
-          padding: const EdgeInsets.all(18.0).copyWith(top: 140),
-          child: Form(
-            key: widget.formKey,
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                      Text(
+                        'Mobile No.',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: 'OpenSans-Light',
+                        ),
+                      ),
 
-                  Text(
-                    'Welcome back, ',
-                    style: TextStyle(
-                      fontSize: 34,
-                      fontFamily: 'OpenSans-ExtraBold',),
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    'Please login to your account to continue',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: ThemeColors.greyTextColor,
-                      fontFamily: 'OpenSans-Light',
-                    ),
+                      const SizedBox(height: 10),
 
-                  ),
-                  const SizedBox(height: 50),
-
-                  Text(
-                    'Mobile No.',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontFamily: 'OpenSans-Light',
-                    ),
-                  ),
-
-                  const SizedBox(height: 10),
-
-                  // !: Mobile No field
-                  Container(
-                    decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(
+                      // !: Mobile No field
+                      Container(
+                        decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(
                           Radius.circular(50),
                         )),
-                    child: TextFormField(
-                      validator: (String? value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Phone Number Required';
-                        }
-                        return null;
-                      },
-                      controller: widget.phoneController,
-                      textAlign: TextAlign.start,
-                      textAlignVertical: TextAlignVertical.center,
-                      style: Theme.of(context).textTheme.headline3!.copyWith(
-                        fontWeight: FontWeight.w600,
-                      ),
-                      // controller: _nameController,
-                      cursorColor: kOrangeColor,
-                      autofocus: false,
-                      autocorrect: false,
-                      keyboardType: TextInputType.number,
+                        child: TextFormField(
+                          validator: (String? value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Phone Number Required';
+                            }
+                            return null;
+                          },
+                          controller: widget.phoneController,
+                          textAlign: TextAlign.start,
+                          textAlignVertical: TextAlignVertical.center,
+                          style:
+                              Theme.of(context).textTheme.headline3!.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                          // controller: _nameController,
+                          cursorColor: kOrangeColor,
+                          autofocus: false,
+                          autocorrect: false,
+                          keyboardType: TextInputType.number,
 
-                      obscureText: false,
-                      textInputAction: TextInputAction.done,
-                      decoration:
-                      InputDecoration(
-                        counterText: ' ',
-                        fillColor: settingsManager.darkMode
-                            ? kGreyColor
-                            : ThemeColors.textFieldBackgroundColor,
-                        filled: true,
-                        // isCollapsed: true,
-                        contentPadding: const EdgeInsets.all(18),
-                        hintText: 'Your Mobile Number',
-                        hintStyle:
-                        Theme.of(context).textTheme.headline4!.copyWith(
-                          fontSize: 16,
-                          color: ThemeColors.greyTextColor,
-                          // fontWeight: FontWeight.bold,
+                          obscureText: false,
+                          textInputAction: TextInputAction.done,
+                          decoration: InputDecoration(
+                            counterText: ' ',
+                            fillColor: settingsManager.darkMode
+                                ? kGreyColor
+                                : ThemeColors.textFieldBackgroundColor,
+                            filled: true,
+                            // isCollapsed: true,
+                            contentPadding: const EdgeInsets.all(18),
+                            hintText: 'Your Mobile Number',
+                            hintStyle:
+                                Theme.of(context).textTheme.headline4!.copyWith(
+                                      fontSize: 16,
+                                      color: ThemeColors.greyTextColor,
+                                      // fontWeight: FontWeight.bold,
+                                    ),
+                            focusedErrorBorder: kFocusedErrorBorder,
+                            errorBorder: kErrorBorder,
+                            enabledBorder: kEnabledBorder,
+                            focusedBorder: kFocusedBorder,
+                            border: kBorder,
+                          ),
                         ),
-                        focusedErrorBorder: kFocusedErrorBorder,
-                        errorBorder: kErrorBorder,
-                        enabledBorder: kEnabledBorder,
-                        focusedBorder: kFocusedBorder,
-                        border: kBorder,
-                      ),
-                    ),
-                  ),
-
-                  const SizedBox(height: 30),
-
-
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30.0,right: 30.0),
-                    child: AppButton(
-                      onPressed: () async {
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>
-                            VerifyNumberScreen()));
-                      },
-                      height: 60,
-                      width: MediaQuery.of(context).size.width,
-                      text: Text('Next',style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,fontFamily: 'OpenSans-ExtraBold',
-                          fontWeight: FontWeight.w700) ,),
-                      loading: true,
-                      style: ElevatedButton.styleFrom(
-                        side: BorderSide(color: ThemeColors.buttonColor, width: 1),
-                        backgroundColor: ThemeColors.buttonColor,
-                        // color:Colors.red,
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                            BorderRadius.all(Radius.circular(50))),
                       ),
 
+                      const SizedBox(height: 30),
 
-                    ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+                        child: AppButton(
+                          onPressed: () async {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        VerifyNumberScreen()));
+                          },
+                          height: 60,
+                          width: MediaQuery.of(context).size.width,
+                          text: Text(
+                            'Next',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontFamily: 'OpenSans-ExtraBold',
+                                fontWeight: FontWeight.w700),
+                          ),
+                          loading: true,
+                          style: ElevatedButton.styleFrom(
+                            side: BorderSide(
+                                color: ThemeColors.buttonColor, width: 1),
+                            backgroundColor: ThemeColors.buttonColor,
+                            // color:Colors.red,
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(50))),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-
-
-                ],
+                ),
               ),
             ),
           ),
         ),
-      ),
+      ],
     );
-
   }
 }

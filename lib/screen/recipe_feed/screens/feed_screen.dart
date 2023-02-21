@@ -63,34 +63,6 @@ class _FeedScreenState extends State<FeedScreen>
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        // Expanded(
-                        //   flex: 4,
-                        //   child: Theme(
-                        //     data: ThemeData(
-                        //       splashColor: Colors.transparent,
-                        //       highlightColor: Colors.transparent,
-                        //     ),
-                        //     child: TabBar(
-                        //       controller: _tabController,
-                        //       labelStyle: Theme.of(context)
-                        //           .textTheme
-                        //           .headline2!
-                        //           .copyWith(
-                        //             fontSize: 18,
-                        //           ),
-                        //       tabs: const [
-                        //         Tab(text: 'Post'),
-                        //       ],
-                        //       indicatorPadding:
-                        //           const EdgeInsets.only(right: 10),
-                        //       labelColor: kOrangeColorTint,
-                        //       unselectedLabelColor: settingsManager.darkMode
-                        //           ? Colors.white
-                        //           : Colors.white,
-                        //       indicatorColor: kGreyColor4,
-                        //     ),
-                        //   ),
-                        // ),
                         Padding(
                           padding: const EdgeInsets.only(left: 10.0),
                           child: Row(
@@ -122,6 +94,11 @@ class _FeedScreenState extends State<FeedScreen>
                         ),
                         Row(
                           children: [
+                            InkWell(
+                              onTap: (){},
+                              child: Icon(Icons.search,size: 25,),
+                            ),
+                            SizedBox(width: 7,),
                             InkWell(
                               onTap: (){},
                               child: Icon(Icons.notifications,size: 25,),
@@ -218,88 +195,88 @@ class _FeedScreenState extends State<FeedScreen>
 
                     SizedBox(height: 15,),
                     //Search Field
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        // mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Flexible(
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 5),
-                              child: TextFormField(
-                                validator: (String? value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Search';
-                                  }
-                                  return null;
-                                },
-                                controller: _phoneController,
-                                textAlign: TextAlign.start,
-                                textAlignVertical: TextAlignVertical.center,
-                                style: Theme.of(context).textTheme.headline3!.copyWith(
-                                  fontWeight: FontWeight.w600,
-                                ),
-                                // controller: _nameController,
-                                cursorColor: kOrangeColor,
-                                autofocus: false,
-                                autocorrect: false,
-                                keyboardType: TextInputType.text,
-
-                                obscureText: false,
-                                textInputAction: TextInputAction.done,
-                                decoration:
-                                InputDecoration(
-                                  counterText: ' ',
-                                  fillColor: settingsManager.darkMode
-                                      ? kGreyColor
-                                      : ThemeColors.textFieldBackgroundColor,
-                                  filled: true,
-                                  // isCollapsed: true,
-                                  contentPadding: const EdgeInsets.all(18),
-                                  hintText: 'Search',
-                                  hintStyle:
-                                  Theme.of(context).textTheme.headline4!.copyWith(
-                                    fontSize: 16,
-                                    color: ThemeColors.greyTextColor,
-                                    // fontWeight: FontWeight.bold,
-                                  ),
-                                  focusedErrorBorder: kFocusedErrorBorder,
-                                  errorBorder: kErrorBorder,
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: ThemeColors.textFieldBackgroundColor),
-                                    borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: ThemeColors.textFieldBackgroundColor),
-                                    borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                                  ),
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide(color: ThemeColors.textFieldBackgroundColor),
-                                    borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 0.0,right: 8),
-                            child: Container(
-                                height: 60,
-                                width: 60,
-                                // margin: const EdgeInsets.all(15.0),
-                                // padding: const EdgeInsets.all(3.0),
-                                decoration: BoxDecoration(
-                                  color: ThemeColors.textFieldBackgroundColor,
-                                    // border: Border.all(color: Colors.blueAccent),
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(15.0) //                 <--- border radius here
-                                  ),                            ),
-                                child: ImageIcon(AssetImage('assets/filter.png'))),
-                          ),
-                        ],
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 10.0),
+                    //   child: Row(
+                    //     crossAxisAlignment: CrossAxisAlignment.start,
+                    //     // mainAxisAlignment: MainAxisAlignment.start,
+                    //     children: [
+                    //       Flexible(
+                    //         child: Padding(
+                    //           padding: EdgeInsets.symmetric(horizontal: 5),
+                    //           child: TextFormField(
+                    //             validator: (String? value) {
+                    //               if (value == null || value.isEmpty) {
+                    //                 return 'Search';
+                    //               }
+                    //               return null;
+                    //             },
+                    //             controller: _phoneController,
+                    //             textAlign: TextAlign.start,
+                    //             textAlignVertical: TextAlignVertical.center,
+                    //             style: Theme.of(context).textTheme.headline3!.copyWith(
+                    //               fontWeight: FontWeight.w600,
+                    //             ),
+                    //             // controller: _nameController,
+                    //             cursorColor: kOrangeColor,
+                    //             autofocus: false,
+                    //             autocorrect: false,
+                    //             keyboardType: TextInputType.text,
+                    //
+                    //             obscureText: false,
+                    //             textInputAction: TextInputAction.done,
+                    //             decoration:
+                    //             InputDecoration(
+                    //               counterText: ' ',
+                    //               fillColor: settingsManager.darkMode
+                    //                   ? kGreyColor
+                    //                   : ThemeColors.textFieldBackgroundColor,
+                    //               filled: true,
+                    //               // isCollapsed: true,
+                    //               contentPadding: const EdgeInsets.all(18),
+                    //               hintText: 'Search',
+                    //               hintStyle:
+                    //               Theme.of(context).textTheme.headline4!.copyWith(
+                    //                 fontSize: 16,
+                    //                 color: ThemeColors.greyTextColor,
+                    //                 // fontWeight: FontWeight.bold,
+                    //               ),
+                    //               focusedErrorBorder: kFocusedErrorBorder,
+                    //               errorBorder: kErrorBorder,
+                    //               enabledBorder: OutlineInputBorder(
+                    //                 borderSide: BorderSide(color: ThemeColors.textFieldBackgroundColor),
+                    //                 borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                    //               ),
+                    //               focusedBorder: OutlineInputBorder(
+                    //                 borderSide: BorderSide(color: ThemeColors.textFieldBackgroundColor),
+                    //                 borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                    //               ),
+                    //               border: OutlineInputBorder(
+                    //                 borderSide: BorderSide(color: ThemeColors.textFieldBackgroundColor),
+                    //                 borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                    //               ),
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       Padding(
+                    //         padding: const EdgeInsets.only(top: 0.0,right: 8),
+                    //         child: Container(
+                    //             height: 60,
+                    //             width: 60,
+                    //             // margin: const EdgeInsets.all(15.0),
+                    //             // padding: const EdgeInsets.all(3.0),
+                    //             decoration: BoxDecoration(
+                    //               color: ThemeColors.textFieldBackgroundColor,
+                    //                 // border: Border.all(color: Colors.blueAccent),
+                    //               borderRadius: BorderRadius.all(
+                    //                   Radius.circular(15.0) //                 <--- border radius here
+                    //               ),                            ),
+                    //             child: ImageIcon(AssetImage('assets/filter.png'))),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
 
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0),

@@ -115,8 +115,12 @@ flutter:
         - asset: assets/fonts/OpenSans-Bold.ttf
         - asset: assets/fonts/OpenSans-ExtraBold.ttf
         - asset: assets/fonts/OpenSans-Light.ttf
+
+    - family: Poppins
+      fonts:
         - asset: assets/fonts/Poppins-Bold.ttf
         - asset: assets/fonts/Poppins-Light.ttf
+        - asset: assets/fonts/Poppins-Regular.ttf
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -7,6 +7,7 @@ class ThemeColors {
   static const Color greyTextColor = Color(0xFF656565);
   static const Color greyIconColor = Color(0xFF687684);
   static const Color selectedIconColor = Color(0xFF7DB9B3);
+  static const Color msgFieldColor = Color(0xFF25A0B0);
 
 
 }

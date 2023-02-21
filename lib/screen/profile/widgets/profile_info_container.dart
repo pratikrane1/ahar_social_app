@@ -10,6 +10,7 @@ import 'package:socialrecipe/src/models/user_model.dart';
 import 'package:socialrecipe/providers/recipe_post_provider.dart';
 import 'package:socialrecipe/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:socialrecipe/utils/theme_colors.dart';
 
 class ProfileInfoContainer extends StatefulWidget {
   const ProfileInfoContainer({
@@ -29,6 +30,7 @@ class ProfileInfoContainer extends StatefulWidget {
 class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
   bool _isFollowing = false;
   bool _isLoading = false;
+  bool _isPostTab = false;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   Stream<QuerySnapshot<Map<String, dynamic>>>? recipeLengthResult;
@@ -80,13 +82,13 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
             height: MediaQuery.of(context).size.height / 3.2,
             decoration: BoxDecoration(
               boxShadow: [
-                BoxShadow(
-                  color:
-                      const Color.fromARGB(255, 227, 226, 226).withOpacity(0.5),
-                  spreadRadius: 6,
-                  blurRadius: 10,
-                  offset: const Offset(1, 3),
-                ),
+                // BoxShadow(
+                //   color:
+                //       const Color.fromARGB(255, 227, 226, 226).withOpacity(0.5),
+                //   spreadRadius: 6,
+                //   blurRadius: 10,
+                //   offset: const Offset(1, 3),
+                // ),
               ],
               color: settingsManager.darkMode ? kGreyColor : Colors.white,
               borderRadius: const BorderRadius.only(
@@ -111,7 +113,8 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                             widget.user.userName,
                             textAlign: TextAlign.center,
                             maxLines: 2,
-                            style: Theme.of(context).textTheme.headline2,
+                            style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 25,
+                              fontFamily: 'Poppins-Bold',),
                           ),
                         ),
                         Expanded(
@@ -122,7 +125,8 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 14.0),
                                   child: Text(
-                                    widget.user.bio,
+                                    // widget.user.bio,
+                                    '+91123456789',
                                     textAlign: TextAlign.center,
                                     maxLines: 3,
                                     overflow: TextOverflow.ellipsis,
@@ -132,10 +136,11 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                         .copyWith(
                                           color: settingsManager.darkMode
                                               ? Colors.black
-                                              : Colors.black,
-                                          fontSize: 14,
+                                              : ThemeColors.greyTextColor,
+                                          fontSize: 16,
                                           fontWeight: FontWeight.w500,
                                           height: 1.4,
+                                          fontFamily: 'Poppins-Bold',
                                         ),
                                   ),
                                 ),
@@ -155,11 +160,11 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                       onTap: widget.onEdit,
                                       child: Container(
                                         width: 130,
-                                        height: 36,
+                                        height: 45,
                                         decoration: BoxDecoration(
                                           color: settingsManager.darkMode
                                               ? Colors.white
-                                              : kOrangeColor,
+                                              : ThemeColors.msgFieldColor,
                                           borderRadius: const BorderRadius.all(
                                             Radius.circular(15),
                                           ),
@@ -171,6 +176,8 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                                 .textTheme
                                                 .headline3!
                                                 .copyWith(
+                                                  fontSize: 14,
+                                                fontFamily: 'Poppins-Bold',
                                                     color:
                                                         settingsManager.darkMode
                                                             ? kGreyColor
@@ -207,11 +214,11 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                       },
                                       child: Container(
                                         width: 130,
-                                        height: 36,
+                                        height: 45,
                                         decoration: BoxDecoration(
                                           color: settingsManager.darkMode
                                               ? Colors.white
-                                              : kOrangeColor,
+                                              : ThemeColors.msgFieldColor,
                                           borderRadius: const BorderRadius.all(
                                             Radius.circular(15),
                                           ),
@@ -223,6 +230,8 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                                 .textTheme
                                                 .headline3!
                                                 .copyWith(
+                                                fontSize: 14,
+                                                fontFamily: 'Poppins-Bold',
                                                     color:
                                                         settingsManager.darkMode
                                                             ? kGreyColor
@@ -339,42 +348,57 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Column(
-                                children: [
-                                  Text(
-                                    'Recipes',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText2!
-                                        .copyWith(
-                                            color: settingsManager.darkMode
-                                                ? Colors.grey
-                                                : Colors.grey.shade800,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500),
-                                  ),
-                                  StreamBuilder<
-                                      QuerySnapshot<Map<String, dynamic>>>(
-                                    stream: recipeLengthResult,
-                                    builder: (context, AsyncSnapshot snapshot) {
-                                      if (snapshot.connectionState ==
-                                          ConnectionState.waiting) {
-                                        return const CupertinoActivityIndicator();
-                                      } else if (snapshot.hasError) {
-                                        return const Center(
-                                          child: Text('⚠️'),
-                                        );
-                                      } else if (snapshot.data == null) {
-                                        return const Center(
-                                          child: Text('0'),
-                                        );
-                                      } else {
-                                        return Text(snapshot.data.docs.length
-                                            .toString());
-                                      }
-                                    },
-                                  ),
-                                ],
+                              GestureDetector(
+                                onTap: (){
+                                  setState(() {
+                                    _isPostTab = false;
+                                  });
+                                },
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      'Posts',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2!
+                                          .copyWith(
+                                              color: settingsManager.darkMode
+                                                  ? Colors.grey
+                                                  : ThemeColors.greyTextColor,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500),
+                                    ),
+                                    StreamBuilder<
+                                        QuerySnapshot<Map<String, dynamic>>>(
+                                      stream: recipeLengthResult,
+                                      builder: (context, AsyncSnapshot snapshot) {
+                                        if (snapshot.connectionState ==
+                                            ConnectionState.waiting) {
+                                          return const CupertinoActivityIndicator();
+                                        } else if (snapshot.hasError) {
+                                          return const Center(
+                                            child: Text('⚠️'),
+                                          );
+                                        } else if (snapshot.data == null) {
+                                          return const Center(
+                                            child: Text('0'),
+                                          );
+                                        } else {
+                                          return Container(
+                                            decoration: _isPostTab?null:BoxDecoration(
+                                                border: Border(bottom: BorderSide(width: _isPostTab ? 0 : 2))
+                                            ),
+                                            child: Text(snapshot.data.docs.length
+                                                .toString(),style: TextStyle(
+                                              fontSize: 25,
+                                              fontFamily: 'Poppins-Bold',
+                                            ),),
+                                          );
+                                        }
+                                      },
+                                    ),
+                                  ],
+                                ),
                               ),
                               GestureDetector(
                                 // behavior: HitTestBehavior.translucent,
@@ -384,57 +408,68 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                     AppPages.followersPath,
                                     arguments: widget.user,
                                   );
+                                  setState(() {
+                                    _isPostTab = true;
+                                  });
                                 },
                                 child: AbsorbPointer(
                                   child: Column(
                                     children: [
                                       Text(
-                                        'Followers',
+                                        'Groups',
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText2!
                                             .copyWith(
                                                 color: settingsManager.darkMode
                                                     ? Colors.grey
-                                                    : Colors.grey.shade800,
-                                                fontSize: 14,
+                                                    : ThemeColors.greyTextColor,
+                                                fontSize: 16,
                                                 fontWeight: FontWeight.w500),
                                       ),
-                                      Text(widget.user.followers.length
-                                          .toString()),
+                                      Container(
+                                          decoration: _isPostTab ? BoxDecoration(
+                                              border: Border(bottom: BorderSide(width: _isPostTab?2:0))
+                                          ): null,
+                                        child: Text(widget.user.followers.length
+                                            .toString(),style: TextStyle(
+                                            fontSize: 25,
+                                          fontFamily: 'Poppins-Bold',
+                                        ),),
+                                      ),
                                     ],
                                   ),
                                 ),
                               ),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    AppPages.followingPath,
-                                    arguments: widget.user,
-                                  );
-                                },
-                                child: AbsorbPointer(
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        'Following',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText2!
-                                            .copyWith(
-                                                color: settingsManager.darkMode
-                                                    ? Colors.grey
-                                                    : Colors.grey.shade800,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w500),
-                                      ),
-                                      Text(widget.user.following.length
-                                          .toString()),
-                                    ],
-                                  ),
-                                ),
-                              ),
+                              // GestureDetector(
+                              //   onTap: () {
+                              //     Navigator.pushNamed(
+                              //       context,
+                              //       AppPages.followingPath,
+                              //       arguments: widget.user,
+                              //     );
+                              //   },
+                              //   child: AbsorbPointer(
+                              //     child: Column(
+                              //       children: [
+                              //         Text(
+                              //           'Following',
+                              //           style: Theme.of(context)
+                              //               .textTheme
+                              //               .bodyText2!
+                              //               .copyWith(
+                              //                   color: settingsManager.darkMode
+                              //                       ? Colors.grey
+                              //                       : Colors.grey.shade800,
+                              //                   fontSize: 14,
+                              //                   fontWeight: FontWeight.w500),
+                              //         ),
+                              //         Text(widget.user.following.length
+                              //             .toString()),
+                              //       ],
+                              //     ),
+                              //   ),
+                              // ),
                             ],
                           ),
                         ),
@@ -449,4 +484,5 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
       ),
     );
   }
+
 }

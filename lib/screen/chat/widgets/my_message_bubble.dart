@@ -2,6 +2,7 @@ import 'package:bubble/bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:socialrecipe/utils/constants.dart';
 import 'package:intl/intl.dart';
+import 'package:socialrecipe/utils/theme_colors.dart';
 
 class MyMessageBubble extends StatelessWidget {
   const MyMessageBubble({
@@ -24,11 +25,11 @@ class MyMessageBubble extends StatelessWidget {
           children: [
             Bubble(
               alignment: Alignment.topRight,
-              radius: const Radius.circular(10.0),
-              nipWidth: 20,
-              nipHeight: 17,
+              radius: const Radius.circular(12.0),
+              nipWidth: 15,
+              nipHeight: 15,
               nip: BubbleNip.rightTop,
-              color: kOrangeColor,
+              color: ThemeColors.msgFieldColor,
               margin: const BubbleEdges.symmetric(horizontal: 12, vertical: 6),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -38,12 +39,12 @@ class MyMessageBubble extends StatelessWidget {
                       left: 5,
                       right: 6,
                       top: 5,
-                      bottom: 6,
+                      bottom: 0,
                     ),
                     child: Text(
                       message,
                       style: Theme.of(context).textTheme.headline3!.copyWith(
-                          fontSize: 14, height: 1.6, color: Colors.white),
+                          fontSize: 14, height: 1.6, color: Colors.white,fontFamily: 'Poppins-Regular'),
                     ),
                   ),
                 ],
@@ -58,7 +59,7 @@ class MyMessageBubble extends StatelessWidget {
                   textAlign: TextAlign.end,
                   style: TextStyle(
                     fontSize: 12,
-                    color: Colors.grey.shade500,
+                    color: Colors.grey.shade500, fontFamily: 'Poppins-Light'
                   ),
                 ),
                 const SizedBox(width: 8),

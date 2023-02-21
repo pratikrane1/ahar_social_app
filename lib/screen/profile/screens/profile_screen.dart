@@ -145,6 +145,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 ),
                                 ProfilePostSection(userId: widget.userId!),
+                                // Padding(
+                                //   padding: const EdgeInsets.all(15.0),
+                                //   child: buildProductList(context),
+                                // )
                               ],
                             ),
                           );
@@ -157,4 +161,230 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           );
   }
+
+  Widget buildProductList(
+      BuildContext context,) {
+    // if (productList.length <= 0) {
+    //   return GridView.builder(
+    //     shrinkWrap: true,
+    //     scrollDirection: Axis.vertical,
+    //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+    //       crossAxisCount: 2,
+    //       childAspectRatio: 2/2.5,
+    //     ),
+    //     // padding: EdgeInsets.only(left: 5, right: 20, top: 10, bottom: 15),
+    //     itemBuilder: (context, index) {
+    //       return Shimmer.fromColors(
+    //         baseColor: Theme.of(context).hoverColor,
+    //         highlightColor: Theme.of(context).highlightColor,
+    //         enabled: true,
+    //         child: Padding(
+    //           padding: const EdgeInsets.all(8.0),
+    //           child: Container(
+    //             width: MediaQuery.of(context).size.width,
+    //             child: Card(
+    //               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+    //               elevation: 5,
+    //               child: Column(
+    //                 mainAxisSize: MainAxisSize.min,
+    //                 children: [
+    //                   SizedBox(
+    //                     height: 15,
+    //                   ),
+    //                   CachedNetworkImage(
+    //                     // width: 150,
+    //                     // height: 150,
+    //                     filterQuality: FilterQuality.medium,
+    //                     // imageUrl: Api.PHOTO_URL + widget.users.avatar,
+    //                     imageUrl: "https://picsum.photos/250?image=9",
+    //                     // imageUrl: productData.prodImg.toString(),
+    //                     placeholder: (context, url) {
+    //                       return Shimmer.fromColors(
+    //                         baseColor: Theme.of(context).hoverColor,
+    //                         highlightColor: Theme.of(context).highlightColor,
+    //                         enabled: true,
+    //                         child: Container(
+    //                           height: 80,
+    //                           width: 80,
+    //                           decoration: BoxDecoration(
+    //                             color: Colors.white,
+    //                             borderRadius: BorderRadius.circular(8),
+    //                           ),
+    //                         ),
+    //                       );
+    //                     },
+    //                     imageBuilder: (context, imageProvider) {
+    //                       return Container(
+    //                         height: 80,
+    //                         width: 80,
+    //                         decoration: BoxDecoration(
+    //                           image: DecorationImage(
+    //                             image: imageProvider,
+    //                             fit: BoxFit.cover,
+    //                           ),
+    //                           borderRadius: BorderRadius.circular(0),
+    //                         ),
+    //                       );
+    //                     },
+    //                     errorWidget: (context, url, error) {
+    //                       return Shimmer.fromColors(
+    //                         baseColor: Theme.of(context).hoverColor,
+    //                         highlightColor: Theme.of(context).highlightColor,
+    //                         enabled: true,
+    //                         child: Container(
+    //                           height: 80,
+    //                           width: 80,
+    //                           decoration: BoxDecoration(
+    //                             color: Colors.white,
+    //                             borderRadius: BorderRadius.circular(8),
+    //                           ),
+    //                           child: Icon(Icons.error),
+    //                         ),
+    //                       );
+    //                     },
+    //                   ),
+    //                   Padding(
+    //                     padding: const EdgeInsets.only(left: 15, top: 10, right: 5),
+    //                     child: Container(
+    //                       child: Column(
+    //                         crossAxisAlignment: CrossAxisAlignment.start,
+    //                         children: [
+    //                           Text(
+    //                             "Product",
+    //                             style: TextStyle(
+    //                                 fontWeight: FontWeight.w400,
+    //                                 color: ThemeColors.textColor,
+    //                                 fontSize: 15.0,
+    //                                 fontFamily: 'SF-Pro-Display-Regular'),
+    //                           ),
+    //                           SizedBox(
+    //                             height: 5,
+    //                           ),
+    //                           Text(
+    //                             "\u{20B9} 0.0",
+    //                             style: TextStyle(
+    //                                 fontWeight: FontWeight.w600,
+    //                                 fontSize: 20.0,
+    //                                 fontFamily: 'SF-Pro-Display-Bold'),
+    //                           ),
+    //                           SizedBox(
+    //                             height: 5,
+    //                           ),
+    //                           Row(
+    //                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //                             children: [
+    //                               Text(
+    //                                 "\u{20B9} 0.0",
+    //                                 style: TextStyle(
+    //                                     decoration: TextDecoration.lineThrough,
+    //                                     fontWeight: FontWeight.w600,
+    //                                     fontSize: 18.0,
+    //                                     fontFamily: 'SF-Pro-Display-Regular',
+    //                                     color: ThemeColors.textFieldHintColor),
+    //                               ),
+    //                               InkWell(
+    //                                   onTap: () {
+    //                                     Navigator.push(
+    //                                         context,
+    //                                         MaterialPageRoute(
+    //                                             builder: (context) => CartPage(backIcon: true,)));
+    //                                   },
+    //                                   child: Icon(
+    //                                     Icons.add_shopping_cart,
+    //                                     color: ThemeColors.baseThemeColor,
+    //                                   ))
+    //                             ],
+    //                           ),
+    //                         ],
+    //                       ),
+    //                     ),
+    //                   )
+    //                 ],
+    //               ),
+    //             ),
+    //             decoration: BoxDecoration(
+    //                 borderRadius: BorderRadius.all(Radius.circular(20)),
+    //                 color: Colors.white),
+    //           ),
+    //         ),
+    //       );
+    //     },
+    //     itemCount: List.generate(8, (index) => index).length,
+    //   );
+    // }
+
+    // return ListView.builder(
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      scrollDirection: Axis.vertical,
+      itemCount: 4,
+      itemBuilder: (context, index) {
+        // final item = producerList[index];
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 15.0),
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(width: 1),
+              borderRadius: BorderRadius.circular(13)
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Group Name',style: TextStyle(
+                    fontSize: 13,
+                    fontFamily: 'Poppins-Bold',
+                  )),
+                  SizedBox(height: 10,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Text("Location: ",style: TextStyle(
+                            fontSize: 12,
+                            fontFamily: 'Poppins-Light',
+                              fontWeight: FontWeight.w500
+
+                          )),
+                          Text("Navi,Mumbai",style: TextStyle(
+                            fontSize: 12,
+                            fontFamily: 'Poppins-Light',
+                              fontWeight: FontWeight.w500
+
+                          )),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Icon(Icons.circle,size: 15,),
+                          SizedBox(width: 4,),
+                          Text("Admin",style: TextStyle(
+                            fontSize: 12,
+                            fontFamily: 'Poppins-Light',
+                            fontWeight: FontWeight.w500
+                          )),
+                        ],
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 8,),
+                  Text('Total Members:',style: TextStyle(
+                      fontSize: 12,
+                      fontFamily: 'Poppins-Light',
+                      fontWeight: FontWeight.w500
+                  )),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+
+    );
+  }
+
+
 }

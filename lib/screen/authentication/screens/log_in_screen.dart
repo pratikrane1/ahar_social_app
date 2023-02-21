@@ -30,9 +30,9 @@ class _LogInScreenState extends State<LogInScreen> {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-        bottomNavigationBar: SizedBox(
-          height: MediaQuery.of(context).size.height / 40,
-        ),
+        // bottomNavigationBar: SizedBox(
+        //   height: MediaQuery.of(context).size.height / 40,
+        // ),
         resizeToAvoidBottomInset: false,
         body: LoginForm(
           formKey: _formKey,

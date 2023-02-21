@@ -26,9 +26,9 @@ class SenderMessageBubble extends StatelessWidget {
           children: [
             Bubble(
               alignment: Alignment.topLeft,
-              radius: const Radius.circular(10.0),
-              nipWidth: 20,
-              nipHeight: 17,
+              radius: const Radius.circular(12.0),
+              nipWidth: 15,
+              nipHeight: 15,
               nip: BubbleNip.leftBottom,
               color: settingsProvider.darkMode
                   ? const Color.fromARGB(255, 133, 131, 131)
@@ -42,7 +42,7 @@ class SenderMessageBubble extends StatelessWidget {
                       left: 5,
                       right: 6,
                       top: 5,
-                      bottom: 6,
+                      bottom: 0,
                     ),
                     child: Text(
                       message,
@@ -52,6 +52,7 @@ class SenderMessageBubble extends StatelessWidget {
                             color: settingsProvider.darkMode
                                 ? Colors.black
                                 : const Color.fromARGB(255, 0, 0, 0),
+                          fontFamily: 'Poppins-Regular'
                           ),
                     ),
                   ),
@@ -68,7 +69,7 @@ class SenderMessageBubble extends StatelessWidget {
                   textAlign: TextAlign.start,
                   style: TextStyle(
                     fontSize: 12,
-                    color: Colors.grey.shade500,
+                    color: Colors.grey.shade500, fontFamily: 'Poppins-Light'
                   ),
                 ),
               ],
