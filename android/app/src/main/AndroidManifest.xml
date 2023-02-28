@@ -15,7 +15,7 @@
   </intent>
 </queries>
    <application
-        android:label="socialrecipe"
+        android:label="Ahar Connect"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

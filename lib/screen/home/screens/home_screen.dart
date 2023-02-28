@@ -4,7 +4,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:socialrecipe/providers/dynamic_link.dart';
+import 'package:socialrecipe/screen/chat/screens/contacts_list_screen.dart';
 import 'package:socialrecipe/screen/create_recipe_post/screens/add_recipe_post_screen.dart';
+import 'package:socialrecipe/screen/group/group_listing_screen.dart';
+import 'package:socialrecipe/screen/noticeboard/noticeboard_screen.dart';
+import 'package:socialrecipe/screen/profile/widgets/profile_messages_button.dart';
 import 'package:socialrecipe/screen/recipe_feed/screens/feed_screen.dart';
 import 'package:socialrecipe/screen/profile/screens/profile_screen.dart';
 import 'package:socialrecipe/screen/search_user/screens/search_user_screen.dart';
@@ -58,12 +62,13 @@ class _HomeScreenState extends State<HomeScreen> {
     _pageController = PageController(initialPage: 0);
     _screens = [
       const FeedScreen(),
-      Container(),
+      NoticeBoardScreen(),
       const AddRecipePostScreen(),
-      const SearchUserScreen(),
-      ProfileScreen(
-        userId: auth?.uid,
-      ),
+      const GroupListScreen(),
+      ContactsListScreen()
+      // ProfileScreen(
+      //   userId: auth?.uid,
+      // ),
     ];
 
   }
@@ -116,44 +121,54 @@ class _HomeScreenState extends State<HomeScreen> {
                         _pageIndex == 2;
                       },
                     ),
-                    bottomNavigationBar: BottomAppBar(
-                      shape: CircularNotchedRectangle(),
-                      elevation: 5,
-                      notchMargin: 10,
-                      clipBehavior: Clip.antiAlias,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          IconButton(
-                            icon: ImageIcon(AssetImage('assets/home_icon.png')),
-                            onPressed: () {_setPage(0);_pageIndex == 0;},
-                            color: _pageIndex == 0 ? ThemeColors.selectedIconColor : ThemeColors.blackColor,
-                          ),
-                          IconButton(
-                            icon:ImageIcon(AssetImage('assets/noticeboard.png')),
-                            onPressed: () {_setPage(1);_pageIndex == 1;},
-                            color: _pageIndex == 1 ? ThemeColors.selectedIconColor : ThemeColors.blackColor,
+                    bottomNavigationBar: Theme(
+                      data: Theme.of(context).copyWith(
+                        canvasColor: Colors.white,
+                        primaryColor: Colors.white,backgroundColor: Colors.white,bottomAppBarColor: Colors.white,
+                        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+                          backgroundColor: Colors.white
+                        )
+                      ),
+                      child: BottomAppBar(
+                        color: Colors.white,
+                        shape: CircularNotchedRectangle(),
+                        elevation: 5,
+                        notchMargin: 10,
+                        clipBehavior: Clip.antiAlias,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            IconButton(
+                              icon: ImageIcon(AssetImage('assets/home_icon.png')),
+                              onPressed: () {_setPage(0);_pageIndex == 0;},
+                              color: _pageIndex == 0 ? ThemeColors.selectedIconColor : ThemeColors.blackColor,
+                            ),
+                            IconButton(
+                              icon:ImageIcon(AssetImage('assets/noticeboard.png')),
+                              onPressed: () {_setPage(1);_pageIndex == 1;},
+                              color: _pageIndex == 1 ? ThemeColors.selectedIconColor : ThemeColors.blackColor,
 
-                          ),
-                          IconButton(
-                            icon:SizedBox(),
-                            onPressed: () {},
-                          ),
-                          IconButton(
-                            icon: ImageIcon(AssetImage('assets/person.png')),
-                            onPressed: () {_setPage(3);_pageIndex==3;},
-                            color: _pageIndex == 3 ? ThemeColors.selectedIconColor : ThemeColors.blackColor,
+                            ),
+                            IconButton(
+                              icon:SizedBox(),
+                              onPressed: () {},
+                            ),
+                            IconButton(
+                              icon: ImageIcon(AssetImage('assets/person.png')),
+                              onPressed: () {_setPage(3);_pageIndex==3;},
+                              color: _pageIndex == 3 ? ThemeColors.selectedIconColor : ThemeColors.blackColor,
 
-                          ),
+                            ),
 
-                          IconButton(
-                            icon: ImageIcon(AssetImage('assets/chat.png')),
-                            onPressed: () {_setPage(4);_pageIndex==4;},
-                            color: _pageIndex == 4 ? ThemeColors.selectedIconColor : ThemeColors.blackColor,
+                            IconButton(
+                              icon: ImageIcon(AssetImage('assets/chat.png')),
+                              onPressed: () {_setPage(4);_pageIndex==4;},
+                              color: _pageIndex == 4 ? ThemeColors.selectedIconColor : ThemeColors.blackColor,
 
-                          )
-                        ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
                     // PersistentTabView(

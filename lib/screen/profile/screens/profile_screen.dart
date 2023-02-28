@@ -28,6 +28,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final bool _isLoadingProfile = false;
   String imageUrl = 'assets/default_image.jpg';
   Stream<QuerySnapshot<Map<String, dynamic>>>? streamResult;
+  bool _postTab = true;
 
   @override
   void initState() {
@@ -100,27 +101,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           : ProfileCachedBackgroundPhoto(
                                               user: user,
                                             ),
-                                      Positioned(
-                                        top: 3,
-                                        right: 5,
-                                        child: Row(
-                                          children: [
-                                            FirebaseAuth.instance.currentUser!
-                                                        .uid !=
-                                                    widget.userId
-                                                ? ProfileSendMessageButton(
-                                                    user: user,
-                                                  )
-                                                : ProfileMessageButton(
-                                                    userId: widget.userId!,
-                                                  ),
-                                          ],
-                                        ),
-                                      ),
+                                      // Positioned(
+                                      //   top: 3,
+                                      //   right: 5,
+                                      //   child: Row(
+                                      //     children: [
+                                      //       FirebaseAuth.instance.currentUser!
+                                      //                   .uid !=
+                                      //               widget.userId
+                                      //           ? ProfileSendMessageButton(
+                                      //               user: user,
+                                      //             )
+                                      //           : ProfileMessageButton(
+                                      //               userId: widget.userId!,
+                                      //             ),
+                                      //     ],
+                                      //   ),
+                                      // ),
                                       FirebaseAuth.instance.currentUser!.uid !=
                                               widget.userId
                                           ? const ProfileBackButton()
-                                          : const SizedBox(),
+                                          : const ProfileBackButton(),
                                       Positioned(
                                         bottom: 0,
                                         left: 0,
@@ -144,11 +145,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     ],
                                   ),
                                 ),
-                                ProfilePostSection(userId: widget.userId!),
-                                // Padding(
-                                //   padding: const EdgeInsets.all(15.0),
-                                //   child: buildProductList(context),
-                                // )
+                                _postTab ?
+                                ProfilePostSection(userId: widget.userId!)
+                                :Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: buildProductList(context),
+                                )
                               ],
                             ),
                           );

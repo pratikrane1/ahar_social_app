@@ -5,6 +5,8 @@ import 'package:socialrecipe/utils/constants.dart';
 import 'package:socialrecipe/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 
+import '../../../utils/theme_colors.dart';
+
 class AddRecipePostScreen extends StatelessWidget {
   const AddRecipePostScreen({Key? key}) : super(key: key);
 
@@ -26,8 +28,10 @@ class AddRecipePostScreen extends StatelessWidget {
             ),
             Text(
               'Create your Post',
-              style:
-                  Theme.of(context).textTheme.headline1!.copyWith(height: 1.1),
+              style: TextStyle(
+                  fontSize: 25,
+                  fontFamily: 'Poppins-Bold',
+                  fontWeight: FontWeight.w700),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 14),
@@ -35,13 +39,14 @@ class AddRecipePostScreen extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Material(
-                color: settingsProvider.darkMode ? Colors.white : kOrangeColor,
+                color: settingsProvider.darkMode ? Colors.white : ThemeColors.buttonColor,
                 elevation: 4,
                 child: InkWell(
                   onTap: () {
                     Navigator.pushNamed(context, AppPages.createPostRecipePath);
                   },
                   child: Ink(
+
                     height: 52,
                     width: MediaQuery.of(context).size.width,
                     decoration: const BoxDecoration(

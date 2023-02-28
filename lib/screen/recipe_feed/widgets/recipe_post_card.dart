@@ -130,64 +130,79 @@ class _RecipePostCardState extends State<RecipePostCard> {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 10),
-                  Expanded(
+                  const SizedBox(width: 4),
+                  Flexible(
                     child: Row(
                       children: [
-                        Expanded(
+                        Flexible(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
 
                             children: [
                               //username
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      if (currentUser!.uid != widget.post.uid) {
-                                        Navigator.pushNamed(
-                                          context,
-                                          AppPages.profilePath,
-                                          arguments: widget.post.uid,
-                                        );
-                                      }
-                                    },
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          widget.post.userName,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style:
-                                              Theme.of(context).textTheme.bodyText2!.copyWith(fontFamily: 'Poppins-Bold'),
-                                        ),
-                                        SizedBox(width: 4,),
-                                        Text(
-                                          '@Navi Mumbai group. 3H',
+                              // Row(
+                              //   mainAxisAlignment: MainAxisAlignment.start,
+                              //   mainAxisSize: MainAxisSize.min,
+                              //
+                              //   children: [
+                              //
+                              //   ],
+                              // ),
+                              GestureDetector(
+                                onTap: () {
+                                  if (currentUser!.uid != widget.post.uid) {
+                                    Navigator.pushNamed(
+                                      context,
+                                      AppPages.profilePath,
+                                      arguments: widget.post.uid,
+                                    );
+                                  }
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+
+                                  children: [
+                                    Text(
+                                      widget.post.userName,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style:
+                                      Theme.of(context).textTheme.bodyText2!.copyWith(
+                                          fontFamily: 'Poppins-Bold',
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    SizedBox(width: 4,),
+                                    Expanded(
+                                      child: Container(
+                                        // width: MediaQuery.of(context).size.width,
+                                        // width: MediaQuery.of(context).size.width*0.4,
+                                        child: Text(
+                                          '@Mumbai Zone | group. 3H',
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
                                               color: ThemeColors.greyTextColor,
                                               fontSize: 12,
                                               fontFamily: 'Poppins-Light',
+                                              fontWeight: FontWeight.normal
                                           ),
                                         ),
-                                      ],
+                                      ),
                                     ),
-                                  ),
-
-                                ],
+                                  ],
+                                ),
                               ),
+
                               SizedBox(height: 10,),
                               //Post Image
                               GestureDetector(
                                 onTap: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    AppPages.recipePostDetails,
-                                    arguments: widget.post,
-                                  );
+                                  // Navigator.pushNamed(
+                                  //   context,
+                                  //   AppPages.recipePostDetails,
+                                  //   arguments: widget.post,
+                                  // );
                                 },
                                 child: Material(
                                   elevation: 8,
@@ -289,7 +304,7 @@ class _RecipePostCardState extends State<RecipePostCard> {
                                       ],
                                     ),
                                   ),
-                                  SizedBox(width: 30,),
+                                  // SizedBox(width: 30,),
                                   // Comment Button
                                   IconButton(
                                     splashRadius: 20,
@@ -307,7 +322,7 @@ class _RecipePostCardState extends State<RecipePostCard> {
                                           : ThemeColors.greyIconColor,
                                     ),
                                   ),
-                                  SizedBox(width: 30,),
+                                  // SizedBox(width: 30,),
 
                                   //Share Button
                                   IconButton(

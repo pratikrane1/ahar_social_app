@@ -8,6 +8,7 @@ class ThemeColors {
   static const Color greyIconColor = Color(0xFF687684);
   static const Color selectedIconColor = Color(0xFF7DB9B3);
   static const Color msgFieldColor = Color(0xFF25A0B0);
+  static const Color uploadImageBagroundColor = Color(0xFF29A8B9);
 
 
 }

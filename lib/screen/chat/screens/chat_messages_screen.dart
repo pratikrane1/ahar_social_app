@@ -163,8 +163,8 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
                     icon: Padding(
                       padding: const EdgeInsets.only(right: 8.0),
                       child: Container(
-                        height: MediaQuery.of(context).size.height * 0.077,
-                        width: MediaQuery.of(context).size.width * 0.15,
+                        height: MediaQuery.of(context).size.height * 0.06,
+                        width: MediaQuery.of(context).size.width * 0.13,
                         decoration: BoxDecoration(
                           color: ThemeColors.blackColor,
                           border: Border.all(

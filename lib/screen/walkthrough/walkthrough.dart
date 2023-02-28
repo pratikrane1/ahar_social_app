@@ -45,7 +45,7 @@ class _WalkThroughScreenState extends State<WalkThroughScreen> {
                     fontWeight: FontWeight.w700),),
             ),
             Image.asset('assets/community.png',fit: BoxFit.cover,),
-            SizedBox(height: 20,),
+            // SizedBox(height: 20,),
             Padding(
               padding: const EdgeInsets.only(left: 30.0,right: 30.0),
               child: AppButton(

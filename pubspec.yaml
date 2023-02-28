@@ -71,7 +71,6 @@ dependencies:
     sdk: flutter
   share_plus: ^4.0.10
   firebase_dynamic_links: ^5.0.1
-  flat_icons_flutter:
   pin_code_fields: ^7.4.0
   persistent_bottom_nav_bar: ^5.0.2
 

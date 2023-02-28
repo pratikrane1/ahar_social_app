@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:socialrecipe/providers/auth_provider.dart';
+import 'package:socialrecipe/screen/chat/screens/contacts_list_screen.dart';
 import 'package:socialrecipe/utils/app_pages.dart';
 import 'package:socialrecipe/utils/constants.dart';
 import 'package:socialrecipe/src/models/user_model.dart';
@@ -403,11 +404,12 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                               GestureDetector(
                                 // behavior: HitTestBehavior.translucent,
                                 onTap: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    AppPages.followersPath,
-                                    arguments: widget.user,
-                                  );
+                                  // Navigator.pushNamed(
+                                  //   context,
+                                  //   AppPages.followersPath,
+                                  //   arguments: widget.user,
+                                  // );
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>ContactsListScreen()));
                                   setState(() {
                                     _isPostTab = true;
                                   });

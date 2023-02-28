@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:socialrecipe/screen/notification/notification_screens.dart';
+import 'package:socialrecipe/screen/profile/screens/profile_screen.dart';
 import 'package:socialrecipe/utils/constants.dart';
 import 'package:socialrecipe/src/models/user_model.dart';
 import 'package:socialrecipe/screen/recipe_feed/screens/activity_tab.dart';
@@ -67,7 +69,7 @@ class _FeedScreenState extends State<FeedScreen>
                           padding: const EdgeInsets.only(left: 10.0),
                           child: Row(
                             children: [
-                              Image.asset(Images.logo),
+                              Image.asset(Images.logo,height: 70,width: 70,),
                               SizedBox(width: 5,),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,15 +96,19 @@ class _FeedScreenState extends State<FeedScreen>
                         ),
                         Row(
                           children: [
+                            // InkWell(
+                            //   onTap: (){},
+                            //   child: Icon(Icons.search,size: 25,),
+                            // ),
+                            // SizedBox(width: 18,),
                             InkWell(
-                              onTap: (){},
-                              child: Icon(Icons.search,size: 25,),
-                            ),
-                            SizedBox(width: 7,),
-                            InkWell(
-                              onTap: (){},
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=>NotificationScreen()));
+                              },
                               child: Icon(Icons.notifications,size: 25,),
                             ),
+                            SizedBox(width: 8,),
+
                             Padding(
                               padding: const EdgeInsets.only(right: 20.0),
                               child: Row(
@@ -111,7 +117,10 @@ class _FeedScreenState extends State<FeedScreen>
                                   const SizedBox(width: 10),
                                   GestureDetector(
                                     onTap: () {
-                                      appProvider.gotToTab(3);
+                                      // appProvider.gotToTab(3);
+                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileScreen(
+                                        userId: user!.id,
+                                      ),));
                                     },
                                     child: SizedBox(
                                       width: 35,

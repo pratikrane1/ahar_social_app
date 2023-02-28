@@ -6,7 +6,6 @@ import 'package:socialrecipe/utils/app_pages.dart';
 import 'package:socialrecipe/utils/images.dart';
 import 'package:socialrecipe/utils/theme_colors.dart';
 import 'package:socialrecipe/widget/app_button.dart';
-import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:socialrecipe/providers/user_provider.dart';
 import 'package:provider/provider.dart';
@@ -98,6 +97,8 @@ class _VerifyNumberScreenState extends State<VerifyNumberScreen> {
                           fontSize: 14,
                           color: ThemeColors.greyTextColor,
                           fontFamily: 'OpenSans-Light',
+                            fontWeight: FontWeight.normal
+
                         ),
 
                       ),

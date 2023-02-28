@@ -13,6 +13,7 @@ import 'package:socialrecipe/screen/recipe_feed/widgets/title_and_description_fo
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:socialrecipe/utils/theme_colors.dart';
 
 class CreateRecipePostScreen extends StatefulWidget {
   const CreateRecipePostScreen({Key? key}) : super(key: key);
@@ -214,18 +215,19 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
-            title: Text(
-              'Create',
-              style:
-                  Theme.of(context).textTheme.headline2!.copyWith(fontSize: 18),
-            ),
-            leading: IconButton(
+            // title: Text(
+            //   'Create',
+            //   style:
+            //       Theme.of(context).textTheme.headline2!.copyWith(fontSize: 18),
+            // ),
+            leading:
+            IconButton(
               splashRadius: 20,
               onPressed: () {
                 Navigator.of(context).pop();
               },
               icon: Icon(
-                Icons.arrow_back,
+                Icons.clear,
                 color: settingsManager.darkMode ? Colors.white : Colors.black,
               ),
             ),
@@ -240,34 +242,37 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
                     child: InkWell(
                       onTap: () {
                         //!: publish post.
-                        final isValidForm = _formKey.currentState!.validate();
-                        final isValidForm1 = _formKey1.currentState!.validate();
-                        final isValidForm2 = _formKey2.currentState!.validate();
-                        if (isValidForm &&
-                            _imageFile != null &&
-                            isValidForm1 &&
-                            isValidForm2) {
-                          publishRecipePost(
-                            uid: user!.id,
-                            userName: user.userName,
-                            userEmail: user.email,
-                            profImage: user.photoUrl,
-                          );
-                        }
+                        // final isValidForm = _formKey.currentState!.validate();
+                        // final isValidForm1 = _formKey1.currentState!.validate();
+                        // final isValidForm2 = _formKey2.currentState!.validate();
+                        // if (isValidForm &&
+                        //     _imageFile != null &&
+                        //     isValidForm1 &&
+                        //     isValidForm2) {
+                        //   publishRecipePost(
+                        //     uid: user!.id,
+                        //     userName: user.userName,
+                        //     userEmail: user.email,
+                        //     profImage: user.photoUrl,
+                        //   );
+                        // }
                       },
                       child: Ink(
                         width: 95,
                         decoration: BoxDecoration(
                             color: settingsManager.darkMode
                                 ? Colors.white
-                                : kOrangeColor,
+                                : ThemeColors.buttonColor,
                             borderRadius: const BorderRadius.all(
                               Radius.circular(10),
                             )),
                         child: Center(
                           child: Text(
-                            'Publish',
+                            'Post',
                             style: TextStyle(
+                                    fontSize: 19,
+                                    fontFamily: 'Poppins-Regular',
+                                    fontWeight: FontWeight.normal,
                                 color: settingsManager.darkMode
                                     ? kOrangeColor
                                     : Colors.white),
@@ -295,14 +300,15 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
                         child: Ink(
                           height: MediaQuery.of(context).size.height / 4,
                           decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                              begin: Alignment.topRight,
-                              end: Alignment.bottomLeft,
-                              colors: [
-                                Color.fromARGB(255, 55, 246, 246),
-                                Color.fromARGB(255, 13, 94, 91),
-                              ],
-                            ),
+                            color: ThemeColors.uploadImageBagroundColor,
+                            // gradient: const LinearGradient(
+                            //   begin: Alignment.topRight,
+                            //   end: Alignment.bottomLeft,
+                            //   colors: [
+                            //     Color.fromARGB(255, 55, 246, 246),
+                            //     Color.fromARGB(255, 13, 94, 91),
+                            //   ],
+                            // ),
                             image: _imageFile == null
                                 ? null
                                 : DecorationImage(
@@ -316,19 +322,19 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
                                 bottom: 80,
                                 left: 0,
                                 right: 0,
-                                child: Row(
+                                child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     const FaIcon(
                                       FontAwesomeIcons.camera,
                                       color: Colors.white,
                                     ),
-                                    const SizedBox(width: 15),
+                                    const SizedBox(height: 15),
                                     Text(
-                                      'Upload Your recipe photo',
+                                      'Upload Your Image',
                                       style: Theme.of(context)
                                           .textTheme
-                                          .headline2!
+                                          .headline3!
                                           .copyWith(
                                             fontWeight: FontWeight.normal,
                                             fontSize: 18,
@@ -346,96 +352,67 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 14),
+                    // const SizedBox(height: 14),
                     // !: Title and Description Section:
-                    TitleAndDescriptionFormSection(
-                      onChanged: (value) {
-                        setState(() {
-                          servesValue = value as String;
-                        });
+                    // TitleAndDescriptionFormSection(
+                    //   onChanged: (value) {
+                    //     setState(() {
+                    //       servesValue = value as String;
+                    //     });
+                    //   },
+                    //   formKey: _formKey,
+                    //   titleController: _titleController,
+                    //   descriptionController: _descriptionController,
+                    //   servesValue: servesValue,
+                    //   cookTimeController: _cookTimeController,
+                    // ),
+                    TextFormField(
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Description Required';
+                        }
+                        return null;
                       },
-                      formKey: _formKey,
-                      titleController: _titleController,
-                      descriptionController: _descriptionController,
-                      servesValue: servesValue,
-                      cookTimeController: _cookTimeController,
-                    ),
-                    DottedLine(
-                      direction: Axis.horizontal,
-                      lineLength: double.infinity,
-                      lineThickness: 10.0,
-                      dashLength: 12.0,
-                      dashColor: Colors.black,
-                      dashGradient: const [
-                        Color.fromARGB(255, 54, 235, 244),
-                        Color.fromARGB(255, 10, 92, 88)
-                      ],
-                      dashRadius: 5.0,
-                      dashGapLength: 3.0,
-                      dashGapColor: Colors.transparent,
-                      dashGapRadius: 2.0,
-                    ),
-
-                    const SizedBox(height: 14),
-                    AddFieldsSection(
-                      formKey: _formKey1,
-                      formFieldsList: _ingredientsFormList,
-                      controllersList: _ingredientControllersList,
-                      popUpItemsList: _popUpItemsList,
-                      buttonText: '+ Elements',
-                      validatorText: 'Field Required',
-                      addButtonColor: kOrangeColor,
-                      leadingTextFieldColor: kOrangeColor,
-                      sectionText: 'Elements',
-                      hintText: '100gm Flour',
-                      buttonTextColor: Colors.white,
-                      maxLines: 1,
-                      leadingTextFieldTextColor: Colors.white,
-                      cursorColor: kOrangeColor,
-                    ),
-                    DottedLine(
-                      direction: Axis.horizontal,
-                      lineLength: double.infinity,
-                      lineThickness: 10.0,
-                      dashLength: 12.0,
-                      dashColor: Colors.black,
-                      dashGradient: const [
-                        Color.fromARGB(255, 244, 70, 54),
-                        Color.fromARGB(255, 10, 92, 88)
-                      ],
-                      dashRadius: 5.0,
-                      dashGapLength: 3.0,
-                      dashGapColor: Colors.transparent,
-                      //dashGapGradient: [Colors.red, Colors.blue],
-                      dashGapRadius: 2.0,
+                      textAlign: TextAlign.start,
+                      textAlignVertical: TextAlignVertical.center,
+                      style: Theme.of(context).textTheme.headline3!.copyWith(
+                          fontWeight: FontWeight.w400, fontSize: 18, height: 1.6),
+                      controller: _descriptionController,
+                      maxLines: 10,
+                      cursorHeight: 30,
+                      autofocus: false,
+                      autocorrect: false,
+                      keyboardType: TextInputType.text,
+                      obscureText: false,
+                      decoration: InputDecoration(
+                        counterText: ' ',
+                        fillColor: settingsManager.darkMode ? kGreyColor : Colors.white,
+                        filled: true,
+                        isCollapsed: true,
+                        contentPadding: const EdgeInsets.all(18),
+                        hintText:
+                        "What's happening?",
+                        hintStyle: Theme.of(context).textTheme.headline4!.copyWith(
+                            fontSize: 18,
+                            color: Colors.grey.shade600,
+                            fontWeight: FontWeight.w400,
+                            height: 1.6),
+                        focusedErrorBorder: kFocusedErrorBorder,
+                        errorBorder: kErrorBorder,
+                        enabledBorder: OutlineInputBorder(
+                          // borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                          borderSide: BorderSide(color: ThemeColors.greyTextColor,width: 1),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: ThemeColors.greyTextColor,width: 1),
+                          // borderRadius: BorderRadius.all(Radius.circular(80.0)),
+                        ),
+                        border: OutlineInputBorder(
+                          // borderRadius: BorderRadius.all(Radius.circular(80.0)),
+                        ),
+                      ),
                     ),
 
-                    AddFieldsSection(
-                      formKey: _formKey2,
-                      formFieldsList: _instructionsFormList,
-                      controllersList: _instructionsControllersList,
-                      popUpItemsList: _popUpItemsList,
-                      buttonText: '+ Add',
-                      validatorText: 'Field Required',
-                      addButtonColor: settingsManager.darkMode
-                          ? kOrangeColor
-                          : kOrangeColor,
-                      leadingTextFieldColor: settingsManager.darkMode
-                          ? kOrangeColor
-                          : kOrangeColor,
-                      sectionText: 'Step By Step',
-                      hintText: 'Your Steps Details',
-                      buttonTextColor:
-                          settingsManager.darkMode ? kBlackColor : Colors.white,
-                      maxLines: 2,
-                      leadingTextFieldTextColor: settingsManager.darkMode
-                          ? Colors.black
-                          : Colors.white,
-                      cursorColor: settingsManager.darkMode
-                          ? Colors.white
-                          : Colors.black,
-                    ),
-                    const SizedBox(height: 120),
                   ],
                 ),
               ),

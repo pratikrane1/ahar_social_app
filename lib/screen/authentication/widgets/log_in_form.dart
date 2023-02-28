@@ -88,6 +88,7 @@ class _LoginFormState extends State<LoginForm> {
                           fontSize: 14,
                           color: ThemeColors.greyTextColor,
                           fontFamily: 'OpenSans-Light',
+                          fontWeight: FontWeight.normal
                         ),
                       ),
                       const SizedBox(height: 50),
