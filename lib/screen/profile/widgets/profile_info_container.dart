@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:socialrecipe/providers/auth_provider.dart';
 import 'package:socialrecipe/screen/chat/screens/contacts_list_screen.dart';
+import 'package:socialrecipe/screen/group/group_listing_screen.dart';
 import 'package:socialrecipe/utils/app_pages.dart';
 import 'package:socialrecipe/utils/constants.dart';
 import 'package:socialrecipe/src/models/user_model.dart';
@@ -409,7 +410,7 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                   //   AppPages.followersPath,
                                   //   arguments: widget.user,
                                   // );
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>ContactsListScreen()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>GroupListScreen()));
                                   setState(() {
                                     _isPostTab = true;
                                   });

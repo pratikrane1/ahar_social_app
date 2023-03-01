@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:socialrecipe/providers/dynamic_link.dart';
 import 'package:socialrecipe/screen/chat/screens/contacts_list_screen.dart';
@@ -135,39 +136,49 @@ class _HomeScreenState extends State<HomeScreen> {
                         elevation: 5,
                         notchMargin: 10,
                         clipBehavior: Clip.antiAlias,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            IconButton(
-                              icon: ImageIcon(AssetImage('assets/home_icon.png')),
-                              onPressed: () {_setPage(0);_pageIndex == 0;},
-                              color: _pageIndex == 0 ? ThemeColors.selectedIconColor : ThemeColors.blackColor,
-                            ),
-                            IconButton(
-                              icon:ImageIcon(AssetImage('assets/noticeboard.png')),
-                              onPressed: () {_setPage(1);_pageIndex == 1;},
-                              color: _pageIndex == 1 ? ThemeColors.selectedIconColor : ThemeColors.blackColor,
+                        child: Container(
+                          height: 70,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 20.0,right: 20.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                IconButton(
+                                  // icon: ImageIcon(AssetImage('assets/home_icon.png')),
+                                  icon: Icon(Icons.home_outlined,size: 28,),
+                                  onPressed: () {_setPage(0);_pageIndex == 0;},
+                                  color: _pageIndex == 0 ? ThemeColors.selectedIconColor : ThemeColors.blackColor,
+                                ),
+                                IconButton(
+                                  // icon:ImageIcon(AssetImage('assets/noticeboard.png'),size: 25,),
+                                  icon:SvgPicture.asset('assets/noticeboard.svg', color: _pageIndex == 1 ? ThemeColors.selectedIconColor : ThemeColors.blackColor,),
+                                  onPressed: () {_setPage(1);_pageIndex == 1;},
+                                  color: _pageIndex == 1 ? ThemeColors.selectedIconColor : ThemeColors.blackColor,
 
-                            ),
-                            IconButton(
-                              icon:SizedBox(),
-                              onPressed: () {},
-                            ),
-                            IconButton(
-                              icon: ImageIcon(AssetImage('assets/person.png')),
-                              onPressed: () {_setPage(3);_pageIndex==3;},
-                              color: _pageIndex == 3 ? ThemeColors.selectedIconColor : ThemeColors.blackColor,
+                                ),
+                                IconButton(
+                                  icon:SizedBox(),
+                                  onPressed: () {},
+                                ),
+                                IconButton(
+                                  // icon: ImageIcon(AssetImage('assets/person.png')),
+                                  icon: Icon(Icons.group,size: 25,),
+                                  onPressed: () {_setPage(3);_pageIndex==3;},
+                                  color: _pageIndex == 3 ? ThemeColors.selectedIconColor : ThemeColors.blackColor,
 
+                                ),
+
+                                IconButton(
+                                  // icon: ImageIcon(AssetImage('assets/chat.png')),
+                                  icon: Icon(Icons.mark_chat_unread_outlined,size: 25,),
+                                  onPressed: () {_setPage(4);_pageIndex==4;},
+                                  color: _pageIndex == 4 ? ThemeColors.selectedIconColor : ThemeColors.blackColor,
+
+                                )
+                              ],
                             ),
-
-                            IconButton(
-                              icon: ImageIcon(AssetImage('assets/chat.png')),
-                              onPressed: () {_setPage(4);_pageIndex==4;},
-                              color: _pageIndex == 4 ? ThemeColors.selectedIconColor : ThemeColors.blackColor,
-
-                            )
-                          ],
+                          ),
                         ),
                       ),
                     ),
