@@ -3,22 +3,15 @@ import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:socialrecipe/providers/dynamic_link.dart';
-import 'package:socialrecipe/screen/chat/screens/contacts_list_screen.dart';
 import 'package:socialrecipe/screen/create_recipe_post/screens/add_recipe_post_screen.dart';
 import 'package:socialrecipe/screen/group/group_listing_screen.dart';
 import 'package:socialrecipe/screen/group/group_screen.dart';
 import 'package:socialrecipe/screen/home/screens/home_screen1.dart';
-import 'package:socialrecipe/screen/noticeboard/noticeboard_screen.dart';
-import 'package:socialrecipe/screen/profile/widgets/profile_messages_button.dart';
-import 'package:socialrecipe/screen/recipe_feed/screens/feed_screen.dart';
-import 'package:socialrecipe/screen/profile/screens/profile_screen.dart';
-import 'package:socialrecipe/screen/search_user/screens/search_user_screen.dart';
 import 'package:socialrecipe/providers/auth_provider.dart';
 import 'package:socialrecipe/providers/user_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:socialrecipe/screen/profile/profile.dart';
 import 'package:socialrecipe/utils/theme_colors.dart';
 
 import '../../../utils/constants.dart';
@@ -66,7 +59,8 @@ class _HomeScreenState extends State<HomeScreen> {
       const GroupScreen(),
       const AddRecipePostScreen(),
       const GroupListScreen(),
-      const ContactsListScreen()
+      const ProfileScreen()
+      // const ContactsListScreen()
       // ProfileScreen(
       //   userId: auth?.uid,
       // ),
@@ -129,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           backgroundColor: Colors.white,
                           bottomAppBarColor: Colors.white,
                           bottomNavigationBarTheme:
-                              BottomNavigationBarThemeData(
+                              const BottomNavigationBarThemeData(
                                   backgroundColor: Colors.white)),
                       child: BottomAppBar(
                         color: Colors.white,
@@ -148,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: <Widget>[
                                 IconButton(
                                   // icon: ImageIcon(AssetImage('assets/home_icon.png')),
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.home_outlined,
                                     size: 28,
                                   ),
@@ -182,7 +176,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 IconButton(
                                   // icon: ImageIcon(AssetImage('assets/person.png')),
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.group,
                                     size: 25,
                                   ),
@@ -194,10 +188,24 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ? ThemeColors.selectedIconColor
                                       : ThemeColors.blackColor,
                                 ),
+                                // IconButton(
+                                //   // icon: ImageIcon(AssetImage('assets/chat.png')),
+                                //   icon: const Icon(
+                                //     Icons.mark_chat_unread_outlined,
+                                //     size: 25,
+                                //   ),
+                                //   onPressed: () {
+                                //     _setPage(4);
+                                //     _pageIndex == 4;
+                                //   },
+                                //   color: _pageIndex == 4
+                                //       ? ThemeColors.selectedIconColor
+                                //       : ThemeColors.blackColor,
+                                // ),
                                 IconButton(
                                   // icon: ImageIcon(AssetImage('assets/chat.png')),
-                                  icon: Icon(
-                                    Icons.mark_chat_unread_outlined,
+                                  icon: const Icon(
+                                    Icons.account_circle,
                                     size: 25,
                                   ),
                                   onPressed: () {
@@ -207,7 +215,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   color: _pageIndex == 4
                                       ? ThemeColors.selectedIconColor
                                       : ThemeColors.blackColor,
-                                )
+                                ),
                               ],
                             ),
                           ),

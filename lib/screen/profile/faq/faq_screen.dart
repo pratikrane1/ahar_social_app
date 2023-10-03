@@ -31,6 +31,7 @@ class _HelpCentreScreenState extends State<HelpCentreScreen> {
         appBar: AppBar(
           // toolbarHeight: 100,
           backgroundColor: ThemeColors.whiteColor,
+          surfaceTintColor: ThemeColors.whiteColor,
           // leadingWidth: 200,
           leading: IconButton(
                 splashRadius: 20,
@@ -74,26 +75,28 @@ class _HelpCentreScreenState extends State<HelpCentreScreen> {
                   itemCount: 10,
                   itemBuilder: (context, index) {
                     return Card(
+                      surfaceTintColor: Colors.white,
                       elevation: 8.0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
-                      child: ExpansionTile(
-                        tilePadding: const EdgeInsets.only(
+                      child: const ExpansionTile(
+                        backgroundColor: ThemeColors.whiteColor,
+                        tilePadding: EdgeInsets.only(
                             left: 10, top: 10, bottom: 5,right: 15),
                         title: Text(
                             "Question",
-                            style: const TextStyle(
+                            style: TextStyle(
                                 color: Colors.black,
                                 fontFamily: 'Montserrat-Regular',
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600)),
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.only(left: 20.0,right: 10,bottom: 5),
+                            padding: EdgeInsets.only(left: 20.0,right: 10,bottom: 5),
                             child: Text(
                                 "Answer",
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: Colors.black,
                                     fontFamily: 'Montserrat-Regular',
                                     fontSize: 12,

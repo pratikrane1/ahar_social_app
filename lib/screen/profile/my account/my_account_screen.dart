@@ -109,6 +109,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
         backgroundColor: Color(0xFFF8F7F7),
         appBar: AppBar(
           backgroundColor: ThemeColors.whiteColor,
+          surfaceTintColor: Colors.white,
           leading: IconButton(
             splashRadius: 20,
             onPressed: () async {
@@ -138,7 +139,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
             ),
           ],
           title: Text(
-            'profile_details'.tr,
+            'Profile Details'.tr,
             style: Theme.of(context).textTheme.headline6!.copyWith(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
@@ -191,7 +192,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                       ///Name
                       Padding(
                         padding: EdgeInsets.only(left: 5.0),
-                        child: Text('name'.tr,
+                        child: Text('Name'.tr,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'Montserrat',
@@ -213,7 +214,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Color(0xFFF8F7F7),
-                          hintText: "enter_full_name".tr,
+                          hintText: "Enter full name".tr,
                           hintStyle: TextStyle(
                               fontSize: 15, color: _nameController.text == "" ?Colors.red: null),
                           enabledBorder: UnderlineInputBorder(
@@ -235,7 +236,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                       ///Phone Number
                       Padding(
                         padding: EdgeInsets.only(left: 5.0),
-                        child: Text('phone_number'.tr,
+                        child: Text('Phone Number'.tr,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'Montserrat',
@@ -257,7 +258,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Color(0xFFF8F7F7),
-                          hintText: "enter_phone_number".tr,
+                          hintText: "Enter phone number".tr,
                           hintStyle: TextStyle(
                               fontSize: 15,color: _phoneController.text == "" ?Colors.red: null),
                           enabledBorder: UnderlineInputBorder(
@@ -279,7 +280,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                       ///Email
                       Padding(
                         padding: EdgeInsets.only(left: 5.0),
-                        child: Text('email'.tr,
+                        child: Text('Email'.tr,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'Montserrat',
@@ -301,7 +302,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Color(0xFFF8F7F7),
-                          hintText: "enter_email".tr,
+                          hintText: "Enter email".tr,
                           hintStyle: TextStyle(
                               fontSize: 15,
                               color: _emailController.text == "" ?Colors.red: null),
@@ -324,7 +325,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                       ///bank account
                       Padding(
                         padding: EdgeInsets.only(left: 5.0),
-                        child: Text('bank_account'.tr,
+                        child: Text('Bank Account'.tr,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'Montserrat',
@@ -346,7 +347,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Color(0xFFF8F7F7),
-                          hintText: "enter_bank_account".tr,
+                          hintText: "Enter bank account".tr,
                           hintStyle: TextStyle(fontSize: 15,color: _bankAccountController.text == "" ?Colors.red: null),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
@@ -367,7 +368,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                       ///Ifsc code
                       Padding(
                         padding: EdgeInsets.only(left: 5.0),
-                        child: Text('ifsc_code'.tr,
+                        child: Text('IFSC Code'.tr,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'Montserrat',
@@ -389,7 +390,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Color(0xFFF8F7F7),
-                          hintText: "enter_IFSC_code".tr,
+                          hintText: "Enter IFSC code".tr,
                           hintStyle: TextStyle(fontSize: 15,color: _ifscCodeController.text == "" ?Colors.red: null),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
@@ -410,7 +411,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                       ///Date Of Birth
                       Padding(
                         padding: EdgeInsets.only(left: 5.0),
-                        child: Text('birthday'.tr,
+                        child: Text('Birthday'.tr,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'Montserrat',
@@ -432,7 +433,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Color(0xFFF8F7F7),
-                          hintText: "please_enter_birthday".tr,
+                          hintText: "Please enter birthday".tr,
                           hintStyle: TextStyle(fontSize: 15,color: _dobController.text == "" ?Colors.red: null),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
@@ -453,7 +454,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                       ///Gender
                       Padding(
                         padding: EdgeInsets.only(left: 5.0),
-                        child: Text('gender'.tr,
+                        child: Text('Gender'.tr,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'Montserrat',
@@ -475,7 +476,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Color(0xFFF8F7F7),
-                          hintText: "please_enter_gender".tr,
+                          hintText: "Please enter gender".tr,
                           hintStyle: TextStyle(fontSize: 15,color: _genderController.text == "" ?Colors.red: null),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
@@ -493,81 +494,11 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                         height: 20,
                       ),
 
-                      ///Referred By
-                      Padding(
-                        padding: EdgeInsets.only(left: 5.0),
-                        child: Text('referred_by_profile'.tr,
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.w500,
-                                color:
-                                ThemeColors.blackColor.withOpacity(0.6))),
-                      ),
-                      TextFormField(
-                        readOnly: true,
-                        controller: _referByNameController,
-                        textAlign: TextAlign.start,
-                        keyboardType: TextInputType.text,
-                        style: TextStyle(
-                            fontSize: 18,
-                            height: 1.5,
-                            color:
-                            ThemeColors.blackColor.withOpacity(0.6)
-                        ),
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Color(0xFFF8F7F7),
-                          hintText: "referred_by_name_profile".tr,
-                          hintStyle: TextStyle(fontSize: 15,color: _referByNameController.text == "" ?Colors.red: null),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
-                          ),    focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
-                        ),
-                          border: UnderlineInputBorder(
-                            borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
-                          ),
-                        ),
-                        validator: (value) {},
-                        onChanged: (value) {},
-                      ),
-                      TextFormField(
-                        readOnly: true,
-                        controller: _referByController,
-                        textAlign: TextAlign.start,
-                        keyboardType: TextInputType.text,
-                        style: TextStyle(
-                            fontSize: 18,
-                            height: 1.5,
-                            color:
-                            ThemeColors.blackColor.withOpacity(0.6)
-                        ),
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Color(0xFFF8F7F7),
-                          hintText: "referred_by_number_profile".tr,
-                          hintStyle: TextStyle(fontSize: 15,color: _referByController.text == "" ?Colors.red: null),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
-                          ),    focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
-                        ),
-                          border: UnderlineInputBorder(
-                            borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
-                          ),
-                        ),
-                        validator: (value) {},
-                        onChanged: (value) {},
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
 
                       ///Pin Code
                       Padding(
                         padding: EdgeInsets.only(left: 5.0),
-                        child: Text('pin_code'.tr,
+                        child: Text('Pin Code'.tr,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'Montserrat',
@@ -589,7 +520,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Color(0xFFF8F7F7),
-                          hintText: "enter_pin_code".tr,
+                          hintText: "Enter pin code".tr,
                           hintStyle: TextStyle(fontSize: 15,color: _pinCodeController.text == "" ?Colors.red: null),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
@@ -611,7 +542,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                       ///City
                       Padding(
                         padding: EdgeInsets.only(left: 5.0),
-                        child: Text('city'.tr,
+                        child: Text('City'.tr,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'Montserrat',
@@ -633,7 +564,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Color(0xFFF8F7F7),
-                          hintText: "enter_city".tr,
+                          hintText: "Enter city".tr,
                           hintStyle: TextStyle(fontSize: 15,color: _cityController.text == "" ?Colors.red: null),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
@@ -655,7 +586,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                       ///District
                       Padding(
                         padding: EdgeInsets.only(left: 5.0),
-                        child: Text('district'.tr,
+                        child: Text('District'.tr,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'Montserrat',
@@ -677,7 +608,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Color(0xFFF8F7F7),
-                          hintText: "enter_district".tr,
+                          hintText: "Enter district".tr,
                           hintStyle: TextStyle(fontSize: 15,color: _districtController.text == "" ?Colors.red: null),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
@@ -699,7 +630,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                       ///State
                       Padding(
                         padding: EdgeInsets.only(left: 5.0),
-                        child: Text('state'.tr,
+                        child: Text('State'.tr,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'Montserrat',
@@ -721,7 +652,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Color(0xFFF8F7F7),
-                          hintText: "enter_state".tr,
+                          hintText: "Enter state".tr,
                           hintStyle: TextStyle(fontSize: 15,color: _stateController.text == "" ?Colors.red: null),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),

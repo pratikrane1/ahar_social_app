@@ -51,7 +51,7 @@ class _VideoSliderState extends State<VideoSlider>  {
           Padding(
             padding: EdgeInsets.all(10.0),
             child: Text(
-              "gainz_pro_training_video".tr,
+              "Videos".tr,
               style:const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -65,7 +65,7 @@ class _VideoSliderState extends State<VideoSlider>  {
             // height: _width > 400.0 ? 250 : 190,
             height: 190,
             child: PageView.builder(
-              itemCount: 1,
+              itemCount: 2,
               // pageSnapping: true,
               controller: _pageController,
               onPageChanged: (page) {
@@ -160,7 +160,7 @@ class _VideoSliderState extends State<VideoSlider>  {
           ///Video Indicator
           Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: indicators(1,activePage)),
+              children: indicators(2,activePage)),
         ],
       ),
     );

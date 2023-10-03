@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:socialrecipe/screen/chat/screens/contacts_list_screen.dart';
 import 'package:socialrecipe/screen/home/widget/banner_view.dart';
 import 'package:socialrecipe/screen/home/widget/document_file.dart';
 import 'package:socialrecipe/screen/home/widget/image_video_widget.dart';
@@ -112,78 +113,89 @@ class _AllTabState extends State<AllTab> {
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
                                   const SizedBox(width: 10),
-                                  GestureDetector(
-                                    onTap: () {
-                                      // appProvider.gotToTab(3);
-                                      // Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileScreen(userId: null,),));
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileScreen(),));
-                                    },
-                                    child: SizedBox(
-                                      width: 35,
-                                      height: 35,
-                                      child:
-                                      // user.photoUrl == "" ?
-                                      SizedBox(
-                                        child: ClipRRect(
-                                          borderRadius:
-                                          BorderRadius.circular(100),
-                                          child: Container(
-                                            decoration:
-                                            const BoxDecoration(
-                                              image: DecorationImage(
-                                                image: AssetImage(
-                                                    'assets/default_image.jpg'),
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                      //     : SizedBox(
-                                      //   child: ClipRRect(
-                                      //     borderRadius:
-                                      //     BorderRadius.circular(100),
-                                      //     child: Container(
-                                      //       decoration: BoxDecoration(
-                                      //           border: Border.all(
-                                      //             color: settingsManager
-                                      //                 .darkMode
-                                      //                 ? kBlackColor
-                                      //                 : Colors.grey.shade400,
-                                      //             width: 1.5,
-                                      //           )),
-                                      //       child: CachedNetworkImage(
-                                      //         imageUrl: user.photoUrl,
-                                      //         fit: BoxFit.cover,
-                                      //         errorWidget:
-                                      //             (context, url, error) =>
-                                      //         const Center(
-                                      //           child: FaIcon(
-                                      //               FontAwesomeIcons
-                                      //                   .circleExclamation),
-                                      //         ),
-                                      //         placeholder:
-                                      //             (context, url) =>
-                                      //             Shimmer.fromColors(
-                                      //               baseColor:
-                                      //               Colors.grey.shade400,
-                                      //               highlightColor:
-                                      //               Colors.grey.shade300,
-                                      //               child: SizedBox(
-                                      //                   height: MediaQuery.of(
-                                      //                       context)
-                                      //                       .size
-                                      //                       .height /
-                                      //                       3.3,
-                                      //                   width:
-                                      //                   double.infinity),
-                                      //             ),
-                                      //       ),
-                                      //     ),
-                                      //   ),
-                                      // ),
+                                  IconButton(
+                                    // icon: ImageIcon(AssetImage('assets/chat.png')),
+                                    icon: const Icon(
+                                      Icons.mark_chat_unread_outlined,
+                                      size: 25,
                                     ),
+                                    onPressed: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>ContactsListScreen(),));
+                                    },
+                                    color: ThemeColors.blackColor,
                                   ),
+                                  // GestureDetector(
+                                  //   onTap: () {
+                                  //     // appProvider.gotToTab(3);
+                                  //     // Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileScreen(userId: null,),));
+                                  //     Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileScreen(),));
+                                  //   },
+                                  //   child: SizedBox(
+                                  //     width: 35,
+                                  //     height: 35,
+                                  //     child:
+                                  //     // user.photoUrl == "" ?
+                                  //     SizedBox(
+                                  //       child: ClipRRect(
+                                  //         borderRadius:
+                                  //         BorderRadius.circular(100),
+                                  //         child: Container(
+                                  //           decoration:
+                                  //           const BoxDecoration(
+                                  //             image: DecorationImage(
+                                  //               image: AssetImage(
+                                  //                   'assets/default_image.jpg'),
+                                  //               fit: BoxFit.cover,
+                                  //             ),
+                                  //           ),
+                                  //         ),
+                                  //       ),
+                                  //     )
+                                  //     //     : SizedBox(
+                                  //     //   child: ClipRRect(
+                                  //     //     borderRadius:
+                                  //     //     BorderRadius.circular(100),
+                                  //     //     child: Container(
+                                  //     //       decoration: BoxDecoration(
+                                  //     //           border: Border.all(
+                                  //     //             color: settingsManager
+                                  //     //                 .darkMode
+                                  //     //                 ? kBlackColor
+                                  //     //                 : Colors.grey.shade400,
+                                  //     //             width: 1.5,
+                                  //     //           )),
+                                  //     //       child: CachedNetworkImage(
+                                  //     //         imageUrl: user.photoUrl,
+                                  //     //         fit: BoxFit.cover,
+                                  //     //         errorWidget:
+                                  //     //             (context, url, error) =>
+                                  //     //         const Center(
+                                  //     //           child: FaIcon(
+                                  //     //               FontAwesomeIcons
+                                  //     //                   .circleExclamation),
+                                  //     //         ),
+                                  //     //         placeholder:
+                                  //     //             (context, url) =>
+                                  //     //             Shimmer.fromColors(
+                                  //     //               baseColor:
+                                  //     //               Colors.grey.shade400,
+                                  //     //               highlightColor:
+                                  //     //               Colors.grey.shade300,
+                                  //     //               child: SizedBox(
+                                  //     //                   height: MediaQuery.of(
+                                  //     //                       context)
+                                  //     //                       .size
+                                  //     //                       .height /
+                                  //     //                       3.3,
+                                  //     //                   width:
+                                  //     //                   double.infinity),
+                                  //     //             ),
+                                  //     //       ),
+                                  //     //     ),
+                                  //     //   ),
+                                  //     // ),
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),

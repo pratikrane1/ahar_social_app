@@ -66,6 +66,7 @@ class _CustomerSupportScreenState extends State<CustomerSupportScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ThemeColors.whiteColor,
+        surfaceTintColor: Colors.white,
         leading: IconButton(
           splashRadius: 20,
           onPressed: () async {
@@ -79,7 +80,7 @@ class _CustomerSupportScreenState extends State<CustomerSupportScreen> {
           ),
         ),
         title: Text(
-          'customer_support'.tr,
+          'Customer Support'.tr,
           style: Theme.of(context).textTheme.headline6!.copyWith(
                 fontSize: 25,
                 fontWeight: FontWeight.w600,
@@ -95,74 +96,6 @@ class _CustomerSupportScreenState extends State<CustomerSupportScreen> {
           // crossAxisAlignment: CrossAxisAlignment.center,
           // mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            /// Gainz pro and health pro button
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AppButton(
-                    onPressed: () async {
-                      setState(() {
-                        _isGainZPro = true;
-                      });
-                    },
-                    height: 34,
-                    width: MediaQuery.of(context).size.width / 2.5,
-                    text: Text(
-                      "${'gainz'.tr} ${'pro'.tr}",
-                      style: TextStyle(
-                          color: _isGainZPro ? Colors.white : Colors.black,
-                          fontSize: 18,
-                          fontFamily: 'Montserrat-Bold',
-                          fontWeight: FontWeight.w700),
-                    ),
-                    loading: true,
-                    style: ElevatedButton.styleFrom(
-                      side: const BorderSide(
-                          color: ThemeColors.buttonColor, width: 1),
-                      backgroundColor: _isGainZPro
-                          ? ThemeColors.buttonColor
-                          : ThemeColors.whiteColor,
-                      // color:Colors.red,
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(50))),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  AppButton(
-                    onPressed: () async {
-                      setState(() {
-                        _isGainZPro = false;
-                      });
-                    },
-                    height: 34,
-                    width: MediaQuery.of(context).size.width / 2.5,
-                    text: Text(
-                      'health_pro'.tr,
-                      style: TextStyle(
-                          color: _isGainZPro ? Colors.black : Colors.white,
-                          fontSize: 18,
-                          fontFamily: 'Montserrat-Bold',
-                          fontWeight: FontWeight.w700),
-                    ),
-                    loading: true,
-                    style: ElevatedButton.styleFrom(
-                      side: const BorderSide(
-                          color: ThemeColors.buttonColor, width: 1),
-                      backgroundColor: _isGainZPro
-                          ? ThemeColors.whiteColor
-                          : ThemeColors.primaryColor,
-                      // color:Colors.red,
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(50))),
-                    ),
-                  ),
-                ],
-              ),
-            ),
 
             ///Call Us Logo
             Center(
@@ -271,7 +204,7 @@ class _CustomerSupportScreenState extends State<CustomerSupportScreen> {
                     children: [
                       SvgPicture.asset(
                         Images.whatsapp_icon, height: 27,
-                          // color: ThemeColors.whatsappButtonColor,
+                          color: ThemeColors.whatsappButtonColor,
                       ),
                       const SizedBox(width: 5,),
                       Flexible(

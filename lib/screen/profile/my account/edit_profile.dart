@@ -106,6 +106,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
         backgroundColor: Color(0xFFF8F7F7),
         appBar: AppBar(
           backgroundColor: ThemeColors.whiteColor,
+          surfaceTintColor: Colors.white,
           leading: IconButton(
             splashRadius: 20,
             onPressed: () async {
@@ -120,7 +121,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
             ),
           ),
           title: Text(
-            'edit_details'.tr,
+            'Edit Details'.tr,
             style: Theme.of(context).textTheme.headline6!.copyWith(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
@@ -148,7 +149,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                       ///Name
                       Padding(
                         padding: EdgeInsets.only(left: 5.0),
-                        child: Text('name'.tr,
+                        child: Text('Name'.tr,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'Montserrat',
@@ -167,7 +168,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Color(0xFFF8F7F7),
-                          hintText: "enter_full_name".tr,
+                          hintText: "Enter full name".tr,
                           hintStyle: TextStyle(
                               fontSize: 15,
                               color: _nameController.text == ""
@@ -199,7 +200,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                       ///bank account
                       Padding(
                         padding: EdgeInsets.only(left: 5.0),
-                        child: Text('bank_account'.tr,
+                        child: Text('Bank Account'.tr,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'Montserrat',
@@ -218,7 +219,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Color(0xFFF8F7F7),
-                          hintText: "enter_bank_account".tr,
+                          hintText: "Enter bank account".tr,
                           hintStyle: TextStyle(
                               fontSize: 15,
                               color: _bankAccountController.text == ""
@@ -250,7 +251,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                       ///Ifsc code
                       Padding(
                         padding: EdgeInsets.only(left: 5.0),
-                        child: Text('ifsc_code'.tr,
+                        child: Text('IFSC Code'.tr,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'Montserrat',
@@ -269,7 +270,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Color(0xFFF8F7F7),
-                          hintText: "enter_IFSC_code".tr,
+                          hintText: "Enter IFSC code".tr,
                           hintStyle: TextStyle(
                               fontSize: 15,
                               color: _ifscCodeController.text == ""
@@ -303,67 +304,10 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                         height: 20,
                       ),
 
-                      ///Pancard
-                      Padding(
-                        padding: EdgeInsets.only(left: 5.0),
-                        child: Text('pancard'.tr,
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.w500,
-                                color:
-                                ThemeColors.blackColor.withOpacity(0.6))),
-                      ),
-                      TextFormField(
-                        textCapitalization: TextCapitalization.words,
-                        controller: _pancardController,
-                        textAlign: TextAlign.start,
-                        keyboardType: TextInputType.text,
-                        style: TextStyle(
-                            fontSize: 18,
-                            height: 1.5,
-                            color: ThemeColors.blackColor.withOpacity(0.6)),
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Color(0xFFF8F7F7),
-                          hintText: "enter_pancard".tr,
-                          hintStyle: TextStyle(
-                              fontSize: 15,
-                              color: _pancardController.text == ""
-                                  ? Colors.red
-                                  : null),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color:
-                                ThemeColors.blackColor.withOpacity(0.2)),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color:
-                                ThemeColors.blackColor.withOpacity(0.2)),
-                          ),
-                          border: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color:
-                                ThemeColors.blackColor.withOpacity(0.2)),
-                          ),
-                        ),
-                        validator: (value) {},
-                        onChanged: (value) {
-                          _pancardController.value = TextEditingValue(
-                              text: value.toUpperCase(),
-                              selection: _pancardController.selection
-                          );
-                        },
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-
                       ///BirthDay
                       Padding(
                         padding: EdgeInsets.only(left: 5.0),
-                        child: Text('birthday'.tr,
+                        child: Text('Birthday'.tr,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'Montserrat',
@@ -387,7 +331,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Color(0xFFF8F7F7),
-                            hintText: "please_enter_birthday".tr,
+                            hintText: "Please enter birthday".tr,
                             hintStyle: TextStyle(
                                 fontSize: 15,
                                 color: _dateController.text == ""
@@ -429,7 +373,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                       ///Gender
                       Padding(
                         padding: EdgeInsets.only(left: 5.0),
-                        child: Text('gender'.tr,
+                        child: Text('Gender'.tr,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'Montserrat',
@@ -497,7 +441,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                       ///Pin Code
                       Padding(
                         padding: EdgeInsets.only(left: 5.0),
-                        child: Text('pin_code'.tr,
+                        child: Text('Pin Code'.tr,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'Montserrat',
@@ -516,7 +460,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Color(0xFFF8F7F7),
-                          hintText: "enter_pin_code".tr,
+                          hintText: "Enter pin code".tr,
                           hintStyle: TextStyle(
                               fontSize: 15,
                               color: _pinCodeController.text == ""
@@ -586,7 +530,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                           ///City
                           Padding(
                             padding: EdgeInsets.only(left: 5.0),
-                            child: Text('city'.tr,
+                            child: Text('City'.tr,
                                 style: TextStyle(
                                     fontSize: 14,
                                     fontFamily: 'Montserrat',
@@ -606,7 +550,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                             decoration: InputDecoration(
                               filled: true,
                               fillColor: Color(0xFFF8F7F7),
-                              hintText: "enter_city".tr,
+                              hintText: "Enter city".tr,
                               hintStyle: TextStyle(
                                   fontSize: 15,
                                   color: _cityController.text == ""
@@ -638,7 +582,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                           ///District
                           Padding(
                             padding: EdgeInsets.only(left: 5.0),
-                            child: Text('district'.tr,
+                            child: Text('District'.tr,
                                 style: TextStyle(
                                     fontSize: 14,
                                     fontFamily: 'Montserrat',
@@ -658,7 +602,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                             decoration: InputDecoration(
                               filled: true,
                               fillColor: Color(0xFFF8F7F7),
-                              hintText: "enter_district".tr,
+                              hintText: "Enter district".tr,
                               hintStyle: TextStyle(
                                   fontSize: 15,
                                   color: _districtController.text == ""
@@ -690,7 +634,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                           ///State
                           Padding(
                             padding: EdgeInsets.only(left: 5.0),
-                            child: Text('state'.tr,
+                            child: Text('State'.tr,
                                 style: TextStyle(
                                     fontSize: 14,
                                     fontFamily: 'Montserrat',
@@ -710,7 +654,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                             decoration: InputDecoration(
                               filled: true,
                               fillColor: Color(0xFFF8F7F7),
-                              hintText: "enter_state".tr,
+                              hintText: "Enter state".tr,
                               hintStyle: TextStyle(
                                   fontSize: 15,
                                   color: _stateController.text == ""
@@ -757,7 +701,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                   height: 60,
                   width: MediaQuery.of(context).size.width,
                   text: Text(
-                    'save'.tr,
+                    'Save'.tr,
                     style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,

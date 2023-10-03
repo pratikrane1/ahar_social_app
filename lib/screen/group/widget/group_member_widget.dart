@@ -113,8 +113,8 @@ class _GroupMemberWidgetState extends State<GroupMemberWidget> {
                                       //   AppPages.chatPath,
                                       //   arguments: contactUser,
                                       // );
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>
-                                          GroupScreen()));
+                                      // Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                                      //     GroupScreen()));
                                     },
                                     child: Padding(
                                       padding: const EdgeInsets.only(top: 8.0),

@@ -36,7 +36,7 @@ class DocumentFile extends StatelessWidget {
             children: [
               Flexible(
                 child: Text(
-                  "gainz_pro_presentation".tr,
+                  "Presentation".tr,
                   style: TextStyle(
                     fontSize: Dimensions.fontSizeDefault,
                     fontWeight: FontWeight.bold,
