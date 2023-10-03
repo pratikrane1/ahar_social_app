@@ -48,7 +48,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
               ),
             ),
           title: Text(
-              'privacy_policy'.tr,
+              'Privacy Policy'.tr,
               style: Theme.of(context).textTheme.headline6!.copyWith(
                     fontSize: 25,
                     fontWeight: FontWeight.w600,

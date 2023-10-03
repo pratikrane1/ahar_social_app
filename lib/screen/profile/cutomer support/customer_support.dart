@@ -37,7 +37,7 @@ class _CustomerSupportScreenState extends State<CustomerSupportScreen> {
 
   _launchWhatsapp(BuildContext context,) async {
     var whatsapp = "1234567890";
-    var message = "Hi GainZ Pro team, I have a Query. Can you please help me?";
+    var message = "Hi Ahar team, I have a Query. Can you please help me?";
 
     var whatsappURl_android = "whatsapp://send?phone=" + whatsapp + "&text=$message";
     var whatsappURL_WEB = "https://wa.me/$whatsapp/?text=${Uri.parse(message)}";
@@ -230,21 +230,21 @@ class _CustomerSupportScreenState extends State<CustomerSupportScreen> {
               child: RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(
-                  text: 'if_you_prefer_to_speak'.tr,
+                  text: 'If you prefer to speak '.tr,
                   style: const TextStyle(
                       fontSize: 19,
                       fontFamily: 'Montserrat-Bold',
                       fontWeight: FontWeight.w500,
                       color: ThemeColors.customerSupportTextColor),
                   children: <TextSpan>[
-                    const TextSpan(text: "0123456789",
+                    const TextSpan(text: "0123456789 ",
                       style: TextStyle(
                           fontSize: 20,
                           fontFamily: 'Montserrat-ExtraBold',
                           fontWeight: FontWeight.w700,
                           color: ThemeColors.primaryColor,
                       ),),
-                    TextSpan(text: 'our_knowledgeable_agents_will_be_glad'.tr,),
+                    TextSpan(text: 'our knowledgeable agents will be glad'.tr,),
 
                   ],
                 ),

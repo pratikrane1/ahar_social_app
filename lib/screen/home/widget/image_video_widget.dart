@@ -24,6 +24,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
   bool _isVideoLoading = false;
   String? videoId = "";
   bool _fullScreen = false;
+  List? _albumList;
   List? _videoList;
 
   @override
@@ -53,7 +54,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
             children: [
               ///Gallery Text
                Text(
-                "gallery".tr,
+                "Gallery",
                 style:const TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
@@ -159,6 +160,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                                           Radius.circular(0)),
                                       child: Stack(
                                         children: [
+                                          // Image.network(imageList[index],fit: BoxFit.fill,),
                                           CustomImage(
                                             image:  Data().albumList![0].albumImage,
                                             fit: BoxFit.cover,
@@ -476,7 +478,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                                 height: 30,
                                 color: Colors.black.withOpacity(0.5),
                                 child: Center(
-                                  child: Text("New Video".tr,
+                                  child: Text("new_video".tr,
                                     textAlign: TextAlign.center,
                                     style:const TextStyle(
                                         fontSize: 14,
@@ -621,18 +623,4 @@ class _GalleryWidgetState extends State<GalleryWidget> {
       ),
     );
   }
-}
-
-class AlbumList{
- String? albumName;
- String? albumLength;
- String? albumImage;
- List<AlbumImages>? albumImages;
- AlbumList({required this.albumName,required this.albumImage,required this.albumLength,required this.albumImages});
-}
-
-class AlbumImages{
-  int? likeCount;
-  String? albumImages;
-  AlbumImages({required this.likeCount,required this.albumImages});
 }

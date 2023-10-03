@@ -3,11 +3,16 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:socialrecipe/screen/profile/credit/credit_screen.dart';
+import 'package:socialrecipe/screen/profile/privacy%20policy/privacy_policy.dart';
 import 'package:socialrecipe/screen/profile/settings/settings_screen.dart';
+import 'package:socialrecipe/screen/profile/terms%20and%20conditions/terms_conditons_screen.dart';
+import 'package:socialrecipe/screen/profile/transaction/transaction_history.dart';
+import 'package:socialrecipe/screen/profile/zonal%20team/zonal_team.dart';
 import 'package:socialrecipe/utils/app_constants.dart';
 import 'package:socialrecipe/utils/images.dart';
 import 'package:socialrecipe/utils/theme_colors.dart';
 import 'package:socialrecipe/widget/custom_image.dart';
+import 'ahar office bearers/ahar_office_bearers.dart';
 import 'cutomer support/customer_support.dart';
 import 'faq/faq_screen.dart';
 import 'membership detail/membership_screen.dart';
@@ -123,9 +128,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ///Ahar Office Bearers
               InkWell(
                 onTap: () {
-                  // Navigator.push(context, MaterialPageRoute(
-                  //     builder: (context) => ReferalListScreen()
-                  // ));
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => AharOfficeBearersScreen()
+                  ));
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -158,9 +163,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ///zonal team
               InkWell(
                 onTap: () {
-                  // Navigator.push(context, MaterialPageRoute(
-                  //     builder: (context) => MyAutoPullReferalScreen()
-                  // ));
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => ZonalTeamScreen()
+                  ));
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -229,9 +234,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ///Transaction history
               InkWell(
                 onTap: () {
-                  // Navigator.push(context, MaterialPageRoute(
-                  //     builder: (context) =>  TransactionHistoryScreen()
-                  // ));
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context) =>  TransactionHistoryScreen()
+                  ));
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -264,9 +269,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ///Terms And Conditions
               InkWell(
                 onTap: () {
-                  // Navigator.push(context, MaterialPageRoute(
-                  //     builder: (context) => TermsConditionsScreen()
-                  // ));
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => TermsConditionsScreen()
+                  ));
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -300,10 +305,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ///Privacy Policies
               InkWell(
                 onTap: () {
-                  // Get.toNamed(RouteHelper.privacyPolicy);
-                  // Navigator.push(context, MaterialPageRoute(
-                  //     builder: (context) => PrivacyPolicyScreen()
-                  // ));
+                 // Get.toNamed(RouteHelper.privacyPolicy);
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => PrivacyPolicyScreen()
+                  ));
                 },
                 child: Container(
                   decoration: BoxDecoration(

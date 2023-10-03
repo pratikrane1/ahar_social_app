@@ -26,6 +26,11 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
   final _genderController = TextEditingController();
   final _dateController = TextEditingController();
   final _pancardController = TextEditingController();
+  final _businessNameController = TextEditingController();
+  final _addressController = TextEditingController();
+  final _messageController = TextEditingController();
+  final _phoneController = TextEditingController();
+  final _emailController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   DateTime selectedDate = DateTime.now();
 
@@ -79,6 +84,9 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
     _dateController.dispose();
     _genderController.dispose();
     _pancardController.dispose();
+    _addressController.dispose();
+    _businessNameController.dispose();
+    _messageController.dispose();
   }
 
   Future<Null> _selectDate(BuildContext context) async {
@@ -146,6 +154,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+
                       ///Name
                       Padding(
                         padding: EdgeInsets.only(left: 5.0),
@@ -158,36 +167,29 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                                 ThemeColors.blackColor.withOpacity(0.6))),
                       ),
                       TextFormField(
+                        readOnly: true,
                         controller: _nameController,
                         textAlign: TextAlign.start,
                         keyboardType: TextInputType.text,
                         style: TextStyle(
                             fontSize: 18,
                             height: 1.5,
-                            color: ThemeColors.blackColor.withOpacity(0.6)),
+                            color:
+                            ThemeColors.blackColor.withOpacity(0.6)
+                        ),
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Color(0xFFF8F7F7),
                           hintText: "Enter full name".tr,
                           hintStyle: TextStyle(
-                              fontSize: 15,
-                              color: _nameController.text == ""
-                                  ? Colors.red
-                                  : null),
+                              fontSize: 15, color: _nameController.text == "" ?Colors.red: null),
                           enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color:
-                                ThemeColors.blackColor.withOpacity(0.2)),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color:
-                                ThemeColors.blackColor.withOpacity(0.2)),
-                          ),
+                            borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                          ),    focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                        ),
                           border: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color:
-                                ThemeColors.blackColor.withOpacity(0.2)),
+                            borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
                           ),
                         ),
                         validator: (value) {},
@@ -197,10 +199,10 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                         height: 20,
                       ),
 
-                      ///bank account
+                      ///Business Name
                       Padding(
                         padding: EdgeInsets.only(left: 5.0),
-                        child: Text('Bank Account'.tr,
+                        child: Text('Business Name',
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'Montserrat',
@@ -209,239 +211,348 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                                 ThemeColors.blackColor.withOpacity(0.6))),
                       ),
                       TextFormField(
-                        controller: _bankAccountController,
-                        textAlign: TextAlign.start,
-                        keyboardType: TextInputType.number,
-                        style: TextStyle(
-                            fontSize: 18,
-                            height: 1.5,
-                            color: ThemeColors.blackColor.withOpacity(0.6)),
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Color(0xFFF8F7F7),
-                          hintText: "Enter bank account".tr,
-                          hintStyle: TextStyle(
-                              fontSize: 15,
-                              color: _bankAccountController.text == ""
-                                  ? Colors.red
-                                  : null),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color:
-                                ThemeColors.blackColor.withOpacity(0.2)),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color:
-                                ThemeColors.blackColor.withOpacity(0.2)),
-                          ),
-                          border: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color:
-                                ThemeColors.blackColor.withOpacity(0.2)),
-                          ),
-                        ),
-                        validator: (value) {},
-                        onChanged: (value) {},
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-
-                      ///Ifsc code
-                      Padding(
-                        padding: EdgeInsets.only(left: 5.0),
-                        child: Text('IFSC Code'.tr,
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.w500,
-                                color:
-                                ThemeColors.blackColor.withOpacity(0.6))),
-                      ),
-                      TextFormField(
-                        controller: _ifscCodeController,
+                        readOnly: true,
+                        controller: _businessNameController,
                         textAlign: TextAlign.start,
                         keyboardType: TextInputType.text,
                         style: TextStyle(
                             fontSize: 18,
                             height: 1.5,
-                            color: ThemeColors.blackColor.withOpacity(0.6)),
+                            color:
+                            ThemeColors.blackColor.withOpacity(0.6)
+                        ),
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Color(0xFFF8F7F7),
-                          hintText: "Enter IFSC code".tr,
-                          hintStyle: TextStyle(
-                              fontSize: 15,
-                              color: _ifscCodeController.text == ""
-                                  ? Colors.red
-                                  : null),
+                          hintText: "Enter business Name",
+                          hintStyle: TextStyle(fontSize: 15,color: _cityController.text == "" ?Colors.red: null),
                           enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color:
-                                ThemeColors.blackColor.withOpacity(0.2)),
+                            borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
                           ),
                           focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color:
-                                ThemeColors.blackColor.withOpacity(0.2)),
+                            borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
                           ),
                           border: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color:
-                                ThemeColors.blackColor.withOpacity(0.2)),
+                            borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
                           ),
                         ),
                         validator: (value) {},
-                        onChanged: (value) {
-                          _ifscCodeController.value = TextEditingValue(
-                              text: value.toUpperCase(),
-                              selection: _ifscCodeController.selection
-                          );
-                        },
+                        onChanged: (value) {},
                       ),
                       const SizedBox(
                         height: 20,
                       ),
 
-                      ///BirthDay
+                      ///Phone Number
                       Padding(
                         padding: EdgeInsets.only(left: 5.0),
-                        child: Text('Birthday'.tr,
+                        child: Text('Phone Number'.tr,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'Montserrat',
                                 fontWeight: FontWeight.w500,
-                                color:
-                                ThemeColors.blackColor.withOpacity(0.6))),
+                                color: ThemeColors.blackColor
+                                    .withOpacity(0.6))),
                       ),
-                      InkWell(
-                        onTap: () {
-                          _selectDate(context);
-                        },
-                        child: TextFormField(
-                          enabled: false,
-                          controller: _dateController,
-                          textAlign: TextAlign.start,
-                          keyboardType: TextInputType.number,
-                          style: TextStyle(
-                              fontSize: 18,
-                              height: 1.5,
-                              color: ThemeColors.blackColor.withOpacity(0.6)),
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Color(0xFFF8F7F7),
-                            hintText: "Please enter birthday".tr,
-                            hintStyle: TextStyle(
-                                fontSize: 15,
-                                color: _dateController.text == ""
-                                    ? Colors.red
-                                    : null),
-                            disabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: ThemeColors.blackColor
-                                      .withOpacity(0.2)),
-                            ),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: ThemeColors.blackColor
-                                      .withOpacity(0.2)),
-                            ),
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: ThemeColors.blackColor
-                                      .withOpacity(0.2)),
-                            ),
-                            border: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: ThemeColors.blackColor
-                                      .withOpacity(0.2)),
-                            ),
-                          ),
-                          validator: (value) {},
-                          onChanged: (value) {
-                            setState(() {
-                              _dateController.text = value;
-                            });
-                          },
+                      TextFormField(
+                        readOnly: true,
+                        controller: _phoneController,
+                        textAlign: TextAlign.start,
+                        keyboardType: TextInputType.phone,
+                        style: TextStyle(
+                            fontSize: 18,
+                            height: 1.5,
+                            color:
+                            ThemeColors.blackColor.withOpacity(0.6)
                         ),
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Color(0xFFF8F7F7),
+                          hintText: "Enter phone number".tr,
+                          hintStyle: TextStyle(
+                              fontSize: 15,color: _phoneController.text == "" ?Colors.red: null),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                          ),    focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                        ),
+                          border: UnderlineInputBorder(
+                            borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                          ),
+                        ),
+                        validator: (value) {},
+                        onChanged: (value) {},
                       ),
                       const SizedBox(
                         height: 20,
                       ),
 
-                      ///Gender
+                      ///Email
                       Padding(
                         padding: EdgeInsets.only(left: 5.0),
-                        child: Text('Gender'.tr,
+                        child: Text('Email'.tr,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'Montserrat',
                                 fontWeight: FontWeight.w500,
-                                color:
-                                ThemeColors.blackColor.withOpacity(0.6))),
+                                color: ThemeColors.blackColor
+                                    .withOpacity(0.6))),
                       ),
-                      Row(
-                        children: [
-                          Row(
-                            children: [
-                              Radio<Gender>(
-                                fillColor: MaterialStateColor.resolveWith(
-                                        (states) => ThemeColors.primaryColor),
-                                value: Gender.male,
-                                groupValue: _selectedGender,
-                                onChanged: (Gender? value) {
-                                  setState(() {
-                                    _selectedGender = value;
-                                  });
-                                },
-                              ),
-                              Text('male'.tr)
-                            ],
+                      TextFormField(
+                        readOnly: true,
+                        controller: _emailController,
+                        textAlign: TextAlign.start,
+                        keyboardType: TextInputType.emailAddress,
+                        style:  TextStyle(
+                            fontSize: 18,
+                            height: 1.5,
+                            color:
+                            ThemeColors.blackColor.withOpacity(0.6)
+                        ),
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Color(0xFFF8F7F7),
+                          hintText: "Enter email".tr,
+                          hintStyle: TextStyle(
+                              fontSize: 15,
+                              color: _emailController.text == "" ?Colors.red: null),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                          ),    focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                        ),
+                          border: UnderlineInputBorder(
+                            borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
                           ),
-                          Row(
-                            children: [
-                              Radio<Gender>(
-                                fillColor: MaterialStateColor.resolveWith(
-                                        (states) => ThemeColors.primaryColor),
-                                value: Gender.female,
-                                groupValue: _selectedGender,
-                                onChanged: (Gender? value) {
-                                  setState(() {
-                                    _selectedGender = value;
-                                  });
-                                },
-                              ),
-                              Text('female'.tr),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Radio<Gender>(
-                                fillColor: MaterialStateColor.resolveWith(
-                                        (states) => ThemeColors.primaryColor),
-                                value: Gender.other,
-                                groupValue: _selectedGender,
-                                onChanged: (Gender? value) {
-                                  setState(() {
-                                    _selectedGender = value;
-                                  });
-                                },
-                              ),
-                              Text('other'.tr),
-                            ],
-                          ),
-                        ],
+                        ),
+                        validator: (value) {},
+                        onChanged: (value) {},
                       ),
-
                       const SizedBox(
                         height: 20,
                       ),
 
-                      ///Pin Code
+                      // ///bank account
+                      // Padding(
+                      //   padding: EdgeInsets.only(left: 5.0),
+                      //   child: Text('Bank Account'.tr,
+                      //       style: TextStyle(
+                      //           fontSize: 14,
+                      //           fontFamily: 'Montserrat',
+                      //           fontWeight: FontWeight.w500,
+                      //           color:
+                      //           ThemeColors.blackColor.withOpacity(0.6))),
+                      // ),
+                      // TextFormField(
+                      //   readOnly: true,
+                      //   controller: _bankAccountController,
+                      //   textAlign: TextAlign.start,
+                      //   keyboardType: TextInputType.text,
+                      //   style: TextStyle(
+                      //       fontSize: 18,
+                      //       height: 1.5,
+                      //       color:
+                      //       ThemeColors.blackColor.withOpacity(0.6)
+                      //   ),
+                      //   decoration: InputDecoration(
+                      //     filled: true,
+                      //     fillColor: Color(0xFFF8F7F7),
+                      //     hintText: "Enter bank account".tr,
+                      //     hintStyle: TextStyle(fontSize: 15,color: _bankAccountController.text == "" ?Colors.red: null),
+                      //     enabledBorder: UnderlineInputBorder(
+                      //       borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                      //     ),    focusedBorder: UnderlineInputBorder(
+                      //     borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                      //   ),
+                      //     border: UnderlineInputBorder(
+                      //       borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                      //     ),
+                      //   ),
+                      //   validator: (value) {},
+                      //   onChanged: (value) {},
+                      // ),
+                      // const SizedBox(
+                      //   height: 20,
+                      // ),
+                      //
+                      // ///Ifsc code
+                      // Padding(
+                      //   padding: EdgeInsets.only(left: 5.0),
+                      //   child: Text('IFSC Code'.tr,
+                      //       style: TextStyle(
+                      //           fontSize: 14,
+                      //           fontFamily: 'Montserrat',
+                      //           fontWeight: FontWeight.w500,
+                      //           color:
+                      //           ThemeColors.blackColor.withOpacity(0.6))),
+                      // ),
+                      // TextFormField(
+                      //   readOnly: true,
+                      //   controller: _ifscCodeController,
+                      //   textAlign: TextAlign.start,
+                      //   keyboardType: TextInputType.text,
+                      //   style: TextStyle(
+                      //       fontSize: 18,
+                      //       height: 1.5,
+                      //       color:
+                      //       ThemeColors.blackColor.withOpacity(0.6)
+                      //   ),
+                      //   decoration: InputDecoration(
+                      //     filled: true,
+                      //     fillColor: Color(0xFFF8F7F7),
+                      //     hintText: "Enter IFSC code".tr,
+                      //     hintStyle: TextStyle(fontSize: 15,color: _ifscCodeController.text == "" ?Colors.red: null),
+                      //     enabledBorder: UnderlineInputBorder(
+                      //       borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                      //     ),    focusedBorder: UnderlineInputBorder(
+                      //     borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                      //   ),
+                      //     border: UnderlineInputBorder(
+                      //       borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                      //     ),
+                      //   ),
+                      //   validator: (value) {},
+                      //   onChanged: (value) {},
+                      // ),
+                      // const SizedBox(
+                      //   height: 20,
+                      // ),
+                      //
+                      // ///Date Of Birth
+                      // Padding(
+                      //   padding: EdgeInsets.only(left: 5.0),
+                      //   child: Text('Birthday'.tr,
+                      //       style: TextStyle(
+                      //           fontSize: 14,
+                      //           fontFamily: 'Montserrat',
+                      //           fontWeight: FontWeight.w500,
+                      //           color:
+                      //           ThemeColors.blackColor.withOpacity(0.6))),
+                      // ),
+                      // TextFormField(
+                      //   readOnly: true,
+                      //   controller: _dobController,
+                      //   textAlign: TextAlign.start,
+                      //   keyboardType: TextInputType.text,
+                      //   style: TextStyle(
+                      //       fontSize: 18,
+                      //       height: 1.5,
+                      //       color:
+                      //       ThemeColors.blackColor.withOpacity(0.6)
+                      //   ),
+                      //   decoration: InputDecoration(
+                      //     filled: true,
+                      //     fillColor: Color(0xFFF8F7F7),
+                      //     hintText: "Please enter birthday".tr,
+                      //     hintStyle: TextStyle(fontSize: 15,color: _dobController.text == "" ?Colors.red: null),
+                      //     enabledBorder: UnderlineInputBorder(
+                      //       borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                      //     ),    focusedBorder: UnderlineInputBorder(
+                      //     borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                      //   ),
+                      //     border: UnderlineInputBorder(
+                      //       borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                      //     ),
+                      //   ),
+                      //   validator: (value) {},
+                      //   onChanged: (value) {},
+                      // ),
+                      // const SizedBox(
+                      //   height: 20,
+                      // ),
+                      //
+                      // ///Gender
+                      // Padding(
+                      //   padding: EdgeInsets.only(left: 5.0),
+                      //   child: Text('Gender'.tr,
+                      //       style: TextStyle(
+                      //           fontSize: 14,
+                      //           fontFamily: 'Montserrat',
+                      //           fontWeight: FontWeight.w500,
+                      //           color:
+                      //           ThemeColors.blackColor.withOpacity(0.6))),
+                      // ),
+                      // TextFormField(
+                      //   readOnly: true,
+                      //   controller: _genderController,
+                      //   textAlign: TextAlign.start,
+                      //   keyboardType: TextInputType.text,
+                      //   style: TextStyle(
+                      //       fontSize: 18,
+                      //       height: 1.5,
+                      //       color:
+                      //       ThemeColors.blackColor.withOpacity(0.6)
+                      //   ),
+                      //   decoration: InputDecoration(
+                      //     filled: true,
+                      //     fillColor: Color(0xFFF8F7F7),
+                      //     hintText: "Please enter gender".tr,
+                      //     hintStyle: TextStyle(fontSize: 15,color: _genderController.text == "" ?Colors.red: null),
+                      //     enabledBorder: UnderlineInputBorder(
+                      //       borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                      //     ),    focusedBorder: UnderlineInputBorder(
+                      //     borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                      //   ),
+                      //     border: UnderlineInputBorder(
+                      //       borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                      //     ),
+                      //   ),
+                      //   validator: (value) {},
+                      //   onChanged: (value) {},
+                      // ),
+                      // const SizedBox(
+                      //   height: 20,
+                      // ),
+                      //
+                      //
+                      // ///Pin Code
+                      // Padding(
+                      //   padding: EdgeInsets.only(left: 5.0),
+                      //   child: Text('Pin Code'.tr,
+                      //       style: TextStyle(
+                      //           fontSize: 14,
+                      //           fontFamily: 'Montserrat',
+                      //           fontWeight: FontWeight.w500,
+                      //           color:
+                      //           ThemeColors.blackColor.withOpacity(0.6))),
+                      // ),
+                      // TextFormField(
+                      //   readOnly: true,
+                      //   controller: _pinCodeController,
+                      //   textAlign: TextAlign.start,
+                      //   keyboardType: TextInputType.text,
+                      //   style: TextStyle(
+                      //       fontSize: 18,
+                      //       height: 1.5,
+                      //       color:
+                      //       ThemeColors.blackColor.withOpacity(0.6)
+                      //   ),
+                      //   decoration: InputDecoration(
+                      //     filled: true,
+                      //     fillColor: Color(0xFFF8F7F7),
+                      //     hintText: "Enter pin code".tr,
+                      //     hintStyle: TextStyle(fontSize: 15,color: _pinCodeController.text == "" ?Colors.red: null),
+                      //     enabledBorder: UnderlineInputBorder(
+                      //       borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                      //     ),
+                      //     focusedBorder: UnderlineInputBorder(
+                      //       borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                      //     ),
+                      //     border: UnderlineInputBorder(
+                      //       borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                      //     ),
+                      //   ),
+                      //   validator: (value) {},
+                      //   onChanged: (value) {},
+                      // ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+
+                      ///City
                       Padding(
                         padding: EdgeInsets.only(left: 5.0),
-                        child: Text('Pin Code'.tr,
+                        child: Text('City'.tr,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'Montserrat',
@@ -450,278 +561,709 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                                 ThemeColors.blackColor.withOpacity(0.6))),
                       ),
                       TextFormField(
-                        controller: _pinCodeController,
+                        readOnly: true,
+                        controller: _cityController,
                         textAlign: TextAlign.start,
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.text,
                         style: TextStyle(
                             fontSize: 18,
                             height: 1.5,
-                            color: ThemeColors.blackColor.withOpacity(0.6)),
+                            color:
+                            ThemeColors.blackColor.withOpacity(0.6)
+                        ),
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Color(0xFFF8F7F7),
-                          hintText: "Enter pin code".tr,
-                          hintStyle: TextStyle(
-                              fontSize: 15,
-                              color: _pinCodeController.text == ""
-                                  ? Colors.red
-                                  : null),
+                          hintText: "Enter city".tr,
+                          hintStyle: TextStyle(fontSize: 15,color: _cityController.text == "" ?Colors.red: null),
                           enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color:
-                                ThemeColors.blackColor.withOpacity(0.2)),
+                            borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
                           ),
                           focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color:
-                                ThemeColors.blackColor.withOpacity(0.2)),
+                            borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
                           ),
                           border: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color:
-                                ThemeColors.blackColor.withOpacity(0.2)),
+                            borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
                           ),
                         ),
-                        validator: (value) {
-                          if (value!.length > 6) {
-                            showCustomSnackBar("enter_valid_pin_code".tr);
-                          }
-                        },
-                        onChanged: (value) async {
-                          String pinPattern = "^[1-9]{1}[0-9]{2}\\s{0,1}[0-9]{3}\$";
-                          RegExp pinRegExp = RegExp(pinPattern);
-
-                          if (pinRegExp
-                              .hasMatch(_pinCodeController.text)) {
-                            if (value.length == 6) {
-                              // locationData =
-                              // await Get.find<MyAccountController>()
-                              //     .getLocation(value);
-                              // if (locationData != null) {
-                              //   if (locationData!.postOffice != null) {
-                              //     setState(() {
-                              //       _cityController.text = locationData!
-                              //           .postOffice![0].region
-                              //           .toString();
-                              //       _districtController.text = locationData!
-                              //           .postOffice![0].district
-                              //           .toString();
-                              //       _stateController.text = locationData!
-                              //           .postOffice![0].state
-                              //           .toString();
-                              //     });
-                              //   } else {
-                              //     showCustomSnackBar("enter_valid_pin_code".tr);
-                              //   }
-                              // }
-                            }
-                          }
-                        },
+                        validator: (value) {},
+                        onChanged: (value) {},
                       ),
                       const SizedBox(
                         height: 20,
                       ),
 
-                      ///CITY STATE DISTRICT
-                      // locationData != null ?
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ///City
-                          Padding(
-                            padding: EdgeInsets.only(left: 5.0),
-                            child: Text('City'.tr,
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w500,
-                                    color: ThemeColors.blackColor
-                                        .withOpacity(0.6))),
-                          ),
-                          TextFormField(
-                            controller: _cityController,
-                            textAlign: TextAlign.start,
-                            keyboardType: TextInputType.text,
+                      ///Address
+                      Padding(
+                        padding: EdgeInsets.only(left: 5.0),
+                        child: Text('Address',
                             style: TextStyle(
-                                fontSize: 18,
-                                height: 1.5,
+                                fontSize: 14,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w500,
                                 color:
-                                ThemeColors.blackColor.withOpacity(0.6)),
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Color(0xFFF8F7F7),
-                              hintText: "Enter city".tr,
-                              hintStyle: TextStyle(
-                                  fontSize: 15,
-                                  color: _cityController.text == ""
-                                      ? Colors.red
-                                      : null),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: ThemeColors.blackColor
-                                        .withOpacity(0.2)),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: ThemeColors.blackColor
-                                        .withOpacity(0.2)),
-                              ),
-                              border: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: ThemeColors.blackColor
-                                        .withOpacity(0.2)),
-                              ),
-                            ),
-                            validator: (value) {},
-                            onChanged: (value) {},
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-
-                          ///District
-                          Padding(
-                            padding: EdgeInsets.only(left: 5.0),
-                            child: Text('District'.tr,
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w500,
-                                    color: ThemeColors.blackColor
-                                        .withOpacity(0.6))),
-                          ),
-                          TextFormField(
-                            controller: _districtController,
-                            textAlign: TextAlign.start,
-                            keyboardType: TextInputType.text,
-                            style: TextStyle(
-                                fontSize: 18,
-                                height: 1.5,
-                                color:
-                                ThemeColors.blackColor.withOpacity(0.6)),
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Color(0xFFF8F7F7),
-                              hintText: "Enter district".tr,
-                              hintStyle: TextStyle(
-                                  fontSize: 15,
-                                  color: _districtController.text == ""
-                                      ? Colors.red
-                                      : null),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: ThemeColors.blackColor
-                                        .withOpacity(0.2)),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: ThemeColors.blackColor
-                                        .withOpacity(0.2)),
-                              ),
-                              border: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: ThemeColors.blackColor
-                                        .withOpacity(0.2)),
-                              ),
-                            ),
-                            validator: (value) {},
-                            onChanged: (value) {},
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-
-                          ///State
-                          Padding(
-                            padding: EdgeInsets.only(left: 5.0),
-                            child: Text('State'.tr,
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w500,
-                                    color: ThemeColors.blackColor
-                                        .withOpacity(0.6))),
-                          ),
-                          TextFormField(
-                            controller: _stateController,
-                            textAlign: TextAlign.start,
-                            keyboardType: TextInputType.text,
-                            style: TextStyle(
-                                fontSize: 18,
-                                height: 1.5,
-                                color:
-                                ThemeColors.blackColor.withOpacity(0.6)),
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Color(0xFFF8F7F7),
-                              hintText: "Enter state".tr,
-                              hintStyle: TextStyle(
-                                  fontSize: 15,
-                                  color: _stateController.text == ""
-                                      ? Colors.red
-                                      : null),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: ThemeColors.blackColor
-                                        .withOpacity(0.2)),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: ThemeColors.blackColor
-                                        .withOpacity(0.2)),
-                              ),
-                              border: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: ThemeColors.blackColor
-                                        .withOpacity(0.2)),
-                              ),
-                            ),
-                            validator: (value) {},
-                            onChanged: (value) {},
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                        ],
+                                ThemeColors.blackColor.withOpacity(0.6))),
                       ),
-                      // : SizedBox(),
+                      TextFormField(
+                        readOnly: true,
+                        controller: _addressController,
+                        textAlign: TextAlign.start,
+                        keyboardType: TextInputType.text,
+                        style: TextStyle(
+                            fontSize: 18,
+                            height: 1.5,
+                            color:
+                            ThemeColors.blackColor.withOpacity(0.6)
+                        ),
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Color(0xFFF8F7F7),
+                          hintText: "Enter address",
+                          hintStyle: TextStyle(fontSize: 15,color: _districtController.text == "" ?Colors.red: null),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                          ),
+                          border: UnderlineInputBorder(
+                            borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                          ),
+                        ),
+                        validator: (value) {},
+                        onChanged: (value) {},
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+
+                      ///Message
+                      Padding(
+                        padding: EdgeInsets.only(left: 5.0),
+                        child: Text('Message (Optional)',
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w500,
+                                color:
+                                ThemeColors.blackColor.withOpacity(0.6))),
+                      ),
+                      TextFormField(
+                        readOnly: true,
+                        controller: _messageController,
+                        textAlign: TextAlign.start,
+                        keyboardType: TextInputType.text,
+                        style: TextStyle(
+                            fontSize: 18,
+                            height: 1.5,
+                            color:
+                            ThemeColors.blackColor.withOpacity(0.6)
+                        ),
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Color(0xFFF8F7F7),
+                          hintText: "Enter message",
+                          hintStyle: TextStyle(fontSize: 15,color: _stateController.text == "" ?Colors.red: null),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                          ),
+                          border: UnderlineInputBorder(
+                            borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
+                          ),
+                        ),
+                        validator: (value) {},
+                        onChanged: (value) {},
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
                     ],
                   ),
                 ),
               ),
+
               const SizedBox(
                 height: 20,
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 30.0, right: 30.0),
-                child: AppButton(
-                  onPressed: () async {
-                    // _updateProfile(myAccountController);
-                  },
-                  height: 60,
-                  width: MediaQuery.of(context).size.width,
-                  text: Text(
-                    'Save'.tr,
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontFamily: 'OpenSans-ExtraBold',
-                        fontWeight: FontWeight.w700),
-                  ),
-                  loading: _isLoading,
-                  style: ElevatedButton.styleFrom(
-                    side: const BorderSide(
-                        color: ThemeColors.buttonColor, width: 1),
-                    backgroundColor: ThemeColors.buttonColor,
-                    // color:Colors.red,
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
+              //         ///Name
+              //         Padding(
+              //           padding: EdgeInsets.only(left: 5.0),
+              //           child: Text('Name'.tr,
+              //               style: TextStyle(
+              //                   fontSize: 14,
+              //                   fontFamily: 'Montserrat',
+              //                   fontWeight: FontWeight.w500,
+              //                   color:
+              //                   ThemeColors.blackColor.withOpacity(0.6))),
+              //         ),
+              //         TextFormField(
+              //           controller: _nameController,
+              //           textAlign: TextAlign.start,
+              //           keyboardType: TextInputType.text,
+              //           style: TextStyle(
+              //               fontSize: 18,
+              //               height: 1.5,
+              //               color: ThemeColors.blackColor.withOpacity(0.6)),
+              //           decoration: InputDecoration(
+              //             filled: true,
+              //             fillColor: Color(0xFFF8F7F7),
+              //             hintText: "Enter full name".tr,
+              //             hintStyle: TextStyle(
+              //                 fontSize: 15,
+              //                 color: _nameController.text == ""
+              //                     ? Colors.red
+              //                     : null),
+              //             enabledBorder: UnderlineInputBorder(
+              //               borderSide: BorderSide(
+              //                   color:
+              //                   ThemeColors.blackColor.withOpacity(0.2)),
+              //             ),
+              //             focusedBorder: UnderlineInputBorder(
+              //               borderSide: BorderSide(
+              //                   color:
+              //                   ThemeColors.blackColor.withOpacity(0.2)),
+              //             ),
+              //             border: UnderlineInputBorder(
+              //               borderSide: BorderSide(
+              //                   color:
+              //                   ThemeColors.blackColor.withOpacity(0.2)),
+              //             ),
+              //           ),
+              //           validator: (value) {},
+              //           onChanged: (value) {},
+              //         ),
+              //         const SizedBox(
+              //           height: 20,
+              //         ),
+              //
+              //         ///bank account
+              //         Padding(
+              //           padding: EdgeInsets.only(left: 5.0),
+              //           child: Text('Bank Account'.tr,
+              //               style: TextStyle(
+              //                   fontSize: 14,
+              //                   fontFamily: 'Montserrat',
+              //                   fontWeight: FontWeight.w500,
+              //                   color:
+              //                   ThemeColors.blackColor.withOpacity(0.6))),
+              //         ),
+              //         TextFormField(
+              //           controller: _bankAccountController,
+              //           textAlign: TextAlign.start,
+              //           keyboardType: TextInputType.number,
+              //           style: TextStyle(
+              //               fontSize: 18,
+              //               height: 1.5,
+              //               color: ThemeColors.blackColor.withOpacity(0.6)),
+              //           decoration: InputDecoration(
+              //             filled: true,
+              //             fillColor: Color(0xFFF8F7F7),
+              //             hintText: "Enter bank account".tr,
+              //             hintStyle: TextStyle(
+              //                 fontSize: 15,
+              //                 color: _bankAccountController.text == ""
+              //                     ? Colors.red
+              //                     : null),
+              //             enabledBorder: UnderlineInputBorder(
+              //               borderSide: BorderSide(
+              //                   color:
+              //                   ThemeColors.blackColor.withOpacity(0.2)),
+              //             ),
+              //             focusedBorder: UnderlineInputBorder(
+              //               borderSide: BorderSide(
+              //                   color:
+              //                   ThemeColors.blackColor.withOpacity(0.2)),
+              //             ),
+              //             border: UnderlineInputBorder(
+              //               borderSide: BorderSide(
+              //                   color:
+              //                   ThemeColors.blackColor.withOpacity(0.2)),
+              //             ),
+              //           ),
+              //           validator: (value) {},
+              //           onChanged: (value) {},
+              //         ),
+              //         const SizedBox(
+              //           height: 20,
+              //         ),
+              //
+              //         ///Ifsc code
+              //         Padding(
+              //           padding: EdgeInsets.only(left: 5.0),
+              //           child: Text('IFSC Code'.tr,
+              //               style: TextStyle(
+              //                   fontSize: 14,
+              //                   fontFamily: 'Montserrat',
+              //                   fontWeight: FontWeight.w500,
+              //                   color:
+              //                   ThemeColors.blackColor.withOpacity(0.6))),
+              //         ),
+              //         TextFormField(
+              //           controller: _ifscCodeController,
+              //           textAlign: TextAlign.start,
+              //           keyboardType: TextInputType.text,
+              //           style: TextStyle(
+              //               fontSize: 18,
+              //               height: 1.5,
+              //               color: ThemeColors.blackColor.withOpacity(0.6)),
+              //           decoration: InputDecoration(
+              //             filled: true,
+              //             fillColor: Color(0xFFF8F7F7),
+              //             hintText: "Enter IFSC code".tr,
+              //             hintStyle: TextStyle(
+              //                 fontSize: 15,
+              //                 color: _ifscCodeController.text == ""
+              //                     ? Colors.red
+              //                     : null),
+              //             enabledBorder: UnderlineInputBorder(
+              //               borderSide: BorderSide(
+              //                   color:
+              //                   ThemeColors.blackColor.withOpacity(0.2)),
+              //             ),
+              //             focusedBorder: UnderlineInputBorder(
+              //               borderSide: BorderSide(
+              //                   color:
+              //                   ThemeColors.blackColor.withOpacity(0.2)),
+              //             ),
+              //             border: UnderlineInputBorder(
+              //               borderSide: BorderSide(
+              //                   color:
+              //                   ThemeColors.blackColor.withOpacity(0.2)),
+              //             ),
+              //           ),
+              //           validator: (value) {},
+              //           onChanged: (value) {
+              //             _ifscCodeController.value = TextEditingValue(
+              //                 text: value.toUpperCase(),
+              //                 selection: _ifscCodeController.selection
+              //             );
+              //           },
+              //         ),
+              //         const SizedBox(
+              //           height: 20,
+              //         ),
+              //
+              //         ///BirthDay
+              //         Padding(
+              //           padding: EdgeInsets.only(left: 5.0),
+              //           child: Text('Birthday'.tr,
+              //               style: TextStyle(
+              //                   fontSize: 14,
+              //                   fontFamily: 'Montserrat',
+              //                   fontWeight: FontWeight.w500,
+              //                   color:
+              //                   ThemeColors.blackColor.withOpacity(0.6))),
+              //         ),
+              //         InkWell(
+              //           onTap: () {
+              //             _selectDate(context);
+              //           },
+              //           child: TextFormField(
+              //             enabled: false,
+              //             controller: _dateController,
+              //             textAlign: TextAlign.start,
+              //             keyboardType: TextInputType.number,
+              //             style: TextStyle(
+              //                 fontSize: 18,
+              //                 height: 1.5,
+              //                 color: ThemeColors.blackColor.withOpacity(0.6)),
+              //             decoration: InputDecoration(
+              //               filled: true,
+              //               fillColor: Color(0xFFF8F7F7),
+              //               hintText: "Please enter birthday".tr,
+              //               hintStyle: TextStyle(
+              //                   fontSize: 15,
+              //                   color: _dateController.text == ""
+              //                       ? Colors.red
+              //                       : null),
+              //               disabledBorder: UnderlineInputBorder(
+              //                 borderSide: BorderSide(
+              //                     color: ThemeColors.blackColor
+              //                         .withOpacity(0.2)),
+              //               ),
+              //               enabledBorder: UnderlineInputBorder(
+              //                 borderSide: BorderSide(
+              //                     color: ThemeColors.blackColor
+              //                         .withOpacity(0.2)),
+              //               ),
+              //               focusedBorder: UnderlineInputBorder(
+              //                 borderSide: BorderSide(
+              //                     color: ThemeColors.blackColor
+              //                         .withOpacity(0.2)),
+              //               ),
+              //               border: UnderlineInputBorder(
+              //                 borderSide: BorderSide(
+              //                     color: ThemeColors.blackColor
+              //                         .withOpacity(0.2)),
+              //               ),
+              //             ),
+              //             validator: (value) {},
+              //             onChanged: (value) {
+              //               setState(() {
+              //                 _dateController.text = value;
+              //               });
+              //             },
+              //           ),
+              //         ),
+              //         const SizedBox(
+              //           height: 20,
+              //         ),
+              //
+              //         ///Gender
+              //         Padding(
+              //           padding: EdgeInsets.only(left: 5.0),
+              //           child: Text('Gender'.tr,
+              //               style: TextStyle(
+              //                   fontSize: 14,
+              //                   fontFamily: 'Montserrat',
+              //                   fontWeight: FontWeight.w500,
+              //                   color:
+              //                   ThemeColors.blackColor.withOpacity(0.6))),
+              //         ),
+              //         Row(
+              //           children: [
+              //             Row(
+              //               children: [
+              //                 Radio<Gender>(
+              //                   fillColor: MaterialStateColor.resolveWith(
+              //                           (states) => ThemeColors.primaryColor),
+              //                   value: Gender.male,
+              //                   groupValue: _selectedGender,
+              //                   onChanged: (Gender? value) {
+              //                     setState(() {
+              //                       _selectedGender = value;
+              //                     });
+              //                   },
+              //                 ),
+              //                 Text('male'.tr)
+              //               ],
+              //             ),
+              //             Row(
+              //               children: [
+              //                 Radio<Gender>(
+              //                   fillColor: MaterialStateColor.resolveWith(
+              //                           (states) => ThemeColors.primaryColor),
+              //                   value: Gender.female,
+              //                   groupValue: _selectedGender,
+              //                   onChanged: (Gender? value) {
+              //                     setState(() {
+              //                       _selectedGender = value;
+              //                     });
+              //                   },
+              //                 ),
+              //                 Text('female'.tr),
+              //               ],
+              //             ),
+              //             Row(
+              //               children: [
+              //                 Radio<Gender>(
+              //                   fillColor: MaterialStateColor.resolveWith(
+              //                           (states) => ThemeColors.primaryColor),
+              //                   value: Gender.other,
+              //                   groupValue: _selectedGender,
+              //                   onChanged: (Gender? value) {
+              //                     setState(() {
+              //                       _selectedGender = value;
+              //                     });
+              //                   },
+              //                 ),
+              //                 Text('other'.tr),
+              //               ],
+              //             ),
+              //           ],
+              //         ),
+              //
+              //         const SizedBox(
+              //           height: 20,
+              //         ),
+              //
+              //         ///Pin Code
+              //         Padding(
+              //           padding: EdgeInsets.only(left: 5.0),
+              //           child: Text('Pin Code'.tr,
+              //               style: TextStyle(
+              //                   fontSize: 14,
+              //                   fontFamily: 'Montserrat',
+              //                   fontWeight: FontWeight.w500,
+              //                   color:
+              //                   ThemeColors.blackColor.withOpacity(0.6))),
+              //         ),
+              //         TextFormField(
+              //           controller: _pinCodeController,
+              //           textAlign: TextAlign.start,
+              //           keyboardType: TextInputType.number,
+              //           style: TextStyle(
+              //               fontSize: 18,
+              //               height: 1.5,
+              //               color: ThemeColors.blackColor.withOpacity(0.6)),
+              //           decoration: InputDecoration(
+              //             filled: true,
+              //             fillColor: Color(0xFFF8F7F7),
+              //             hintText: "Enter pin code".tr,
+              //             hintStyle: TextStyle(
+              //                 fontSize: 15,
+              //                 color: _pinCodeController.text == ""
+              //                     ? Colors.red
+              //                     : null),
+              //             enabledBorder: UnderlineInputBorder(
+              //               borderSide: BorderSide(
+              //                   color:
+              //                   ThemeColors.blackColor.withOpacity(0.2)),
+              //             ),
+              //             focusedBorder: UnderlineInputBorder(
+              //               borderSide: BorderSide(
+              //                   color:
+              //                   ThemeColors.blackColor.withOpacity(0.2)),
+              //             ),
+              //             border: UnderlineInputBorder(
+              //               borderSide: BorderSide(
+              //                   color:
+              //                   ThemeColors.blackColor.withOpacity(0.2)),
+              //             ),
+              //           ),
+              //           validator: (value) {
+              //             if (value!.length > 6) {
+              //               showCustomSnackBar("enter_valid_pin_code".tr);
+              //             }
+              //           },
+              //           onChanged: (value) async {
+              //             String pinPattern = "^[1-9]{1}[0-9]{2}\\s{0,1}[0-9]{3}\$";
+              //             RegExp pinRegExp = RegExp(pinPattern);
+              //
+              //             if (pinRegExp
+              //                 .hasMatch(_pinCodeController.text)) {
+              //               if (value.length == 6) {
+              //                 // locationData =
+              //                 // await Get.find<MyAccountController>()
+              //                 //     .getLocation(value);
+              //                 // if (locationData != null) {
+              //                 //   if (locationData!.postOffice != null) {
+              //                 //     setState(() {
+              //                 //       _cityController.text = locationData!
+              //                 //           .postOffice![0].region
+              //                 //           .toString();
+              //                 //       _districtController.text = locationData!
+              //                 //           .postOffice![0].district
+              //                 //           .toString();
+              //                 //       _stateController.text = locationData!
+              //                 //           .postOffice![0].state
+              //                 //           .toString();
+              //                 //     });
+              //                 //   } else {
+              //                 //     showCustomSnackBar("enter_valid_pin_code".tr);
+              //                 //   }
+              //                 // }
+              //               }
+              //             }
+              //           },
+              //         ),
+              //         const SizedBox(
+              //           height: 20,
+              //         ),
+              //
+              //         ///CITY STATE DISTRICT
+              //         // locationData != null ?
+              //         Column(
+              //           crossAxisAlignment: CrossAxisAlignment.start,
+              //           children: [
+              //             ///City
+              //             Padding(
+              //               padding: EdgeInsets.only(left: 5.0),
+              //               child: Text('City'.tr,
+              //                   style: TextStyle(
+              //                       fontSize: 14,
+              //                       fontFamily: 'Montserrat',
+              //                       fontWeight: FontWeight.w500,
+              //                       color: ThemeColors.blackColor
+              //                           .withOpacity(0.6))),
+              //             ),
+              //             TextFormField(
+              //               controller: _cityController,
+              //               textAlign: TextAlign.start,
+              //               keyboardType: TextInputType.text,
+              //               style: TextStyle(
+              //                   fontSize: 18,
+              //                   height: 1.5,
+              //                   color:
+              //                   ThemeColors.blackColor.withOpacity(0.6)),
+              //               decoration: InputDecoration(
+              //                 filled: true,
+              //                 fillColor: Color(0xFFF8F7F7),
+              //                 hintText: "Enter city".tr,
+              //                 hintStyle: TextStyle(
+              //                     fontSize: 15,
+              //                     color: _cityController.text == ""
+              //                         ? Colors.red
+              //                         : null),
+              //                 enabledBorder: UnderlineInputBorder(
+              //                   borderSide: BorderSide(
+              //                       color: ThemeColors.blackColor
+              //                           .withOpacity(0.2)),
+              //                 ),
+              //                 focusedBorder: UnderlineInputBorder(
+              //                   borderSide: BorderSide(
+              //                       color: ThemeColors.blackColor
+              //                           .withOpacity(0.2)),
+              //                 ),
+              //                 border: UnderlineInputBorder(
+              //                   borderSide: BorderSide(
+              //                       color: ThemeColors.blackColor
+              //                           .withOpacity(0.2)),
+              //                 ),
+              //               ),
+              //               validator: (value) {},
+              //               onChanged: (value) {},
+              //             ),
+              //             const SizedBox(
+              //               height: 20,
+              //             ),
+              //
+              //             ///District
+              //             Padding(
+              //               padding: EdgeInsets.only(left: 5.0),
+              //               child: Text('District'.tr,
+              //                   style: TextStyle(
+              //                       fontSize: 14,
+              //                       fontFamily: 'Montserrat',
+              //                       fontWeight: FontWeight.w500,
+              //                       color: ThemeColors.blackColor
+              //                           .withOpacity(0.6))),
+              //             ),
+              //             TextFormField(
+              //               controller: _districtController,
+              //               textAlign: TextAlign.start,
+              //               keyboardType: TextInputType.text,
+              //               style: TextStyle(
+              //                   fontSize: 18,
+              //                   height: 1.5,
+              //                   color:
+              //                   ThemeColors.blackColor.withOpacity(0.6)),
+              //               decoration: InputDecoration(
+              //                 filled: true,
+              //                 fillColor: Color(0xFFF8F7F7),
+              //                 hintText: "Enter district".tr,
+              //                 hintStyle: TextStyle(
+              //                     fontSize: 15,
+              //                     color: _districtController.text == ""
+              //                         ? Colors.red
+              //                         : null),
+              //                 enabledBorder: UnderlineInputBorder(
+              //                   borderSide: BorderSide(
+              //                       color: ThemeColors.blackColor
+              //                           .withOpacity(0.2)),
+              //                 ),
+              //                 focusedBorder: UnderlineInputBorder(
+              //                   borderSide: BorderSide(
+              //                       color: ThemeColors.blackColor
+              //                           .withOpacity(0.2)),
+              //                 ),
+              //                 border: UnderlineInputBorder(
+              //                   borderSide: BorderSide(
+              //                       color: ThemeColors.blackColor
+              //                           .withOpacity(0.2)),
+              //                 ),
+              //               ),
+              //               validator: (value) {},
+              //               onChanged: (value) {},
+              //             ),
+              //             const SizedBox(
+              //               height: 20,
+              //             ),
+              //
+              //             ///State
+              //             Padding(
+              //               padding: EdgeInsets.only(left: 5.0),
+              //               child: Text('State'.tr,
+              //                   style: TextStyle(
+              //                       fontSize: 14,
+              //                       fontFamily: 'Montserrat',
+              //                       fontWeight: FontWeight.w500,
+              //                       color: ThemeColors.blackColor
+              //                           .withOpacity(0.6))),
+              //             ),
+              //             TextFormField(
+              //               controller: _stateController,
+              //               textAlign: TextAlign.start,
+              //               keyboardType: TextInputType.text,
+              //               style: TextStyle(
+              //                   fontSize: 18,
+              //                   height: 1.5,
+              //                   color:
+              //                   ThemeColors.blackColor.withOpacity(0.6)),
+              //               decoration: InputDecoration(
+              //                 filled: true,
+              //                 fillColor: Color(0xFFF8F7F7),
+              //                 hintText: "Enter state".tr,
+              //                 hintStyle: TextStyle(
+              //                     fontSize: 15,
+              //                     color: _stateController.text == ""
+              //                         ? Colors.red
+              //                         : null),
+              //                 enabledBorder: UnderlineInputBorder(
+              //                   borderSide: BorderSide(
+              //                       color: ThemeColors.blackColor
+              //                           .withOpacity(0.2)),
+              //                 ),
+              //                 focusedBorder: UnderlineInputBorder(
+              //                   borderSide: BorderSide(
+              //                       color: ThemeColors.blackColor
+              //                           .withOpacity(0.2)),
+              //                 ),
+              //                 border: UnderlineInputBorder(
+              //                   borderSide: BorderSide(
+              //                       color: ThemeColors.blackColor
+              //                           .withOpacity(0.2)),
+              //                 ),
+              //               ),
+              //               validator: (value) {},
+              //               onChanged: (value) {},
+              //             ),
+              //             const SizedBox(
+              //               height: 20,
+              //             ),
+              //           ],
+              //         ),
+              //         // : SizedBox(),
+              //       ],
+              //     ),
+              //   ),
+              // ),
+              // const SizedBox(
+              //   height: 20,
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+              //   child: AppButton(
+              //     onPressed: () async {
+              //       // _updateProfile(myAccountController);
+              //     },
+              //     height: 60,
+              //     width: MediaQuery.of(context).size.width,
+              //     text: Text(
+              //       'Save'.tr,
+              //       style: const TextStyle(
+              //           color: Colors.white,
+              //           fontSize: 18,
+              //           fontFamily: 'OpenSans-ExtraBold',
+              //           fontWeight: FontWeight.w700),
+              //     ),
+              //     loading: _isLoading,
+              //     style: ElevatedButton.styleFrom(
+              //       side: const BorderSide(
+              //           color: ThemeColors.buttonColor, width: 1),
+              //       backgroundColor: ThemeColors.buttonColor,
+              //       // color:Colors.red,
+              //       shape: const RoundedRectangleBorder(
+              //           borderRadius: BorderRadius.all(Radius.circular(50))),
+              //     ),
+              //   ),
+              // ),
+              // const SizedBox(
+              //   height: 10,
+              // ),
             ],
           ),
         ),);
