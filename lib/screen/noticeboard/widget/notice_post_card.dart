@@ -17,12 +17,13 @@ import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:socialrecipe/utils/theme_colors.dart';
 
+import 'all_notice_widget.dart';
+
 class NoticePostCard extends StatefulWidget {
   const NoticePostCard({
-    Key? key,
-
+    Key? key, this.noticeBoardData,
   }) : super(key: key);
-
+  final NoticeBoardModel? noticeBoardData;
   @override
   State<NoticePostCard> createState() => _NoticePostCardState();
 }
@@ -156,7 +157,7 @@ class _NoticePostCardState extends State<NoticePostCard> {
                                       children: [
                                         Text(
                                           // widget.post!.userName,
-                                          'Navi Mumbai Zone | Group',
+                                          widget.noticeBoardData!.zoneName ??'',
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                           style:
@@ -227,11 +228,9 @@ class _NoticePostCardState extends State<NoticePostCard> {
                               Padding(
                                 padding: const EdgeInsets.only(right: 15.0),
                                 child: Text(
-                                  // widget.post!.title,
-                                  'In case you missed Saad Drusteer’s Tweet\n'
-                                      '🔥 Are you using WordPress and migrating to the JAMstack? I wrote up a case study about how Smashing Magazine moved to JAMstack and saw great performance improvements and better security.smashingdrusteer.com/2020/01/migrat...',
+                                  widget.noticeBoardData!.postText ?? "",
                                   overflow: TextOverflow.ellipsis,
-                                  maxLines: 6,
+                                  maxLines: widget.noticeBoardData!.postText!.length,
                                   style: Theme.of(context).textTheme.headline3!.copyWith(
                                     height: 1.5,
                                   ),

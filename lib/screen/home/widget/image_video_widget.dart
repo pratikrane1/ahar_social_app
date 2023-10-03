@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:socialrecipe/screen/home/screens/gallery/gallery_screen.dart';
+import 'package:socialrecipe/screen/home/screens/gallery/video/gallery_video_screen.dart';
+import 'package:socialrecipe/static_data.dart';
 
 import 'package:socialrecipe/utils/dimensions.dart';
 import 'package:socialrecipe/utils/theme_colors.dart';
@@ -20,7 +23,10 @@ class _GalleryWidgetState extends State<GalleryWidget> {
   bool _isVideoLoading = false;
   String? videoId = "";
   bool _fullScreen = false;
-  List? _albumList;
+  List<AlbumList>? _albumList=[
+    AlbumList(albumName: "Media", albumImage: "https://www.ahar.in/wp-content/uploads/2022/11/ab210413-b1c7-4bf1-8893-1eb869edb154.jpg",
+        albumLength: "4")
+  ];
   List? _videoList;
 
   @override
@@ -74,7 +80,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                     height: 34,
                     width: MediaQuery.of(context).size.width / 2.5,
                     text: Text(
-                      'images'.tr,
+                      'Images'.tr,
                       style: TextStyle(
                           color: _isImage ? Colors.white : Colors.black,
                           fontSize: 18,
@@ -83,6 +89,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                     ),
                     loading: true,
                     style: ElevatedButton.styleFrom(
+                      surfaceTintColor: ThemeColors.whiteColor,
                       side: const BorderSide(
                           color: ThemeColors.buttonColor, width: 1),
                       backgroundColor: _isImage
@@ -105,7 +112,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                     height: 34,
                     width: MediaQuery.of(context).size.width / 2.5,
                     text: Text(
-                      'videos'.tr,
+                      'Videos'.tr,
                       style: TextStyle(
                           color: _isImage ? Colors.black : Colors.white,
                           fontSize: 18,
@@ -114,6 +121,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                     ),
                     loading: true,
                     style: ElevatedButton.styleFrom(
+                      surfaceTintColor: ThemeColors.whiteColor,
                       side: const BorderSide(
                           color: ThemeColors.buttonColor, width: 1),
                       backgroundColor: _isImage
@@ -154,9 +162,8 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                                           Radius.circular(0)),
                                       child: Stack(
                                         children: [
-                                          // Image.network(imageList[index],fit: BoxFit.fill,),
                                           CustomImage(
-                                            image:  "",
+                                            image:  _albumList![0].albumImage,
                                             fit: BoxFit.cover,
                                             width: MediaQuery.of(context)
                                                 .size
@@ -184,13 +191,13 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
                                                             .spaceBetween,
-                                                    children: const [
+                                                    children: [
                                                       Flexible(
                                                         child: Text(
-                                                          "ABCD"                                                              "",
+                                                          _albumList![0].albumName ?? ""                                                              "",
                                                           overflow: TextOverflow
                                                               .ellipsis,
-                                                          style: TextStyle(
+                                                          style: const TextStyle(
                                                               color:
                                                                   Colors.white,
                                                               fontSize: 12,
@@ -207,8 +214,8 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                                                             ThemeColors
                                                                 .whiteColor,
                                                         child: Text(
-                                                          "+00",
-                                                          style: TextStyle(
+                                                          "+${_albumList![0].albumLength}",
+                                                          style: const TextStyle(
                                                               color:
                                                                   Colors.black,
                                                               fontSize: 10,
@@ -226,36 +233,38 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                                             ),
                                           ),
                                           // _albumList![0].isNewAlbum == "1" ?
-                                          // Positioned(
-                                          //     top: 0,
-                                          //     right: 0,
-                                          //     child: Container(
-                                          //       width: 100,
-                                          //       height: 30,
-                                          //       // color: ThemeColors.whiteColor,
-                                          //       color: Colors.black.withOpacity(0.5),
-                                          //       child: Center(
-                                          //         child: Text("new_album".tr,
-                                          //           textAlign: TextAlign.center,
-                                          //           style:const TextStyle(
-                                          //               fontSize: 14,
-                                          //               fontWeight: FontWeight.bold,
-                                          //               fontFamily: 'Montserrat',
-                                          //               color: ThemeColors.whiteColor
-                                          //           ),
-                                          //         ),
-                                          //       ),
-                                          //     )
-                                          // ) : Container(),
-                                          //
+                                          Positioned(
+                                              top: 0,
+                                              right: 0,
+                                              child: Container(
+                                                width: 100,
+                                                height: 30,
+                                                // color: ThemeColors.whiteColor,
+                                                color: Colors.black.withOpacity(0.5),
+                                                child: Center(
+                                                  child: Text("New Album".tr,
+                                                    textAlign: TextAlign.center,
+                                                    style:const TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.bold,
+                                                        fontFamily: 'Montserrat',
+                                                        color: ThemeColors.whiteColor
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                          ),
+                                            // : Container(),
+
                                           // _albumList![0].isNewAlbum == "1" ?
-                                          // const Positioned(
-                                          //     top: 2,
-                                          //     right: 3,
-                                          //     child: Icon(
-                                          //         size: 8,
-                                          //         color: ThemeColors.redColor,
-                                          //         Icons.circle)) : Container(),
+                                          const Positioned(
+                                              top: 2,
+                                              right: 3,
+                                              child: Icon(
+                                                  size: 8,
+                                                  color: ThemeColors.redColor,
+                                                  Icons.circle)),
+                                            // : Container(),
                                         ],
                                       ),
                                     ),
@@ -270,7 +279,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                                        Padding(
                                         padding:const EdgeInsets.only(left: 5.0),
                                         child: Text(
-                                          "more_images".tr,
+                                          "More Images".tr,
                                           style:const TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold,
@@ -280,18 +289,18 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          // Navigator.push(
-                                          //     context,
-                                          //     MaterialPageRoute(
-                                          //         builder: (context) =>
-                                          //             GalleryScreen(
-                                          //               isImage: _isImage,
-                                          //             )));
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      GalleryScreen(
+                                                        isImage: _isImage,
+                                                      )));
                                         },
                                         child:  Padding(
                                           padding:const EdgeInsets.only(right: 8.0),
                                           child: Text(
-                                            "see_all".tr,
+                                            "See All".tr,
                                             style:const TextStyle(
                                               fontSize: 12,
                                               fontWeight: FontWeight.bold,
@@ -312,7 +321,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                                       shrinkWrap: true,
                                       physics: const ScrollPhysics(),
                                       scrollDirection: Axis.horizontal,
-                                      itemCount: 3,
+                                      itemCount: _albumList!.length,
                                       itemBuilder: (context, index) {
                                         return InkWell(
                                           onTap: () {
@@ -339,7 +348,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                                                       .circular(Dimensions
                                                       .RADIUS_SMALL),
                                                   child: CustomImage(
-                                                    image:  "",
+                                                    image:  _albumList![index].albumImage,
                                                     fit: BoxFit.fill,
                                                     width: MediaQuery.of(
                                                         context)
@@ -361,18 +370,18 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                                                         3.5,
                                                     color: Colors.black
                                                         .withOpacity(0.5),
-                                                    child: const Padding(
+                                                    child: Padding(
                                                       padding:
-                                                      EdgeInsets.only(
+                                                      const EdgeInsets.only(
                                                           left: 0.0,
                                                           right: 0.0),
                                                       child: Center(
                                                         child: Text(
-                                                          "abc",textAlign: TextAlign.start,
+                                                          _albumList![index].albumName ?? "",textAlign: TextAlign.start,
                                                           overflow:
                                                           TextOverflow
                                                               .ellipsis,
-                                                          style: TextStyle(
+                                                          style: const TextStyle(
                                                               color: Colors
                                                                   .white,
                                                               fontSize: 12,
@@ -407,16 +416,18 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                                                 //         ),
                                                 //       ),
                                                 //     )
-                                                // ) : Container(),
+                                                // ),
+                                                    // : Container(),
 
                                                 // _albumList![index].isNewAlbum == "1" ?
-                                                // const Positioned(
-                                                //     top: 2,
-                                                //     right: 3,
-                                                //     child: Icon(
-                                                //         size: 8,
-                                                //         color: ThemeColors.redColor,
-                                                //         Icons.circle)) : Container(),
+                                                const Positioned(
+                                                    top: 2,
+                                                    right: 3,
+                                                    child: Icon(
+                                                        size: 8,
+                                                        color: ThemeColors.redColor,
+                                                        Icons.circle)),
+                                                // : Container(),
                                               ],
                                             ),
                                           ),
@@ -437,14 +448,13 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                     padding: const EdgeInsets.only(left: 0.0, right: 0.0),
                     child: GestureDetector(
                       onTap: () {
-                        // Get.toNamed(RouteHelper.getGalleryVideoScreen(_videoList![1]));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>GalleryVideoScreen(videData: Data().videoList![0],)));
                       },
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
                           CustomImage(
-                            image:
-                            "",
+                            image: Data().videoList![0].thumbnailUrl ?? "",
                             fit: BoxFit.cover,
                             width: MediaQuery.of(context).size.width,
                             height: 200,
@@ -469,7 +479,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                                 height: 30,
                                 color: Colors.black.withOpacity(0.5),
                                 child: Center(
-                                  child: Text("new_video".tr,
+                                  child: Text("New Video".tr,
                                     textAlign: TextAlign.center,
                                     style:const TextStyle(
                                         fontSize: 14,
@@ -501,7 +511,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                         Padding(
                           padding: EdgeInsets.only(left: 5.0),
                           child: Text(
-                            "more_videos".tr,
+                            "More Videos".tr,
                             style:const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
@@ -512,17 +522,17 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                         InkWell(
                           onTap: () {
 
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => GalleryScreen(
-                            //           isImage: _isImage,
-                            //         )));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => GalleryScreen(
+                                      isImage: _isImage,
+                                    )));
                           },
                           child:  Padding(
                             padding:const EdgeInsets.only(right: 8.0),
                             child: Text(
-                              "see_all".tr,
+                              "See All".tr,
                               style:const TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.bold,
@@ -543,7 +553,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                         shrinkWrap: true,
                         physics: const ScrollPhysics(),
                         scrollDirection: Axis.horizontal,
-                        itemCount: 3,
+                        itemCount: Data().videoList!.length,
                         itemBuilder: (context, index) {
                           // DateTime dateTimeCreatedAt = DateTime.parse(_videoList![index].snippet!.publishedAt.toString());
                           // DateTime dateTimeNow = DateTime.now();
@@ -554,7 +564,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                           // }
                           return InkWell(
                             onTap: () {
-                              // Get.toNamed(RouteHelper.getGalleryVideoScreen(_videoList![index]));
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>GalleryVideoScreen(videData: Data().videoList![index],)));
                             },
                             child: Container(
                               // height: 90,
@@ -568,8 +578,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                                   alignment: Alignment.center,
                                   children: [
                                     CustomImage(
-                                      image:
-                                       "",
+                                      image: Data().videoList![index].thumbnailUrl ?? "",
                                       fit: BoxFit.cover,
                                       width: MediaQuery.of(context).size.width / 3.5,
                                       height: 120,
@@ -588,13 +597,15 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                                           ),
                                         )),
 
-                                    // _videoList![index].isTimePeriod! ? const Positioned(
-                                    //     top: 2,
-                                    //     right: 3,
-                                    //     child: Icon(
-                                    //         size: 8,
-                                    //         color: ThemeColors.redColor,
-                                    //         Icons.circle)) : Container(),
+                                    // _videoList![index].isTimePeriod! ?
+                                    const Positioned(
+                                        top: 2,
+                                        right: 3,
+                                        child: Icon(
+                                            size: 8,
+                                            color: ThemeColors.redColor,
+                                            Icons.circle)),
+                                    // : Container(),
 
                                   ],
                                 ),
@@ -613,4 +624,11 @@ class _GalleryWidgetState extends State<GalleryWidget> {
       ),
     );
   }
+}
+
+class AlbumList{
+ String? albumName;
+ String? albumLength;
+ String? albumImage;
+ AlbumList({required this.albumName,required this.albumImage,required this.albumLength});
 }

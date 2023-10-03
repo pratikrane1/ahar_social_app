@@ -74,3 +74,15 @@ class _GroupFeedWidgetState extends State<GroupFeedWidget>
     );
   }
 }
+
+class FeedModel{
+  String? userName;
+  String? zoneName;
+  String? postImage;
+  String? userImage;
+  String? postText;
+  String? likeCount;
+
+  FeedModel({required this.userName,required this.likeCount,required this.postImage,
+    required this.postText, required this.zoneName,required this.userImage});
+}

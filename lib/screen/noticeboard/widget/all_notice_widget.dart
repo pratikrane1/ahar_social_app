@@ -8,6 +8,7 @@ import 'package:socialrecipe/src/models/message.dart';
 import 'package:socialrecipe/screen/chat/widgets/my_message_bubble.dart';
 import 'package:socialrecipe/screen/chat/widgets/sender_message_bubble.dart';
 import 'package:socialrecipe/src/models/user_model.dart';
+import 'package:socialrecipe/static_data.dart';
 
 class AllNoticeScreen extends StatefulWidget {
   const AllNoticeScreen({
@@ -35,11 +36,21 @@ class _AllNoticeScreenState extends State<AllNoticeScreen> {
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
         physics: ScrollPhysics(),
-        itemCount: 5,
+        itemCount: Data().noticeBoardList!.length,
         itemBuilder: ((context, index) {
-          return NoticePostCard();
+          return NoticePostCard(noticeBoardData: Data().noticeBoardList![index],);
         }),
       ),
     );
   }
+}
+
+class NoticeBoardModel{
+  String? userName;
+  String? zoneName;
+  String? userImage;
+  String? postText;
+
+  NoticeBoardModel({required this.userName,
+    required this.postText, required this.zoneName,required this.userImage});
 }

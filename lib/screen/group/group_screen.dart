@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:socialrecipe/screen/group/widget/group_feed_widget.dart';
 import 'package:socialrecipe/screen/group/widget/group_member_widget.dart';
 import 'package:socialrecipe/screen/noticeboard/widget/all_notice_widget.dart';
+import 'package:socialrecipe/static_data.dart';
 import 'package:socialrecipe/utils/theme_colors.dart';
 
 
@@ -16,12 +17,14 @@ class GroupScreen extends StatefulWidget {
 }
 
 class _GroupScreenState extends State<GroupScreen> {
-
+  String? defaultSelectedGroup;
 
 
   @override
   void initState() {
     super.initState();
+    defaultSelectedGroup = Data().groupList![0].groupName;
+
   }
 
 
@@ -56,7 +59,7 @@ class _GroupScreenState extends State<GroupScreen> {
               Container(
                 decoration:  BoxDecoration(
                   borderRadius:
-                  BorderRadius.all(Radius.circular(100)),
+                  const BorderRadius.all(Radius.circular(100)),
                   border: Border.all(width: 1),
 
                 ),
@@ -73,8 +76,8 @@ class _GroupScreenState extends State<GroupScreen> {
                   ),
                 )
               ),
-              SizedBox(width: 5,),
-              Text('Mumbai Zone | Group',style: Theme.of(context).textTheme.headline2!.copyWith(
+              const SizedBox(width: 5,),
+              Text(defaultSelectedGroup ?? "",style: Theme.of(context).textTheme.headline2!.copyWith(
                 fontSize: 20,
                 fontFamily: 'Poppins-Bold',),),
               IconButton(
@@ -116,7 +119,7 @@ class _GroupScreenState extends State<GroupScreen> {
               primary: false,
               shrinkWrap: true,
               physics: const BouncingScrollPhysics(),
-              itemCount: 10,
+              itemCount: Data().groupList!.length,
               itemBuilder: (context, index) {
                 // final contactUser =
                 // UserModel.fromSnapshot(contactUsersList[index]);
@@ -135,18 +138,18 @@ class _GroupScreenState extends State<GroupScreen> {
                         children: [
                           InkWell(
                             onTap: () {
-                              // Navigator.push(context, MaterialPageRoute(builder: (context)=>
-                              //     GroupScreen()));
+                              setState(() {
+                                defaultSelectedGroup = Data().groupList![index].groupName;
+                              });
                               Navigator.pop(context);
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(bottom: 4.0),
                               child: ListTile(
                                 title: Text(
-                                  // contactUser.userName,
-                                    'Zone Name',
+                                    Data().groupList![index].groupName.toString(),
                                     style:
-                                    TextStyle(
+                                    const TextStyle(
                                       fontSize: 15,
                                       fontFamily: 'Poppins-Bold',
                                       fontWeight: FontWeight.w600,
@@ -155,8 +158,7 @@ class _GroupScreenState extends State<GroupScreen> {
                                 subtitle: Padding(
                                   padding: const EdgeInsets.only(top: 6),
                                   child: Text(
-                                    // "${contactUser.lastMessage}",
-                                    'Participants: 200',
+                                    'Participants: ${Data().groupList![index].Participants.toString()}',
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: Theme.of(context)
@@ -189,41 +191,8 @@ class _GroupScreenState extends State<GroupScreen> {
                                         fit: BoxFit.cover,
                                       ),
                                     )
-                                  //     : Padding(
-                                  //   padding: const EdgeInsets.all(2.0),
-                                  //   child: ClipRRect(
-                                  //     borderRadius: BorderRadius.circular(100),
-                                  //     child: CachedNetworkImage(
-                                  //       imageUrl: contactUser.photoUrl,
-                                  //       fit: BoxFit.cover,
-                                  //       errorWidget: (context, url, error) =>
-                                  //       const Center(
-                                  //         child: FaIcon(
-                                  //             FontAwesomeIcons.circleExclamation),
-                                  //       ),
-                                  //       placeholder: (context, url) =>
-                                  //           Shimmer.fromColors(
-                                  //               baseColor: Colors.grey.shade400,
-                                  //               highlightColor:
-                                  //               Colors.grey.shade300,
-                                  //               child: SizedBox(
-                                  //                   height: MediaQuery.of(context)
-                                  //                       .size
-                                  //                       .height /
-                                  //                       3.3,
-                                  //                   width: double.infinity)),
-                                  //     ),
-                                  //   ),
-                                  // ),
                                 ),
-                                trailing: Text(
-                                  // contactUser.messageSent == null
-                                  //     ? ''
-                                  //     :
-                                  DateFormat('kk:mm')
-                                  // .format(contactUser.messageSent!)
-                                      .format(DateTime.now())
-                                      .toString(),
+                                trailing: Text(Data().groupList![index].date.toString(),
                                   style: const TextStyle(
                                     fontSize: 12,
                                     color: Colors.grey,
@@ -245,4 +214,12 @@ class _GroupScreenState extends State<GroupScreen> {
       },
     );
   }
+}
+
+class GroupModel{
+  String? groupName;
+  String? Participants;
+  String? date;
+
+  GroupModel({required this.groupName, required this.date, required this.Participants});
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:pdftron_flutter/pdftron_flutter.dart';
 import 'package:socialrecipe/utils/dimensions.dart';
 import 'package:socialrecipe/utils/theme_colors.dart';
 import 'package:socialrecipe/widget/app_button.dart';
@@ -46,22 +47,22 @@ class DocumentFile extends StatelessWidget {
               ),
               AppButton(
                 onPressed: () async {
-                  // String url = await Get.find<ProductController>().getPdfUrl();
-                  // var config = Config();
-                  // // How to disable functionality:
-                  // config.disabledElements = [ Buttons.searchButton];
-                  // config.disabledTools = [Tools.annotationCreateLine, Tools.annotationCreateRectangle];
-                  // // Other viewer configurations:
-                  // config.hideAnnotationToolbarSwitcher = true;
-                  // config.showLeadingNavButton = true;
-                  // // config.hideBottomToolbar = true;
-                  // config.multiTabEnabled = true;
-                  // config.downloadDialogEnabled = false;
-                  // config.readOnly=true;
-                  // config.bottomToolbar=[Buttons.shareButton,Buttons.saveCopyButton];
-                  // config.customHeaders = {'headerName': 'headerValue'};
-                  //
-                  // PdftronFlutter.openDocument(url,config: config);
+                  String url = "";
+                  var config = Config();
+                  // How to disable functionality:
+                  config.disabledElements = [ Buttons.searchButton];
+                  config.disabledTools = [Tools.annotationCreateLine, Tools.annotationCreateRectangle];
+                  // Other viewer configurations:
+                  config.hideAnnotationToolbarSwitcher = true;
+                  config.showLeadingNavButton = true;
+                  // config.hideBottomToolbar = true;
+                  config.multiTabEnabled = true;
+                  config.downloadDialogEnabled = false;
+                  config.readOnly=true;
+                  config.bottomToolbar=[Buttons.shareButton,Buttons.saveCopyButton];
+                  config.customHeaders = {'headerName': 'headerValue'};
+
+                  PdftronFlutter.openDocument(url,config: config);
 
                 },
                 height: 34,

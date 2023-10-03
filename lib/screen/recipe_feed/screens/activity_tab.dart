@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:socialrecipe/static_data.dart';
 import 'package:socialrecipe/utils/constants.dart';
 import 'package:socialrecipe/src/models/recipe_post_model.dart';
 import 'package:socialrecipe/src/models/user_model.dart';
 import 'package:socialrecipe/screen/recipe_feed/widgets/recipe_post_card.dart';
 import 'package:socialrecipe/providers/user_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:socialrecipe/utils/theme_colors.dart';
 
 class ActivityTab extends StatefulWidget {
   const ActivityTab({Key? key, required this.user}) : super(key: key);
@@ -41,7 +43,7 @@ class _ActivityTabState extends State<ActivityTab>
         Provider.of<UserProvider>(context, listen: false).getUser;
     return RefreshIndicator(
       onRefresh: refreshTab,
-      color: kOrangeColor,
+      color: ThemeColors.primaryColor,
       backgroundColor: Colors.white,
       child: SingleChildScrollView(
         //padding: EdgeInsets.only(bottom: 50),
@@ -74,13 +76,15 @@ class _ActivityTabState extends State<ActivityTab>
                   shrinkWrap: true,
                   primary: false,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: snapshot.data!.docs.length,
+                  // itemCount: snapshot.data!.docs.length,
+                  itemCount: Data().feedList!.length,
                   itemBuilder: ((context, index) {
                     RecipePostModel post = RecipePostModel.fromSnapshot(
                         snapshot.data!.docs[index]);
                     return RecipePostCard(
                       user: userProvider,
                       post: post,
+                      feedData: Data().feedList![index],
                     );
                   }),
                 );

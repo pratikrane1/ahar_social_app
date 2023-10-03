@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:socialrecipe/screen/home/screens/gallery/video/gallery_video_screen.dart';
+import 'package:socialrecipe/static_data.dart';
 import 'package:socialrecipe/utils/dimensions.dart';
 import 'package:socialrecipe/utils/theme_colors.dart';
 import 'package:socialrecipe/widget/custom_image.dart';
@@ -15,7 +17,14 @@ class VideoSlider extends StatefulWidget {
 class _VideoSliderState extends State<VideoSlider>  {
   PageController? _pageController;
   int activePage = 0;
-  // List? _videoList;
+  List<VideoModel>? _videoList= [
+    VideoModel(thumbnailUrl: "https://i.ytimg.com/vi/RzhiJeXMJ7g/maxresdefault.jpg", VideoName: "Shri Sandeep D Shetty , VP Zone V being felicitated on the occasion of 43rd AGM 10- 11th Jan 2023.",
+        videoDesc: "Shri Sandeep D Shetty (Owner - Shubhalaxmi, Chembur), VP Zone V (2019 - 2021) being felicitated on the occasion of 43rd AGM held at Sahara Star, Vile Parle East on 10th & 11th January 2023.",
+        VideoId: "RzhiJeXMJ7g"),
+    VideoModel(thumbnailUrl: "https://i.ytimg.com/vi/TxaB9alUcu4/maxresdefault.jpg", VideoName: 'WAAYU "LEAD THE CHANGE"',
+        videoDesc: "We bring to you WAAYU, powered by your very own AHAR, it is not only an app but a revolution.\nWe at WAAYU are very proud to introduce our solution aimed at solving all your problems in the food delivery industry. We have worked hard to create a complete application that is built to favour restaurants' answers and their business objective. With WAAYU you can now handle online ordering business with ease and efficiency",
+        VideoId: "TxaB9alUcu4")
+  ];
   bool _isLoading = false;
 
 
@@ -65,7 +74,7 @@ class _VideoSliderState extends State<VideoSlider>  {
             // height: _width > 400.0 ? 250 : 190,
             height: 190,
             child: PageView.builder(
-              itemCount: 2,
+              itemCount: Data().videoList!.length,
               // pageSnapping: true,
               controller: _pageController,
               onPageChanged: (page) {
@@ -87,6 +96,7 @@ class _VideoSliderState extends State<VideoSlider>  {
                   child: InkWell(
                     onTap: () {
                       // Get.toNamed(RouteHelper.getGalleryVideoScreen(_videoList![pagePosition]));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>GalleryVideoScreen(videData: Data().videoList![pagePosition],)));
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -106,7 +116,7 @@ class _VideoSliderState extends State<VideoSlider>  {
                               width: MediaQuery.of(context).size.width,
                               child: CustomImage(
                                 // image: _videoList![pagePosition].snippet!.thumbnails!.high!.url,
-                                image: "",
+                                image: Data().videoList![pagePosition].thumbnailUrl,
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -160,9 +170,18 @@ class _VideoSliderState extends State<VideoSlider>  {
           ///Video Indicator
           Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: indicators(2,activePage)),
+              children: indicators(Data().videoList!.length,activePage)),
         ],
       ),
     );
   }
+}
+
+class VideoModel {
+  String thumbnailUrl;
+  String VideoName;
+  String videoDesc;
+  String VideoId;
+
+  VideoModel({required this.thumbnailUrl, required this.VideoName, required this.videoDesc, required this.VideoId});
 }

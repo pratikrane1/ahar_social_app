@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:socialrecipe/providers/dynamic_link.dart';
+import 'package:socialrecipe/screen/group/widget/group_feed_widget.dart';
 import 'package:socialrecipe/utils/app_pages.dart';
 import 'package:socialrecipe/utils/constants.dart';
 import 'package:socialrecipe/src/models/recipe_post_model.dart';
@@ -21,10 +22,12 @@ class RecipePostCard extends StatefulWidget {
   const RecipePostCard({
     Key? key,
     required this.post,
-    required this.user,
+    required this.user, this.feedData,
+    // required this.feedData,
   }) : super(key: key);
   final UserModel? user;
   final RecipePostModel post;
+  final FeedModel? feedData;
 
   @override
   State<RecipePostCard> createState() => _RecipePostCardState();
@@ -96,7 +99,7 @@ class _RecipePostCardState extends State<RecipePostCard> {
                                         : Colors.grey.shade300,
                                   ),
                                 )
-                              : widget.post.profImage == ""
+                              : widget.feedData!.userImage == ""
                                   ? Container(
                                       decoration: const BoxDecoration(
                                         image: DecorationImage(
@@ -107,7 +110,7 @@ class _RecipePostCardState extends State<RecipePostCard> {
                                       ),
                                     )
                                   : CachedNetworkImage(
-                                      imageUrl: widget.post.profImage,
+                                      imageUrl: widget.feedData!.userImage.toString(),
                                       fit: BoxFit.cover,
                                       errorWidget: (context, url, error) =>
                                           const Center(
@@ -150,13 +153,13 @@ class _RecipePostCardState extends State<RecipePostCard> {
                               // ),
                               GestureDetector(
                                 onTap: () {
-                                  if (currentUser!.uid != widget.post.uid) {
-                                    Navigator.pushNamed(
-                                      context,
-                                      AppPages.profilePath,
-                                      arguments: widget.post.uid,
-                                    );
-                                  }
+                                  // if (currentUser!.uid != widget.post.uid) {
+                                  //   Navigator.pushNamed(
+                                  //     context,
+                                  //     AppPages.profilePath,
+                                  //     arguments: widget.post.uid,
+                                  //   );
+                                  // }
                                 },
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -164,7 +167,7 @@ class _RecipePostCardState extends State<RecipePostCard> {
 
                                   children: [
                                     Text(
-                                      widget.post.userName,
+                                      widget.feedData!.userName ?? "",
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style:
@@ -178,10 +181,10 @@ class _RecipePostCardState extends State<RecipePostCard> {
                                         // width: MediaQuery.of(context).size.width,
                                         // width: MediaQuery.of(context).size.width*0.4,
                                         child: Text(
-                                          '@Mumbai Zone | group. 3H',
+                                          widget.feedData!.zoneName ?? "",
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               color: ThemeColors.greyTextColor,
                                               fontSize: 12,
                                               fontFamily: 'Poppins-Light',
@@ -224,7 +227,7 @@ class _RecipePostCardState extends State<RecipePostCard> {
                                         child: ClipRRect(
                                           borderRadius: BorderRadius.circular(20),
                                           child: CachedNetworkImage(
-                                            imageUrl: widget.post.postUrl,
+                                            imageUrl: widget.feedData!.postImage ?? "",
                                             fit: BoxFit.cover,
                                             errorWidget: (context, url, error) =>
                                             const Center(
@@ -251,7 +254,7 @@ class _RecipePostCardState extends State<RecipePostCard> {
                               SizedBox(height: 10,),
                               //Post Title
                               Text(
-                                widget.post.title,
+                                widget.feedData!.postText ?? "",
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 5,
                                 style: Theme.of(context).textTheme.headline3!.copyWith(

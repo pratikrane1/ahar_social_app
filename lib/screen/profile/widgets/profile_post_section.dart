@@ -96,6 +96,7 @@ class _ProfilePostSectionState extends State<ProfilePostSection> {
                 return RecipePostCard(
                   user: userProvider,
                   post: recipePost,
+
                 );;
                 //   Flex(
                 //   direction: Axis.vertical,

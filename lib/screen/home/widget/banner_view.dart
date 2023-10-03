@@ -10,7 +10,10 @@ class BannerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool _isLoading = false;
-    List? bannerList;
+    List? bannerList = [
+      "https://www.ahar.in/wp-content/uploads/2023/01/Office-Bearers-AHAR-Team-2023.jpg",
+      "https://www.ahar.in/wp-content/uploads/2023/01/WhatsApp-Image-2023-01-21-at-11.11.42-AM-1.jpeg"
+    ];
 
     return Container(
         width: MediaQuery.of(context).size.width,
@@ -34,7 +37,7 @@ class BannerView extends StatelessWidget {
                     // bannerController.setCurrentIndex(index, true);
                   },
                 ),
-                itemCount: 1,
+                itemCount: bannerList.length,
                 itemBuilder: (context, index, _) {
                   return InkWell(
                     onTap: () {},
@@ -42,8 +45,8 @@ class BannerView extends StatelessWidget {
                       borderRadius: BorderRadius.circular(
                           Dimensions.RADIUS_SMALL),
                       child: CustomImage(
-                        image: 'https://picsum.photos/seed/picsum/200/300',
-                        // image: bannerList[index].imageUrl,
+                        // image: 'https://picsum.photos/seed/picsum/200/300',
+                        image: bannerList[index],
                         fit: BoxFit.fill,
                       ),
                     ),
