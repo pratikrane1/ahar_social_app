@@ -67,7 +67,7 @@ class _MembershipScreenState extends State<MembershipScreen> {
             ),
           ),
           title: Text(
-            "membership_details".tr,
+            "Membership details",
             style: Theme.of(context).textTheme.headline6!.copyWith(
               fontSize: 25,
               fontWeight: FontWeight.w600,
@@ -91,7 +91,7 @@ class _MembershipScreenState extends State<MembershipScreen> {
 
                     ///Membership Date
                     // _membershipDetails!.validityFrom != null ?
-                    Text('${'starting_from'.tr} July ${'till'.tr} December',
+                    Text('${'Starting From'} July ${'Till'} December',
                       style: const TextStyle(
                           fontSize: 14,
                           fontFamily: 'Montserrat',
@@ -132,7 +132,7 @@ class _MembershipScreenState extends State<MembershipScreen> {
 
                             const SizedBox(height: 8,),
 
-                            Text('inclusive_of_gst'.tr,
+                            Text('Inclusive of GST',
                               style:const TextStyle(
                                   fontSize: 14,
                                   fontFamily: 'Montserrat',

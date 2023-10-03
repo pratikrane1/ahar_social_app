@@ -59,7 +59,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
         ),
         title: Text(
-          "settings".tr,
+          "Settings".tr,
           style: Theme.of(context).textTheme.headline6!.copyWith(
             fontSize: 25,
             fontWeight: FontWeight.w600,
@@ -90,7 +90,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    "save".tr,
+                    "Save".tr,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.headline6!.copyWith(
                       fontSize: 15,
@@ -135,7 +135,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       Images.language_icon, height: 25,
                       // color: ThemeColors.greyTextColor,
                     ),
-                    title:  Text("language".tr,
+                    title:  Text("Language".tr,
                         style:const TextStyle(
                             fontSize: 16,
                             fontFamily: 'Montserrat',
@@ -196,7 +196,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 Images.notification_icon, height: 25,
                 // color: ThemeColors.greyTextColor,
               ),
-              title:  Text("notification".tr,
+              title:  Text("Notification".tr,
                   style:const TextStyle(
                       fontSize: 16,
                       fontFamily: 'Montserrat',

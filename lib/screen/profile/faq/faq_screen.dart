@@ -48,7 +48,7 @@ class _HelpCentreScreenState extends State<HelpCentreScreen> {
           title: Padding(
             padding: const EdgeInsets.only(left: 8.0),
             child: Text(
-              "faq".tr,
+              "FAQS".tr,
               style: Theme.of(context).textTheme.headline6!.copyWith(
                 fontSize: 25,
                 fontWeight: FontWeight.w600,

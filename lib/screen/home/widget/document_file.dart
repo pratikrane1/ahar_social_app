@@ -67,7 +67,7 @@ class DocumentFile extends StatelessWidget {
                 height: 34,
                 width: 80,
                 text: Text(
-                  'open'.tr,
+                  'Open',
                   style:  TextStyle(
                       color: Colors.white,
                       fontSize: Dimensions.fontSizeDefault,

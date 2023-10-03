@@ -50,7 +50,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
             children: [
               ///Gallery Text
                Text(
-                "gallery".tr,
+                "Gallery",
                 style:const TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
@@ -74,7 +74,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                     height: 34,
                     width: MediaQuery.of(context).size.width / 2.5,
                     text: Text(
-                      'images'.tr,
+                      'Images',
                       style: TextStyle(
                           color: _isImage ? Colors.white : Colors.black,
                           fontSize: 18,
@@ -105,7 +105,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                     height: 34,
                     width: MediaQuery.of(context).size.width / 2.5,
                     text: Text(
-                      'videos'.tr,
+                      'Videos'.tr,
                       style: TextStyle(
                           color: _isImage ? Colors.black : Colors.white,
                           fontSize: 18,
@@ -270,7 +270,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                                        Padding(
                                         padding:const EdgeInsets.only(left: 5.0),
                                         child: Text(
-                                          "more_images".tr,
+                                          "More images",
                                           style:const TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold,
@@ -291,7 +291,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                                         child:  Padding(
                                           padding:const EdgeInsets.only(right: 8.0),
                                           child: Text(
-                                            "see_all".tr,
+                                            "See all",
                                             style:const TextStyle(
                                               fontSize: 12,
                                               fontWeight: FontWeight.bold,

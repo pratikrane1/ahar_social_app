@@ -11,7 +11,7 @@ class CreditScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: ThemeColors.whiteColor,
         title: Text(
-          'credits'.tr,
+          'Credits'.tr,
           style: Theme.of(context).textTheme.headline6!.copyWith(
                 fontSize: 25,
                 fontWeight: FontWeight.w600,
@@ -41,7 +41,7 @@ class CreditScreen extends StatelessWidget {
               padding: EdgeInsets.only(left: 10.0),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text("GainZ Pro App Team",
+                child: Text("Ahar App Team",
                     style: TextStyle(
                         fontSize: 20,
                         fontFamily: 'Montserrat',

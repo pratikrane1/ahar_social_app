@@ -50,7 +50,7 @@ class _TermsConditionsScreenState extends State<TermsConditionsScreen> {
               ),
             ),
           title: Text(
-            'terms_and_conditions'.tr,
+            'Terms & Conditions'.tr,
             maxLines: 2,
             style: Theme.of(context).textTheme.headline6!.copyWith(
               fontSize: 25,
