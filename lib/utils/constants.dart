@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:socialrecipe/utils/theme_colors.dart';
 
-const kOrangeColor = Color.fromARGB(255, 0, 137, 123);
-const kOrangeColorTint = Color.fromARGB(255, 0, 137, 123);
-const kOrangeColorTint2 = Color.fromARGB(255, 0, 137, 123);
-const kOrangeColorTint3 = Color.fromARGB(255, 0, 137, 123);
+const kOrangeColor = Color.fromARGB(255, 247, 247, 247);
+const kOrangeColorTint = Color.fromARGB(255, 247, 247, 247);
+const kOrangeColorTint2 = Color.fromARGB(255, 247, 247, 247);
+const kOrangeColorTint3 = Color.fromARGB(255, 247, 247, 247);
 const kBlackColor = Color(0xff0E0E0E);
 const kBlackColor2 = Color.fromARGB(255, 27, 27, 27);
 const kGreyColor = Color(0xff232220);

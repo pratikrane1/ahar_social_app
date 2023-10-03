@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:socialrecipe/screen/authentication/widgets/log_in_form.dart';
-import 'package:socialrecipe/screen/authentication/widgets/log_in_form_old.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({Key? key}) : super(key: key);

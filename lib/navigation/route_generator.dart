@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:socialrecipe/screen/authentication/screens/log_in_screen.dart';
 import 'package:socialrecipe/utils/app_pages.dart';
 import 'package:socialrecipe/screen/authentication/screens/forget_password_screen.dart';
-import 'package:socialrecipe/screen/authentication/screens/log_in_screen_old.dart';
 import 'package:socialrecipe/screen/authentication/screens/sign_up_screen.dart';
 import 'package:socialrecipe/screen/bookmark_recipe/screens/recipe_detail_screen.dart';
 import 'package:socialrecipe/screen/chat/screens/chat_messages_screen.dart';

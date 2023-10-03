@@ -50,6 +50,7 @@ dependencies:
   cached_network_image:
   flutter_slidable:
   shimmer:
+  shimmer_animation: ^2.1.0+1
   font_awesome_flutter:
   firebase_core:
   cloud_firestore:
@@ -73,6 +74,8 @@ dependencies:
   firebase_dynamic_links: ^5.0.1
   pin_code_fields: ^7.4.0
   persistent_bottom_nav_bar: ^5.0.2
+  carousel_slider: ^4.0.0
+  flutter_html: 3.0.0-alpha.6
 
 
 

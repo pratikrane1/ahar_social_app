@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:socialrecipe/screen/authentication/screens/log_in_screen.dart';
-import 'package:socialrecipe/screen/splash/screens/splash_screen.dart';
-import 'package:socialrecipe/utils/images.dart';
 import 'package:socialrecipe/utils/theme_colors.dart';
 import 'package:socialrecipe/widget/app_button.dart';
 
-import '../authentication/screens/log_in_screen_old.dart';
 
 class WalkThroughScreen extends StatefulWidget {
   const WalkThroughScreen({Key? key}) : super(key: key);
@@ -35,10 +32,11 @@ class _WalkThroughScreenState extends State<WalkThroughScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           // mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Align(
+            const Align(
               alignment: Alignment.center,
               // padding: const EdgeInsets.only(left: 8.0),
               child: Text('Stay connected\nwith your Community',
+                textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 24,
                     fontFamily: 'OpenSans-ExtraBold',
@@ -55,16 +53,16 @@ class _WalkThroughScreenState extends State<WalkThroughScreen> {
                 },
                 height: 60,
                 width: MediaQuery.of(context).size.width,
-                text: Text('Login',style: TextStyle(
+                text: const Text('Login',style: TextStyle(
                     color: ThemeColors.buttonColor,
                     fontSize: 18,fontFamily: 'OpenSans-ExtraBold',
                     fontWeight: FontWeight.w700) ,),
                 loading: true,
                 style: ElevatedButton.styleFrom(
-                    side: BorderSide(color: ThemeColors.buttonColor, width: 1),
+                    side: const BorderSide(color: ThemeColors.buttonColor, width: 1),
                  backgroundColor: Colors.white,
                  // color:Colors.red,
-                  shape: RoundedRectangleBorder(
+                  shape: const RoundedRectangleBorder(
                       borderRadius:
                       BorderRadius.all(Radius.circular(50))),
                 ),

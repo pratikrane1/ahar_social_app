@@ -8,6 +8,8 @@ import 'package:socialrecipe/providers/dynamic_link.dart';
 import 'package:socialrecipe/screen/chat/screens/contacts_list_screen.dart';
 import 'package:socialrecipe/screen/create_recipe_post/screens/add_recipe_post_screen.dart';
 import 'package:socialrecipe/screen/group/group_listing_screen.dart';
+import 'package:socialrecipe/screen/group/group_screen.dart';
+import 'package:socialrecipe/screen/home/screens/home_screen1.dart';
 import 'package:socialrecipe/screen/noticeboard/noticeboard_screen.dart';
 import 'package:socialrecipe/screen/profile/widgets/profile_messages_button.dart';
 import 'package:socialrecipe/screen/recipe_feed/screens/feed_screen.dart';
@@ -36,8 +38,6 @@ class _HomeScreenState extends State<HomeScreen> {
   int _pageIndex = 0;
   List<Widget>? _screens;
 
-
-
   Future<void> getUserData() async {
     setState(() {
       _isLoading = true;
@@ -62,22 +62,18 @@ class _HomeScreenState extends State<HomeScreen> {
     // _controller = PersistentTabController(initialIndex: 0);
     _pageController = PageController(initialPage: 0);
     _screens = [
-      const FeedScreen(),
-      NoticeBoardScreen(),
+      const AllTab(),
+      const GroupScreen(),
       const AddRecipePostScreen(),
       const GroupListScreen(),
-      ContactsListScreen()
+      const ContactsListScreen()
       // ProfileScreen(
       //   userId: auth?.uid,
       // ),
     ];
-
   }
 
-
-
   static User? auth = FirebaseAuth.instance.currentUser;
-
 
   void _setPage(int pageIndex) {
     setState(() {
@@ -113,10 +109,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         return _screens![index];
                       },
                     ),
-                    floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+                    floatingActionButtonLocation:
+                        FloatingActionButtonLocation.centerDocked,
                     floatingActionButton: FloatingActionButton(
                       backgroundColor: ThemeColors.blackColor,
-                      child: const Icon(Icons.add_circle_outline_rounded,size: 30,),
+                      child: const Icon(
+                        Icons.add_circle_outline_rounded,
+                        size: 30,
+                      ),
                       onPressed: () {
                         _setPage(2);
                         _pageIndex == 2;
@@ -124,12 +124,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     bottomNavigationBar: Theme(
                       data: Theme.of(context).copyWith(
-                        canvasColor: Colors.white,
-                        primaryColor: Colors.white,backgroundColor: Colors.white,bottomAppBarColor: Colors.white,
-                        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-                          backgroundColor: Colors.white
-                        )
-                      ),
+                          canvasColor: Colors.white,
+                          primaryColor: Colors.white,
+                          backgroundColor: Colors.white,
+                          bottomAppBarColor: Colors.white,
+                          bottomNavigationBarTheme:
+                              BottomNavigationBarThemeData(
+                                  backgroundColor: Colors.white)),
                       child: BottomAppBar(
                         color: Colors.white,
                         shape: CircularNotchedRectangle(),
@@ -139,42 +140,73 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Container(
                           height: 70,
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 20.0,right: 20.0),
+                            padding:
+                                const EdgeInsets.only(left: 20.0, right: 20.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 IconButton(
                                   // icon: ImageIcon(AssetImage('assets/home_icon.png')),
-                                  icon: Icon(Icons.home_outlined,size: 28,),
-                                  onPressed: () {_setPage(0);_pageIndex == 0;},
-                                  color: _pageIndex == 0 ? ThemeColors.selectedIconColor : ThemeColors.blackColor,
+                                  icon: Icon(
+                                    Icons.home_outlined,
+                                    size: 28,
+                                  ),
+                                  onPressed: () {
+                                    _setPage(0);
+                                    _pageIndex == 0;
+                                  },
+                                  color: _pageIndex == 0
+                                      ? ThemeColors.selectedIconColor
+                                      : ThemeColors.blackColor,
                                 ),
                                 IconButton(
                                   // icon:ImageIcon(AssetImage('assets/noticeboard.png'),size: 25,),
-                                  icon:SvgPicture.asset('assets/noticeboard.svg', color: _pageIndex == 1 ? ThemeColors.selectedIconColor : ThemeColors.blackColor,),
-                                  onPressed: () {_setPage(1);_pageIndex == 1;},
-                                  color: _pageIndex == 1 ? ThemeColors.selectedIconColor : ThemeColors.blackColor,
-
+                                  icon: SvgPicture.asset(
+                                    'assets/noticeboard.svg',
+                                    color: _pageIndex == 1
+                                        ? ThemeColors.selectedIconColor
+                                        : ThemeColors.blackColor,
+                                  ),
+                                  onPressed: () {
+                                    _setPage(1);
+                                    _pageIndex == 1;
+                                  },
+                                  color: _pageIndex == 1
+                                      ? ThemeColors.selectedIconColor
+                                      : ThemeColors.blackColor,
                                 ),
                                 IconButton(
-                                  icon:SizedBox(),
+                                  icon: SizedBox(),
                                   onPressed: () {},
                                 ),
                                 IconButton(
                                   // icon: ImageIcon(AssetImage('assets/person.png')),
-                                  icon: Icon(Icons.group,size: 25,),
-                                  onPressed: () {_setPage(3);_pageIndex==3;},
-                                  color: _pageIndex == 3 ? ThemeColors.selectedIconColor : ThemeColors.blackColor,
-
+                                  icon: Icon(
+                                    Icons.group,
+                                    size: 25,
+                                  ),
+                                  onPressed: () {
+                                    _setPage(3);
+                                    _pageIndex == 3;
+                                  },
+                                  color: _pageIndex == 3
+                                      ? ThemeColors.selectedIconColor
+                                      : ThemeColors.blackColor,
                                 ),
-
                                 IconButton(
                                   // icon: ImageIcon(AssetImage('assets/chat.png')),
-                                  icon: Icon(Icons.mark_chat_unread_outlined,size: 25,),
-                                  onPressed: () {_setPage(4);_pageIndex==4;},
-                                  color: _pageIndex == 4 ? ThemeColors.selectedIconColor : ThemeColors.blackColor,
-
+                                  icon: Icon(
+                                    Icons.mark_chat_unread_outlined,
+                                    size: 25,
+                                  ),
+                                  onPressed: () {
+                                    _setPage(4);
+                                    _pageIndex == 4;
+                                  },
+                                  color: _pageIndex == 4
+                                      ? ThemeColors.selectedIconColor
+                                      : ThemeColors.blackColor,
                                 )
                               ],
                             ),

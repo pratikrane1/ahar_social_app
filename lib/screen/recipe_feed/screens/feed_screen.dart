@@ -70,10 +70,10 @@ class _FeedScreenState extends State<FeedScreen>
                           child: Row(
                             children: [
                               Image.asset(Images.logo,height: 70,width: 70,),
-                              SizedBox(width: 5,),
+                              const SizedBox(width: 5,),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
+                                children: const [
                                   Text(
                                     'AHAR',
                                     style: TextStyle(

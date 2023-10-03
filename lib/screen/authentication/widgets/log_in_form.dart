@@ -74,7 +74,7 @@ class _LoginFormState extends State<LoginForm> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         'Welcome back, ',
                         style: TextStyle(
                           fontSize: 34,
@@ -82,7 +82,7 @@ class _LoginFormState extends State<LoginForm> {
                         ),
                       ),
                       const SizedBox(height: 5),
-                      Text(
+                      const Text(
                         'Please login to your account to continue',
                         style: TextStyle(
                           fontSize: 14,

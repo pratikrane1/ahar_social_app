@@ -131,7 +131,7 @@ class _ContactsListScreenState extends State<ContactsListScreen> {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
-                          height: MediaQuery.of(context).size.height*0.1,
+                          height: MediaQuery.of(context).size.height*0.11,
                           decoration: BoxDecoration(
                             border: Border.all(width: 1,color: ThemeColors.greyTextColor.withOpacity(0.3)),
                             borderRadius: BorderRadius.circular(25),
