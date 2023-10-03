@@ -52,9 +52,9 @@ class _AllTabState extends State<AllTab> {
               elevation: 0,
               automaticallyImplyLeading: false,
               backgroundColor: Colors.white,
-              toolbarHeight: 90,
+              toolbarHeight: 70,
               title: SizedBox(
-                height: 90,
+                height: 70,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [

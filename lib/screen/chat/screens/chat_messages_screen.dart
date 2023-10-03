@@ -60,33 +60,6 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
                 fontSize: 18,
               ),
         ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10.0),
-            child: Container(
-                width: 30,
-                height: 30,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  //color: Color(0xffc32c37),
-                  color: ThemeColors.msgFieldColor,
-                ),
-                child: InkWell(
-                  onTap: () {},
-                  child: Stack(
-                    children: [
-                      Center(
-                          child: Icon(
-                        Icons.call,
-                        color: Colors.white,
-                        size: 20,
-                      )),
-                    ],
-                  ),
-                )),
-          )
-        ],
       ),
       body: Column(
         children: [

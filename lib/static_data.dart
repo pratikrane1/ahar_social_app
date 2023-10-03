@@ -18,7 +18,15 @@ class Data {
 
   List<AlbumList>? albumList=[
     AlbumList(albumName: "Media", albumImage: "https://www.ahar.in/wp-content/uploads/2022/11/ab210413-b1c7-4bf1-8893-1eb869edb154.jpg",
-        albumLength: "4")
+        albumLength: "4", albumImages: [
+          AlbumImages(likeCount: 0, albumImages:"https://www.ahar.in/wp-content/uploads/2022/11/f7491141-7aee-43b7-8c02-c89dd2c7b301.jpg",),
+          AlbumImages(likeCount: 0, albumImages:"https://www.ahar.in/wp-content/uploads/2022/11/f7491141-7aee-43b7-8c02-c89dd2c7b301.jpg",),
+          AlbumImages(likeCount: 0, albumImages:"https://www.ahar.in/wp-content/uploads/2022/11/2ac6bc3b-cb26-4a3c-b781-d16f7998c17c.jpg",),
+          AlbumImages(likeCount: 0, albumImages:"https://www.ahar.in/wp-content/uploads/2022/11/ab210413-b1c7-4bf1-8893-1eb869edb154.jpg",),
+          AlbumImages(likeCount: 0, albumImages:"https://www.ahar.in/wp-content/uploads/2022/11/7c9bb304-0542-4553-8b43-ceac12ea3830.jpg",),
+          AlbumImages(likeCount: 0, albumImages:"https://www.ahar.in/wp-content/uploads/2022/11/Mid-day-3rdapril2021.jpg",),
+          AlbumImages(likeCount: 0, albumImages:"https://www.ahar.in/wp-content/uploads/2022/11/9ecce92c-81af-4e13-bc15-a2cbd2acabdf.jpg",),
+        ])
   ];
   
   List<GroupModel>? groupList = [

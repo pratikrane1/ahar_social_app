@@ -23,5 +23,6 @@ class Images {
   static const String settings_icon = "assets/settings_icon.svg";
   static const String logout_icon = "assets/logout_icon.svg";
   static const String share_button = 'assets/share_button.svg';
+  static const String share_icon = 'assets/share_icon.svg';
 
 }

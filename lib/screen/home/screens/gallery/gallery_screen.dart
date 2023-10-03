@@ -7,6 +7,8 @@ import 'package:socialrecipe/utils/theme_colors.dart';
 import 'package:socialrecipe/widget/app_button.dart';
 import 'package:socialrecipe/widget/custom_image.dart';
 
+import 'Image/images_screen.dart';
+
 
 class GalleryScreen extends StatefulWidget {
   bool isImage;
@@ -146,7 +148,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                     itemBuilder: (BuildContext ctx, index) {
                       return GestureDetector(
                         onTap: (){
-                          // Navigator.push(context, MaterialPageRoute(builder: (context)=> ImagesScreen(albumData: _albumList![index],)));
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> ImagesScreen(albumData: Data().albumList![index],)));
                         },
                         child: Container(
                           decoration: const BoxDecoration(

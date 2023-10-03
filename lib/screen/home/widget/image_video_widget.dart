@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:socialrecipe/screen/home/screens/gallery/Image/images_screen.dart';
 import 'package:socialrecipe/screen/home/screens/gallery/gallery_screen.dart';
 import 'package:socialrecipe/screen/home/screens/gallery/video/gallery_video_screen.dart';
 import 'package:socialrecipe/static_data.dart';
@@ -23,10 +24,6 @@ class _GalleryWidgetState extends State<GalleryWidget> {
   bool _isVideoLoading = false;
   String? videoId = "";
   bool _fullScreen = false;
-  List<AlbumList>? _albumList=[
-    AlbumList(albumName: "Media", albumImage: "https://www.ahar.in/wp-content/uploads/2022/11/ab210413-b1c7-4bf1-8893-1eb869edb154.jpg",
-        albumLength: "4")
-  ];
   List? _videoList;
 
   @override
@@ -145,12 +142,12 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                               children: [
                                 GestureDetector(
                                   onTap: () {
-                                    // Navigator.push(
-                                    //     context,
-                                    //     MaterialPageRoute(
-                                    //         builder: (context) => ImagesScreen(
-                                    //               albumData: _albumList![0],
-                                    //             )));
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => ImagesScreen(
+                                                  albumData: Data().albumList![0],
+                                                )));
                                   },
                                   child: Container(
                                     decoration: const BoxDecoration(
@@ -163,7 +160,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                                       child: Stack(
                                         children: [
                                           CustomImage(
-                                            image:  _albumList![0].albumImage,
+                                            image:  Data().albumList![0].albumImage,
                                             fit: BoxFit.cover,
                                             width: MediaQuery.of(context)
                                                 .size
@@ -194,7 +191,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                                                     children: [
                                                       Flexible(
                                                         child: Text(
-                                                          _albumList![0].albumName ?? ""                                                              "",
+                                                          Data().albumList![0].albumName ?? ""                                                              "",
                                                           overflow: TextOverflow
                                                               .ellipsis,
                                                           style: const TextStyle(
@@ -214,7 +211,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                                                             ThemeColors
                                                                 .whiteColor,
                                                         child: Text(
-                                                          "+${_albumList![0].albumLength}",
+                                                          "+${Data().albumList![0].albumLength}",
                                                           style: const TextStyle(
                                                               color:
                                                                   Colors.black,
@@ -321,19 +318,19 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                                       shrinkWrap: true,
                                       physics: const ScrollPhysics(),
                                       scrollDirection: Axis.horizontal,
-                                      itemCount: _albumList!.length,
+                                      itemCount: Data().albumList!.length,
                                       itemBuilder: (context, index) {
                                         return InkWell(
                                           onTap: () {
-                                            // Navigator.push(
-                                            //     context,
-                                            //     MaterialPageRoute(
-                                            //         builder: (context) =>
-                                            //             ImagesScreen(
-                                            //               albumData:
-                                            //                   _albumList![
-                                            //                       index],
-                                            //             )));
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        ImagesScreen(
+                                                          albumData:
+                                                          Data().albumList![
+                                                                  index],
+                                                        )));
                                           },
                                           child: Container(
                                             // height: 90,
@@ -348,7 +345,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                                                       .circular(Dimensions
                                                       .RADIUS_SMALL),
                                                   child: CustomImage(
-                                                    image:  _albumList![index].albumImage,
+                                                    image:  Data().albumList![index].albumImage,
                                                     fit: BoxFit.fill,
                                                     width: MediaQuery.of(
                                                         context)
@@ -377,7 +374,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                                                           right: 0.0),
                                                       child: Center(
                                                         child: Text(
-                                                          _albumList![index].albumName ?? "",textAlign: TextAlign.start,
+                                                          Data().albumList![index].albumName ?? "",textAlign: TextAlign.start,
                                                           overflow:
                                                           TextOverflow
                                                               .ellipsis,
@@ -630,5 +627,12 @@ class AlbumList{
  String? albumName;
  String? albumLength;
  String? albumImage;
- AlbumList({required this.albumName,required this.albumImage,required this.albumLength});
+ List<AlbumImages>? albumImages;
+ AlbumList({required this.albumName,required this.albumImage,required this.albumLength,required this.albumImages});
+}
+
+class AlbumImages{
+  int? likeCount;
+  String? albumImages;
+  AlbumImages({required this.likeCount,required this.albumImages});
 }
