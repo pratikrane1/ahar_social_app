@@ -219,7 +219,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                                   borderRadius: BorderRadius.circular(100),
                                   child: SvgPicture.asset(
                                     Images.avtar_icon, height: 25,
-                                    color: ThemeColors.greenColor,
+                                    color: Colors.green,
                                   ),
                                   // leaderData!.profileImage != null
                                   //       ? CustomImage(

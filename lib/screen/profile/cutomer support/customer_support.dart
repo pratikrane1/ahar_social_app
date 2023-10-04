@@ -230,21 +230,21 @@ class _CustomerSupportScreenState extends State<CustomerSupportScreen> {
               child: RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(
-                  text: 'If you prefer to speak '.tr,
+                  text: 'If you prefer to speak with a support representative directly, you can reach our helpline at '.tr,
                   style: const TextStyle(
                       fontSize: 19,
                       fontFamily: 'Montserrat-Bold',
                       fontWeight: FontWeight.w500,
                       color: ThemeColors.customerSupportTextColor),
                   children: <TextSpan>[
-                    const TextSpan(text: "0123456789 ",
+                    const TextSpan(text: " 0123456789",
                       style: TextStyle(
                           fontSize: 20,
                           fontFamily: 'Montserrat-ExtraBold',
                           fontWeight: FontWeight.w700,
                           color: ThemeColors.primaryColor,
                       ),),
-                    TextSpan(text: 'our knowledgeable agents will be glad'.tr,),
+                    TextSpan(text: '.Our knowledgeable agents will be glad to assist you and provide step-by-step guidance.'.tr,),
 
                   ],
                 ),

@@ -624,3 +624,16 @@ class _GalleryWidgetState extends State<GalleryWidget> {
     );
   }
 }
+class AlbumList{
+  String? albumName;
+  String? albumLength;
+  String? albumImage;
+  List<AlbumImages>? albumImages;
+  AlbumList({required this.albumName,required this.albumImage,required this.albumLength,required this.albumImages});
+}
+
+class AlbumImages{
+  int? likeCount;
+  String? albumImages;
+  AlbumImages({required this.likeCount,required this.albumImages});
+}

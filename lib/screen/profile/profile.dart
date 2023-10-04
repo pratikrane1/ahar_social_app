@@ -12,6 +12,7 @@ import 'package:socialrecipe/utils/app_constants.dart';
 import 'package:socialrecipe/utils/images.dart';
 import 'package:socialrecipe/utils/theme_colors.dart';
 import 'package:socialrecipe/widget/custom_image.dart';
+import '../group/group_listing_detail_screen.dart';
 import 'ahar office bearers/ahar_office_bearers.dart';
 import 'cutomer support/customer_support.dart';
 import 'faq/faq_screen.dart';
@@ -128,9 +129,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ///Ahar Office Bearers
               InkWell(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => AharOfficeBearersScreen()
-                  ));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>GroupDetailScreen(title: "Office Bearers",)));
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -145,7 +144,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Images.refer_icon, height: 25,
                       color: ThemeColors.greyTextColor,
                     ),
-                    title:  Text('Ahar Office Bearers'.tr,
+                    title:  Text('Office Bearers'.tr,
                         style:const TextStyle(
                             fontSize: 14,
                             fontFamily: 'Montserrat',
@@ -163,9 +162,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ///zonal team
               InkWell(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => ZonalTeamScreen()
-                  ));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>GroupDetailScreen(title: "Zonal Team",)));
+
                 },
                 child: Container(
                   decoration: BoxDecoration(

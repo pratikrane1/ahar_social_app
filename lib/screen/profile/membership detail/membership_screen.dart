@@ -52,6 +52,7 @@ class _MembershipScreenState extends State<MembershipScreen> {
         appBar: AppBar(
           // toolbarHeight: 100,
           backgroundColor: ThemeColors.whiteColor,
+          surfaceTintColor: ThemeColors.whiteColor,
           // leadingWidth: MediaQuery.of(context).size.width,
           leading: IconButton(
             splashRadius: 20,
@@ -67,7 +68,7 @@ class _MembershipScreenState extends State<MembershipScreen> {
             ),
           ),
           title: Text(
-            "Membership details",
+            "Membership Details",
             style: Theme.of(context).textTheme.headline6!.copyWith(
               fontSize: 25,
               fontWeight: FontWeight.w600,
@@ -190,12 +191,12 @@ class _MembershipScreenState extends State<MembershipScreen> {
 
                     const SizedBox(height: 20,),
 
-                    Text('benefits'.tr,
-                      style:const TextStyle(
-                          fontSize: 18,
-                          fontFamily: 'Montserrat',
-                          fontWeight: FontWeight.w600,
-                          color: ThemeColors.blackColor),),
+                    // Text('benefits'.tr,
+                    //   style:const TextStyle(
+                    //       fontSize: 18,
+                    //       fontFamily: 'Montserrat',
+                    //       fontWeight: FontWeight.w600,
+                    //       color: ThemeColors.blackColor),),
 
                     ///Benifits String
                     // Html(
