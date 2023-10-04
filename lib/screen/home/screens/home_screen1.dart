@@ -90,6 +90,14 @@ class _AllTabState extends State<AllTab> {
                                         fontWeight: FontWeight.w400
                                     ),
                                   ),
+                                  Text(
+                                    'Powered by WAAYU',
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        fontFamily: 'Poppins-Light',
+                                        fontWeight: FontWeight.w400
+                                    ),
+                                  ),
                                 ],
                               ),
                             ],
@@ -127,78 +135,6 @@ class _AllTabState extends State<AllTab> {
                                     },
                                     color: ThemeColors.blackColor,
                                   ),
-                                  // GestureDetector(
-                                  //   onTap: () {
-                                  //     // appProvider.gotToTab(3);
-                                  //     // Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileScreen(userId: null,),));
-                                  //     Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileScreen(),));
-                                  //   },
-                                  //   child: SizedBox(
-                                  //     width: 35,
-                                  //     height: 35,
-                                  //     child:
-                                  //     // user.photoUrl == "" ?
-                                  //     SizedBox(
-                                  //       child: ClipRRect(
-                                  //         borderRadius:
-                                  //         BorderRadius.circular(100),
-                                  //         child: Container(
-                                  //           decoration:
-                                  //           const BoxDecoration(
-                                  //             image: DecorationImage(
-                                  //               image: AssetImage(
-                                  //                   'assets/default_image.jpg'),
-                                  //               fit: BoxFit.cover,
-                                  //             ),
-                                  //           ),
-                                  //         ),
-                                  //       ),
-                                  //     )
-                                  //     //     : SizedBox(
-                                  //     //   child: ClipRRect(
-                                  //     //     borderRadius:
-                                  //     //     BorderRadius.circular(100),
-                                  //     //     child: Container(
-                                  //     //       decoration: BoxDecoration(
-                                  //     //           border: Border.all(
-                                  //     //             color: settingsManager
-                                  //     //                 .darkMode
-                                  //     //                 ? kBlackColor
-                                  //     //                 : Colors.grey.shade400,
-                                  //     //             width: 1.5,
-                                  //     //           )),
-                                  //     //       child: CachedNetworkImage(
-                                  //     //         imageUrl: user.photoUrl,
-                                  //     //         fit: BoxFit.cover,
-                                  //     //         errorWidget:
-                                  //     //             (context, url, error) =>
-                                  //     //         const Center(
-                                  //     //           child: FaIcon(
-                                  //     //               FontAwesomeIcons
-                                  //     //                   .circleExclamation),
-                                  //     //         ),
-                                  //     //         placeholder:
-                                  //     //             (context, url) =>
-                                  //     //             Shimmer.fromColors(
-                                  //     //               baseColor:
-                                  //     //               Colors.grey.shade400,
-                                  //     //               highlightColor:
-                                  //     //               Colors.grey.shade300,
-                                  //     //               child: SizedBox(
-                                  //     //                   height: MediaQuery.of(
-                                  //     //                       context)
-                                  //     //                       .size
-                                  //     //                       .height /
-                                  //     //                       3.3,
-                                  //     //                   width:
-                                  //     //                   double.infinity),
-                                  //     //             ),
-                                  //     //       ),
-                                  //     //     ),
-                                  //     //   ),
-                                  //     // ),
-                                  //   ),
-                                  // ),
                                 ],
                               ),
                             ),
@@ -221,13 +157,11 @@ class _AllTabState extends State<AllTab> {
                       ///Banner
                       BannerView(),
 
-                      ///DashBoard Widget
-                      // DashBoardWidget(),
-
-                      ///Our Product Widget
-                      // OurProducts(),
-                      NoticeboardSlider(),
+                      ///Feed Slider
                       FeedSlider(),
+
+                      ///NoticeBoard Slider
+                      NoticeboardSlider(),
 
                       ///Video Slider
                       const VideoSlider(),

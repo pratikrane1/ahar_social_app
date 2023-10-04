@@ -42,17 +42,28 @@ class Data {
   
   List<FeedModel>? feedList = [
     FeedModel(userName: "sukeshshetty", likeCount: '1', postImage: "https://www.ahar.in/wp-content/uploads/2022/11/f7491141-7aee-43b7-8c02-c89dd2c7b301.jpg",
-        postText: "", zoneName: 'Mumbai Zone 1', userImage: '',),
+        postText: "", zoneName: 'Mumbai Zone 1', userImage: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',),
     FeedModel(userName: "pramodkamath", likeCount: '1', postImage: "https://www.ahar.in/wp-content/uploads/2022/11/2ac6bc3b-cb26-4a3c-b781-d16f7998c17c.jpg",
-        postText: "", zoneName: 'Mumbai Zone 2', userImage: ''),
+        postText: "", zoneName: 'Mumbai Zone 2', userImage: 'https://www.pngall.com/wp-content/uploads/5/Profile-Male-PNG.png'),
     FeedModel(userName: "anupshetty", likeCount: '1', postImage: "https://www.ahar.in/wp-content/uploads/2022/11/ab210413-b1c7-4bf1-8893-1eb869edb154.jpg",
-        postText: "", zoneName: 'Mumbai Zone 3', userImage: ''),
+        postText: "", zoneName: 'Mumbai Zone 3', userImage: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'),
   ];
 
   List<NoticeBoardModel>? noticeBoardList = [
-    NoticeBoardModel(userName: "sukeshshetty", postText: "Goods and Service Tax Network (GSTN) is directed to open common portal for filing concerned forms for availing Transitional Credit through TRAN-1 and TRAN-2 for two months i.e. w.e.f. 01.09.2022 to 31.10.2022", zoneName: 'Mumbai Zone 1', userImage: '',),
-    NoticeBoardModel(userName: "pramodkamath", postText: "If required GST Council may also issue appropriate guidelines to the field formations in scrutinizing the claims. The Special Leave Petitions are disposed of accordingly.Pending applications, if any, also stand disposed of", zoneName: 'Mumbai Zone 2', userImage: ''),
-    NoticeBoardModel(userName: "anupshetty", postText: "Further, a Mascot, 'PRAKRITI', has been launched to spread the message of environmental protection. Infographics and animation videos have also been prepared and uploaded on the website of the Ministry of Environment, Forest and Climate Change (https://moef.gov.ig/gn/awareness-material-for-ban-on-single-use-plastic/introduction/).", zoneName: 'Mumbai Zone 3', userImage: ''),
+    NoticeBoardModel(userName: "sukeshshetty", postText: "Goods and Service Tax Network (GSTN) is directed to open common portal for filing concerned forms for availing Transitional Credit through TRAN-1 and TRAN-2 for two months i.e. w.e.f. 01.09.2022 to 31.10.2022", zoneName: 'Mumbai Zone 1', userImage: 'https://www.pngall.com/wp-content/uploads/5/Profile-Male-PNG.png', pdfText: 'GuideLines CBIC - Filing / Revising of TRAN-1',),
+    NoticeBoardModel(userName: "pramodkamath", postText: "If required GST Council may also issue appropriate guidelines to the field formations in scrutinizing the claims. The Special Leave Petitions are disposed of accordingly.Pending applications, if any, also stand disposed of", zoneName: 'Mumbai Zone 2', userImage: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png', pdfText: 'Plastic ban awarness campaign'),
+    NoticeBoardModel(userName: "anupshetty", postText: "Further, a Mascot, 'PRAKRITI', has been launched to spread the message of environmental protection. Infographics and animation videos have also been prepared and uploaded on the website of the Ministry of Environment, Forest and Climate Change (https://moef.gov.ig/gn/awareness-material-for-ban-on-single-use-plastic/introduction/).", zoneName: 'Mumbai Zone 3', userImage: 'https://www.pngall.com/wp-content/uploads/5/Profile-Male-PNG.png', pdfText: 'AHAR BHC order Petition'),
   ];
 
+  List<NotificationModel>? notificationList = [
+    NotificationModel(title: "Stalls Participation in our Monthly Meeting.", body: 'Monthly managing committee Meeting on Thursday 14th October 2023 in North Indian Association Club.'),
+  ];
+
+
+}
+
+class NotificationModel{
+  String title;
+  String body;
+  NotificationModel({required this.title,required this.body});
 }

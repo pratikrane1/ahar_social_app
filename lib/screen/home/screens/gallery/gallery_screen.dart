@@ -44,7 +44,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
         backgroundColor: ThemeColors.whiteColor,
         surfaceTintColor: ThemeColors.whiteColor,
         title: Text(
-          'media'.tr,
+          'Media'.tr,
           style: Theme.of(context).textTheme.headline6!.copyWith(
             fontSize: 25,
             fontWeight: FontWeight.w600,

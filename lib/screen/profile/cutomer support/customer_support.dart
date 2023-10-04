@@ -195,6 +195,7 @@ class _CustomerSupportScreenState extends State<CustomerSupportScreen> {
                     side: const BorderSide(
                         color: ThemeColors.whatsappButtonColor, width: 1),
                     backgroundColor: ThemeColors.whiteColor,
+                    surfaceTintColor: ThemeColors.whiteColor,
                     // color:Colors.red,
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10))),

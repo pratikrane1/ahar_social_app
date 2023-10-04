@@ -11,8 +11,9 @@ class BannerView extends StatelessWidget {
   Widget build(BuildContext context) {
     bool _isLoading = false;
     List? bannerList = [
+      "http://ahar.ezii.live/public/assets/img/img1.png",
       "https://www.ahar.in/wp-content/uploads/2023/01/Office-Bearers-AHAR-Team-2023.jpg",
-      "https://www.ahar.in/wp-content/uploads/2023/01/WhatsApp-Image-2023-01-21-at-11.11.42-AM-1.jpeg"
+      "https://www.ahar.in/wp-content/uploads/2023/01/WhatsApp-Image-2023-01-21-at-11.11.42-AM-1.jpeg",
     ];
 
     return Container(

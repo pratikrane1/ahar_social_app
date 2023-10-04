@@ -17,9 +17,11 @@ import 'package:socialrecipe/utils/theme_colors.dart';
 import '../../../utils/constants.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({
+  HomeScreen({
     Key? key,
+    this.index
   }) : super(key: key);
+  int? index;
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -50,10 +52,14 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+    if(widget.index != null){
+      _pageIndex = widget.index!.toInt();
+    }
     getUserData();
     DynamicLinkService.initDynamicLinks(context);
     // _controller = PersistentTabController(initialIndex: 0);
-    _pageController = PageController(initialPage: 0);
+    _pageController = PageController(initialPage: widget.index != null ? widget.index!.toInt() : 0);
+    // _setPage(widget.index != null ? widget.index!.toInt() : 0);
     _screens = [
       const AllTab(),
       const GroupScreen(),

@@ -47,7 +47,8 @@ class DocumentFile extends StatelessWidget {
               ),
               AppButton(
                 onPressed: () async {
-                  String url = "";
+                  // String url = "";
+                  String url = "http://ahar.ezii.live/public/assets/pdf/New-Doc-12-22-2022-18.22-1.pdf";
                   var config = Config();
                   // How to disable functionality:
                   config.disabledElements = [ Buttons.searchButton];
@@ -62,8 +63,7 @@ class DocumentFile extends StatelessWidget {
                   config.bottomToolbar=[Buttons.shareButton,Buttons.saveCopyButton];
                   config.customHeaders = {'headerName': 'headerValue'};
 
-                  PdftronFlutter.openDocument(url,config: config);
-
+                  await PdftronFlutter.openDocument(url,config: config);
                 },
                 height: 34,
                 width: 80,

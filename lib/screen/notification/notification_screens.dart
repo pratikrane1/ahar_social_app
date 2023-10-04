@@ -4,6 +4,7 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:socialrecipe/static_data.dart';
 import 'package:socialrecipe/utils/app_pages.dart';
 import 'package:socialrecipe/utils/constants.dart';
 import 'package:socialrecipe/src/models/user_model.dart';
@@ -84,7 +85,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   primary: false,
                   shrinkWrap: true,
                   physics: const BouncingScrollPhysics(),
-                  itemCount: 20,
+                  itemCount: Data().notificationList!.length,
                   itemBuilder: (context, index) {
                     // final contactUser =
                     // UserModel.fromSnapshot(contactUsersList[index]);
@@ -113,7 +114,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                   padding: const EdgeInsets.only(bottom: 4.0),
                                   child: ListTile(
                                     title: Text(
-                                        'Title',
+                                        "${Data().notificationList![index].title} ${DateFormat.jm().format(DateTime.now())}",
                                         style:
                                         TextStyle(
                                           fontSize: 15,
@@ -121,7 +122,15 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                           fontWeight: FontWeight.w600,
                                         )
                                     ),
-
+                                    subtitle: Text(
+                                        Data().notificationList![index].body ?? "",
+                                        style:
+                                        const TextStyle(
+                                          fontSize: 14,
+                                          fontFamily: 'Poppins-Bold',
+                                          fontWeight: FontWeight.w600,
+                                        )
+                                    ),
                                     leading: Container(
                                       decoration:  BoxDecoration(
                                         borderRadius:
@@ -141,43 +150,14 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                           fit: BoxFit.cover,
                                         ),
                                       )
-                                      //     : Padding(
-                                      //   padding: const EdgeInsets.all(2.0),
-                                      //   child: ClipRRect(
-                                      //     borderRadius: BorderRadius.circular(100),
-                                      //     child: CachedNetworkImage(
-                                      //       imageUrl: contactUser.photoUrl,
-                                      //       fit: BoxFit.cover,
-                                      //       errorWidget: (context, url, error) =>
-                                      //       const Center(
-                                      //         child: FaIcon(
-                                      //             FontAwesomeIcons.circleExclamation),
-                                      //       ),
-                                      //       placeholder: (context, url) =>
-                                      //           Shimmer.fromColors(
-                                      //               baseColor: Colors.grey.shade400,
-                                      //               highlightColor:
-                                      //               Colors.grey.shade300,
-                                      //               child: SizedBox(
-                                      //                   height: MediaQuery.of(context)
-                                      //                       .size
-                                      //                       .height /
-                                      //                       3.3,
-                                      //                   width: double.infinity)),
-                                      //     ),
-                                      //   ),
-                                      // ),
                                     ),
-                                    trailing: Text(
-                                      // contactUser.messageSent == null
-                                      //     ? ''
-                                      //     :
-                                      DateFormat.jm().format(DateTime.now()),
-                                      style: const TextStyle(
-                                        fontSize: 12,
-                                        color: Colors.grey,
-                                      ),
-                                    ),
+                                    // trailing: Text(
+                                    //   DateFormat.jm().format(DateTime.now()),
+                                    //   style: const TextStyle(
+                                    //     fontSize: 12,
+                                    //     color: Colors.grey,
+                                    //   ),
+                                    // ),
                                   ),
                                 ),
                               ),

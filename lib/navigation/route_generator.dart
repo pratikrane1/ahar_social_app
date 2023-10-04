@@ -28,7 +28,7 @@ class RouteGenerator {
     switch (settings.name) {
       case AppPages.home:
         return MaterialPageRoute(
-          builder: (context) => const HomeScreen(),
+          builder: (context) => HomeScreen(),
         );
       case AppPages.splashPath:
         return MaterialPageRoute(

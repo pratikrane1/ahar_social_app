@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:socialrecipe/screen/home/screens/home_screen.dart';
+import 'package:socialrecipe/static_data.dart';
 import 'package:socialrecipe/utils/dimensions.dart';
 import 'package:socialrecipe/utils/theme_colors.dart';
 import 'package:socialrecipe/widget/custom_image.dart';
@@ -55,22 +57,28 @@ class _NoticeboardSliderState extends State<NoticeboardSlider>  {
             padding: EdgeInsets.all(10.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
+              children:  [
+                const Text(
                   "Notice Board",
-                  style:const TextStyle(
+                  style:TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Montserrat',
                   ),
                 ),
-                Text(
-                  "See All",
-                  style:const TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.normal,
-                    color: ThemeColors.primaryColor,
-                    fontFamily: 'Montserrat',
+                InkWell(
+                  onTap: (){
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>
+                        HomeScreen(index: 1,)));
+                  },
+                  child:const Text(
+                    "See All",
+                    style:TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.normal,
+                      color: ThemeColors.primaryColor,
+                      fontFamily: 'Montserrat',
+                    ),
                   ),
                 ),
               ],
@@ -80,10 +88,10 @@ class _NoticeboardSliderState extends State<NoticeboardSlider>  {
           SizedBox(
             // width: MediaQuery.of(context).size.width,
             // height: _width > 400.0 ? 250 : 190,
-            height: 200,
-            width: 500,
+            height: 240,
+            // width: 500,
             child: PageView.builder(
-              itemCount: 2,
+              itemCount: Data().noticeBoardList!.length,
               // pageSnapping: true,
               controller: _pageController,
               onPageChanged: (page) {
@@ -91,7 +99,7 @@ class _NoticeboardSliderState extends State<NoticeboardSlider>  {
                   activePage = page;
                 });
               },
-              itemBuilder: (context, pagePosition) {
+              itemBuilder: (context, index) {
 
                 return Padding(
                   padding: const EdgeInsets.only(right: 8.0,left: 8.0,top:16),
@@ -124,9 +132,9 @@ class _NoticeboardSliderState extends State<NoticeboardSlider>  {
                                       width: 50,
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(80),
-                                        child: SvgPicture.asset(
-                                          Images.transaction_logo, height: 25,
-                                          // color: ThemeColors.primaryColor.withOpacity(1),
+                                        child: CustomImage(
+                                          image: Data().noticeBoardList![index].userImage,
+                                          fit: BoxFit.fill,
                                         ),
 
                                       )),
@@ -134,7 +142,7 @@ class _NoticeboardSliderState extends State<NoticeboardSlider>  {
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text("Mumbai Zone | Group",
+                                      Text(Data().noticeBoardList![index].zoneName ?? "",
                                           style: TextStyle(
                                               fontSize: Dimensions.fontSizeSmall,
                                               fontFamily:
@@ -150,9 +158,10 @@ class _NoticeboardSliderState extends State<NoticeboardSlider>  {
                             ],
                           ),
                           SizedBox(height: 5,),
-                          Text("In publishing and graphic design, Lorem ipsum is a placeholder text "
-                              "commonly used to demonstrate the visual form of a document or a typeface "
-                              "without relying on meaningful content.",style: TextStyle(
+                          Text(Data().noticeBoardList![index].postText ?? "",
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 5,
+                              style: TextStyle(
                               fontSize: Dimensions.fontSizeSmall,
                               fontFamily:
                               'Montserrat',
@@ -160,7 +169,36 @@ class _NoticeboardSliderState extends State<NoticeboardSlider>  {
                               FontWeight.normal,
                               color: ThemeColors
                                   .blackColor).copyWith(fontSize: 14)),
-                          SizedBox(width: 5,),
+                          const SizedBox(height: 5.0,),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 10.0),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Icon(Icons.picture_as_pdf,color: ThemeColors.redColor,),
+                                    const SizedBox(width: 5.0,),
+                                    Container(
+                                      width: MediaQuery.of(context).size.width/1.61,
+                                      child: Text(
+                                        Data().noticeBoardList![index].pdfText ?? "",
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 2,
+                                        style: Theme.of(context).textTheme.headline3!.copyWith(
+                                            height: 1.5,
+                                            fontWeight: FontWeight.w500
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Icon(Icons.download)
+                              ],
+                            ),
+                          )  ,
                         ],
                       ),
                     ),

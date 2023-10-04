@@ -50,7 +50,8 @@ class NoticeBoardModel{
   String? zoneName;
   String? userImage;
   String? postText;
+  String? pdfText;
 
   NoticeBoardModel({required this.userName,
-    required this.postText, required this.zoneName,required this.userImage});
+    required this.postText, required this.zoneName,required this.userImage,required this.pdfText});
 }

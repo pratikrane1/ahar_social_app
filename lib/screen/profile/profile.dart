@@ -405,41 +405,41 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
 
-              const SizedBox(
-                height: 10,
-              ),
-
-              ///Credit Screen
-              InkWell(
-                onTap: () {
-                  // Get.toNamed(RouteHelper.helpCentre);
-                  Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => const CreditScreen()
-                  ));
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: ThemeColors.whiteColor,
-                    border: Border.all(
-                        width: 1,
-                        color: ThemeColors.greyTextColor.withOpacity(0.3)),
-                    borderRadius: BorderRadius.circular(0),
-                  ),
-                  child: ListTile(
-                    leading: SvgPicture.asset(
-                      Images.credit_icon, height: 25,
-                      // color: ThemeColors.greyTextColor,
-                    ),
-                    title:  Text("Credit Screen".tr,
-                        style:const TextStyle(
-                            fontSize: 14,
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w600,
-                            color: ThemeColors.greyTextColor)),
-                    trailing: const Icon(Icons.arrow_forward_ios),
-                  ),
-                ),
-              ),
+              // const SizedBox(
+              //   height: 10,
+              // ),
+              //
+              // ///Credit Screen
+              // InkWell(
+              //   onTap: () {
+              //     // Get.toNamed(RouteHelper.helpCentre);
+              //     Navigator.push(context, MaterialPageRoute(
+              //         builder: (context) => const CreditScreen()
+              //     ));
+              //   },
+              //   child: Container(
+              //     decoration: BoxDecoration(
+              //       color: ThemeColors.whiteColor,
+              //       border: Border.all(
+              //           width: 1,
+              //           color: ThemeColors.greyTextColor.withOpacity(0.3)),
+              //       borderRadius: BorderRadius.circular(0),
+              //     ),
+              //     child: ListTile(
+              //       leading: SvgPicture.asset(
+              //         Images.credit_icon, height: 25,
+              //         // color: ThemeColors.greyTextColor,
+              //       ),
+              //       title:  Text("Credit Screen".tr,
+              //           style:const TextStyle(
+              //               fontSize: 14,
+              //               fontFamily: 'Montserrat',
+              //               fontWeight: FontWeight.w600,
+              //               color: ThemeColors.greyTextColor)),
+              //       trailing: const Icon(Icons.arrow_forward_ios),
+              //     ),
+              //   ),
+              // ),
 
               const SizedBox(
                 height: 10,
@@ -555,12 +555,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(
-                    Images.logo,
-                    height: 120,
-                    // color: ThemeColors.primaryColor,
+                  child: Column(
+                    children: [
+                      Image.asset(
+                        Images.logo,
+                        height: 120,
+                        // color: ThemeColors.primaryColor,
+                      ),
+                      const Text("Powered by WAAYU",
+                          style:TextStyle(
+                              fontSize: 13,
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w500,
+                              )),
+                    ],
                   ),
                 ),
+              ),
+
+              const SizedBox(
+                height: 20,
               ),
             ],
           ),

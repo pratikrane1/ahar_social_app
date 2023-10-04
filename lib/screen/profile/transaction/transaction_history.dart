@@ -65,182 +65,222 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
         centerTitle: true,
         elevation: 0.0,
         bottomOpacity: 0.0,
-        actions: [
-          Row(
-            children: [
-              Container(
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(80)),
-                    // border: Border.all(width: 1),
-                  ),
-                  height: 25,
-                  width: 25,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(80),
-                    child: SvgPicture.asset(
-                      Images.filter, height: 25,
-                      color: ThemeColors.blackColor,
+        // actions: [
+        //   Row(
+        //     children: [
+        //       Container(
+        //           decoration: const BoxDecoration(
+        //             borderRadius: BorderRadius.all(Radius.circular(80)),
+        //             // border: Border.all(width: 1),
+        //           ),
+        //           height: 25,
+        //           width: 25,
+        //           child: ClipRRect(
+        //             borderRadius: BorderRadius.circular(80),
+        //             child: SvgPicture.asset(
+        //               Images.filter, height: 25,
+        //               color: ThemeColors.blackColor,
+        //             ),
+        //             // leaderData!.profileImage != null
+        //             //       ? CustomImage(
+        //             //          image: leaderData.profileImage,
+        //             //        fit: BoxFit.cover,
+        //             //       )
+        //             //          : SvgPicture.asset(
+        //             //       Images.avtar_icon, height: 25,
+        //             //               // color: ThemeColors.greyTextColor,
+        //             //    ),
+        //           )),
+        //       SizedBox(width: 7,),
+        //     ],
+        //   ),
+        // ],
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+                shrinkWrap: true,
+                physics: const ScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                padding: const EdgeInsets.only(
+                    top: 0, bottom: 15, left: 10, right: 10),
+                itemCount: 4,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                        right: 8.0, left: 8.0, top: 16),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          //<-- SEE HERE
+                          width: 1,
+                          color: ThemeColors.greyTextColor,
+                        ),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Container(
+                                        decoration:
+                                        const BoxDecoration(
+                                          borderRadius:
+                                          BorderRadius.all(
+                                              Radius.circular(
+                                                  10)),
+                                          // border: Border.all(width: 1),
+                                        ),
+                                        height: 40,
+                                        width: 40,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                          BorderRadius.circular(
+                                              10),
+                                          child: SvgPicture.asset(
+                                            Images.transaction_logo,
+                                            height: 20,
+                                            // color: ThemeColors.primaryColor.withOpacity(1),
+                                          ),
+                                        )),
+                                    const SizedBox(width: 10),
+                                    Column(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Paid for".tr,
+                                          style: TextStyle(
+                                            fontSize: Dimensions
+                                                .fontSizeSmall,
+                                            fontFamily:
+                                            'Montserrat-Bold',
+                                            fontWeight:
+                                            FontWeight.w500,
+                                            color: ThemeColors
+                                                .blackColor,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 3,
+                                        ),
+                                        Text("Ahar",
+                                          style: TextStyle(
+                                            fontSize: Dimensions
+                                                .fontSizeExtraSmall,
+                                            fontFamily:
+                                            'Montserrat-Medium',
+                                            fontWeight:
+                                            FontWeight.normal,
+                                            color: ThemeColors
+                                                .blackColor,
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    Text(
+                                      "\u{20B9}3999",
+                                      style: TextStyle(
+                                        fontSize: Dimensions
+                                            .fontSizeSmall,
+                                        fontFamily:
+                                        'Montserrat-Bold',
+                                        fontWeight: FontWeight.w600,
+                                        color:
+                                        ThemeColors.blackColor,
+                                      ),
+                                    ),
+                                    Text(""),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  DateFormat('yMMMd').format(
+                                      DateTime.parse(DateTime.now().toString())),
+                                  style: TextStyle(
+                                    fontSize: Dimensions
+                                        .fontSizeSmall,
+                                    fontFamily: 'Montserrat-Medium',
+                                    fontWeight: FontWeight.w500,
+                                    color:
+                                    ThemeColors.greyTextColor,
+                                  ),
+                                ),
+                                Row(
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "TXN:",
+                                      style: TextStyle(
+                                        fontSize: Dimensions
+                                            .fontSizeSmall,
+                                        fontFamily:
+                                        'Montserrat-Medium',
+                                        fontWeight: FontWeight.w500,
+                                        color: ThemeColors
+                                            .greyTextColor,
+                                      ),
+                                    ),
+                                    Container(
+                                      // width: 85,
+                                      child: Text(
+                                        "12345678",
+                                        maxLines: 3,
+                                        style: TextStyle(
+                                          // overflow:
+                                          //     TextOverflow.ellipsis,
+                                          fontSize: Dimensions
+                                              .fontSizeSmall,
+                                          fontFamily:
+                                          'Montserrat-Light',
+                                          // fontWeight: FontWeight.w500,
+                                          color: ThemeColors
+                                              .greyTextColor,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    const Icon(
+                                      Icons.circle,
+                                      size: 10,
+                                      color: ThemeColors.greenColor,
+                                    )
+                                  ],
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
                     ),
-                    // leaderData!.profileImage != null
-                    //       ? CustomImage(
-                    //          image: leaderData.profileImage,
-                    //        fit: BoxFit.cover,
-                    //       )
-                    //          : SvgPicture.asset(
-                    //       Images.avtar_icon, height: 25,
-                    //               // color: ThemeColors.greyTextColor,
-                    //    ),
-                  )),
-              SizedBox(width: 7,),
-            ],
+                  );
+                }),
           ),
         ],
-      ),
-      body: ListView.builder(
-          shrinkWrap: true,
-          physics: const ScrollPhysics(),
-          scrollDirection: Axis.vertical,
-          padding: const EdgeInsets.only(
-              top: 10, bottom: 15, left: 10, right: 10),
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.only(right: 8.0,left: 8.0,top:16),
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    //<-- SEE HERE
-                    width: 1,
-                    color: ThemeColors.greyTextColor,
-                  ),
-                  borderRadius:
-                  BorderRadius.circular(
-                      12),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                  decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.all(Radius.circular(80)),
-                                    // border: Border.all(width: 1),
-                                  ),
-                                  height: 50,
-                                  width: 50,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(80),
-                                    child: SvgPicture.asset(
-                                      Images.transaction_logo, height: 25,
-                                      // color: ThemeColors.primaryColor.withOpacity(1),
-                                    ),
-                                    // leaderData!.profileImage != null
-                                    //       ? CustomImage(
-                                    //          image: leaderData.profileImage,
-                                    //        fit: BoxFit.cover,
-                                    //       )
-                                    //          : SvgPicture.asset(
-                                    //       Images.avtar_icon, height: 25,
-                                    //               // color: ThemeColors.greyTextColor,
-                                    //    ),
-                                  )),
-                              SizedBox(width: 10),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("Paid to",
-                                      style: TextStyle(
-                                          fontSize: Dimensions.fontSizeSmall,
-                                          fontFamily:
-                                          'Montserrat',
-                                          fontWeight:
-                                          FontWeight.w600,
-                                          color: ThemeColors
-                                              .blackColor).copyWith(fontSize: 16)),
-                                  SizedBox(height: 5,),
-                                  Text("Aahar",
-                                      style: TextStyle(
-                                          fontSize: Dimensions.fontSizeSmall,
-                                          fontFamily:
-                                          'Montserrat',
-                                          fontWeight:
-                                          FontWeight.normal,
-                                          color: ThemeColors
-                                              .blackColor).copyWith(fontSize: 14)),
-                                ],
-                              )
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text("\u{20B9}${1000}",
-                                  style: TextStyle(
-                                      fontSize: Dimensions.fontSizeSmall,
-                                      fontFamily:
-                                      'Montserrat',
-                                      fontWeight:
-                                      FontWeight.w600,
-                                      color: ThemeColors
-                                          .blackColor).copyWith(fontSize: 16)),
-                              Text(""),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 10,),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("13 September 2023"),
-                          Row(children: [
-                            Text("id: ${123456789}",
-                                style: TextStyle(
-                                    fontSize: Dimensions.fontSizeSmall,
-                                    fontFamily:
-                                    'Montserrat',
-                                    fontWeight:
-                                    FontWeight.normal,
-                                    color: ThemeColors
-                                        .blackColor).copyWith(fontSize: 14)),
-                            SizedBox(width: 5,),
-                            Container(
-                                decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.all(Radius.circular(100)),
-                                  // border: Border.all(width: 1),
-                                ),
-                                height: 10,
-                                width: 10,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(100),
-                                  child: SvgPicture.asset(
-                                    Images.avtar_icon, height: 25,
-                                    color: Colors.green,
-                                  ),
-                                  // leaderData!.profileImage != null
-                                  //       ? CustomImage(
-                                  //          image: leaderData.profileImage,
-                                  //        fit: BoxFit.cover,
-                                  //       )
-                                  //          : SvgPicture.asset(
-                                  //       Images.avtar_icon, height: 25,
-                                  //               // color: ThemeColors.greyTextColor,
-                                  //    ),
-                                )),
-
-                          ],)
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            );
-          }
       ),
     );
   }

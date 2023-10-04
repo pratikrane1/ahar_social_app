@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:socialrecipe/providers/group_provider.dart';
+import 'package:socialrecipe/src/group_model.dart';
 import 'package:socialrecipe/utils/theme_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -16,11 +18,29 @@ class GroupDetailScreen extends StatefulWidget {
 }
 
 class _GroupDetailScreenState extends State<GroupDetailScreen> {
+  List<GroupModel>? officeBearers;
 
 
   @override
   void initState(){
     super.initState();
+    apiCall();
+  }
+
+  apiCall()async{
+    if(widget.title == "Office Bearers") {
+      officeBearers = await ApiClient().getOfficeBearersList();
+    }else if(widget.title == "Sub Committee"){
+      officeBearers = await ApiClient().getSubCommiteList();
+    } else if(widget.title == "Zone"){
+      officeBearers = await ApiClient().getZoneList();
+    }else if(widget.title == "Zonal Team"){
+      officeBearers = await ApiClient().getZoneList();
+    }
+    print(officeBearers);
+    setState(() {
+
+    });
   }
 
   @override
@@ -58,14 +78,14 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
         elevation: 2.0,
         bottomOpacity: 3.0,
       ),
-      body: Column(
+      body: officeBearers != null ? Column(
         children: [
           Expanded(
             child: ListView.builder(
               shrinkWrap: true,
               physics: const ScrollPhysics(),
               scrollDirection: Axis.vertical,
-              itemCount: 10,
+              itemCount: officeBearers!.length,
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -104,21 +124,35 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                               const SizedBox(width: 10,),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
+                                children: [
                                   SizedBox(
                                     // width: 100,
-                                    child: Text("SHRI. SUKESH S.SHETTY PRESIDENT",
+                                    child: Text(officeBearers![index].name ?? "",
                                         maxLines: 2,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 12,
                                           fontFamily: 'Poppins-Regular',
                                           fontWeight: FontWeight.w600,
                                         )
                                     ),
                                   ),
-                                  Text("HOTEL HINDAMATA",
+                                  officeBearers![index].position != null ? Text(officeBearers![index].position ?? "",
                                       maxLines: 2,
-                                      style: TextStyle(
+                                      style: const TextStyle(
+                                        fontSize: 11,
+                                        fontFamily: 'Poppins-Bold',
+                                        fontWeight: FontWeight.w600,
+                                      )) : SizedBox(),
+                                  officeBearers![index].committeName != null ? Text(officeBearers![index].committeName ?? "",
+                                      maxLines: 2,
+                                      style: const TextStyle(
+                                        fontSize: 11,
+                                        fontFamily: 'Poppins-Bold',
+                                        fontWeight: FontWeight.w600,
+                                      )) : SizedBox(),
+                                  Text(officeBearers![index].businessName ?? "",
+                                      maxLines: 2,
+                                      style: const TextStyle(
                                         fontSize: 11,
                                         fontFamily: 'Poppins-Bold',
                                         fontWeight: FontWeight.w600,
@@ -132,7 +166,7 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                              children: [
                               InkWell(
                                   onTap: ()async{
-                                    String? number = "1234567890";
+                                    String? number = officeBearers![index].mobileNo ?? "";
                                     final call = Uri.parse('tel:$number');
                                     if (await canLaunchUrl(call)) {
                                     launchUrl(call);
@@ -145,7 +179,7 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                                SizedBox(width: 7.0,),
                                InkWell(
                                    onTap: ()async{
-                                     String? email = "pratik.rane@desteksolutions.com";
+                                     String? email = officeBearers![index].email ?? "";
                                      Uri mail = Uri.parse('mailto:$email');
                                      if (await canLaunchUrl(mail)) {
                                        launchUrl(mail);
@@ -166,7 +200,7 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
             ),
           ),
         ],
-      ),
+      ) : Center(child: CircularProgressIndicator(color: ThemeColors.primaryColor,),),
     );
   }
 }
