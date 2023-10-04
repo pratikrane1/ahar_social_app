@@ -11,6 +11,9 @@ import 'package:socialrecipe/utils/dimensions.dart';
 import 'package:socialrecipe/utils/images.dart';
 import 'package:socialrecipe/utils/theme_colors.dart';
 
+import '../widget/feed_widget.dart';
+import '../widget/noticeboard_widget.dart';
+
 
 class AllTab extends StatefulWidget {
   const AllTab({Key? key}) : super(key: key);
@@ -223,6 +226,8 @@ class _AllTabState extends State<AllTab> {
 
                       ///Our Product Widget
                       // OurProducts(),
+                      NoticeboardSlider(),
+                      FeedSlider(),
 
                       ///Video Slider
                       const VideoSlider(),
