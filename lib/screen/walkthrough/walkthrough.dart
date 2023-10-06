@@ -26,10 +26,11 @@ class _WalkThroughScreenState extends State<WalkThroughScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        surfaceTintColor: ThemeColors.whiteColor,
         leading: Icon(Icons.arrow_back_ios,color: Colors.white,),
       ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+        body: ListView(
+          // crossAxisAlignment: CrossAxisAlignment.stretch,
           // mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const Align(
