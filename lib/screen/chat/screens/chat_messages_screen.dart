@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:socialrecipe/utils/constants.dart';
 import 'package:socialrecipe/src/models/message.dart';
 import 'package:socialrecipe/src/models/user_model.dart';
@@ -159,7 +160,7 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
                 filled: true,
                 isCollapsed: true,
                 contentPadding: const EdgeInsets.all(18).copyWith(right: 0),
-                hintText: 'Write a message...',
+                hintText: 'write_a_message'.tr,
                 hintStyle: Theme.of(context).textTheme.headline4!.copyWith(
                       fontSize: 15,
                       color: settingsManager.darkMode

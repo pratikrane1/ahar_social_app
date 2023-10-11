@@ -6,7 +6,6 @@ import 'package:socialrecipe/static_data.dart';
 import 'package:socialrecipe/utils/dimensions.dart';
 import 'package:socialrecipe/utils/theme_colors.dart';
 import 'package:socialrecipe/widget/custom_image.dart';
-
 import '../../../utils/images.dart';
 
 
@@ -58,8 +57,8 @@ class _FeedSliderState extends State<FeedSlider>  {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children:  [
-                const Text(
-                  "Feed",
+                 Text(
+                  "feed".tr,
                   style:TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -71,8 +70,8 @@ class _FeedSliderState extends State<FeedSlider>  {
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>
                         HomeScreen(index: 1,)));
                   },
-                  child: const Text(
-                    "See All",
+                  child:  Text(
+                    "see_all".tr,
                     style:TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.normal,

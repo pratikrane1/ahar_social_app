@@ -78,7 +78,7 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
       FocusManager.instance.primaryFocus?.unfocus();
       Get.snackbar(
         '✅',
-        'Post Published',
+        'post_published'.tr,
         snackPosition: SnackPosition.TOP,
         forwardAnimationCurve: Curves.elasticInOut,
         reverseAnimationCurve: Curves.easeOut,
@@ -103,9 +103,9 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.elliptical(15, 10))),
           backgroundColor: settingsManager.darkMode ? kGreyColor : Colors.white,
-          title: const Center(
+          title:  Center(
             child: Text(
-              'Select an Image',
+              'select_an_image'.tr,
               style: TextStyle(
                 fontSize: 18,
               ),
@@ -113,8 +113,8 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
           ),
           children: [
             SimpleDialogOption(
-                child: const Text(
-                  'Take a photo',
+                child: Text(
+                  'take_a_photo'.tr,
                   style: TextStyle(
                     color: kOrangeColor,
                   ),
@@ -134,8 +134,8 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
                   });
                 }),
             SimpleDialogOption(
-                child: const Text(
-                  'Choose from Gallery',
+                child: Text(
+                  'choose_from_gallery'.tr,
                   style: TextStyle(
                     color: kOrangeColor,
                   ),
@@ -268,7 +268,7 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
                             )),
                         child: Center(
                           child: Text(
-                            'Post',
+                            'Post'.tr,
                             style: TextStyle(
                                     fontSize: 19,
                                     fontFamily: 'Poppins-Regular',

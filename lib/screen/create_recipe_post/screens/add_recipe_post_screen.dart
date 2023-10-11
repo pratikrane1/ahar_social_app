@@ -4,6 +4,7 @@ import 'package:socialrecipe/utils/app_pages.dart';
 import 'package:socialrecipe/utils/constants.dart';
 import 'package:socialrecipe/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
 import '../../../utils/theme_colors.dart';
 
@@ -27,7 +28,7 @@ class AddRecipePostScreen extends StatelessWidget {
               child: Lottie.asset("assets/anim/recipe.json"),
             ),
             Text(
-              'Create your Post',
+              'create_your_post'.tr,
               style: TextStyle(
                   fontSize: 25,
                   fontFamily: 'Poppins-Bold',
@@ -59,7 +60,7 @@ class AddRecipePostScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Add Your Post',
+                          'add_your_post'.tr,
                           style:
                               Theme.of(context).textTheme.headline2!.copyWith(
                                     fontWeight: FontWeight.w600,

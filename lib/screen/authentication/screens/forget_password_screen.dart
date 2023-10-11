@@ -66,8 +66,8 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                       const Spacer(),
                       Text(
                         widget.isForget
-                            ? 'Forget Password?'
-                            : 'Change Password.',
+                            ? 'forget_password?'.tr
+                            : 'change_password.'.tr,
                         style: Theme.of(context)
                             .textTheme
                             .headline1!
@@ -77,7 +77,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                       RichText(
                         textAlign: TextAlign.left,
                         text: TextSpan(
-                          text: 'Please enter your registered email address.',
+                          text: 'please_enter_your_registered_email_address.'.tr,
                           style:
                               Theme.of(context).textTheme.headline4!.copyWith(
                                     color: settingsManager.darkMode
@@ -97,7 +97,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                         child: TextFormField(
                           validator: (String? value) {
                             if (value == null || value.isEmpty) {
-                              return 'Email Required';
+                              return 'email_required'.tr;
                             }
                             return null;
                           },
@@ -161,8 +161,8 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                                 );
                                 if (output == null) {
                                   Get.snackbar(
-                                    'Successful',
-                                    'Email sent!',
+                                    'successful'.tr,
+                                    'email_sent!'.tr,
                                     snackPosition: SnackPosition.TOP,
                                     forwardAnimationCurve: Curves.elasticInOut,
                                     reverseAnimationCurve: Curves.easeOut,
@@ -177,7 +177,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                                 });
                                 if (output != null) {
                                   Get.snackbar(
-                                    'Error',
+                                    'error'.tr,
                                     output,
                                     snackPosition: SnackPosition.TOP,
                                     forwardAnimationCurve: Curves.elasticInOut,

@@ -13,6 +13,8 @@ import 'package:socialrecipe/utils/theme_colors.dart';
 
 import '../widget/feed_widget.dart';
 import '../widget/noticeboard_widget.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 
 class AllTab extends StatefulWidget {
@@ -74,16 +76,16 @@ class _AllTabState extends State<AllTab> {
                               const SizedBox(width: 5,),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
+                                children: [
                                   Text(
-                                    'AHAR',
+                                    'ahar'.tr,
                                     style: TextStyle(
                                         fontSize: 16,
                                         fontFamily: 'Poppins-Bold',
                                         fontWeight: FontWeight.w800),
                                   ),
                                   Text(
-                                    'Connect',
+                                    'connect'.tr,
                                     style: TextStyle(
                                         fontSize: 16,
                                         fontFamily: 'Poppins-Light',
@@ -91,7 +93,7 @@ class _AllTabState extends State<AllTab> {
                                     ),
                                   ),
                                   Text(
-                                    'Powered by WAAYU',
+                                    'powered_by_wAAYU'.tr,
                                     style: TextStyle(
                                         fontSize: 12,
                                         fontFamily: 'Poppins-Light',

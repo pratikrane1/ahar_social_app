@@ -44,7 +44,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
         backgroundColor: ThemeColors.whiteColor,
         surfaceTintColor: ThemeColors.whiteColor,
         title: Text(
-          'Media'.tr,
+          'media'.tr,
           style: Theme.of(context).textTheme.headline6!.copyWith(
             fontSize: 25,
             fontWeight: FontWeight.w600,
@@ -215,7 +215,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                                       // color: ThemeColors.whiteColor,
                                       color: Colors.black.withOpacity(0.5),
                                       child: Center(
-                                        child: Text("New Album".tr,
+                                        child: Text("new_album".tr,
                                           textAlign: TextAlign.center,
                                           style:const TextStyle(
                                               fontSize: 14,
@@ -291,7 +291,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                                 height: 30,
                                 color: Colors.black.withOpacity(0.5),
                                 child: Center(
-                                  child: Text("New Video".tr,
+                                  child: Text("new_video".tr,
                                     textAlign: TextAlign.center,
                                     style:const TextStyle(
                                         fontSize: 14,

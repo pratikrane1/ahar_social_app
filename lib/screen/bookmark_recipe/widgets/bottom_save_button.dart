@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:socialrecipe/utils/constants.dart';
 
 class BottomSaveButton extends StatefulWidget {
@@ -33,7 +34,7 @@ class _BottomSaveButtonState extends State<BottomSaveButton> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Save',
+                  'save'.tr,
                   style: Theme.of(context).textTheme.headline2!.copyWith(
                         fontWeight: FontWeight.w600,
                         fontSize: 16,

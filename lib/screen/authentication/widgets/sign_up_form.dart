@@ -59,7 +59,7 @@ class _SignupFormState extends State<SignupForm> {
                       child: Lottie.asset("assets/anim/login.json"),
                     ),
                     Text(
-                      'Sign up',
+                      'sign_up'.tr,
                       style: Theme.of(context)
                           .textTheme
                           .headline1!
@@ -76,13 +76,13 @@ class _SignupFormState extends State<SignupForm> {
                       child: TextFormField(
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return 'Username Required';
+                            return 'username_required'.tr;
                           } else if (widget.userNameController.text.length <
                               4) {
-                            return 'Username should be at least 4 characters';
+                            return 'username_should_be_at_least_4_characters'.tr;
                           } else if (widget.userNameController.text.length >
                               16) {
-                            return 'Username is too long!';
+                            return 'username_is_too_long!'.tr;
                           }
                           return null;
                         },
@@ -106,7 +106,7 @@ class _SignupFormState extends State<SignupForm> {
                           filled: true,
                           isCollapsed: true,
                           contentPadding: const EdgeInsets.all(18),
-                          hintText: '@Username',
+                          hintText: '@username'.tr,
                           hintStyle:
                               Theme.of(context).textTheme.headline4!.copyWith(
                                     fontSize: 15,
@@ -131,7 +131,7 @@ class _SignupFormState extends State<SignupForm> {
                       child: TextFormField(
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return 'Email Required';
+                            return 'email_required'.tr;
                           }
                           return null;
                         },
@@ -155,7 +155,7 @@ class _SignupFormState extends State<SignupForm> {
                           filled: true,
                           isCollapsed: true,
                           contentPadding: const EdgeInsets.all(18),
-                          hintText: 'Your Email',
+                          hintText: 'your_email'.tr,
                           hintStyle:
                               Theme.of(context).textTheme.headline4!.copyWith(
                                     fontSize: 15,
@@ -179,7 +179,7 @@ class _SignupFormState extends State<SignupForm> {
                       child: TextFormField(
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return 'Password Required';
+                            return 'password_required'.tr;
                           }
                           return null;
                         },
@@ -256,7 +256,7 @@ class _SignupFormState extends State<SignupForm> {
                         textAlign: TextAlign.center,
                         text: TextSpan(
                           text:
-                              'By signing up you agree to our Terms of Use and Privacy Policy',
+                              'by_signing_up_you_agree_to_our_Terms_of_Use_and_Privacy_Policy'.tr,
                           style: Theme.of(context)
                               .textTheme
                               .headline4!
@@ -270,7 +270,7 @@ class _SignupFormState extends State<SignupForm> {
                     ),
                     const SizedBox(height: 20),
                     AuthConfirmButton(
-                      title: 'Sign up',
+                      title: 'sign_up'.tr,
                       callBack: () async {
                         final navigator = Navigator.of(context);
                         FocusManager.instance.primaryFocus?.unfocus();
@@ -301,7 +301,7 @@ class _SignupFormState extends State<SignupForm> {
                           }
                           if (output != null) {
                             Get.snackbar(
-                              'Error',
+                              'error'.tr,
                               output,
                               snackPosition: SnackPosition.TOP,
                               forwardAnimationCurve: Curves.elasticInOut,
@@ -316,7 +316,7 @@ class _SignupFormState extends State<SignupForm> {
                     ),
                     const SizedBox(height: 20),
                     AuthBottomRichText(
-                      detailText: 'Already have account? ',
+                      detailText: 'already_have_account?'.tr,
                       darkColor: Colors.white54,
                       clickableText: 'Log in',
                       lightColor: Colors.grey.shade800,

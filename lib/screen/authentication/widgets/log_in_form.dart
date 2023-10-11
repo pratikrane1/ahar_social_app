@@ -74,16 +74,16 @@ class _LoginFormState extends State<LoginForm> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
-                        'Welcome back, ',
+                       Text(
+                        'welcome_back'.tr,
                         style: TextStyle(
                           fontSize: 34,
                           fontFamily: 'OpenSans-ExtraBold',
                         ),
                       ),
                       const SizedBox(height: 5),
-                      const Text(
-                        'Please login to your account to continue',
+                       Text(
+                        'please_login _to_your_account_to_continue'.tr,
                         style: TextStyle(
                           fontSize: 14,
                           color: ThemeColors.greyTextColor,
@@ -94,7 +94,7 @@ class _LoginFormState extends State<LoginForm> {
                       const SizedBox(height: 50),
 
                       Text(
-                        'Mobile No.',
+                        'mobile_no'.tr,
                         style: TextStyle(
                           fontSize: 14,
                           fontFamily: 'OpenSans-Light',
@@ -112,7 +112,7 @@ class _LoginFormState extends State<LoginForm> {
                         child: TextFormField(
                           validator: (String? value) {
                             if (value == null || value.isEmpty) {
-                              return 'Phone Number Required';
+                              return 'phone_number_required'.tr;
                             }
                             return null;
                           },
@@ -139,7 +139,7 @@ class _LoginFormState extends State<LoginForm> {
                             filled: true,
                             // isCollapsed: true,
                             contentPadding: const EdgeInsets.all(18),
-                            hintText: 'Your Mobile Number',
+                            hintText: 'your_mobile_number'.tr,
                             hintStyle:
                                 Theme.of(context).textTheme.headline4!.copyWith(
                                       fontSize: 16,
@@ -170,7 +170,7 @@ class _LoginFormState extends State<LoginForm> {
                           height: 60,
                           width: MediaQuery.of(context).size.width,
                           text: Text(
-                            'Next',
+                            'next'.tr,
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,

@@ -5,6 +5,9 @@ import 'images.dart';
 class AppConstants {
   static const String APP_VERSION = "1.0.0+1";
 
+  static const String LANGUAGE_CODE = 'language_code';
+  static const String COUNTRY_CODE = 'country_code';
+
   static List<LanguageModel> languages = [
     LanguageModel(
         imageUrl: Images.english,

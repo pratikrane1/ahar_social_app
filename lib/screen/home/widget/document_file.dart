@@ -37,7 +37,7 @@ class DocumentFile extends StatelessWidget {
             children: [
               Flexible(
                 child: Text(
-                  "Presentation".tr,
+                  "presentation".tr,
                   style: TextStyle(
                     fontSize: Dimensions.fontSizeDefault,
                     fontWeight: FontWeight.bold,
@@ -68,7 +68,7 @@ class DocumentFile extends StatelessWidget {
                 height: 34,
                 width: 80,
                 text: Text(
-                  'Open',
+                  'open'.tr,
                   style:  TextStyle(
                       color: Colors.white,
                       fontSize: Dimensions.fontSizeDefault,

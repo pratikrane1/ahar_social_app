@@ -85,14 +85,14 @@ class _VerifyNumberScreenState extends State<VerifyNumberScreen> {
                     children: [
 
                       Text(
-                        'Welcome back, ',
+                        'welcome_back,'.tr,
                         style: TextStyle(
                           fontSize: 34,
                           fontFamily: 'OpenSans-ExtraBold',),
                       ),
                       const SizedBox(height: 5),
                       Text(
-                        'Please login to your account to continue',
+                        'please_login_to_your_account_to_continue'.tr,
                         style: TextStyle(
                           fontSize: 14,
                           color: ThemeColors.greyTextColor,
@@ -105,7 +105,7 @@ class _VerifyNumberScreenState extends State<VerifyNumberScreen> {
                       const SizedBox(height: 50),
 
                       Text(
-                        'Mobile No.',
+                        'mobile_no'.tr,
                         style: TextStyle(
                           fontSize: 15,
                           fontFamily: 'OpenSans-Light',
@@ -140,7 +140,7 @@ class _VerifyNumberScreenState extends State<VerifyNumberScreen> {
                       // !: OTP field
 
                       Text(
-                        'OTP Code',
+                        'OTP_Code'.tr,
                         style: TextStyle(
                           fontSize: 15,
                           fontFamily: 'OpenSans-Light',
@@ -169,7 +169,7 @@ class _VerifyNumberScreenState extends State<VerifyNumberScreen> {
                             enableActiveFill: true,
                             controller: _otpController,
                             onCompleted: (v) {
-                              debugPrint("Completed");
+                              debugPrint("completed".tr);
                             },
                             onChanged: (value) {
                               debugPrint(value);
@@ -212,7 +212,7 @@ class _VerifyNumberScreenState extends State<VerifyNumberScreen> {
                             });
                             if (output != null) {
                               Get.snackbar(
-                                'Error',
+                                'error'.tr,
                                 output,
                                 snackPosition: SnackPosition.TOP,
                                 forwardAnimationCurve: Curves.elasticInOut,
@@ -225,7 +225,7 @@ class _VerifyNumberScreenState extends State<VerifyNumberScreen> {
                           },
                           height: 60,
                           width: MediaQuery.of(context).size.width,
-                          text: Text('Login',style: TextStyle(
+                          text: Text('login'.tr,style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,fontFamily: 'OpenSans-ExtraBold',
                               fontWeight: FontWeight.w700) ,),

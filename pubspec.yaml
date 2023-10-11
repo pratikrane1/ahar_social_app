@@ -58,7 +58,7 @@ dependencies:
   firebase_auth:
   image_picker:
   dartz:
-  get:
+  get: ^4.6.5
   bubble:
   hive:
   hive_flutter:
@@ -117,6 +117,7 @@ flutter:
     - assets/anim/login.json
     - assets/anim/recipe.json
     - assets/anim/forgetpassword.json
+    - assets/language/
 
   fonts:
     - family: Open Sans

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:socialrecipe/Screen/bookmark_recipe/repository/bookmark_interface.dart';
 import 'package:socialrecipe/screen/bookmark_recipe/widgets/bookmark_card.dart';
 import 'package:socialrecipe/src/models/data_class_models/recipe_model.dart';
@@ -46,7 +47,7 @@ class _BookmarkTabState extends State<BookmarkTab>
       bookmark.deleteRecipe(recipe);
       setState(() {});
     } else {
-      debugPrint("Recipe ID is null");
+      debugPrint("recipe_ID_is_null".tr);
     }
   }
 }

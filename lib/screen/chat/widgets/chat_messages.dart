@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:socialrecipe/src/models/message.dart';
 import 'package:socialrecipe/screen/chat/widgets/my_message_bubble.dart';
 import 'package:socialrecipe/screen/chat/widgets/sender_message_bubble.dart';
@@ -55,13 +56,13 @@ class _ChatMessagesState extends State<ChatMessages> {
           );
         }
         if (snapshot.data == null) {
-          return const Center(
-            child: Text('No data!'),
+          return  Center(
+            child: Text('no_data'.tr),
           );
         }
         if (snapshot.hasError) {
-          return const Center(
-            child: Text('Error occurred!'),
+          return  Center(
+            child: Text('error_occurred'.tr),
           );
         }
         return ListView.separated(

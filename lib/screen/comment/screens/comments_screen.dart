@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:socialrecipe/utils/constants.dart';
 import 'package:socialrecipe/src/models/comment_model.dart';
 import 'package:socialrecipe/src/models/recipe_post_model.dart';
@@ -81,7 +82,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
               ),
             ],
             title: Text(
-              'Comments',
+              'comments'.tr,
               style:
                   Theme.of(context).textTheme.headline2!.copyWith(fontSize: 18),
             ),
@@ -113,7 +114,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
                                 child: TextFormField(
                                   validator: (String? value) {
                                     if (value == null || value.isEmpty) {
-                                      return 'Field is empty';
+                                      return 'field_is_empty'.tr;
                                     }
                                     return null;
                                   },
@@ -160,7 +161,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
                                     filled: true,
                                     isCollapsed: true,
                                     contentPadding: const EdgeInsets.all(14),
-                                    hintText: 'Comment',
+                                    hintText: 'comment'.tr,
                                     hintStyle: Theme.of(context)
                                         .textTheme
                                         .headline4!

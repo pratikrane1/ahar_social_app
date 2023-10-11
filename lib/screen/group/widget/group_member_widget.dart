@@ -4,6 +4,7 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:socialrecipe/screen/group/group_screen.dart';
 import 'package:socialrecipe/utils/app_pages.dart';
 import 'package:socialrecipe/utils/constants.dart';
@@ -69,17 +70,17 @@ class _GroupMemberWidgetState extends State<GroupMemberWidget> {
                       child: CircularProgressIndicator(),
                     );
                   } else if (snapshot.data == null || !snapshot.hasData) {
-                    return const Center(
-                      child: Text("You don't have any chat"),
+                    return  Center(
+                      child: Text("you_don't_have_any_chat".tr),
                     );
                   } else if (snapshot.hasError) {
-                    return const Center(
-                      child: Text('Error occurred!'),
+                    return  Center(
+                      child: Text('error_occurred'.tr),
                     );
                   }
                   if (snapshot.data!.docs.isEmpty) {
-                    return const Center(
-                      child: Text("You don't have any chat"),
+                    return  Center(
+                      child: Text("you_don't_have_any_chat".tr),
                     );
                   }
                   final contactUsersList = snapshot.data!.docs;
@@ -121,7 +122,7 @@ class _GroupMemberWidgetState extends State<GroupMemberWidget> {
                                       child: ListTile(
                                         title: Text(
                                           // contactUser.userName,
-                                            'Jakob Curtis',
+                                            'jakob_curtis'.tr,
                                             style:
                                             TextStyle(
                                               fontSize: 15,
