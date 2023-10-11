@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:socialrecipe/screen/authentication/screens/log_in_screen.dart';
-import 'package:socialrecipe/utils/theme_colors.dart';
-import 'package:socialrecipe/widget/app_button.dart';
+import 'package:aharconnect/screen/authentication/screens/log_in_screen.dart';
+import 'package:aharconnect/utils/theme_colors.dart';
+import 'package:aharconnect/widget/app_button.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class WalkThroughScreen extends StatefulWidget {
@@ -25,22 +26,18 @@ class _WalkThroughScreenState extends State<WalkThroughScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        surfaceTintColor: ThemeColors.whiteColor,
-        leading: Icon(Icons.arrow_back_ios,color: Colors.white,),
-      ),
         body: ListView(
           // crossAxisAlignment: CrossAxisAlignment.stretch,
           // mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const Align(
+            const SizedBox(height: 40.0,),
+          Align(
               alignment: Alignment.center,
               // padding: const EdgeInsets.only(left: 8.0),
               child: Text('Stay connected\nwith your Community',
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: GoogleFonts.openSans(
                     fontSize: 24,
-                    fontFamily: 'OpenSans-ExtraBold',
                     fontWeight: FontWeight.w700),),
             ),
             Image.asset('assets/community.png',fit: BoxFit.cover,),
@@ -50,13 +47,13 @@ class _WalkThroughScreenState extends State<WalkThroughScreen> {
               child: AppButton(
                 onPressed: () async {
                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>
-                      LogInScreen()));
+                      const LogInScreen()));
                 },
                 height: 60,
                 width: MediaQuery.of(context).size.width,
-                text: const Text('Login',style: TextStyle(
+                text: Text('Login',style: GoogleFonts.openSans(
                     color: ThemeColors.buttonColor,
-                    fontSize: 18,fontFamily: 'OpenSans-ExtraBold',
+                    fontSize: 18,
                     fontWeight: FontWeight.w700) ,),
                 loading: true,
                 style: ElevatedButton.styleFrom(

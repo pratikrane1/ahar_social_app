@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:socialrecipe/utils/constants.dart';
+import 'package:aharconnect/utils/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomDropDownMenu<T> extends PopupMenuEntry<T> {

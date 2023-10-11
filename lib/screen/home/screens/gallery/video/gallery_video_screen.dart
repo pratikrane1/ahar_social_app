@@ -3,9 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:socialrecipe/screen/home/widget/videoSlider.dart';
-import 'package:socialrecipe/utils/images.dart';
-import 'package:socialrecipe/utils/theme_colors.dart';
+import 'package:aharconnect/screen/home/widget/videoSlider.dart';
+import 'package:aharconnect/utils/images.dart';
+import 'package:aharconnect/utils/theme_colors.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 

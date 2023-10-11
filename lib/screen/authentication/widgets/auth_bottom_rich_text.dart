@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:socialrecipe/providers/settings_provider.dart';
+import 'package:aharconnect/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 
 class AuthBottomRichText extends StatelessWidget {

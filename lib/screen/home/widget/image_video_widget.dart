@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:socialrecipe/screen/home/screens/gallery/Image/images_screen.dart';
-import 'package:socialrecipe/screen/home/screens/gallery/gallery_screen.dart';
-import 'package:socialrecipe/screen/home/screens/gallery/video/gallery_video_screen.dart';
-import 'package:socialrecipe/static_data.dart';
+import 'package:aharconnect/screen/home/screens/gallery/Image/images_screen.dart';
+import 'package:aharconnect/screen/home/screens/gallery/gallery_screen.dart';
+import 'package:aharconnect/screen/home/screens/gallery/video/gallery_video_screen.dart';
+import 'package:aharconnect/static_data.dart';
 
-import 'package:socialrecipe/utils/dimensions.dart';
-import 'package:socialrecipe/utils/theme_colors.dart';
-import 'package:socialrecipe/widget/app_button.dart';
-import 'package:socialrecipe/widget/custom_image.dart';
+import 'package:aharconnect/utils/dimensions.dart';
+import 'package:aharconnect/utils/theme_colors.dart';
+import 'package:aharconnect/widget/app_button.dart';
+import 'package:aharconnect/widget/custom_image.dart';
 
 class GalleryWidget extends StatefulWidget {
   const GalleryWidget({Key? key}) : super(key: key);

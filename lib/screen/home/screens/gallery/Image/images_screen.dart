@@ -6,10 +6,10 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:socialrecipe/screen/home/widget/image_video_widget.dart';
-import 'package:socialrecipe/utils/images.dart';
-import 'package:socialrecipe/utils/theme_colors.dart';
-import 'package:socialrecipe/widget/custom_image.dart';
+import 'package:aharconnect/screen/home/widget/image_video_widget.dart';
+import 'package:aharconnect/utils/images.dart';
+import 'package:aharconnect/utils/theme_colors.dart';
+import 'package:aharconnect/widget/custom_image.dart';
 import 'package:http/http.dart' as http;
 
 import 'album_image_view.dart';

@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:socialrecipe/utils/images.dart';
-import 'package:socialrecipe/utils/theme_colors.dart';
-import 'package:socialrecipe/widget/app_button.dart';
-import 'package:socialrecipe/widget/custom_snackbar.dart';
+import 'package:aharconnect/utils/images.dart';
+import 'package:aharconnect/utils/theme_colors.dart';
+import 'package:aharconnect/widget/app_button.dart';
+import 'package:aharconnect/widget/custom_snackbar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CustomerSupportScreen extends StatefulWidget {

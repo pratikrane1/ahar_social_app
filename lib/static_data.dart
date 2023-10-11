@@ -1,9 +1,9 @@
 import 'package:intl/intl.dart';
-import 'package:socialrecipe/screen/group/group_screen.dart';
-import 'package:socialrecipe/screen/group/widget/group_feed_widget.dart';
-import 'package:socialrecipe/screen/home/widget/image_video_widget.dart';
-import 'package:socialrecipe/screen/home/widget/videoSlider.dart';
-import 'package:socialrecipe/screen/noticeboard/widget/all_notice_widget.dart';
+import 'package:aharconnect/screen/group/group_screen.dart';
+import 'package:aharconnect/screen/group/widget/group_feed_widget.dart';
+import 'package:aharconnect/screen/home/widget/image_video_widget.dart';
+import 'package:aharconnect/screen/home/widget/videoSlider.dart';
+import 'package:aharconnect/screen/noticeboard/widget/all_notice_widget.dart';
 
 class Data {
   // TODO: implement Data

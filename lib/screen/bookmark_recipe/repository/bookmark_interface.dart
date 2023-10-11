@@ -1,4 +1,4 @@
-import 'package:socialrecipe/src/models/data_class_models/recipe_model.dart';
+import 'package:aharconnect/src/models/data_class_models/recipe_model.dart';
 
 abstract class BookmarkInterface {
   Future<void> insertRecipe(RecipeModel recipe);

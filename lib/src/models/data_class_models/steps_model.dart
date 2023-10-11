@@ -1,8 +1,7 @@
 
-import 'package:equatable/equatable.dart';
 
 // ignore: must_be_immutable
-class StepsModel extends Equatable {
+class StepsModel {
   String? step;
 
   StepsModel({

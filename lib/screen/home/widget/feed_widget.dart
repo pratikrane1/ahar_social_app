@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:socialrecipe/screen/home/screens/home_screen.dart';
-import 'package:socialrecipe/static_data.dart';
-import 'package:socialrecipe/utils/dimensions.dart';
-import 'package:socialrecipe/utils/theme_colors.dart';
-import 'package:socialrecipe/widget/custom_image.dart';
+import 'package:aharconnect/screen/home/screens/home_screen.dart';
+import 'package:aharconnect/static_data.dart';
+import 'package:aharconnect/utils/dimensions.dart';
+import 'package:aharconnect/utils/theme_colors.dart';
+import 'package:aharconnect/widget/custom_image.dart';
 
 import '../../../utils/images.dart';
 

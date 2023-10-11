@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:socialrecipe/utils/app_constants.dart';
-import 'package:socialrecipe/utils/images.dart';
-import 'package:socialrecipe/utils/theme_colors.dart';
+import 'package:aharconnect/utils/app_constants.dart';
+import 'package:aharconnect/utils/images.dart';
+import 'package:aharconnect/utils/theme_colors.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);

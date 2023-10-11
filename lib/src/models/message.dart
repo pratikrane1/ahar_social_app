@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:socialrecipe/src/models/enums/message_enum.dart';
+import 'package:aharconnect/src/models/enums/message_enum.dart';
 
 class Message {
   final bool isSeen;

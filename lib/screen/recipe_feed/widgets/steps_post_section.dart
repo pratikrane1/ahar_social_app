@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:socialrecipe/utils/constants.dart';
-import 'package:socialrecipe/providers/settings_provider.dart';
+import 'package:aharconnect/utils/constants.dart';
+import 'package:aharconnect/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 
 class StepsPostSection extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:socialrecipe/utils/theme_colors.dart';
+import 'package:aharconnect/utils/theme_colors.dart';
 
 class CreditScreen extends StatelessWidget {
   const CreditScreen({Key? key}) : super(key: key);

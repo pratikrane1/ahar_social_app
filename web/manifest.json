@@ -1,6 +1,6 @@
 {
-    "name": "socialrecipe",
-    "short_name": "socialrecipe",
+    "name": "aharconnect",
+    "short_name": "aharconnect",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

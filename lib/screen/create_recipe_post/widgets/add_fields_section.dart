@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:socialrecipe/utils/constants.dart';
-import 'package:socialrecipe/providers/settings_provider.dart';
-import 'package:socialrecipe/screen/search_recipe/widgets/custom_drop_down.dart';
+import 'package:aharconnect/utils/constants.dart';
+import 'package:aharconnect/providers/settings_provider.dart';
+import 'package:aharconnect/screen/search_recipe/widgets/custom_drop_down.dart';
 import 'package:provider/provider.dart';
 
 class AddFieldsSection extends StatefulWidget {
@@ -157,8 +156,8 @@ class _AddFieldsSectionState extends State<AddFieldsSection> {
                         ),
                         PopupMenuButton(
                           splashRadius: 20,
-                          icon: FaIcon(
-                            FontAwesomeIcons.ellipsisVertical,
+                          icon: Icon(
+                            Icons.more_vert,
                             color: settingsManager.darkMode
                                 ? Colors.white
                                 : Colors.black,

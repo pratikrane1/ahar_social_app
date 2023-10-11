@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:socialrecipe/screen/noticeboard/widget/all_notice_widget.dart';
-import 'package:socialrecipe/utils/theme_colors.dart';
+import 'package:aharconnect/screen/noticeboard/widget/all_notice_widget.dart';
+import 'package:aharconnect/utils/theme_colors.dart';
 
 
 class NoticeBoardScreen extends StatefulWidget {

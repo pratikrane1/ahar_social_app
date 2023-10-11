@@ -2,10 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:socialrecipe/utils/app_pages.dart';
-import 'package:socialrecipe/src/models/user_model.dart';
-import 'package:socialrecipe/providers/settings_provider.dart';
+import 'package:aharconnect/utils/app_pages.dart';
+import 'package:aharconnect/src/models/user_model.dart';
+import 'package:aharconnect/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -69,8 +68,8 @@ class UserSearchResultList extends StatelessWidget {
                                     fit: BoxFit.fill,
                                     errorWidget: (context, url, error) =>
                                         const Center(
-                                      child: FaIcon(
-                                          FontAwesomeIcons.circleExclamation),
+                                      child: Icon(
+                                          Icons.circle),
                                     ),
                                     placeholder: (context, url) =>
                                         Shimmer.fromColors(
@@ -161,8 +160,8 @@ class UserSearchResultList extends StatelessWidget {
                                     fit: BoxFit.cover,
                                     errorWidget: (context, url, error) =>
                                         const Center(
-                                      child: FaIcon(
-                                          FontAwesomeIcons.circleExclamation),
+                                      child: Icon(
+                                          Icons.circle),
                                     ),
                                     placeholder: (context, url) =>
                                         Shimmer.fromColors(

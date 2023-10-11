@@ -5,9 +5,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
-import 'package:socialrecipe/screen/home/widget/image_video_widget.dart';
-import 'package:socialrecipe/utils/images.dart';
-import 'package:socialrecipe/utils/theme_colors.dart';
+import 'package:aharconnect/screen/home/widget/image_video_widget.dart';
+import 'package:aharconnect/utils/images.dart';
+import 'package:aharconnect/utils/theme_colors.dart';
 
 
 import 'like_user_screen.dart';

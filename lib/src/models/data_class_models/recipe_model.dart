@@ -1,11 +1,10 @@
-import 'package:equatable/equatable.dart';
 
-import 'package:socialrecipe/src/models/data_class_models/ingredient_model.dart';
-import 'package:socialrecipe/src/models/data_class_models/instruction_model.dart';
-import 'package:socialrecipe/src/models/data_class_models/nutrition_model.dart';
+import 'package:aharconnect/src/models/data_class_models/ingredient_model.dart';
+import 'package:aharconnect/src/models/data_class_models/instruction_model.dart';
+import 'package:aharconnect/src/models/data_class_models/nutrition_model.dart';
 
 // ignore: must_be_immutable
-class RecipeModel extends Equatable {
+class RecipeModel  {
   int? id;
   bool? vegetarian;
   bool? vegan;

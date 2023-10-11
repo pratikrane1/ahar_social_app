@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:socialrecipe/utils/theme_colors.dart';
+import 'package:aharconnect/utils/theme_colors.dart';
 
 const kOrangeColor = Color.fromARGB(255, 247, 247, 247);
 const kOrangeColorTint = Color.fromARGB(255, 247, 247, 247);

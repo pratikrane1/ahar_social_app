@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:socialrecipe/utils/app_pages.dart';
-import 'package:socialrecipe/utils/constants.dart';
-import 'package:socialrecipe/providers/settings_provider.dart';
+import 'package:aharconnect/utils/app_pages.dart';
+import 'package:aharconnect/utils/constants.dart';
+import 'package:aharconnect/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../../utils/theme_colors.dart';

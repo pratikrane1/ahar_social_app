@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:socialrecipe/providers/group_provider.dart';
-import 'package:socialrecipe/src/group_model.dart';
-import 'package:socialrecipe/utils/theme_colors.dart';
+import 'package:aharconnect/providers/group_provider.dart';
+import 'package:aharconnect/src/group_model.dart';
+import 'package:aharconnect/utils/theme_colors.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../widget/custom_snackbar.dart';
@@ -57,10 +58,9 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
         surfaceTintColor: ThemeColors.whiteColor,
         title: Text(
           widget.title.toString(),
-          style: Theme.of(context).textTheme.headline6!.copyWith(
+          style: GoogleFonts.openSans(
             fontSize: 25,
             fontWeight: FontWeight.w600,
-            fontFamily: 'Montserrat',
           ),
         ),
         leading: IconButton(
@@ -129,32 +129,28 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                                     // width: 100,
                                     child: Text(officeBearers![index].name ?? "",
                                         maxLines: 2,
-                                        style: const TextStyle(
+                                        style: GoogleFonts.openSans(
                                           fontSize: 12,
-                                          fontFamily: 'Poppins-Regular',
                                           fontWeight: FontWeight.w600,
                                         )
                                     ),
                                   ),
                                   officeBearers![index].position != null ? Text(officeBearers![index].position ?? "",
                                       maxLines: 2,
-                                      style: const TextStyle(
+                                      style: GoogleFonts.openSans(
                                         fontSize: 11,
-                                        fontFamily: 'Poppins-Bold',
                                         fontWeight: FontWeight.w600,
                                       )) : SizedBox(),
                                   officeBearers![index].committeName != null ? Text(officeBearers![index].committeName ?? "",
                                       maxLines: 2,
-                                      style: const TextStyle(
+                                      style: GoogleFonts.openSans(
                                         fontSize: 11,
-                                        fontFamily: 'Poppins-Bold',
                                         fontWeight: FontWeight.w600,
                                       )) : SizedBox(),
                                   Text(officeBearers![index].businessName ?? "",
                                       maxLines: 2,
-                                      style: const TextStyle(
+                                      style: GoogleFonts.openSans(
                                         fontSize: 11,
-                                        fontFamily: 'Poppins-Bold',
                                         fontWeight: FontWeight.w600,
                                       )),
                                 ],

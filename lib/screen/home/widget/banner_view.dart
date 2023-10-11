@@ -1,8 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:socialrecipe/utils/dimensions.dart';
-import 'package:socialrecipe/widget/custom_image.dart';
+import 'package:aharconnect/utils/dimensions.dart';
+import 'package:aharconnect/widget/custom_image.dart';
 
 class BannerView extends StatelessWidget {
   BannerView();

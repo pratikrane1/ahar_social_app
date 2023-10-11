@@ -1,9 +1,8 @@
-import 'package:equatable/equatable.dart';
 
-import 'package:socialrecipe/src/models/data_class_models/steps_model.dart';
+import 'package:aharconnect/src/models/data_class_models/steps_model.dart';
 
 // ignore: must_be_immutable
-class InstructionModel extends Equatable {
+class InstructionModel  {
   List<StepsModel>? steps;
   InstructionModel({
     this.steps,

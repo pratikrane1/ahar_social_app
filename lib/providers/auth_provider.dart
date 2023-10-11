@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:socialrecipe/src/models/user_model.dart';
+import 'package:aharconnect/src/models/user_model.dart';
 
 class AppTab {
   static const int discover = 0;

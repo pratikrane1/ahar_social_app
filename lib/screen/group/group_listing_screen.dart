@@ -1,18 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dotted_line/dotted_line.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:socialrecipe/screen/group/group_screen.dart';
-import 'package:socialrecipe/utils/app_pages.dart';
-import 'package:socialrecipe/utils/constants.dart';
-import 'package:socialrecipe/src/models/user_model.dart';
-import 'package:socialrecipe/providers/settings_provider.dart';
-import 'package:intl/intl.dart';
+import 'package:aharconnect/providers/settings_provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:shimmer/shimmer.dart';
-import 'package:socialrecipe/utils/theme_colors.dart';
+import 'package:aharconnect/utils/theme_colors.dart';
 
 import 'group_listing_detail_screen.dart';
 
@@ -25,46 +17,28 @@ class GroupListScreen extends StatefulWidget {
 }
 
 class _GroupListScreenState extends State<GroupListScreen> {
-  // GroupListScreen({Key? key}) : super(key: key);
-  String lastMessage = '';
-  TextEditingController _phoneController= TextEditingController();
 
-  getContactData(String contactId) {
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .collection('contacts')
-        .doc(contactId)
-        .collection('messages')
-        .snapshots()
-        .listen((event) {
-      lastMessage = event.docs.last['messageText'];
-    });
-  }
 
   @override
   void dispose() {
     super.dispose();
-    _phoneController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<SettingsProvider>(context, listen: false);
-    final settingsManager =
-    Provider.of<SettingsProvider>(context, listen: false);
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
           centerTitle: true,
-          elevation: 0.0,
+          elevation: 3.0,
           bottomOpacity: 0.0,
+          backgroundColor: ThemeColors.whiteColor,
           title: Text(
             'Groups',
-            style: Theme.of(context).textTheme.headline2!.copyWith(
+            style: GoogleFonts.openSans(
               fontSize: 25,
-              fontFamily: 'Poppins-Bold',
-
+              color: ThemeColors.blackColor,
+              fontWeight: FontWeight.bold
             ),
           ),
         ),
@@ -112,9 +86,8 @@ class _GroupListScreenState extends State<GroupListScreen> {
                 child: ListTile(
                   title: Text(title,
                       style:
-                      const TextStyle(
+                      GoogleFonts.openSans(
                         fontSize: 20,
-                        fontFamily: 'Poppins-Bold',
                         fontWeight: FontWeight.w700,
                       )
                   ),

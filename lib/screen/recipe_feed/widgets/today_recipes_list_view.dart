@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class TodayRecipesListView extends StatefulWidget {
   const TodayRecipesListView({Key? key}) : super(key: key);
@@ -170,8 +169,8 @@ class _TodayRecipesListViewState extends State<TodayRecipesListView> {
                                                   ),
                                                   Row(
                                                     children: [
-                                                      const FaIcon(
-                                                        FontAwesomeIcons.clock,
+                                                      const Icon(
+                                                        Icons.access_time_outlined,
                                                         color: Colors.white,
                                                         size: 18,
                                                       ),

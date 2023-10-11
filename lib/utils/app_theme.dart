@@ -1,47 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:socialrecipe/utils/constants.dart';
+import 'package:aharconnect/utils/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AppTheme {
+class FontStyle {
   // Text Theme for Light theme mode
   static TextTheme lightTextTheme = TextTheme(
-    bodyText1: GoogleFonts.poppins(
+    bodyText1: GoogleFonts.openSans(
       fontSize: 20,
       fontWeight: FontWeight.w500,
       color: Colors.black,
     ),
-    bodyText2: GoogleFonts.poppins(
+    bodyText2: GoogleFonts.openSans(
       fontSize: 16,
       fontWeight: FontWeight.w600,
       color: Colors.black,
     ),
-    headline1: GoogleFonts.poppins(
+    headline1: GoogleFonts.openSans(
       fontSize: 22,
       fontWeight: FontWeight.w600,
       color: Colors.black,
     ),
-    headline2: GoogleFonts.poppins(
+    headline2: GoogleFonts.openSans(
       fontSize: 20,
       fontWeight: FontWeight.w600,
       color: Colors.black,
     ),
-    headline3: GoogleFonts.poppins(
+    headline3: GoogleFonts.openSans(
       fontSize: 15,
       fontWeight: FontWeight.w500,
       color: Colors.black,
     ),
-    headline4: GoogleFonts.poppins(
+    headline4: GoogleFonts.openSans(
       fontSize: 12,
       fontWeight: FontWeight.w400,
       color: Colors.black,
     ),
-    headline5: GoogleFonts.poppins(
+    headline5: GoogleFonts.openSans(
       fontSize: 10,
       fontWeight: FontWeight.w400,
       color: Colors.black,
     ),
-    headline6: GoogleFonts.poppins(
+    headline6: GoogleFonts.openSans(
       fontSize: 8,
       fontWeight: FontWeight.w600,
       color: Colors.black,

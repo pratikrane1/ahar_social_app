@@ -1,18 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:socialrecipe/screen/notification/notification_screens.dart';
-import 'package:socialrecipe/screen/profile/screens/profile_screen.dart';
-import 'package:socialrecipe/utils/constants.dart';
-import 'package:socialrecipe/src/models/user_model.dart';
-import 'package:socialrecipe/screen/recipe_feed/screens/activity_tab.dart';
-import 'package:socialrecipe/providers/auth_provider.dart';
-import 'package:socialrecipe/providers/settings_provider.dart';
-import 'package:socialrecipe/providers/user_provider.dart';
+import 'package:aharconnect/screen/notification/notification_screens.dart';
+import 'package:aharconnect/utils/constants.dart';
+import 'package:aharconnect/src/models/user_model.dart';
+import 'package:aharconnect/screen/recipe_feed/screens/activity_tab.dart';
+import 'package:aharconnect/providers/auth_provider.dart';
+import 'package:aharconnect/providers/settings_provider.dart';
+import 'package:aharconnect/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:socialrecipe/utils/images.dart';
-import 'package:socialrecipe/utils/theme_colors.dart';
+import 'package:aharconnect/utils/images.dart';
 
 class FeedScreen extends StatefulWidget {
   const FeedScreen({Key? key}) : super(key: key);
@@ -118,9 +115,9 @@ class _FeedScreenState extends State<FeedScreen>
                                   GestureDetector(
                                     onTap: () {
                                       // appProvider.gotToTab(3);
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileScreen(
-                                        userId: user!.id,
-                                      ),));
+                                      // Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileScreen(
+                                      //   userId: user!.id,
+                                      // ),));
                                     },
                                     child: SizedBox(
                                       width: 35,
@@ -168,9 +165,9 @@ class _FeedScreenState extends State<FeedScreen>
                                                         errorWidget:
                                                             (context, url, error) =>
                                                                 const Center(
-                                                          child: FaIcon(
-                                                              FontAwesomeIcons
-                                                                  .circleExclamation),
+                                                          child: Icon(
+                                                              Icons
+                                                                  .circle),
                                                         ),
                                                         placeholder:
                                                             (context, url) =>
@@ -307,7 +304,7 @@ class _FeedScreenState extends State<FeedScreen>
                       child: TabBarView(
                         controller: _tabController,
                         children: [
-                          ActivityTab(user: user),
+                          ActivityTab(),
                         ],
                       ),
                     )),

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:socialrecipe/utils/app_pages.dart';
-import 'package:socialrecipe/screen/settings/widgets/settings_account_detail_button.dart';
-import 'package:socialrecipe/screen/settings/widgets/settings_back_button.dart';
-import 'package:socialrecipe/screen/settings/widgets/settings_change_password_button.dart';
-import 'package:socialrecipe/screen/settings/widgets/settings_log_out_button.dart';
-import 'package:socialrecipe/screen/settings/widgets/settings_theme_button.dart';
-import 'package:socialrecipe/providers/auth_provider.dart';
-import 'package:socialrecipe/providers/settings_provider.dart';
+import 'package:aharconnect/utils/app_pages.dart';
+import 'package:aharconnect/screen/settings/widgets/settings_account_detail_button.dart';
+import 'package:aharconnect/screen/settings/widgets/settings_back_button.dart';
+import 'package:aharconnect/screen/settings/widgets/settings_change_password_button.dart';
+import 'package:aharconnect/screen/settings/widgets/settings_log_out_button.dart';
+import 'package:aharconnect/screen/settings/widgets/settings_theme_button.dart';
+import 'package:aharconnect/providers/auth_provider.dart';
+import 'package:aharconnect/providers/settings_provider.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 

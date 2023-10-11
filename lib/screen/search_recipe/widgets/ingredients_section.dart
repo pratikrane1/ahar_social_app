@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:socialrecipe/src/models/data_class_models/ingredient_model.dart';
+import 'package:aharconnect/src/models/data_class_models/ingredient_model.dart';
 
 class IngredientsSection extends StatelessWidget {
   const IngredientsSection({

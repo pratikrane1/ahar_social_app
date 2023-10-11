@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:socialrecipe/utils/images.dart';
+import 'package:aharconnect/utils/images.dart';
 
 class CustomImage extends StatelessWidget {
   final String? image;

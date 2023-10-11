@@ -1,25 +1,22 @@
+import 'package:aharconnect/controller/profile_controller.dart';
+import 'package:aharconnect/data/model/profile_model.dart';
+import 'package:aharconnect/screen/profile/my%20profile/my_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:socialrecipe/screen/profile/credit/credit_screen.dart';
-import 'package:socialrecipe/screen/profile/privacy%20policy/privacy_policy.dart';
-import 'package:socialrecipe/screen/profile/settings/settings_screen.dart';
-import 'package:socialrecipe/screen/profile/terms%20and%20conditions/terms_conditons_screen.dart';
-import 'package:socialrecipe/screen/profile/transaction/transaction_history.dart';
-import 'package:socialrecipe/screen/profile/zonal%20team/zonal_team.dart';
-import 'package:socialrecipe/utils/app_constants.dart';
-import 'package:socialrecipe/utils/images.dart';
-import 'package:socialrecipe/utils/theme_colors.dart';
-import 'package:socialrecipe/widget/custom_image.dart';
+import 'package:aharconnect/screen/profile/privacy%20policy/privacy_policy.dart';
+import 'package:aharconnect/screen/profile/settings/settings_screen.dart';
+import 'package:aharconnect/screen/profile/terms%20and%20conditions/terms_conditons_screen.dart';
+import 'package:aharconnect/screen/profile/transaction/transaction_history.dart';
+import 'package:aharconnect/utils/app_constants.dart';
+import 'package:aharconnect/utils/images.dart';
+import 'package:aharconnect/utils/theme_colors.dart';
+import 'package:aharconnect/widget/custom_image.dart';
 import '../group/group_listing_detail_screen.dart';
-import 'ahar office bearers/ahar_office_bearers.dart';
 import 'cutomer support/customer_support.dart';
 import 'faq/faq_screen.dart';
 import 'membership detail/membership_screen.dart';
-import 'my account/my_account_screen.dart';
-import 'my auto pull referal/my_auto_pull_referal.dart';
-import 'my referal list/referal_list.dart';
+
 
 // ignore: must_be_immutable
 class ProfileScreen extends StatefulWidget {
@@ -30,15 +27,13 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  // Profile? _profileData;
+  Profile? _profileData;
 
   @override
   void initState() {
     // TODO: implement initState
-    //saveDeviceTokenAndId();
     super.initState();
-    // Get.find<MyAccountController>().getProfileData();
-    // Get.find<ReferController>().getReferralLevelCount(Get.find<AuthController>().getUserId());
+    Get.find<MyProfileController>().getProfileData();
   }
 
 
@@ -69,8 +64,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         body: RefreshIndicator(
           color: ThemeColors.primaryColor,
           onRefresh: () async {
-            // await Get.find<MyAccountController>().getProfileData();
-            // await Get.find<ReferController>().getReferralLevelCount(Get.find<AuthController>().getUserId());
+            await Get.find<MyProfileController>().getProfileData();
           },
           child: ListView(
             children: [
@@ -79,48 +73,56 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
 
               ///My Account
-              InkWell(
-                onTap: () {
-                  // Get.toNamed(RouteHelper.myAccount);
-                  Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => MyAccountScreen()
-                  ));
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: ThemeColors.whiteColor,
-                    border: Border.all(
-                        width: 1,
-                        color: ThemeColors.greyTextColor.withOpacity(0.3)),
-                    borderRadius: BorderRadius.circular(0),
-                  ),
-                  child: ListTile(
-                    leading: Container(
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(100)),
-                          // border: Border.all(width: 1),
-                        ),
-                        height: 50,
-                        width: 50,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(100),
-                          child: CustomImage(image: "", fit: BoxFit.cover,fromProfile: true,),
-                        )),
-                    title: Text(  'My Account',
-                        style: TextStyle(
-                            fontSize: 14,
+              GetBuilder<MyProfileController>(builder: (myAccountController) {
+                // _isLoading = myAccountController.isLoading;
+                _profileData = myAccountController.profileData;
+                return _profileData != null ? InkWell(
+                  onTap: () {
+                    // Get.toNamed(RouteHelper.myAccount);
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (context) => MyProfileScreen()
+                    ));
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: ThemeColors.whiteColor,
+                      border: Border.all(
+                          width: 1,
+                          color: ThemeColors.greyTextColor.withOpacity(0.3)),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    child: ListTile(
+                      leading: Container(
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(100)),
+                            // border: Border.all(width: 1),
+                          ),
+                          height: 50,
+                          width: 50,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(100),
+                            child: _profileData!.profileImage != "" ? CustomImage(image: _profileData!.profileImage, fit: BoxFit.cover,fromProfile: true,)
+                                : SvgPicture.asset(
+                              _profileData!.name != null ? Images.my_account_logo : Images.my_account_logo, height: 25,
+                              // color: ThemeColors.greyTextColor,
+                            ),
+                          )),
+                      title: Text(_profileData!.name != null ? _profileData!.name!.split(" ").elementAt(0).toString() :  'My Account',
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w600,
+                              color: _profileData!.name != null ? ThemeColors.primaryColor : ThemeColors.greyTextColor.withOpacity(1))),
+                      subtitle:  Text('view_and_update_your_profile_details'.tr,
+                          style:const TextStyle(
+                            fontSize: 12,
                             fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w600,
-                            color: ThemeColors.primaryColor)),
-                    subtitle:  Text('View and update your profile details'.tr,
-                        style:const TextStyle(
-                          fontSize: 12,
-                          fontFamily: 'Montserrat',
-                          fontWeight: FontWeight.w500,
-                        )),
+                            fontWeight: FontWeight.w500,
+                          )),
+                    ),
                   ),
-                ),
-              ),
+                ) : Center(child: CircularProgressIndicator(color: ThemeColors.primaryColor,),);
+              }),
 
               const SizedBox(
                 height: 10,

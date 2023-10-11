@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:socialrecipe/screen/home/screens/home_screen.dart';
-import 'package:socialrecipe/static_data.dart';
-import 'package:socialrecipe/utils/dimensions.dart';
-import 'package:socialrecipe/utils/theme_colors.dart';
-import 'package:socialrecipe/widget/custom_image.dart';
+import 'package:aharconnect/screen/home/screens/home_screen.dart';
+import 'package:aharconnect/static_data.dart';
+import 'package:aharconnect/utils/dimensions.dart';
+import 'package:aharconnect/utils/theme_colors.dart';
+import 'package:aharconnect/widget/custom_image.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../utils/images.dart';
 
@@ -46,7 +47,6 @@ class _NoticeboardSliderState extends State<NoticeboardSlider>  {
 
   @override
   Widget build(BuildContext context) {
-    final double _width = MediaQuery.of(context).size.width;
 
     return  Padding(
       padding: const EdgeInsets.only(top: 8.0,bottom: 8.0),
@@ -86,13 +86,9 @@ class _NoticeboardSliderState extends State<NoticeboardSlider>  {
           ),
           ///Notice board Carousel
           SizedBox(
-            // width: MediaQuery.of(context).size.width,
-            // height: _width > 400.0 ? 250 : 190,
             height: 240,
-            // width: 500,
             child: PageView.builder(
               itemCount: Data().noticeBoardList!.length,
-              // pageSnapping: true,
               controller: _pageController,
               onPageChanged: (page) {
                 setState(() {
@@ -100,7 +96,6 @@ class _NoticeboardSliderState extends State<NoticeboardSlider>  {
                 });
               },
               itemBuilder: (context, index) {
-
                 return Padding(
                   padding: const EdgeInsets.only(right: 8.0,left: 8.0,top:16),
                   child: Container(
@@ -181,13 +176,13 @@ class _NoticeboardSliderState extends State<NoticeboardSlider>  {
                                   children: [
                                     const Icon(Icons.picture_as_pdf,color: ThemeColors.redColor,),
                                     const SizedBox(width: 5.0,),
-                                    Container(
+                                    SizedBox(
                                       width: MediaQuery.of(context).size.width/1.61,
                                       child: Text(
                                         Data().noticeBoardList![index].pdfText ?? "",
                                         overflow: TextOverflow.ellipsis,
                                         maxLines: 2,
-                                        style: Theme.of(context).textTheme.headline3!.copyWith(
+                                        style: GoogleFonts.openSans(
                                             height: 1.5,
                                             fontWeight: FontWeight.w500
                                         ),

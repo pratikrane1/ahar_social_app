@@ -1,11 +1,11 @@
 import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:socialrecipe/src/models/comment_model.dart';
-import 'package:socialrecipe/src/models/recipe_post_model.dart';
-import 'package:socialrecipe/src/models/reply_model.dart';
-import 'package:socialrecipe/src/models/user_model.dart';
-import 'package:socialrecipe/providers/user_image_provider.dart';
+import 'package:aharconnect/src/models/comment_model.dart';
+import 'package:aharconnect/src/models/recipe_post_model.dart';
+import 'package:aharconnect/src/models/reply_model.dart';
+import 'package:aharconnect/src/models/user_model.dart';
+import 'package:aharconnect/providers/user_image_provider.dart';
 import 'package:uuid/uuid.dart';
 
 class RecipePostProvider extends ChangeNotifier {

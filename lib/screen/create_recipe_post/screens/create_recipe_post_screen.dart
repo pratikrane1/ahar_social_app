@@ -1,19 +1,15 @@
 import 'dart:typed_data';
-import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:socialrecipe/utils/constants.dart';
-import 'package:socialrecipe/src/models/user_model.dart';
-import 'package:socialrecipe/providers/recipe_post_provider.dart';
-import 'package:socialrecipe/providers/settings_provider.dart';
-import 'package:socialrecipe/providers/user_image_provider.dart';
-import 'package:socialrecipe/providers/user_provider.dart';
-import 'package:socialrecipe/screen/create_recipe_post/widgets/add_fields_section.dart';
-import 'package:socialrecipe/screen/recipe_feed/widgets/title_and_description_form_section.dart';
+import 'package:aharconnect/utils/constants.dart';
+import 'package:aharconnect/src/models/user_model.dart';
+import 'package:aharconnect/providers/recipe_post_provider.dart';
+import 'package:aharconnect/providers/settings_provider.dart';
+import 'package:aharconnect/providers/user_image_provider.dart';
+import 'package:aharconnect/providers/user_provider.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:socialrecipe/utils/theme_colors.dart';
+import 'package:aharconnect/utils/theme_colors.dart';
 
 class CreateRecipePostScreen extends StatefulWidget {
   const CreateRecipePostScreen({Key? key}) : super(key: key);
@@ -325,8 +321,8 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    const FaIcon(
-                                      FontAwesomeIcons.camera,
+                                    const Icon(
+                                      Icons.camera,
                                       color: Colors.white,
                                     ),
                                     const SizedBox(height: 15),

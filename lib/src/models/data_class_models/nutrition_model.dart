@@ -1,9 +1,8 @@
-import 'package:equatable/equatable.dart';
 
-import 'package:socialrecipe/src/models/data_class_models/nutrients_model.dart';
+import 'package:aharconnect/src/models/data_class_models/nutrients_model.dart';
 
 // ignore: must_be_immutable
-class NutritionsModel extends Equatable {
+class NutritionsModel  {
   List<NutrientsModel>? nutrients;
   NutritionsModel({
     this.nutrients,

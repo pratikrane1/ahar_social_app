@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:socialrecipe/providers/settings_provider.dart';
+import 'package:aharconnect/providers/settings_provider.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:websafe_svg/websafe_svg.dart';
 
 class SettingsThemeButton extends StatelessWidget {
   const SettingsThemeButton(
@@ -29,11 +29,11 @@ class SettingsThemeButton extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 4.0),
               child: AnimatedCrossFade(
-                firstChild: WebsafeSvg.asset(
+                firstChild: SvgPicture.asset(
                   'assets/sun.svg',
                   color: Colors.white,
                 ),
-                secondChild: WebsafeSvg.asset(
+                secondChild: SvgPicture.asset(
                   'assets/moon.svg',
                   color: Colors.black,
                 ),

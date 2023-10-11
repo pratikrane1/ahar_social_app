@@ -1,9 +1,11 @@
+import 'package:aharconnect/screen/profile/membership%20detail/widget/payment_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:socialrecipe/utils/dimensions.dart';
-import 'package:socialrecipe/utils/theme_colors.dart';
-import 'package:socialrecipe/widget/app_button.dart';
+import 'package:aharconnect/utils/dimensions.dart';
+import 'package:aharconnect/utils/theme_colors.dart';
+import 'package:aharconnect/widget/app_button.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 // ignore: must_be_immutable
@@ -92,10 +94,9 @@ class _MembershipScreenState extends State<MembershipScreen> {
 
                     ///Membership Date
                     // _membershipDetails!.validityFrom != null ?
-                    Text('${'Starting From'} July ${'Till'} December',
-                      style: const TextStyle(
+                     Text('${'Starting From'} July ${'Till'} December',
+                      style: GoogleFonts.openSans(
                           fontSize: 14,
-                          fontFamily: 'Montserrat',
                           fontWeight: FontWeight.w500,
                           color: ThemeColors.greyTextColor),) ,
                         // : SizedBox(),
@@ -121,22 +122,20 @@ class _MembershipScreenState extends State<MembershipScreen> {
                         ),
                         child: Column(
                           children: [
-                            const Padding(
+                             Padding(
                               padding: EdgeInsets.only(top: 20.0),
                               child: Text('\u{20B9} 2999',
-                                style: TextStyle(
+                                style: GoogleFonts.openSans(
                                     fontSize: 20,
-                                    fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.w600,
                                     color: ThemeColors.blackColor),),
                             ),
 
                             const SizedBox(height: 8,),
 
-                            Text('Inclusive of GST',
-                              style:const TextStyle(
+                             Text('Inclusive of GST',
+                              style:GoogleFonts.openSans(
                                   fontSize: 14,
-                                  fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w400,
                                   color: ThemeColors.blackColor),),
 
@@ -155,19 +154,17 @@ class _MembershipScreenState extends State<MembershipScreen> {
                               padding: const EdgeInsets.only(left: 30.0, right: 30.0),
                               child: AppButton(
                                 onPressed: () async {
-                                  // showDialog(
-                                  //     context: context,
-                                  //     builder: (BuildContext context) => PaymentDialog(profileData: _profileData,
-                                  //       amount: "${_membershipDetails!.membershipAmount}",paidAmount: "${_membershipDetails!.paidAmount}",
-                                  //       isGainZPro: _isGainZPro,));
+                                  showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) => PaymentDialog(
+                                        amount: "2999",paidAmount: "2999",));
                                 },
                                 height: 50,
                                 width: MediaQuery.of(context).size.width,
                                 text:  Text("Renew",
-                                  style: TextStyle(
+                                  style: GoogleFonts.openSans(
                                       color: Colors.white,
                                       fontSize: Dimensions.fontSizeDefault,
-                                      fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w700),
                                 ),
                                 loading: _isLoading,

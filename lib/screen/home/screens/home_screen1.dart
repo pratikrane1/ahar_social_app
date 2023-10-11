@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:socialrecipe/screen/chat/screens/contacts_list_screen.dart';
-import 'package:socialrecipe/screen/home/widget/banner_view.dart';
-import 'package:socialrecipe/screen/home/widget/document_file.dart';
-import 'package:socialrecipe/screen/home/widget/image_video_widget.dart';
-import 'package:socialrecipe/screen/home/widget/videoSlider.dart';
-import 'package:socialrecipe/screen/notification/notification_screens.dart';
-import 'package:socialrecipe/screen/profile/profile.dart';
-import 'package:socialrecipe/utils/dimensions.dart';
-import 'package:socialrecipe/utils/images.dart';
-import 'package:socialrecipe/utils/theme_colors.dart';
-
+import 'package:aharconnect/screen/chat/screens/contacts_list_screen.dart';
+import 'package:aharconnect/screen/home/widget/banner_view.dart';
+import 'package:aharconnect/screen/home/widget/document_file.dart';
+import 'package:aharconnect/screen/home/widget/image_video_widget.dart';
+import 'package:aharconnect/screen/home/widget/videoSlider.dart';
+import 'package:aharconnect/screen/notification/notification_screens.dart';
+import 'package:aharconnect/utils/dimensions.dart';
+import 'package:aharconnect/utils/images.dart';
+import 'package:aharconnect/utils/theme_colors.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../widget/feed_widget.dart';
 import '../widget/noticeboard_widget.dart';
 
@@ -32,7 +31,7 @@ class _AllTabState extends State<AllTab> {
     //saveDeviceTokenAndId();
     super.initState();
   }
-//
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -74,27 +73,28 @@ class _AllTabState extends State<AllTab> {
                               const SizedBox(width: 5,),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
+                                children: [
                                   Text(
                                     'AHAR',
-                                    style: TextStyle(
+                                    style: GoogleFonts.openSans(
                                         fontSize: 16,
-                                        fontFamily: 'Poppins-Bold',
-                                        fontWeight: FontWeight.w800),
+                                        fontWeight: FontWeight.w800,
+                                        color: ThemeColors.blackColor,
+                                    ),
                                   ),
                                   Text(
                                     'Connect',
-                                    style: TextStyle(
+                                    style: GoogleFonts.openSans(
                                         fontSize: 16,
-                                        fontFamily: 'Poppins-Light',
-                                        fontWeight: FontWeight.w400
+                                        fontWeight: FontWeight.w400,
+                                      color: ThemeColors.blackColor
                                     ),
                                   ),
                                   Text(
                                     'Powered by WAAYU',
-                                    style: TextStyle(
+                                    style: GoogleFonts.openSans(
                                         fontSize: 12,
-                                        fontFamily: 'Poppins-Light',
+                                        color: ThemeColors.blackColor,
                                         fontWeight: FontWeight.w400
                                     ),
                                   ),
@@ -114,9 +114,11 @@ class _AllTabState extends State<AllTab> {
                               onTap: (){
                                 Navigator.push(context, MaterialPageRoute(builder: (context)=>NotificationScreen()));
                               },
-                              child: Icon(Icons.notifications,size: 25,),
+                              child: const Icon(Icons.notifications,
+                                size: 25,
+                              color: ThemeColors.blackColor,),
                             ),
-                            SizedBox(width: 8,),
+                            const SizedBox(width: 8,),
 
                             Padding(
                               padding: const EdgeInsets.only(right: 20.0),

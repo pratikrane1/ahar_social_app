@@ -2,11 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:socialrecipe/src/models/comment_model.dart';
-import 'package:socialrecipe/src/models/reply_model.dart';
-import 'package:socialrecipe/providers/recipe_post_provider.dart';
-import 'package:socialrecipe/providers/settings_provider.dart';
+import 'package:aharconnect/src/models/comment_model.dart';
+import 'package:aharconnect/src/models/reply_model.dart';
+import 'package:aharconnect/providers/recipe_post_provider.dart';
+import 'package:aharconnect/providers/settings_provider.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
@@ -83,7 +82,7 @@ class ReplyCard extends StatelessWidget {
                       imageUrl: reply.profilePicture,
                       fit: BoxFit.cover,
                       errorWidget: (context, url, error) => const Center(
-                        child: FaIcon(FontAwesomeIcons.circleExclamation),
+                        child: Icon(Icons.circle),
                       ),
                       placeholder: (context, url) => Shimmer.fromColors(
                         baseColor: Colors.grey.shade400,

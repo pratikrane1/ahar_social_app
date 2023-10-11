@@ -1,8 +1,12 @@
 import 'dart:async';
+import 'package:aharconnect/controller/auth_controller.dart';
+import 'package:aharconnect/screen/home/screens/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:socialrecipe/screen/walkthrough/walkthrough.dart';
-import 'package:socialrecipe/utils/images.dart';
+import 'package:aharconnect/screen/walkthrough/walkthrough.dart';
+import 'package:aharconnect/utils/images.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -25,11 +29,19 @@ class _SplashScreenState extends State<SplashScreen> {
   startTime() async {
     return Timer(await Duration(seconds: splashDuration), () {
       SystemChannels.textInput.invokeMethod('TextInput.hide');
-      // authBloc = BlocProvider.of<AuthBloc>(context);
-      //  authBloc!.add(OnAuthCheck());
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => WalkThroughScreen()));
+      _route();
     });
+  }
+
+  _route() {
+    if (Get.find<AuthController>().getUserToken() != null) {
+      var token = Get.find<AuthController>().getUserToken();
+      print("Brearer Token: $token");
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => HomeScreen()));
+    } else {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => WalkThroughScreen()));    }
   }
 
   @override

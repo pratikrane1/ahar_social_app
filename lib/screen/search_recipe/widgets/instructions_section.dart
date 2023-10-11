@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:socialrecipe/utils/constants.dart';
-import 'package:socialrecipe/src/models/data_class_models/instruction_model.dart';
-import 'package:socialrecipe/providers/settings_provider.dart';
+import 'package:aharconnect/utils/constants.dart';
+import 'package:aharconnect/src/models/data_class_models/instruction_model.dart';
+import 'package:aharconnect/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 
 class InstructionsSection extends StatelessWidget {

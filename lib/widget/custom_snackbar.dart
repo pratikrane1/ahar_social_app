@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:socialrecipe/helper/responsive_helper.dart';
-import 'package:socialrecipe/utils/dimensions.dart';
+import 'package:aharconnect/helper/responsive_helper.dart';
+import 'package:aharconnect/utils/dimensions.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void showCustomSnackBar(String message, {bool isError = true}) {
   if (message != null && message.isNotEmpty) {
@@ -21,9 +22,8 @@ void showCustomSnackBar(String message, {bool isError = true}) {
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL)),
       content: Text(message,
-          style: TextStyle(
+          style: GoogleFonts.openSans(
               color: Colors.white,
-              fontFamily: 'Montserrat',
               fontWeight: FontWeight.normal)),
     ));
   }

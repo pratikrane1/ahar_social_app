@@ -1,18 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dotted_line/dotted_line.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:socialrecipe/static_data.dart';
-import 'package:socialrecipe/utils/app_pages.dart';
-import 'package:socialrecipe/utils/constants.dart';
-import 'package:socialrecipe/src/models/user_model.dart';
-import 'package:socialrecipe/providers/settings_provider.dart';
+import 'package:aharconnect/static_data.dart';
+import 'package:aharconnect/providers/settings_provider.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:shimmer/shimmer.dart';
-import 'package:socialrecipe/utils/theme_colors.dart';
+import 'package:aharconnect/utils/theme_colors.dart';
 
 // ignore: must_be_immutable
 class NotificationScreen extends StatefulWidget {

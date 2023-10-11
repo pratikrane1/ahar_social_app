@@ -1,32 +1,29 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dotted_line/dotted_line.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:socialrecipe/providers/dynamic_link.dart';
-import 'package:socialrecipe/screen/group/widget/group_feed_widget.dart';
-import 'package:socialrecipe/utils/app_pages.dart';
-import 'package:socialrecipe/utils/constants.dart';
-import 'package:socialrecipe/src/models/recipe_post_model.dart';
-import 'package:socialrecipe/src/models/user_model.dart';
-import 'package:socialrecipe/providers/recipe_post_provider.dart';
-import 'package:socialrecipe/screen/recipe_feed/widgets/animated_like_button.dart';
-import 'package:socialrecipe/screen/search_recipe/widgets/custom_drop_down.dart';
-import 'package:socialrecipe/providers/settings_provider.dart';
-import 'package:socialrecipe/providers/user_provider.dart';
+import 'package:aharconnect/providers/dynamic_link.dart';
+import 'package:aharconnect/screen/group/widget/group_feed_widget.dart';
+import 'package:aharconnect/utils/app_pages.dart';
+import 'package:aharconnect/utils/constants.dart';
+import 'package:aharconnect/src/models/recipe_post_model.dart';
+import 'package:aharconnect/src/models/user_model.dart';
+import 'package:aharconnect/providers/recipe_post_provider.dart';
+import 'package:aharconnect/screen/recipe_feed/widgets/animated_like_button.dart';
+import 'package:aharconnect/screen/search_recipe/widgets/custom_drop_down.dart';
+import 'package:aharconnect/providers/settings_provider.dart';
+import 'package:aharconnect/providers/user_provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:socialrecipe/utils/theme_colors.dart';
+import 'package:aharconnect/utils/theme_colors.dart';
 
 class RecipePostCard extends StatefulWidget {
   const RecipePostCard({
     Key? key,
-    required this.post,
-    required this.user, this.feedData,
+    this.feedData,
     // required this.feedData,
   }) : super(key: key);
-  final UserModel? user;
-  final RecipePostModel post;
   final FeedModel? feedData;
 
   @override
@@ -39,12 +36,7 @@ class _RecipePostCardState extends State<RecipePostCard> {
 
   @override
   Widget build(BuildContext context) {
-    final settingsManager =
-        Provider.of<SettingsProvider>(context, listen: false);
-    final userProvider = Provider.of<UserProvider>(context);
 
-    UserModel? user = userProvider.getUser;
-    final postProvider = Provider.of<RecipePostProvider>(context);
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return Container(
@@ -73,13 +65,7 @@ class _RecipePostCardState extends State<RecipePostCard> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      if (currentUser!.uid != widget.post.uid) {
-                        Navigator.pushNamed(
-                          context,
-                          AppPages.profilePath,
-                          arguments: widget.post.uid,
-                        );
-                      }
+
                     },
                     child: Material(
                       borderRadius: BorderRadius.circular(50),
@@ -90,45 +76,27 @@ class _RecipePostCardState extends State<RecipePostCard> {
                         height: 44,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(100),
-                          child: user == null
-                              ? Center(
-                                  child: LinearProgressIndicator(
-                                    color: kOrangeColor,
-                                    backgroundColor: settingsManager.darkMode
-                                        ? Colors.white
-                                        : Colors.grey.shade300,
-                                  ),
-                                )
-                              : widget.feedData!.userImage == ""
-                                  ? Container(
-                                      decoration: const BoxDecoration(
-                                        image: DecorationImage(
-                                          image: AssetImage(
-                                              'assets/default_image.jpg'),
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    )
-                                  : CachedNetworkImage(
-                                      imageUrl: widget.feedData!.userImage.toString(),
-                                      fit: BoxFit.cover,
-                                      errorWidget: (context, url, error) =>
-                                          const Center(
-                                        child: FaIcon(
-                                            FontAwesomeIcons.circleExclamation),
-                                      ),
-                                      placeholder: (context, url) =>
-                                          Shimmer.fromColors(
-                                              baseColor: Colors.grey.shade400,
-                                              highlightColor:
-                                                  Colors.grey.shade300,
-                                              child: SizedBox(
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height /
-                                                      3.3,
-                                                  width: double.infinity)),
-                                    ),
+                          child: CachedNetworkImage(
+                            imageUrl: widget.feedData!.userImage.toString(),
+                            fit: BoxFit.cover,
+                            errorWidget: (context, url, error) =>
+                            const Center(
+                              child: Icon(
+                                  Icons
+                                      .circle),
+                            ),
+                            placeholder: (context, url) =>
+                                Shimmer.fromColors(
+                                    baseColor: Colors.grey.shade400,
+                                    highlightColor:
+                                    Colors.grey.shade300,
+                                    child: SizedBox(
+                                        height: MediaQuery.of(context)
+                                            .size
+                                            .height /
+                                            3.3,
+                                        width: double.infinity)),
+                          ),
                         ),
                       ),
                     ),
@@ -170,12 +138,10 @@ class _RecipePostCardState extends State<RecipePostCard> {
                                       widget.feedData!.userName ?? "",
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
-                                      style:
-                                      Theme.of(context).textTheme.bodyText2!.copyWith(
-                                          fontFamily: 'Poppins-Bold',
+                                      style: GoogleFonts.openSans(
                                           fontWeight: FontWeight.w600),
                                     ),
-                                    SizedBox(width: 4,),
+                                    const SizedBox(width: 4,),
                                     Expanded(
                                       child: Container(
                                         // width: MediaQuery.of(context).size.width,
@@ -184,10 +150,9 @@ class _RecipePostCardState extends State<RecipePostCard> {
                                           widget.feedData!.zoneName ?? "",
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
-                                          style: const TextStyle(
+                                          style: GoogleFonts.openSans(
                                               color: ThemeColors.greyTextColor,
                                               fontSize: 12,
-                                              fontFamily: 'Poppins-Light',
                                               fontWeight: FontWeight.normal
                                           ),
                                         ),
@@ -217,9 +182,7 @@ class _RecipePostCardState extends State<RecipePostCard> {
                                         height: screenHeight / 4.2,
                                         width: screenWidth / 1.5,
                                         decoration: BoxDecoration(
-                                          color: settingsManager.darkMode
-                                              ? kGreyColor
-                                              : Colors.grey.shade400,
+                                          color: Colors.grey.shade400,
                                           borderRadius: const BorderRadius.all(
                                             Radius.circular(20),
                                           ),
@@ -231,8 +194,9 @@ class _RecipePostCardState extends State<RecipePostCard> {
                                             fit: BoxFit.cover,
                                             errorWidget: (context, url, error) =>
                                             const Center(
-                                              child: FaIcon(
-                                                  FontAwesomeIcons.circleExclamation),
+                                              child: Icon(
+                                                  Icons
+                                                      .circle),
                                             ),
                                             placeholder: (context, url) =>
                                                 Shimmer.fromColors(
@@ -267,41 +231,28 @@ class _RecipePostCardState extends State<RecipePostCard> {
                                 children: [
                                   //!: Like button:
                                   AnimatedLikeButton(
-                                    isAnimating: user == null
+                                    isAnimating: true == null
                                         ? false
-                                        : widget.post.likes.contains(user.id),
+                                        : true,
                                     child: Row(
                                       children: [
                                         IconButton(
                                           splashRadius: 20,
                                           onPressed: () async {
-                                            await postProvider.likeOrUnlikePost(
-                                              postId: widget.post.postId,
-                                              userId: user!.id,
-                                              likes: widget.post.likes,
-                                            );
+                                            // await postProvider.likeOrUnlikePost(
+                                            //   postId: widget.post.postId,
+                                            //   userId: user!.id,
+                                            //   likes: widget.post.likes,
+                                            // );
                                           },
-                                          icon: user == null
-                                              ? Icon(
-                                            FontAwesomeIcons.solidThumbsUp,
+                                          icon: Icon(
+                                            Icons.thumb_up_alt_rounded,
                                             color: Colors.grey.shade300,
-                                          )
-                                              : widget.post.likes.contains(user.id)
-                                              ? const Icon(
-                                            FontAwesomeIcons.solidHeart,
-                                            color:
-                                            Color.fromARGB(255, 20, 79, 64),
-                                          )
-                                              : Icon(
-                                            FontAwesomeIcons.heart,
-                                            color: settingsManager.darkMode
-                                                ? Colors.grey.shade300
-                                                : ThemeColors.greyIconColor,
                                           ),
                                         ),
-                                        widget.post.likes.length > 0 ?
+                                        1 > 0 ?
                                     Text(
-                                      '${widget.post.likes.length.toString()}',
+                                      '${0}',
                                       maxLines: 1,
                                     ): Container(),
                                       ],
@@ -312,17 +263,15 @@ class _RecipePostCardState extends State<RecipePostCard> {
                                   IconButton(
                                     splashRadius: 20,
                                     onPressed: () {
-                                      Navigator.pushNamed(
-                                        context,
-                                        AppPages.commentsPath,
-                                        arguments: widget.post,
-                                      );
+                                      // Navigator.pushNamed(
+                                      //   context,
+                                      //   AppPages.commentsPath,
+                                      //   arguments: widget.post,
+                                      // );
                                     },
                                     icon: Icon(
-                                      FontAwesomeIcons.comment,
-                                      color: settingsManager.darkMode
-                                          ? Colors.grey.shade300
-                                          : ThemeColors.greyIconColor,
+                                      Icons.comment,
+                                      color: ThemeColors.greyIconColor,
                                     ),
                                   ),
                                   // SizedBox(width: 30,),
@@ -331,17 +280,15 @@ class _RecipePostCardState extends State<RecipePostCard> {
                                   IconButton(
                                     splashRadius: 20,
                                     onPressed: () {
-                                      DynamicLinkService().shareProductLink(
-                                          title: "${widget.post.title}",
-                                          url: Uri.parse('https://aharsocialapp.in/post?id=${widget.post.postId}'),
-                                          // url: Uri.parse('https://aharsocialapp.in/post?id=1'),
-                                          image: '${widget.post.postUrl}');
+                                      // DynamicLinkService().shareProductLink(
+                                      //     title: "${widget.feedData!.zoneName}",
+                                      //     url: Uri.parse('https://aharsocialapp.in/post?id=${widget.post.postId}'),
+                                      //     // url: Uri.parse('https://aharsocialapp.in/post?id=1'),
+                                      //     image: '${widget.post.postUrl}');
                                     },
                                     icon: Icon(
                                       Icons.share_outlined,
-                                      color: settingsManager.darkMode
-                                          ? Colors.grey.shade300
-                                          : ThemeColors.greyIconColor,
+                                      color: ThemeColors.greyIconColor,
                                     ),
                                   ),
                                 ],
@@ -353,23 +300,21 @@ class _RecipePostCardState extends State<RecipePostCard> {
                     ),
                   ),
                   // !: PopUpMenu
-                  currentUser?.uid != widget.post.uid
+                  currentUser?.uid != 1
                       ? const SizedBox()
                       : PopupMenuButton(
                           splashRadius: 20,
-                          icon: FaIcon(
-                            FontAwesomeIcons.ellipsisVertical,
+                          icon: Icon(
+                            Icons.more_vert,
                             size: 18,
-                            color: settingsManager.darkMode
-                                ? Colors.white
-                                : Colors.grey.shade300,
+                            color: Colors.grey.shade300,
                           ),
                           onSelected: (String value) {
-                            if (value == 'Delete') {
-                              Provider.of<RecipePostProvider>(context,
-                                      listen: false)
-                                  .deletePost(widget.post.postId);
-                            }
+                            // if (value == 'Delete') {
+                            //   Provider.of<RecipePostProvider>(context,
+                            //           listen: false)
+                            //       .deletePost(widget.post.postId);
+                            // }
                           },
                           itemBuilder: (BuildContext context) {
                             return popUpMenuItems

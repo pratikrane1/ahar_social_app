@@ -1,8 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:socialrecipe/utils/constants.dart';
-import 'package:socialrecipe/providers/settings_provider.dart';
+import 'package:aharconnect/utils/constants.dart';
+import 'package:aharconnect/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 
 class DetailsSliverAppBar extends StatelessWidget {
@@ -26,14 +25,14 @@ class DetailsSliverAppBar extends StatelessWidget {
         background: CachedNetworkImage(
           fit: BoxFit.cover,
           imageUrl: imgUrl,
-          placeholder: (context, url) => const Center(
-            child: FaIcon(
-              FontAwesomeIcons.spinner,
-              color: Colors.white,
-            ),
-          ),
-          errorWidget: (context, url, error) => const FaIcon(
-            FontAwesomeIcons.circleExclamation,
+          // placeholder: (context, url) => const Center(
+          //   child: Icon(
+          //     FontAwesomeIcons.spinner,
+          //     color: Colors.white,
+          //   ),
+          // ),
+          errorWidget: (context, url, error) => const Icon(
+            Icons.circle,
             color: Colors.white,
           ),
         ),
@@ -46,8 +45,8 @@ class DetailsSliverAppBar extends StatelessWidget {
           padding: const EdgeInsets.all(12.0),
           child: CircleAvatar(
             backgroundColor: Colors.white.withOpacity(0.9),
-            child: const FaIcon(
-              FontAwesomeIcons.arrowLeft,
+            child: const Icon(
+              Icons.arrow_back,
               color: kGreyColor,
               size: 20,
             ),
@@ -64,8 +63,8 @@ class DetailsSliverAppBar extends StatelessWidget {
             child: CircleAvatar(
               radius: 16,
               backgroundColor: Colors.white.withOpacity(0.9),
-              child: const FaIcon(
-                FontAwesomeIcons.ellipsisVertical,
+              child: const Icon(
+                Icons.more_vert,
                 color: kGreyColor,
                 size: 20,
               ),

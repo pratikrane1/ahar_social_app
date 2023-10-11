@@ -1,16 +1,14 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:socialrecipe/src/models/recipe_post_model.dart';
-import 'package:socialrecipe/utils/app_pages.dart';
+import 'package:aharconnect/src/models/recipe_post_model.dart';
+import 'package:aharconnect/utils/app_pages.dart';
 
 
 class DynamicLinkService {
 
   // String shortDynamicLink = 'https://pulabazaarapp.page.link';
   String shortDynamicLink = 'https://aharsocial.page.link';
-  Stream<QuerySnapshot<Map<String, dynamic>>>? streamResult;
 
 
   @override
@@ -80,12 +78,13 @@ class DynamicLinkService {
       String id = deepLink.queryParameters['id']!;
       print(id);
 
-      var postData = FirebaseFirestore.instance.collection('posts').doc(id);
-      DocumentSnapshot doc = await postData.get();
-      final data = doc.data() as Map<String, dynamic>;
-      print(data);
-      RecipePostModel post = RecipePostModel.fromJson(
-          data);
+      // var postData = FirebaseFirestore.instance.collection('posts').doc(id);
+      // DocumentSnapshot doc = await postData.get();
+      // final data = doc.data() as Map<String, dynamic>;
+      // print(data);
+      // RecipePostModel post = RecipePostModel.fromJson(
+      //     data);
+      var post;
       print(post);
       Navigator.pushNamed(
         context,
@@ -107,12 +106,13 @@ class DynamicLinkService {
       String id = deepLink.queryParameters['id']!;
       print(id);
 
-      var postData = FirebaseFirestore.instance.collection('posts').doc(id);
-      DocumentSnapshot doc = await postData.get();
-      final data = doc.data() as Map<String, dynamic>;
-      print(data);
-      RecipePostModel post = RecipePostModel.fromJson(
-          data);
+      // var postData = FirebaseFirestore.instance.collection('posts').doc(id);
+      // DocumentSnapshot doc = await postData.get();
+      // final data = doc.data() as Map<String, dynamic>;
+      // print(data);
+      // RecipePostModel post = RecipePostModel.fromJson(
+      //     data);
+      var post;
       print(post);
       Navigator.pushNamed(
         context,

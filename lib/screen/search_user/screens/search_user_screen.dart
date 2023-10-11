@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:socialrecipe/utils/constants.dart';
-import 'package:socialrecipe/screen/search_user/widgets/user_search_result_list.dart';
-import 'package:socialrecipe/providers/settings_provider.dart';
+import 'package:aharconnect/utils/constants.dart';
+import 'package:aharconnect/screen/search_user/widgets/user_search_result_list.dart';
+import 'package:aharconnect/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 
 class SearchUserScreen extends StatefulWidget {
@@ -124,8 +123,8 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
                                     : kOrangeColor,
                               ),
                               child: Center(
-                                child: FaIcon(
-                                  FontAwesomeIcons.magnifyingGlass,
+                                child: Icon(
+                                  Icons.search_rounded,
                                   size: 20,
                                   color: settingsManager.darkMode
                                       ? kOrangeColor

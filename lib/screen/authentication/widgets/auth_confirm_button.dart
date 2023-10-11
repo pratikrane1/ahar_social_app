@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:socialrecipe/utils/constants.dart';
+import 'package:aharconnect/utils/constants.dart';
 
 class AuthConfirmButton extends StatelessWidget {
   const AuthConfirmButton({

@@ -1,21 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dotted_line/dotted_line.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:socialrecipe/providers/dynamic_link.dart';
-import 'package:socialrecipe/utils/app_pages.dart';
-import 'package:socialrecipe/utils/constants.dart';
-import 'package:socialrecipe/src/models/recipe_post_model.dart';
-import 'package:socialrecipe/src/models/user_model.dart';
-import 'package:socialrecipe/providers/recipe_post_provider.dart';
-import 'package:socialrecipe/screen/recipe_feed/widgets/animated_like_button.dart';
-import 'package:socialrecipe/screen/search_recipe/widgets/custom_drop_down.dart';
-import 'package:socialrecipe/providers/settings_provider.dart';
-import 'package:socialrecipe/providers/user_provider.dart';
+import 'package:aharconnect/src/models/user_model.dart';
+import 'package:aharconnect/providers/recipe_post_provider.dart';
+import 'package:aharconnect/providers/settings_provider.dart';
+import 'package:aharconnect/providers/user_provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:socialrecipe/utils/theme_colors.dart';
+import 'package:aharconnect/utils/theme_colors.dart';
 
 import 'all_notice_widget.dart';
 
@@ -33,12 +25,6 @@ class _NoticePostCardState extends State<NoticePostCard> {
 
   @override
   Widget build(BuildContext context) {
-    final settingsManager =
-    Provider.of<SettingsProvider>(context, listen: false);
-    final userProvider = Provider.of<UserProvider>(context);
-
-    UserModel? user = userProvider.getUser;
-    final postProvider = Provider.of<RecipePostProvider>(context);
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return Container(
@@ -111,8 +97,8 @@ class _NoticePostCardState extends State<NoticePostCard> {
                             fit: BoxFit.cover,
                             errorWidget: (context, url, error) =>
                             const Center(
-                              child: FaIcon(
-                                  FontAwesomeIcons.circleExclamation),
+                              child: Icon(
+                                  Icons.circle),
                             ),
                             placeholder: (context, url) =>
                                 Shimmer.fromColors(
@@ -160,8 +146,7 @@ class _NoticePostCardState extends State<NoticePostCard> {
                                           widget.noticeBoardData!.zoneName ??'',
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
-                                          style:
-                                          Theme.of(context).textTheme.bodyText2!.copyWith(fontFamily: 'Poppins-Bold'),
+                                          style: GoogleFonts.openSans(),
                                         ),
                                       ],
                                     ),
@@ -169,7 +154,7 @@ class _NoticePostCardState extends State<NoticePostCard> {
 
                                 ],
                               ),
-                              SizedBox(height: 10,),
+                              const SizedBox(height: 10,),
 
                               Padding(
                                 padding: const EdgeInsets.only(right: 15.0),
@@ -177,7 +162,7 @@ class _NoticePostCardState extends State<NoticePostCard> {
                                   widget.noticeBoardData!.postText ?? "",
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: widget.noticeBoardData!.postText!.length,
-                                  style: Theme.of(context).textTheme.headline3!.copyWith(
+                                  style: GoogleFonts.openSans(
                                     height: 1.5,
                                   ),
                                 ),
@@ -200,7 +185,7 @@ class _NoticePostCardState extends State<NoticePostCard> {
                                             widget.noticeBoardData!.pdfText ?? "",
                                             overflow: TextOverflow.ellipsis,
                                             maxLines: widget.noticeBoardData!.pdfText!.length,
-                                            style: Theme.of(context).textTheme.headline3!.copyWith(
+                                            style: GoogleFonts.openSans(
                                               height: 1.5,
                                               fontWeight: FontWeight.w500
                                             ),

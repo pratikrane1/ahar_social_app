@@ -1,27 +1,17 @@
+import 'package:aharconnect/controller/localization_controller.dart';
+import 'package:aharconnect/data/model/messages.dart';
+import 'package:aharconnect/helper/route_helper.dart';
+import 'package:aharconnect/utils/app_constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:socialrecipe/utils/app_pages.dart';
-import 'package:socialrecipe/utils/app_theme.dart';
-import 'package:socialrecipe/localization/localization.dart';
-import 'package:socialrecipe/screen/bookmark_recipe/repository/bookmark_interface.dart';
-import 'package:socialrecipe/src/models/shopping_item.dart';
-import 'package:socialrecipe/navigation/route_generator.dart';
-import 'package:socialrecipe/providers/auth_provider.dart';
-import 'package:socialrecipe/providers/bookmark_provider.dart';
-import 'package:socialrecipe/providers/message_provider.dart';
-import 'package:socialrecipe/providers/recipe_post_provider.dart';
-import 'package:socialrecipe/providers/settings_provider.dart';
-import 'package:socialrecipe/screen/splash/screens/splash_screen.dart';
-import 'package:socialrecipe/providers/user_image_provider.dart';
-import 'package:socialrecipe/providers/user_provider.dart';
+import 'helper/get_di.dart' as di;
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:provider/provider.dart';
 
-Box? onboardingBox;
 void main() async {
   GoogleFonts.config.allowRuntimeFetching = false;
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,81 +20,100 @@ void main() async {
     DeviceOrientation.portraitDown,
   ]);
   await Firebase.initializeApp();
-  await Hive.initFlutter();
-  Hive.registerAdapter(ShoppingItemAdapter());
-  await Hive.openBox<ShoppingItem>('shoppingItems');
-  onboardingBox = await Hive.openBox('onboarding');
 
   FlutterNativeSplash.remove();
+  // if (Platform.isAndroid) {
+  //   InAppUpdate.checkForUpdate().then((updateInfo) {
+  //     if (updateInfo.updateAvailability == UpdateAvailability.updateAvailable) {
+  //       //Logic to perform an update
+  //       if (updateInfo.immediateUpdateAllowed) {
+  //         // Perform immediate update
+  //         InAppUpdate.performImmediateUpdate().then((appUpdateResult) {
+  //           if (appUpdateResult == AppUpdateResult.success) {
+  //             //App Update successful
+  //             showCustomSnackBar("App Updated.");
+  //           }
+  //         });
+  //       }
+  //     }
+  //   });
+  // }
 
-  runApp(const MyApp());
+  // FirebaseMessaging messaging = FirebaseMessaging.instance;
+  //
+  // NotificationSettings settings = await messaging.requestPermission(
+  //   alert: true,
+  //   announcement: false,
+  //   badge: true,
+  //   carPlay: false,
+  //   criticalAlert: false,
+  //   provisional: false,
+  //   sound: true,
+  // );
+  //
+  // if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+  //   print('User granted permission');
+  // } else if (settings.authorizationStatus == AuthorizationStatus.provisional) {
+  //   print('User granted provisional permission');
+  // } else {
+  //   print('User declined or has not accepted permission');
+  // }
+  //
+  // // await di.init();
+  Map<String, Map<String, String>> _languages = await di.init();
+  String? fcmTitle;
+  // try {
+  //   if (GetPlatform.isMobile) {
+  //     final RemoteMessage? remoteMessage =
+  //     await FirebaseMessaging.instance.getInitialMessage();
+  //     if (remoteMessage != null) {
+  //       fcmTitle = remoteMessage.notification!.title != null ? remoteMessage.notification!.title : null;
+  //       Get.find<NotificationController>().getFcmNotificationTitle(fcmTitle!);
+  //       print(fcmTitle);
+  //     }
+  //     await NotificationHelper.initialize(flutterLocalNotificationsPlugin);
+  //     FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
+  //     // handles
+  //   }
+  // } catch (e) {}
+
+  runApp(MyApp(
+    languages: _languages,fcmTitle: fcmTitle ?? "",
+  ));
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {
+  final Map<String, Map<String, String>> languages;
+  final String fcmTitle;
+  MyApp({
+    required this.languages,
+    required this.fcmTitle,
+  });
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  final _appStateManager = AuthProvider();
-  final _userProvider = UserProvider();
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        Provider<BookmarkInterface>(
-          create: (context) => BookmarkProvider(),
+    // initializeDateFormatting();
+    return GetBuilder<LocalizationController>(builder: (localizeController) {
+      return GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: AppConstants.APP_NAME,
+        navigatorKey: Get.key,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
         ),
-        ChangeNotifierProvider<MessageProvider>(
-          lazy: false,
-          create: (context) => MessageProvider(),
-        ),
-        ChangeNotifierProvider<UserProvider>(
-          lazy: false,
-          create: (context) => _userProvider,
-        ),
-        ChangeNotifierProvider<UserImageProvider>(
-          create: (context) => UserImageProvider(),
-        ),
-        ChangeNotifierProvider<RecipePostProvider>(
-          lazy: false,
-          create: (context) => RecipePostProvider(),
-        ),
-        ChangeNotifierProvider(
-          lazy: false,
-          create: (context) => _appStateManager,
-        ),
-        ChangeNotifierProvider(
-          lazy: false,
-          create: (context) => SettingsProvider(),
-        ),
-      ],
-      child: Consumer<SettingsProvider>(
-        builder: (context, settingsManager, _) {
-          ThemeData theme;
-          if (settingsManager.darkMode) {
-            theme = AppTheme.dark();
-          } else {
-            theme = AppTheme.light();
-          }
-          return GetMaterialApp(
-            supportedLocales: Localization.all,
-            debugShowCheckedModeBanner: false,
-            theme: theme,
-            initialRoute: AppPages.splashPath,
-            onGenerateRoute: RouteGenerator.generateRoute,
-            home: const SplashScreen(),
-          );
-        },
-      ),
-    );
+        locale: localizeController.locale,
+        translations: Messages(languages: languages),
+        fallbackLocale: Locale(AppConstants.languages[0].languageCode,
+            AppConstants.languages[0].countryCode),
+        initialRoute: RouteHelper.getSplashRoute(fcmTitle),
+        getPages: RouteHelper.routes,
+        localizationsDelegates: [
+          GlobalWidgetsLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+      );
+    });
   }
 }

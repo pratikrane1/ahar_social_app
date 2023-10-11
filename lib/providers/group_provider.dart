@@ -4,7 +4,7 @@ import 'package:get/get_connect/http/src/request/request.dart';
 import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:flutter/foundation.dart' as Foundation;
 import 'package:http/http.dart' as Http;
-import 'package:socialrecipe/src/group_model.dart';
+import 'package:aharconnect/src/group_model.dart';
 
 class ApiClient{
   final int timeoutInSeconds = 30;
