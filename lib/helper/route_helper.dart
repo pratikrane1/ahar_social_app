@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:aharconnect/screen/home/screens/home_screen.dart';
+import 'package:aharconnect/screen/bottom%20nav%20bar/bottom_nav.dart';
 import 'package:aharconnect/screen/splash/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -60,7 +60,7 @@ class RouteHelper {
     GetPage(
         name: initial,
         page: () {
-          return HomeScreen();
+          return BottomNavBar();
         }),
     GetPage(
         name: splash,

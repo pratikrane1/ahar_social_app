@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:aharconnect/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 
 class ServeAndCookTimeSection extends StatelessWidget {
@@ -12,8 +11,6 @@ class ServeAndCookTimeSection extends StatelessWidget {
   final String cookTime;
   @override
   Widget build(BuildContext context) {
-    final settingsManager =
-        Provider.of<SettingsProvider>(context, listen: false);
     return SizedBox(
       height: 90,
       child: Column(
@@ -29,9 +26,7 @@ class ServeAndCookTimeSection extends StatelessWidget {
                     'People  ',
                     style: Theme.of(context).textTheme.headline4!.copyWith(
                           fontSize: 14,
-                          color: settingsManager.darkMode
-                              ? Colors.grey
-                              : Colors.grey.shade800,
+                          color: Colors.grey.shade800,
                         ),
                   ),
                   Text(
@@ -49,9 +44,7 @@ class ServeAndCookTimeSection extends StatelessWidget {
                     'Ready In  ',
                     style: Theme.of(context).textTheme.headline4!.copyWith(
                           fontSize: 14,
-                          color: settingsManager.darkMode
-                              ? Colors.grey
-                              : Colors.grey.shade800,
+                          color: Colors.grey.shade800,
                         ),
                   ),
                   Text(

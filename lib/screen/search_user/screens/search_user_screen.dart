@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:aharconnect/utils/constants.dart';
 import 'package:aharconnect/screen/search_user/widgets/user_search_result_list.dart';
-import 'package:aharconnect/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 
 class SearchUserScreen extends StatefulWidget {
@@ -28,9 +27,7 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final settingsManager =
-        Provider.of<SettingsProvider>(context, listen: false);
-    return GestureDetector(
+        return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -72,16 +69,12 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
                                       fontWeight: FontWeight.w600,
                                     ),
                             controller: _searchUserController,
-                            cursorColor: settingsManager.darkMode
-                                ? Colors.white
-                                : Colors.black,
+                            cursorColor: Colors.black,
                             autofocus: false,
                             autocorrect: false,
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
-                              fillColor: settingsManager.darkMode
-                                  ? kGreyColor
-                                  : kGreyColor4,
+                              fillColor: kGreyColor4,
                               filled: true,
                               isCollapsed: true,
                               contentPadding: const EdgeInsets.all(18),
@@ -118,17 +111,13 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
                                 borderRadius: const BorderRadius.all(
                                   Radius.circular(10),
                                 ),
-                                color: settingsManager.darkMode
-                                    ? Colors.white
-                                    : kOrangeColor,
+                                color: kOrangeColor,
                               ),
                               child: Center(
                                 child: Icon(
                                   Icons.search_rounded,
                                   size: 20,
-                                  color: settingsManager.darkMode
-                                      ? kOrangeColor
-                                      : Colors.white,
+                                  color:Colors.white,
                                 ),
                               ),
                             ),

@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:aharconnect/controller/auth_controller.dart';
-import 'package:aharconnect/screen/home/screens/home_screen.dart';
+import 'package:aharconnect/screen/bottom%20nav%20bar/bottom_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:aharconnect/screen/walkthrough/walkthrough.dart';
 import 'package:aharconnect/utils/images.dart';
@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
       var token = Get.find<AuthController>().getUserToken();
       print("Brearer Token: $token");
       Navigator.push(context,
-          MaterialPageRoute(builder: (context) => HomeScreen()));
+          MaterialPageRoute(builder: (context) => BottomNavBar()));
     } else {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => WalkThroughScreen()));    }

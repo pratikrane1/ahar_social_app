@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:aharconnect/utils/constants.dart';
-import 'package:aharconnect/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 
 class StepsPostSection extends StatelessWidget {
@@ -11,9 +10,7 @@ class StepsPostSection extends StatelessWidget {
   final List steps;
   @override
   Widget build(BuildContext context) {
-    final settingsManager =
-        Provider.of<SettingsProvider>(context, listen: false);
-    return Padding(
+        return Padding(
       padding: const EdgeInsets.all(14.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,17 +40,13 @@ class StepsPostSection extends StatelessWidget {
                         borderRadius: const BorderRadius.all(
                           Radius.circular(4),
                         ),
-                        color: settingsManager.darkMode
-                            ? Colors.white
-                            : kOrangeColor,
+                        color: kOrangeColor,
                       ),
                       child: Center(
                         child: Text(
                           '$i',
                           style: TextStyle(
-                            color: settingsManager.darkMode
-                                ? kOrangeColor
-                                : Colors.white,
+                            color: Colors.white,
                             fontSize: 15,
                           ),
                         ),

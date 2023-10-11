@@ -1,7 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:aharconnect/utils/constants.dart';
-import 'package:aharconnect/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
@@ -46,9 +45,7 @@ class _TitleAndDescriptionFormSectionState
 
   @override
   Widget build(BuildContext context) {
-    final settingsManager =
-        Provider.of<SettingsProvider>(context, listen: false);
-    return Form(
+       return Form(
       key: widget.formKey,
       child: Column(
         children: [
@@ -109,7 +106,7 @@ class _TitleAndDescriptionFormSectionState
             obscureText: false,
             decoration: InputDecoration(
               counterText: ' ',
-              fillColor: settingsManager.darkMode ? kGreyColor : kGreyColor4,
+              fillColor:  kGreyColor4,
               filled: true,
               isCollapsed: true,
               contentPadding: const EdgeInsets.all(18),

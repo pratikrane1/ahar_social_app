@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:aharconnect/utils/constants.dart';
-import 'package:aharconnect/src/models/data_class_models/instruction_model.dart';
-import 'package:aharconnect/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 
 class InstructionsSection extends StatelessWidget {
@@ -9,11 +7,10 @@ class InstructionsSection extends StatelessWidget {
     Key? key,
     required this.instructions,
   }) : super(key: key);
-  final List<InstructionModel>? instructions;
+  final instructions;
   @override
   Widget build(BuildContext context) {
-    final settingsManager =
-        Provider.of<SettingsProvider>(context, listen: false);
+
     return Padding(
       padding: const EdgeInsets.all(14.0),
       child: Column(
@@ -44,17 +41,13 @@ class InstructionsSection extends StatelessWidget {
                         borderRadius: const BorderRadius.all(
                           Radius.circular(4),
                         ),
-                        color: settingsManager.darkMode
-                            ? Colors.white
-                            : kOrangeColor,
+                        color: kOrangeColor,
                       ),
                       child: Center(
                         child: Text(
                           '$i',
                           style: TextStyle(
-                            color: settingsManager.darkMode
-                                ? kOrangeColor
-                                : Colors.white,
+                            color: Colors.white,
                             fontSize: 15,
                           ),
                         ),

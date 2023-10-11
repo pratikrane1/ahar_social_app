@@ -9,19 +9,20 @@ import 'package:aharconnect/screen/notification/notification_screens.dart';
 import 'package:aharconnect/utils/dimensions.dart';
 import 'package:aharconnect/utils/images.dart';
 import 'package:aharconnect/utils/theme_colors.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../widget/feed_widget.dart';
 import '../widget/noticeboard_widget.dart';
 
 
-class AllTab extends StatefulWidget {
-  const AllTab({Key? key}) : super(key: key);
+class HomeTab extends StatefulWidget {
+  const HomeTab({Key? key}) : super(key: key);
 
   @override
-  _AllTabState createState() => _AllTabState();
+  _HomeTabState createState() => _HomeTabState();
 }
 
-class _AllTabState extends State<AllTab> {
+class _HomeTabState extends State<HomeTab> {
   bool loading = true;
   final ScrollController _scrollController = ScrollController();
 
@@ -73,28 +74,28 @@ class _AllTabState extends State<AllTab> {
                               const SizedBox(width: 5,),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
+                                children: [
                                   Text(
                                     'ahar'.tr,
-                                    style: TextStyle(
+                                    style: GoogleFonts.openSans(
                                         fontSize: 16,
-                                        fontFamily: 'Poppins-Bold',
-                                        fontWeight: FontWeight.w800),
+                                        fontWeight: FontWeight.w800,
+                                    color: ThemeColors.blackColor),
                                   ),
                                   Text(
                                     'connect'.tr,
-                                    style: TextStyle(
+                                    style: GoogleFonts.openSans(
                                         fontSize: 16,
-                                        fontFamily: 'Poppins-Light',
-                                        fontWeight: FontWeight.w400
+                                        fontWeight: FontWeight.w400,
+                                        color: ThemeColors.blackColor
                                     ),
                                   ),
                                   Text(
                                     'powered_by_wAAYU'.tr,
-                                    style: TextStyle(
+                                    style: GoogleFonts.openSans(
                                         fontSize: 12,
-                                        fontFamily: 'Poppins-Light',
-                                        fontWeight: FontWeight.w400
+                                        fontWeight: FontWeight.w400,
+                                        color: ThemeColors.blackColor
                                     ),
                                   ),
                                 ],
@@ -104,39 +105,34 @@ class _AllTabState extends State<AllTab> {
                         ),
                         Row(
                           children: [
-                            // InkWell(
-                            //   onTap: (){},
-                            //   child: Icon(Icons.search,size: 25,),
-                            // ),
-                            // SizedBox(width: 18,),
                             InkWell(
                               onTap: (){
                                 Navigator.push(context, MaterialPageRoute(builder: (context)=>NotificationScreen()));
                               },
-                              child: Icon(Icons.notifications,size: 25,),
+                              child: const Icon(Icons.notifications,size: 25,color: ThemeColors.blackColor,),
                             ),
-                            SizedBox(width: 8,),
-
-                            Padding(
-                              padding: const EdgeInsets.only(right: 20.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  const SizedBox(width: 10),
-                                  IconButton(
-                                    // icon: ImageIcon(AssetImage('assets/chat.png')),
-                                    icon: const Icon(
-                                      Icons.mark_chat_unread_outlined,
-                                      size: 25,
-                                    ),
-                                    onPressed: () {
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>ContactsListScreen(),));
-                                    },
-                                    color: ThemeColors.blackColor,
-                                  ),
-                                ],
-                              ),
-                            ),
+                            // const SizedBox(width: 8,),
+                            //
+                            // Padding(
+                            //   padding: const EdgeInsets.only(right: 20.0),
+                            //   child: Row(
+                            //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            //     children: [
+                            //       const SizedBox(width: 10),
+                            //       IconButton(
+                            //         // icon: ImageIcon(AssetImage('assets/chat.png')),
+                            //         icon: const Icon(
+                            //           Icons.mark_chat_unread_outlined,
+                            //           size: 25,
+                            //         ),
+                            //         onPressed: () {
+                            //           Navigator.push(context, MaterialPageRoute(builder: (context)=>ContactsListScreen(),));
+                            //         },
+                            //         color: ThemeColors.blackColor,
+                            //       ),
+                            //     ],
+                            //   ),
+                            // ),
                           ],
                         ),
                       ],

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:aharconnect/utils/constants.dart';
-import 'package:aharconnect/providers/settings_provider.dart';
 import 'package:aharconnect/screen/search_recipe/widgets/custom_drop_down.dart';
 import 'package:provider/provider.dart';
 
@@ -44,8 +43,6 @@ class AddFieldsSection extends StatefulWidget {
 class _AddFieldsSectionState extends State<AddFieldsSection> {
   @override
   Widget build(BuildContext context) {
-    final settingsManager =
-        Provider.of<SettingsProvider>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.all(14.0).copyWith(right: 0),
       child: Form(
@@ -130,9 +127,7 @@ class _AddFieldsSectionState extends State<AddFieldsSection> {
                             textInputAction: TextInputAction.done,
                             decoration: InputDecoration(
                               counterText: ' ',
-                              fillColor: settingsManager.darkMode
-                                  ? kGreyColor
-                                  : kGreyColor4,
+                              fillColor: kGreyColor4,
                               filled: true,
                               isCollapsed: true,
                               contentPadding: const EdgeInsets.all(18),
@@ -156,11 +151,9 @@ class _AddFieldsSectionState extends State<AddFieldsSection> {
                         ),
                         PopupMenuButton(
                           splashRadius: 20,
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.more_vert,
-                            color: settingsManager.darkMode
-                                ? Colors.white
-                                : Colors.black,
+                            color: Colors.black,
                             size: 22,
                           ),
                           onSelected: (String? value) {

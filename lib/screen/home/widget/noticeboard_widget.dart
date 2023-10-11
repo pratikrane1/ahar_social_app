@@ -1,14 +1,12 @@
+import 'package:aharconnect/screen/bottom%20nav%20bar/bottom_nav.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import 'package:aharconnect/screen/home/screens/home_screen.dart';
 import 'package:aharconnect/static_data.dart';
 import 'package:aharconnect/utils/dimensions.dart';
 import 'package:aharconnect/utils/theme_colors.dart';
 import 'package:aharconnect/widget/custom_image.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../utils/images.dart';
 
 
 class NoticeboardSlider extends StatefulWidget {
@@ -32,19 +30,6 @@ class _NoticeboardSliderState extends State<NoticeboardSlider>  {
     // Get.find<VideoController>().getVideoList();
   }
 
-  List<Widget> indicators(imagesLength,currentIndex) {
-    return List<Widget>.generate(imagesLength, (index) {
-      return Container(
-        margin: EdgeInsets.all(3),
-        width: 10,
-        height: 10,
-        decoration: BoxDecoration(
-            color: currentIndex == index ? Colors.black : Colors.black26,
-            shape: BoxShape.circle),
-      );
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
 
@@ -60,24 +45,22 @@ class _NoticeboardSliderState extends State<NoticeboardSlider>  {
               children:  [
                 Text(
                   "notice_board".tr,
-                  style:TextStyle(
+                  style:GoogleFonts.openSans(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    fontFamily: 'Montserrat',
                   ),
                 ),
                 InkWell(
                   onTap: (){
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>
-                        HomeScreen(index: 1,)));
+                        BottomNavBar(index: 1,)));
                   },
                   child: Text(
                     "see_all",
-                    style:TextStyle(
+                    style:GoogleFonts.openSans(
                       fontSize: 13,
                       fontWeight: FontWeight.normal,
                       color: ThemeColors.primaryColor,
-                      fontFamily: 'Montserrat',
                     ),
                   ),
                 ),
@@ -138,10 +121,8 @@ class _NoticeboardSliderState extends State<NoticeboardSlider>  {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(Data().noticeBoardList![index].zoneName ?? "",
-                                          style: TextStyle(
+                                          style: GoogleFonts.openSans(
                                               fontSize: Dimensions.fontSizeSmall,
-                                              fontFamily:
-                                              'Montserrat',
                                               fontWeight:
                                               FontWeight.w600,
                                               color: ThemeColors
@@ -156,10 +137,8 @@ class _NoticeboardSliderState extends State<NoticeboardSlider>  {
                           Text(Data().noticeBoardList![index].postText ?? "",
                               overflow: TextOverflow.ellipsis,
                               maxLines: 5,
-                              style: TextStyle(
+                              style: GoogleFonts.openSans(
                               fontSize: Dimensions.fontSizeSmall,
-                              fontFamily:
-                              'Montserrat',
                               fontWeight:
                               FontWeight.normal,
                               color: ThemeColors
@@ -190,7 +169,7 @@ class _NoticeboardSliderState extends State<NoticeboardSlider>  {
                                     ),
                                   ],
                                 ),
-                                Icon(Icons.download)
+                                const Icon(Icons.download)
                               ],
                             ),
                           )  ,

@@ -5,7 +5,7 @@ import 'dart:async';
 import 'package:aharconnect/controller/auth_controller.dart';
 import 'package:aharconnect/widget/custom_snackbar.dart';
 import 'package:flutter/material.dart';
-import 'package:aharconnect/screen/home/screens/home_screen.dart';
+import 'package:aharconnect/screen/bottom%20nav%20bar/bottom_nav.dart';
 import 'package:aharconnect/utils/images.dart';
 import 'package:aharconnect/utils/theme_colors.dart';
 import 'package:aharconnect/widget/app_button.dart';
@@ -104,7 +104,7 @@ class _VerifyNumberScreenState extends State<VerifyNumberScreen> {
                         children: [
 
                           Text(
-                            'welcome_back,'.tr,
+                            'welcome_back'.tr,
                             style: GoogleFonts.openSans(
                               fontSize: 34,
                               fontWeight: FontWeight.bold,
@@ -292,7 +292,7 @@ class _VerifyNumberScreenState extends State<VerifyNumberScreen> {
         Timer.periodic(const Duration(seconds: 2), (timer) {
           // Get.offNamed(RouteHelper.bottomNav);
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>
-              HomeScreen()));
+              BottomNavBar()));
           timer.cancel();
         });
 

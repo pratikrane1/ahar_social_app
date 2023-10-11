@@ -1,8 +1,7 @@
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:aharconnect/src/models/recipe_post_model.dart';
-import 'package:aharconnect/utils/app_pages.dart';
+
 
 
 class DynamicLinkService {
@@ -86,11 +85,11 @@ class DynamicLinkService {
       //     data);
       var post;
       print(post);
-      Navigator.pushNamed(
-        context,
-        AppPages.recipePostDetails,
-        arguments: post,
-      );
+      // Navigator.pushNamed(
+      //   context,
+      //   AppPages.recipePostDetails,
+      //   arguments: post,
+      // );
 
       handleDynamicLink(id,dynamicLinkData.link.path);
     }).onError((e) {
@@ -114,11 +113,11 @@ class DynamicLinkService {
       //     data);
       var post;
       print(post);
-      Navigator.pushNamed(
-        context,
-        AppPages.recipePostDetails,
-        arguments: post,
-      );
+      // Navigator.pushNamed(
+      //   context,
+      //   AppPages.recipePostDetails,
+      //   arguments: post,
+      // );
 
       await handleDynamicLink(id, deepLink.path);
     }

@@ -81,7 +81,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Welcome back, ',
+                      'welcome_back'.tr,
                       style: GoogleFonts.openSans(
                           fontSize: 34,
                           fontWeight: FontWeight.bold
@@ -89,7 +89,7 @@ class _LogInScreenState extends State<LogInScreen> {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      'Please login to your account to continue',
+                      'please_login_to_your_account_to_continue'.tr,
                       style: GoogleFonts.openSans(
                           fontSize: 14,
                           color: ThemeColors.greyTextColor,
@@ -99,7 +99,7 @@ class _LogInScreenState extends State<LogInScreen> {
                     const SizedBox(height: 50),
 
                     Text(
-                      'Mobile No.',
+                      'mobile_no'.tr,
                       style: GoogleFonts.openSans(
                         fontSize: 14,
                       ),
@@ -116,7 +116,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       child: TextFormField(
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return 'Phone Number Required';
+                            return 'phone_number_required'.tr;
                           }
                           return null;
                         },
@@ -139,7 +139,7 @@ class _LogInScreenState extends State<LogInScreen> {
                           filled: true,
                           // isCollapsed: true,
                           contentPadding: const EdgeInsets.all(20),
-                          hintText: 'Your Mobile Number',
+                          hintText: 'your_mobile_number'.tr,
                           hintStyle: GoogleFonts.openSans(
                             fontSize: 17,
                           ),
@@ -185,7 +185,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         height: 60,
                         width: MediaQuery.of(context).size.width,
                         text: Text(
-                          'Next',
+                          'next'.tr,
                           style: GoogleFonts.openSans(
                               color: Colors.white,
                               fontSize: 18,

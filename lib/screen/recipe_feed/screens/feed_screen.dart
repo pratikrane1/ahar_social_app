@@ -2,12 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:aharconnect/screen/notification/notification_screens.dart';
 import 'package:aharconnect/utils/constants.dart';
-import 'package:aharconnect/src/models/user_model.dart';
 import 'package:aharconnect/screen/recipe_feed/screens/activity_tab.dart';
-import 'package:aharconnect/providers/auth_provider.dart';
-import 'package:aharconnect/providers/settings_provider.dart';
-import 'package:aharconnect/providers/user_provider.dart';
-import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:aharconnect/utils/images.dart';
 
@@ -38,12 +33,7 @@ class _FeedScreenState extends State<FeedScreen>
 
   @override
   Widget build(BuildContext context) {
-    UserModel? user = Provider.of<UserProvider>(context, listen: false).getUser;
-    final appProvider = Provider.of<AuthProvider>(context, listen: false);
-    final settingsManager =
-        Provider.of<SettingsProvider>(context, listen: false);
-
-    return Theme(
+        return Theme(
       data: Theme.of(context).copyWith(
         useMaterial3: false,
       ),
@@ -106,94 +96,94 @@ class _FeedScreenState extends State<FeedScreen>
                             ),
                             SizedBox(width: 8,),
 
-                            Padding(
-                              padding: const EdgeInsets.only(right: 20.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  const SizedBox(width: 10),
-                                  GestureDetector(
-                                    onTap: () {
-                                      // appProvider.gotToTab(3);
-                                      // Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileScreen(
-                                      //   userId: user!.id,
-                                      // ),));
-                                    },
-                                    child: SizedBox(
-                                      width: 35,
-                                      height: 35,
-                                      child: user == null
-                                          ? const Center(
-                                              child: LinearProgressIndicator(
-                                                color: kOrangeColor,
-                                                backgroundColor: Colors.white,
-                                              ),
-                                            )
-                                          : user.photoUrl == ""
-                                              ? SizedBox(
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(100),
-                                                    child: Container(
-                                                      decoration:
-                                                          const BoxDecoration(
-                                                        image: DecorationImage(
-                                                          image: AssetImage(
-                                                              'assets/default_image.jpg'),
-                                                          fit: BoxFit.cover,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                )
-                                              : SizedBox(
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(100),
-                                                    child: Container(
-                                                      decoration: BoxDecoration(
-                                                          border: Border.all(
-                                                        color: settingsManager
-                                                                .darkMode
-                                                            ? kBlackColor
-                                                            : Colors.grey.shade400,
-                                                        width: 1.5,
-                                                      )),
-                                                      child: CachedNetworkImage(
-                                                        imageUrl: user.photoUrl,
-                                                        fit: BoxFit.cover,
-                                                        errorWidget:
-                                                            (context, url, error) =>
-                                                                const Center(
-                                                          child: Icon(
-                                                              Icons
-                                                                  .circle),
-                                                        ),
-                                                        placeholder:
-                                                            (context, url) =>
-                                                                Shimmer.fromColors(
-                                                          baseColor:
-                                                              Colors.grey.shade400,
-                                                          highlightColor:
-                                                              Colors.grey.shade300,
-                                                          child: SizedBox(
-                                                              height: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .height /
-                                                                  3.3,
-                                                              width:
-                                                                  double.infinity),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                            // Padding(
+                            //   padding: const EdgeInsets.only(right: 20.0),
+                            //   child: Row(
+                            //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            //     children: [
+                            //       const SizedBox(width: 10),
+                            //       GestureDetector(
+                            //         onTap: () {
+                            //           // appProvider.gotToTab(3);
+                            //           // Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileScreen(
+                            //           //   userId: user!.id,
+                            //           // ),));
+                            //         },
+                            //         child: SizedBox(
+                            //           width: 35,
+                            //           height: 35,
+                            //           child: user == null
+                            //               ? const Center(
+                            //                   child: LinearProgressIndicator(
+                            //                     color: kOrangeColor,
+                            //                     backgroundColor: Colors.white,
+                            //                   ),
+                            //                 )
+                            //               : user.photoUrl == ""
+                            //                   ? SizedBox(
+                            //                       child: ClipRRect(
+                            //                         borderRadius:
+                            //                             BorderRadius.circular(100),
+                            //                         child: Container(
+                            //                           decoration:
+                            //                               const BoxDecoration(
+                            //                             image: DecorationImage(
+                            //                               image: AssetImage(
+                            //                                   'assets/default_image.jpg'),
+                            //                               fit: BoxFit.cover,
+                            //                             ),
+                            //                           ),
+                            //                         ),
+                            //                       ),
+                            //                     )
+                            //                   : SizedBox(
+                            //                       child: ClipRRect(
+                            //                         borderRadius:
+                            //                             BorderRadius.circular(100),
+                            //                         child: Container(
+                            //                           decoration: BoxDecoration(
+                            //                               border: Border.all(
+                            //                             color: settingsManager
+                            //                                     .darkMode
+                            //                                 ? kBlackColor
+                            //                                 : Colors.grey.shade400,
+                            //                             width: 1.5,
+                            //                           )),
+                            //                           child: CachedNetworkImage(
+                            //                             imageUrl: user.photoUrl,
+                            //                             fit: BoxFit.cover,
+                            //                             errorWidget:
+                            //                                 (context, url, error) =>
+                            //                                     const Center(
+                            //                               child: Icon(
+                            //                                   Icons
+                            //                                       .circle),
+                            //                             ),
+                            //                             placeholder:
+                            //                                 (context, url) =>
+                            //                                     Shimmer.fromColors(
+                            //                               baseColor:
+                            //                                   Colors.grey.shade400,
+                            //                               highlightColor:
+                            //                                   Colors.grey.shade300,
+                            //                               child: SizedBox(
+                            //                                   height: MediaQuery.of(
+                            //                                               context)
+                            //                                           .size
+                            //                                           .height /
+                            //                                       3.3,
+                            //                                   width:
+                            //                                       double.infinity),
+                            //                             ),
+                            //                           ),
+                            //                         ),
+                            //                       ),
+                            //                     ),
+                            //         ),
+                            //       ),
+                            //     ],
+                            //   ),
+                            // ),
                           ],
                         ),
                       ],

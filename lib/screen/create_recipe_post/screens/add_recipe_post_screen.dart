@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:aharconnect/utils/app_pages.dart';
 import 'package:aharconnect/utils/constants.dart';
-import 'package:aharconnect/providers/settings_provider.dart';
-import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/theme_colors.dart';
@@ -13,7 +10,6 @@ class AddRecipePostScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final settingsProvider = Provider.of<SettingsProvider>(context);
     return Scaffold(
       body: SafeArea(
           child: Padding(
@@ -40,11 +36,11 @@ class AddRecipePostScreen extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Material(
-                color: settingsProvider.darkMode ? Colors.white : ThemeColors.buttonColor,
+                color: ThemeColors.buttonColor,
                 elevation: 4,
                 child: InkWell(
                   onTap: () {
-                    Navigator.pushNamed(context, AppPages.createPostRecipePath);
+                    // Navigator.pushNamed(context, AppPages.createPostRecipePath);
                   },
                   child: Ink(
 
@@ -65,9 +61,7 @@ class AddRecipePostScreen extends StatelessWidget {
                               Theme.of(context).textTheme.headline2!.copyWith(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 16,
-                                    color: settingsProvider.darkMode
-                                        ? kOrangeColor
-                                        : Colors.white,
+                                    color: Colors.white,
                                   ),
                         ),
                       ],

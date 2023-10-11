@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:aharconnect/src/models/data_class_models/ingredient_model.dart';
 
 class IngredientsSection extends StatelessWidget {
   const IngredientsSection({
     Key? key,
     required this.ingredients,
   }) : super(key: key);
-  final List<IngredientModel> ingredients;
+  final  ingredients;
   @override
   Widget build(BuildContext context) {
     return Padding(

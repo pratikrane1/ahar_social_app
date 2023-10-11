@@ -1,12 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:aharconnect/static_data.dart';
-import 'package:aharconnect/utils/constants.dart';
-import 'package:aharconnect/src/models/recipe_post_model.dart';
-import 'package:aharconnect/src/models/user_model.dart';
 import 'package:aharconnect/screen/recipe_feed/widgets/recipe_post_card.dart';
-import 'package:aharconnect/providers/user_provider.dart';
-import 'package:provider/provider.dart';
 import 'package:aharconnect/utils/theme_colors.dart';
 
 class ActivityTab extends StatefulWidget {
@@ -30,7 +25,6 @@ class _ActivityTabState extends State<ActivityTab>
           .collection('posts')
           // .where('uid', whereIn: widget.user!.following)
           .snapshots();
-      Provider.of<UserProvider>(context, listen: false).refreshUser();
       setState(() {});
     });
   }

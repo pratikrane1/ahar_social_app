@@ -22,7 +22,7 @@ class BannerView extends StatelessWidget {
             ? 500
             : MediaQuery.of(context).size.width * 0.45,
         padding:
-        EdgeInsets.only(top: Dimensions.PADDING_SIZE_DEFAULT),
+        const EdgeInsets.only(top: Dimensions.PADDING_SIZE_DEFAULT),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -55,20 +55,6 @@ class BannerView extends StatelessWidget {
                 },
               ),
             ),
-
-            // const SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: bannerList.map((bnr) {
-            //     int index = bannerList.indexOf(bnr);
-            //     return TabPageSelectorIndicator(
-            //       backgroundColor: index == bannerController.currentIndex ? Theme.of(context).primaryColor
-            //           : Theme.of(context).primaryColor.withOpacity(0.5),
-            //       borderColor: Theme.of(context).backgroundColor,
-            //       size: index == bannerController.currentIndex ? 10 : 7,
-            //     );
-            //   }).toList(),
-            // ),
           ],
         ));
   }

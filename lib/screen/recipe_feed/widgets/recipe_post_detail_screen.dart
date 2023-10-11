@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:aharconnect/src/models/recipe_post_model.dart';
 
 
 // ignore: must_be_immutable
@@ -8,7 +7,7 @@ class RecipePostDetailScreen extends StatefulWidget {
     Key? key,
     required this.recipePost,
   }) : super(key: key);
-  RecipePostModel recipePost;
+  var recipePost;
   @override
   State<RecipePostDetailScreen> createState() => _RecipePostDetailScreenState();
 }

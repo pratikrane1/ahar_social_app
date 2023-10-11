@@ -23,9 +23,9 @@
   "email_sent":"Email sent",
   "error":"Error",
   "send_email":"Send Email",
-  "welcome_back":"Welcome back",
-  "please_login _to_your_account_to_continue":"Please login to your account to continue",
-  "mobile_no":"Mobile No",
+  "welcome_back":"Welcome back,",
+  "please_login_to_your_account_to_continue":"Please login to your account to continue",
+  "mobile_no":"Mobile Number",
   "OTP_Code":"OTP Code",
   "completed":"Completed",
   "login":"Login",
@@ -61,13 +61,12 @@
   "take_a_photo":"Take a photo",
   "choose_from_gallery":"Choose from Gallery",
   "Post":"Post",
-  "jakob_curtis":"Jakob Curtis"
-
-
-
-
-
-
-
-
+  "jakob_curtis":"Jakob Curtis",
+  "please_enter_10_digit_number": "Please enter 10 digit number.",
+  "please_enter_valid_number": "Please enter valid number.",
+  "please_enter_phone_number": "Please enter phone number.",
+  "dit_not_received_the_otp" : "Did not received the code.",
+  "resend": "Resend",
+  "please_enter_4_digit_otp": "Please enter 4 digit OTP.",
+  "please_enter_otp": "Please enter otp."
 }

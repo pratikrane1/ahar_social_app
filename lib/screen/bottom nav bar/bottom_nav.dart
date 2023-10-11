@@ -10,17 +10,17 @@ import 'package:aharconnect/screen/profile/profile.dart';
 import 'package:aharconnect/utils/theme_colors.dart';
 
 
-class HomeScreen extends StatefulWidget {
-  HomeScreen({
+class BottomNavBar extends StatefulWidget {
+  BottomNavBar({
     Key? key,
     this.index
   }) : super(key: key);
   int? index;
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<BottomNavBar> createState() => _BottomNavBarState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _BottomNavBarState extends State<BottomNavBar> {
   PageController? _pageController;
   int _pageIndex = 0;
   List<Widget>? _screens;
@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
     DynamicLinkService.initDynamicLinks(context);
     _pageController = PageController(initialPage: widget.index != null ? widget.index!.toInt() : 0);
     _screens = [
-      const AllTab(),
+      const HomeTab(),
       const ZoneScreen(),
       const AddRecipePostScreen(),
       const GroupListScreen(),

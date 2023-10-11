@@ -1,11 +1,6 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:aharconnect/utils/constants.dart';
-import 'package:aharconnect/src/models/user_model.dart';
-import 'package:aharconnect/providers/recipe_post_provider.dart';
-import 'package:aharconnect/providers/settings_provider.dart';
-import 'package:aharconnect/providers/user_image_provider.dart';
-import 'package:aharconnect/providers/user_provider.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -35,70 +30,68 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
   //
   Uint8List? _imageFile;
   //
-  Future<void> publishRecipePost({
-    required String uid,
-    required String userName,
-    required String userEmail,
-    required String profImage,
-  }) async {
-    final settingsManager =
-        Provider.of<SettingsProvider>(context, listen: false);
-    final navigator = Navigator.of(context);
-    setState(() {
-      _isLoading = true;
-    });
-
-    try {
-      //
-      String? result = await RecipePostProvider().uploadRecipePost(
-        uid: uid,
-        userName: userName,
-        userEmail: userEmail,
-        imageFile: _imageFile!,
-        profImage: profImage,
-        title: _titleController.text,
-        description: _descriptionController.text,
-        serves: servesValue ?? '',
-        cookTime: _cookTimeController.text,
-        ingredients: _ingredientControllersList.map((element) {
-          return element.text;
-        }).toList(),
-        steps: _instructionsControllersList.map((e) => e.text).toList(),
-      );
-      if (result == null) {
-        setState(() {
-          _isLoading = false;
-        });
-        navigator.pop();
-      }
-      FocusManager.instance.primaryFocus?.unfocus();
-      Get.snackbar(
-        '✅',
-        'post_published'.tr,
-        snackPosition: SnackPosition.TOP,
-        forwardAnimationCurve: Curves.elasticInOut,
-        reverseAnimationCurve: Curves.easeOut,
-        colorText: settingsManager.darkMode ? Colors.white : Colors.black,
-      );
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-  }
+  // Future<void> publishRecipePost({
+  //   required String uid,
+  //   required String userName,
+  //   required String userEmail,
+  //   required String profImage,
+  // }) async {
+  //   final navigator = Navigator.of(context);
+  //   setState(() {
+  //     _isLoading = true;
+  //   });
+  //
+  //   try {
+  //     //
+  //     String? result = await RecipePostProvider().uploadRecipePost(
+  //       uid: uid,
+  //       userName: userName,
+  //       userEmail: userEmail,
+  //       imageFile: _imageFile!,
+  //       profImage: profImage,
+  //       title: _titleController.text,
+  //       description: _descriptionController.text,
+  //       serves: servesValue ?? '',
+  //       cookTime: _cookTimeController.text,
+  //       ingredients: _ingredientControllersList.map((element) {
+  //         return element.text;
+  //       }).toList(),
+  //       steps: _instructionsControllersList.map((e) => e.text).toList(),
+  //     );
+  //     if (result == null) {
+  //       setState(() {
+  //         _isLoading = false;
+  //       });
+  //       navigator.pop();
+  //     }
+  //     FocusManager.instance.primaryFocus?.unfocus();
+  //     Get.snackbar(
+  //       '✅',
+  //       'post_published'.tr,
+  //       snackPosition: SnackPosition.TOP,
+  //       forwardAnimationCurve: Curves.elasticInOut,
+  //       reverseAnimationCurve: Curves.easeOut,
+  //       colorText: settingsManager.darkMode ? Colors.white : Colors.black,
+  //     );
+  //   } catch (e) {
+  //     debugPrint(e.toString());
+  //   }
+  // }
 
   //
   void _selectAnImageDialog(BuildContext context) async {
     () => FocusManager.instance.primaryFocus?.unfocus();
-    final settingsManager =
-        Provider.of<SettingsProvider>(context, listen: false);
+    // final settingsManager =
+        // Provider.of<SettingsProvider>(context, listen: false);
     return showDialog(
       context: context,
       builder: (context) {
-        final imageProvider =
-            Provider.of<UserImageProvider>(context, listen: false);
+        // final imageProvider =
+        //     Provider.of<UserImageProvider>(context, listen: false);
         return SimpleDialog(
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.elliptical(15, 10))),
-          backgroundColor: settingsManager.darkMode ? kGreyColor : Colors.white,
+          backgroundColor: Colors.white,
           title:  Center(
             child: Text(
               'select_an_image'.tr,
@@ -117,17 +110,17 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
                 ),
                 onPressed: () async {
                   Navigator.pop(context);
-                  final result =
-                      await imageProvider.pickAnImage(ImageSource.camera);
+                  // final result =
+                  //     await imageProvider.pickAnImage(ImageSource.camera);
 
-                  result.fold((l) {
-                    setState(() {
-                      _imageFile = l;
-                    });
-                  }, (r) {
-                    // Do nothing.
-                    debugPrint(result.toString());
-                  });
+                  // result.fold((l) {
+                  //   setState(() {
+                  //     _imageFile = l;
+                  //   });
+                  // }, (r) {
+                  //   // Do nothing.
+                  //   debugPrint(result.toString());
+                  // });
                 }),
             SimpleDialogOption(
                 child: Text(
@@ -138,17 +131,17 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
                 ),
                 onPressed: () async {
                   Navigator.pop(context);
-                  final result =
-                      await imageProvider.pickAnImage(ImageSource.gallery);
-
-                  result.fold((l) {
-                    setState(() {
-                      _imageFile = l;
-                    });
-                  }, (r) {
-                    // Do nothing.
-                    debugPrint(result.toString());
-                  });
+                  // final result =
+                  //     await imageProvider.pickAnImage(ImageSource.gallery);
+                  //
+                  // result.fold((l) {
+                  //   setState(() {
+                  //     _imageFile = l;
+                  //   });
+                  // }, (r) {
+                  //   // Do nothing.
+                  //   debugPrint(result.toString());
+                  // });
                 }),
             Padding(
               padding: const EdgeInsets.all(20).copyWith(bottom: 0),
@@ -195,13 +188,13 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
   final GlobalKey<FormState> _formKey2 = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    final settingsManager =
-        Provider.of<SettingsProvider>(context, listen: false);
-    final userProvider = Provider.of<UserProvider>(context);
-    UserModel? user;
-    if (userProvider.getUser != null) {
-      user = userProvider.getUser;
-    }
+    // final settingsManager =
+    //     Provider.of<SettingsProvider>(context, listen: false);
+    // final userProvider = Provider.of<UserProvider>(context);
+    // UserModel? user;
+    // if (userProvider.getUser != null) {
+    //   user = userProvider.getUser;
+    // }
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Theme(
@@ -224,7 +217,7 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
               },
               icon: Icon(
                 Icons.clear,
-                color: settingsManager.darkMode ? Colors.white : Colors.black,
+                color: Colors.black,
               ),
             ),
             actions: [
@@ -256,9 +249,7 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
                       child: Ink(
                         width: 95,
                         decoration: BoxDecoration(
-                            color: settingsManager.darkMode
-                                ? Colors.white
-                                : ThemeColors.buttonColor,
+                            color: ThemeColors.buttonColor,
                             borderRadius: const BorderRadius.all(
                               Radius.circular(10),
                             )),
@@ -269,9 +260,7 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
                                     fontSize: 19,
                                     fontFamily: 'Poppins-Regular',
                                     fontWeight: FontWeight.normal,
-                                color: settingsManager.darkMode
-                                    ? kOrangeColor
-                                    : Colors.white),
+                                color: Colors.white),
                           ),
                         ),
                       ),
@@ -334,9 +323,7 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
                                           .copyWith(
                                             fontWeight: FontWeight.normal,
                                             fontSize: 18,
-                                            color: settingsManager.darkMode
-                                                ? Colors.white
-                                                : const Color.fromARGB(
+                                            color: const Color.fromARGB(
                                                     255, 253, 253, 253),
                                           ),
                                     ),
@@ -382,7 +369,7 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
                       obscureText: false,
                       decoration: InputDecoration(
                         counterText: ' ',
-                        fillColor: settingsManager.darkMode ? kGreyColor : Colors.white,
+                        fillColor:  Colors.white,
                         filled: true,
                         isCollapsed: true,
                         contentPadding: const EdgeInsets.all(18),
@@ -418,9 +405,7 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
                 right: 0,
                 child: _isLoading == true
                     ? LinearProgressIndicator(
-                        backgroundColor: settingsManager.darkMode
-                            ? Colors.white
-                            : Colors.grey.shade300,
+                        backgroundColor:Colors.grey.shade300,
                       )
                     : const Padding(
                         padding: EdgeInsets.only(top: 4),

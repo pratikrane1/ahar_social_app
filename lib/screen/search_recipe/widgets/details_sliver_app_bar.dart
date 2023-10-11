@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:aharconnect/utils/constants.dart';
-import 'package:aharconnect/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 
 class DetailsSliverAppBar extends StatelessWidget {
@@ -12,10 +11,9 @@ class DetailsSliverAppBar extends StatelessWidget {
   final String imgUrl;
   @override
   Widget build(BuildContext context) {
-    final settingsManager =
-        Provider.of<SettingsProvider>(context, listen: false);
+
     return SliverAppBar(
-      backgroundColor: settingsManager.darkMode ? kBlackColor : Colors.white,
+      backgroundColor:  Colors.white,
       stretch: true,
       pinned: true,
       floating: false,

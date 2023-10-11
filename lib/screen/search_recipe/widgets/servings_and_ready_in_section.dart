@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:aharconnect/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 
 class ServingsAndReadyInSection extends StatelessWidget {
@@ -10,9 +9,7 @@ class ServingsAndReadyInSection extends StatelessWidget {
   final int servings;
   @override
   Widget build(BuildContext context) {
-    final settingsManager =
-        Provider.of<SettingsProvider>(context, listen: false);
-    return SizedBox(
+     return SizedBox(
       height: 90,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -27,9 +24,7 @@ class ServingsAndReadyInSection extends StatelessWidget {
                     'Servings  ',
                     style: Theme.of(context).textTheme.headline4!.copyWith(
                           fontSize: 14,
-                          color: settingsManager.darkMode
-                              ? Colors.grey
-                              : Colors.grey.shade800,
+                          color: Colors.grey.shade800,
                         ),
                   ),
                   Text(
@@ -47,9 +42,7 @@ class ServingsAndReadyInSection extends StatelessWidget {
                     'Ready In  ',
                     style: Theme.of(context).textTheme.headline4!.copyWith(
                           fontSize: 14,
-                          color: settingsManager.darkMode
-                              ? Colors.grey
-                              : Colors.grey.shade800,
+                          color: Colors.grey.shade800,
                         ),
                   ),
                   Text(

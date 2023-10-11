@@ -1,11 +1,5 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dotted_line/dotted_line.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:aharconnect/providers/settings_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:aharconnect/utils/theme_colors.dart';
 
 // ignore: must_be_immutable
@@ -41,9 +35,6 @@ class _GroupMemberWidgetState extends State<GroupMemberWidget> {
                   physics: const BouncingScrollPhysics(),
                   itemCount: 10,
                   itemBuilder: (context, index) {
-                    // final contactUser =
-                    // UserModel.fromSnapshot(contactUsersList[index]);
-                    // getContactData(contactUser.id);
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
@@ -141,13 +132,6 @@ class _GroupMemberWidgetState extends State<GroupMemberWidget> {
                         );
                       },
                     ),
-                  );
-                },
-              ),
-            ],
-          ),
-        )
-
-    );
-  }
+                  )])));
+                }
 }

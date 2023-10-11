@@ -1,11 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:aharconnect/src/models/user_model.dart';
-import 'package:aharconnect/providers/recipe_post_provider.dart';
-import 'package:aharconnect/providers/settings_provider.dart';
-import 'package:aharconnect/providers/user_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:aharconnect/utils/theme_colors.dart';
 

@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:aharconnect/static_data.dart';
-import 'package:aharconnect/providers/settings_provider.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:aharconnect/utils/theme_colors.dart';
@@ -20,18 +19,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
   String lastMessage = '';
   TextEditingController _phoneController= TextEditingController();
 
-  getContactData(String contactId) {
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .collection('contacts')
-        .doc(contactId)
-        .collection('messages')
-        .snapshots()
-        .listen((event) {
-      lastMessage = event.docs.last['messageText'];
-    });
-  }
 
   @override
   void dispose() {
@@ -41,10 +28,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<SettingsProvider>(context, listen: false);
-    final settingsManager =
-    Provider.of<SettingsProvider>(context, listen: false);
-    return Scaffold(
+        return Scaffold(
         appBar: AppBar(
           leading: IconButton(
             splashRadius: 20,
