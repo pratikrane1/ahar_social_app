@@ -58,8 +58,8 @@ class _FeedSliderState extends State<FeedSlider>  {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children:  [
-                const Text(
-                  "Feed",
+                 Text(
+                  "feed".tr,
                   style:TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -71,8 +71,8 @@ class _FeedSliderState extends State<FeedSlider>  {
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>
                         HomeScreen(index: 1,)));
                   },
-                  child: const Text(
-                    "See All",
+                  child:  Text(
+                    "see_all".tr,
                     style:TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.normal,

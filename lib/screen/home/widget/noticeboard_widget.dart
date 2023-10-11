@@ -58,8 +58,8 @@ class _NoticeboardSliderState extends State<NoticeboardSlider>  {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children:  [
-                const Text(
-                  "Notice Board",
+                Text(
+                  "notice_board".tr,
                   style:TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -71,8 +71,8 @@ class _NoticeboardSliderState extends State<NoticeboardSlider>  {
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>
                         HomeScreen(index: 1,)));
                   },
-                  child:const Text(
-                    "See All",
+                  child: Text(
+                    "see_all",
                     style:TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.normal,

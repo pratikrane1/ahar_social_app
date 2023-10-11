@@ -31,7 +31,7 @@ class _AllTabState extends State<AllTab> {
     //saveDeviceTokenAndId();
     super.initState();
   }
-
+//
   @override
   void dispose() {
     // TODO: implement dispose
@@ -73,28 +73,27 @@ class _AllTabState extends State<AllTab> {
                               const SizedBox(width: 5,),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
+                                children: const [
                                   Text(
-                                    'AHAR',
-                                    style: GoogleFonts.openSans(
+                                    'ahar'.tr,
+                                    style: TextStyle(
                                         fontSize: 16,
-                                        fontWeight: FontWeight.w800,
-                                        color: ThemeColors.blackColor,
+                                        fontFamily: 'Poppins-Bold',
+                                        fontWeight: FontWeight.w800),
+                                  ),
+                                  Text(
+                                    'connect'.tr,
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontFamily: 'Poppins-Light',
+                                        fontWeight: FontWeight.w400
                                     ),
                                   ),
                                   Text(
-                                    'Connect',
-                                    style: GoogleFonts.openSans(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400,
-                                      color: ThemeColors.blackColor
-                                    ),
-                                  ),
-                                  Text(
-                                    'Powered by WAAYU',
-                                    style: GoogleFonts.openSans(
+                                    'powered_by_wAAYU'.tr,
+                                    style: TextStyle(
                                         fontSize: 12,
-                                        color: ThemeColors.blackColor,
+                                        fontFamily: 'Poppins-Light',
                                         fontWeight: FontWeight.w400
                                     ),
                                   ),
@@ -114,11 +113,9 @@ class _AllTabState extends State<AllTab> {
                               onTap: (){
                                 Navigator.push(context, MaterialPageRoute(builder: (context)=>NotificationScreen()));
                               },
-                              child: const Icon(Icons.notifications,
-                                size: 25,
-                              color: ThemeColors.blackColor,),
+                              child: Icon(Icons.notifications,size: 25,),
                             ),
-                            const SizedBox(width: 8,),
+                            SizedBox(width: 8,),
 
                             Padding(
                               padding: const EdgeInsets.only(right: 20.0),

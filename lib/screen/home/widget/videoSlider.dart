@@ -60,7 +60,7 @@ class _VideoSliderState extends State<VideoSlider>  {
           Padding(
             padding: EdgeInsets.all(10.0),
             child: Text(
-              "Videos".tr,
+              "videos".tr,
               style:const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,

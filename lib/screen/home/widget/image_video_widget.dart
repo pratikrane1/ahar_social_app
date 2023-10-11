@@ -54,7 +54,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
             children: [
               ///Gallery Text
                Text(
-                "Gallery",
+                "gallery".tr,
                 style:const TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
@@ -78,7 +78,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                     height: 34,
                     width: MediaQuery.of(context).size.width / 2.5,
                     text: Text(
-                      'Images'.tr,
+                      'images'.tr,
                       style: TextStyle(
                           color: _isImage ? Colors.white : Colors.black,
                           fontSize: 18,
@@ -110,7 +110,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                     height: 34,
                     width: MediaQuery.of(context).size.width / 2.5,
                     text: Text(
-                      'Videos'.tr,
+                      'videos'.tr,
                       style: TextStyle(
                           color: _isImage ? Colors.black : Colors.white,
                           fontSize: 18,
@@ -241,7 +241,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                                                 // color: ThemeColors.whiteColor,
                                                 color: Colors.black.withOpacity(0.5),
                                                 child: Center(
-                                                  child: Text("New Album".tr,
+                                                  child: Text("new_album".tr,
                                                     textAlign: TextAlign.center,
                                                     style:const TextStyle(
                                                         fontSize: 14,
@@ -278,7 +278,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                                        Padding(
                                         padding:const EdgeInsets.only(left: 5.0),
                                         child: Text(
-                                          "More Images".tr,
+                                          "more_images".tr,
                                           style:const TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold,
@@ -299,7 +299,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                                         child:  Padding(
                                           padding:const EdgeInsets.only(right: 8.0),
                                           child: Text(
-                                            "See All".tr,
+                                            "see_all".tr,
                                             style:const TextStyle(
                                               fontSize: 12,
                                               fontWeight: FontWeight.bold,
@@ -510,7 +510,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                         Padding(
                           padding: EdgeInsets.only(left: 5.0),
                           child: Text(
-                            "More Videos".tr,
+                            "more_videos".tr,
                             style:const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
@@ -531,7 +531,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
                           child:  Padding(
                             padding:const EdgeInsets.only(right: 8.0),
                             child: Text(
-                              "See All".tr,
+                              "see_all".tr,
                               style:const TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.bold,

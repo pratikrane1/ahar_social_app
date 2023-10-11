@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dotted_line/dotted_line.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:aharconnect/providers/settings_provider.dart';
@@ -81,64 +83,66 @@ class _GroupMemberWidgetState extends State<GroupMemberWidget> {
                                           const BorderRadius.all(Radius.circular(100)),
                                           border: Border.all(width: 1),
 
-                                        ),
-                                        height: 50,
-                                        width: 50,
-                                        child:
-                                        // contactUser.photoUrl == ""
-                                        //     ?
-                                        ClipRRect(
-                                          borderRadius: BorderRadius.circular(100),
-                                          child: Image.asset(
-                                            'assets/default_image.jpg',
-                                            fit: BoxFit.cover,
                                           ),
-                                        )
-                                      // : Padding(
-                                      //   padding: const EdgeInsets.all(2.0),
-                                      //   child: ClipRRect(
-                                      //     borderRadius: BorderRadius.circular(100),
-                                      //     child: CachedNetworkImage(
-                                      //       imageUrl: contactUser.photoUrl,
-                                      //       fit: BoxFit.cover,
-                                      //       errorWidget: (context, url, error) =>
-                                      //       const Center(
-                                      //         child: FaIcon(
-                                      //             FontAwesomeIcons.circleExclamation),
-                                      //       ),
-                                      //       placeholder: (context, url) =>
-                                      //           Shimmer.fromColors(
-                                      //               baseColor: Colors.grey.shade400,
-                                      //               highlightColor:
-                                      //               Colors.grey.shade300,
-                                      //               child: SizedBox(
-                                      //                   height: MediaQuery.of(context)
-                                      //                       .size
-                                      //                       .height /
-                                      //                       3.3,
-                                      //                   width: double.infinity)),
-                                      //     ),
-                                      //   ),
-                                      // ),
-                                    ),
-                                    trailing: Text(
-                                      index == 0 ? 'Admin' : '',
-                                      style: const TextStyle(
-                                        fontSize: 12,
-                                        color: ThemeColors.msgFieldColor,
+                                          height: 50,
+                                          width: 50,
+                                          child:
+                                          // contactUser.photoUrl == ""
+                                          //     ?
+                                          ClipRRect(
+                                            borderRadius: BorderRadius.circular(100),
+                                            child: Image.asset(
+                                              'assets/default_image.jpg',
+                                              fit: BoxFit.cover,
+                                            ),
+                                          )
+                                              // : Padding(
+                                          //   padding: const EdgeInsets.all(2.0),
+                                          //   child: ClipRRect(
+                                          //     borderRadius: BorderRadius.circular(100),
+                                          //     child: CachedNetworkImage(
+                                          //       imageUrl: contactUser.photoUrl,
+                                          //       fit: BoxFit.cover,
+                                          //       errorWidget: (context, url, error) =>
+                                          //       const Center(
+                                          //         child: FaIcon(
+                                          //             FontAwesomeIcons.circleExclamation),
+                                          //       ),
+                                          //       placeholder: (context, url) =>
+                                          //           Shimmer.fromColors(
+                                          //               baseColor: Colors.grey.shade400,
+                                          //               highlightColor:
+                                          //               Colors.grey.shade300,
+                                          //               child: SizedBox(
+                                          //                   height: MediaQuery.of(context)
+                                          //                       .size
+                                          //                       .height /
+                                          //                       3.3,
+                                          //                   width: double.infinity)),
+                                          //     ),
+                                          //   ),
+                                          // ),
+                                        ),
+                                        trailing: Text(
+                                          index == 0 ? 'Admin' : '',
+                                          style: const TextStyle(
+                                            fontSize: 12,
+                                            color: ThemeColors.msgFieldColor,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ),
 
-                            ],
+                                ],
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
+                        );
+                      },
+                    ),
+                  );
+                },
               ),
             ],
           ),

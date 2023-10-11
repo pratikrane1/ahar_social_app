@@ -104,7 +104,7 @@ class _VerifyNumberScreenState extends State<VerifyNumberScreen> {
                         children: [
 
                           Text(
-                            'Welcome back, ',
+                            'welcome_back,'.tr,
                             style: GoogleFonts.openSans(
                               fontSize: 34,
                               fontWeight: FontWeight.bold,
@@ -112,7 +112,7 @@ class _VerifyNumberScreenState extends State<VerifyNumberScreen> {
                           ),
                           const SizedBox(height: 5),
                           Text(
-                            'Please login to your account to continue',
+                            'please_login_to_your_account_to_continue'.tr,
                             style: GoogleFonts.openSans(
                               fontSize: 14,
                               color: ThemeColors.greyTextColor,
@@ -124,7 +124,7 @@ class _VerifyNumberScreenState extends State<VerifyNumberScreen> {
                           const SizedBox(height: 50),
 
                           Text(
-                            'Mobile No.',
+                            'mobile_no'.tr,
                             style: GoogleFonts.openSans(
                               fontSize: 15,
                               fontWeight: FontWeight.bold
@@ -160,7 +160,7 @@ class _VerifyNumberScreenState extends State<VerifyNumberScreen> {
                           // !: OTP field
 
                           Text(
-                            'OTP Code',
+                            'OTP_Code'.tr,
                             style: GoogleFonts.openSans(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
@@ -249,7 +249,7 @@ class _VerifyNumberScreenState extends State<VerifyNumberScreen> {
                               },
                               height: 60,
                               width: MediaQuery.of(context).size.width,
-                              text: Text('Login',style: GoogleFonts.openSans(
+                              text: Text('login'.tr,style: GoogleFonts.openSans(
                                   color: Colors.white,
                                   fontSize: 18,
                                   fontWeight: FontWeight.w700) ,),

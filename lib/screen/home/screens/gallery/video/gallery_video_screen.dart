@@ -85,7 +85,7 @@ class _GalleryVideoScreenState extends State<GalleryVideoScreen> {
                   ),
                 ),
                 title: Text(
-                  'Video Screen'.tr,
+                  'video_screen'.tr,
                   style: Theme.of(context).textTheme.headline6!.copyWith(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,

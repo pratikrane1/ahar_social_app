@@ -64,7 +64,7 @@ class _ContactsListScreenState extends State<ContactsListScreen> {
         elevation: 0.0,
         bottomOpacity: 0.0,
         title: Text(
-          'Messages',
+          'messages'.tr,
           style: Theme.of(context).textTheme.headline2!.copyWith(
                 fontSize: 25,
             fontFamily: 'Poppins-Bold',
@@ -100,17 +100,17 @@ class _ContactsListScreenState extends State<ContactsListScreen> {
                     child: CircularProgressIndicator(),
                   );
                 } else if (snapshot.data == null || !snapshot.hasData) {
-                  return const Center(
-                    child: Text("You don't have any chat"),
+                  return  Center(
+                    child: Text("you_don't_have_any_chat".tr),
                   );
                 } else if (snapshot.hasError) {
-                  return const Center(
-                    child: Text('Error occurred!'),
+                  return  Center(
+                    child: Text('error_occurred'.tr),
                   );
                 }
                 if (snapshot.data!.docs.isEmpty) {
-                  return const Center(
-                    child: Text("You don't have any chat"),
+                  return  Center(
+                    child: Text("you_don't_have_any_chat".tr),
                   );
                 }
                 final contactUsersList = snapshot.data!.docs;
@@ -200,8 +200,8 @@ class _ContactsListScreenState extends State<ContactsListScreen> {
                                                     fit: BoxFit.cover,
                                                     errorWidget: (context, url, error) =>
                                                         const Center(
-                                                      child: Icon(
-                                                          Icons.circle),
+                                                      child: FaIcon(
+                                                          FontAwesomeIcons.circleExclamation),
                                                     ),
                                                     placeholder: (context, url) =>
                                                         Shimmer.fromColors(
