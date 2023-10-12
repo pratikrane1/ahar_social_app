@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class NutritionsSection extends StatelessWidget {
   const NutritionsSection({
@@ -16,7 +17,7 @@ class NutritionsSection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Nutritions",
+              "Nutritions".tr,
               style: Theme.of(context).textTheme.headline2,
             ),
             const SizedBox(height: 20),

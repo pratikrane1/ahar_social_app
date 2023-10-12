@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SettingsChangePasswordButton extends StatelessWidget {
   const SettingsChangePasswordButton({Key? key, required this.kGreyColorShade, required this.arrowForwardColor,required this.onTap,}) : super(key: key);
@@ -15,7 +16,7 @@ final Function()? onTap;
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Change Password',
+              'Change Password'.tr,
               style: Theme.of(context).textTheme.headline3!.copyWith(
                     color: kGreyColorShade,
                   ),

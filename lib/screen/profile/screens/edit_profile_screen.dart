@@ -40,9 +40,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             Provider.of<UserImageProvider>(context, listen: false);
         return SimpleDialog(
           backgroundColor: settingsManager.darkMode ? kGreyColor : Colors.white,
-          title: const Center(
+          title:  Center(
             child: Text(
-              'Select an Image',
+              'Select an Image'.tr,
               style: TextStyle(
                 fontSize: 18,
               ),
@@ -50,8 +50,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           ),
           children: [
             SimpleDialogOption(
-                child: const Text(
-                  'Take a photo',
+                child: Text(
+                  'Take a photo'.tr,
                   style: TextStyle(
                     color: kOrangeColor,
                   ),
@@ -191,7 +191,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         elevation: 0.0,
         bottomOpacity: 0.0,
         title: Text(
-          'Account',
+          'Account'.tr,
           style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 18),
         ),
         actions: [
@@ -280,7 +280,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Username',
+                                'Username'.tr,
                                 style: Theme.of(context)
                                     .textTheme
                                     .headline3!
@@ -334,7 +334,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'About',
+                                'About'.tr,
                                 style: Theme.of(context).textTheme.headline3!
                                   ..copyWith(fontSize: 16),
                               ),

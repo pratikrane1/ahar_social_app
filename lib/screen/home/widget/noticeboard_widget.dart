@@ -72,7 +72,7 @@ class _NoticeboardSliderState extends State<NoticeboardSlider>  {
                         HomeScreen(index: 1,)));
                   },
                   child: Text(
-                    "see_all",
+                    "see_all".tr,
                     style:TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.normal,

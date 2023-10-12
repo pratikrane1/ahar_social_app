@@ -202,7 +202,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                       ///Business Name
                       Padding(
                         padding: EdgeInsets.only(left: 5.0),
-                        child: Text('Business Name',
+                        child: Text('Business Name'.tr,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'Montserrat',
@@ -224,7 +224,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Color(0xFFF8F7F7),
-                          hintText: "Enter business Name",
+                          hintText: "Enter business Name".tr,
                           hintStyle: TextStyle(fontSize: 15,color: _cityController.text == "" ?Colors.red: null),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
@@ -596,7 +596,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                       ///Address
                       Padding(
                         padding: EdgeInsets.only(left: 5.0),
-                        child: Text('Address',
+                        child: Text('Address'.tr,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'Montserrat',
@@ -618,7 +618,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Color(0xFFF8F7F7),
-                          hintText: "Enter address",
+                          hintText: "Enter address".tr,
                           hintStyle: TextStyle(fontSize: 15,color: _districtController.text == "" ?Colors.red: null),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),
@@ -640,7 +640,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                       ///Message
                       Padding(
                         padding: EdgeInsets.only(left: 5.0),
-                        child: Text('Message (Optional)',
+                        child: Text('Message (Optional)'.tr,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'Montserrat',
@@ -662,7 +662,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Color(0xFFF8F7F7),
-                          hintText: "Enter message",
+                          hintText: "Enter message".tr,
                           hintStyle: TextStyle(fontSize: 15,color: _stateController.text == "" ?Colors.red: null),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: ThemeColors.blackColor.withOpacity(0.2)),

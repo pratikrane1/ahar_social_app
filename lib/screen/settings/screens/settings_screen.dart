@@ -35,7 +35,7 @@ class SettingsScreen extends StatelessWidget {
         elevation: 0.0,
         bottomOpacity: 0.0,
         title: Text(
-          'Settings',
+          'Settings'.tr,
           style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 18),
         ),
         actions: [
@@ -95,7 +95,7 @@ class SettingsScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Language',
+                      'Language'.tr,
                       style: Theme.of(context)
                           .textTheme
                           .headline3!
@@ -127,7 +127,7 @@ class SettingsScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Get Help',
+                      'Get Help'.tr,
                       style: Theme.of(context)
                           .textTheme
                           .headline3!
@@ -154,7 +154,7 @@ class SettingsScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Report Problem',
+                      'Report Problem'.tr,
                       style: Theme.of(context)
                           .textTheme
                           .headline3!
@@ -181,7 +181,7 @@ class SettingsScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Terms of Use',
+                      'Terms of Use'.tr,
                       style: Theme.of(context)
                           .textTheme
                           .headline3!

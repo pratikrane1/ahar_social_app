@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:socialrecipe/screen/authentication/screens/log_in_screen.dart';
 import 'package:socialrecipe/utils/theme_colors.dart';
 import 'package:socialrecipe/widget/app_button.dart';
@@ -33,10 +34,10 @@ class _WalkThroughScreenState extends State<WalkThroughScreen> {
           // crossAxisAlignment: CrossAxisAlignment.stretch,
           // mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const Align(
+             Align(
               alignment: Alignment.center,
               // padding: const EdgeInsets.only(left: 8.0),
-              child: Text('Stay connected\nwith your Community',
+              child: Text('Stay connected with your Community'.tr,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 24,

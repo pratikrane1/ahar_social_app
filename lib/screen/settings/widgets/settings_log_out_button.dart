@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 
 class SettingsLogoutButton extends StatelessWidget {
@@ -17,7 +18,7 @@ class SettingsLogoutButton extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Log out',
+                      'logout'.tr,
                       style: Theme.of(context)
                           .textTheme
                           .headline3!

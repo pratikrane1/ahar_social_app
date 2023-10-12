@@ -14,7 +14,7 @@ class AharOfficeBearersScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: ThemeColors.whiteColor,
         title: Text(
-          'Ahar Office Bearers',
+          'ahar_office_bearers'.tr,
           style: Theme.of(context).textTheme.headline6!.copyWith(
             fontSize: 25,
             fontWeight: FontWeight.w600,

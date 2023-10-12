@@ -106,7 +106,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           borderRadius: BorderRadius.circular(100),
                           child: CustomImage(image: "", fit: BoxFit.cover,fromProfile: true,),
                         )),
-                    title: Text(  'My Account',
+                    title: Text( 'My Account'.tr,
                         style: TextStyle(
                             fontSize: 14,
                             fontFamily: 'Montserrat',
@@ -562,7 +562,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         height: 120,
                         // color: ThemeColors.primaryColor,
                       ),
-                      const Text("Powered by WAAYU",
+                       Text("powered_by_wAAYU".tr,
                           style:TextStyle(
                               fontSize: 13,
                               fontFamily: 'Montserrat',

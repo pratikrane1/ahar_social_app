@@ -37,11 +37,11 @@ class CreditScreen extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 20,),
-            const Padding(
+             Padding(
               padding: EdgeInsets.only(left: 10.0),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text("Ahar App Team",
+                child: Text("ahar_app_team".tr,
                     style: TextStyle(
                         fontSize: 20,
                         fontFamily: 'Montserrat',
@@ -50,19 +50,19 @@ class CreditScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20,),
-            CreditWidget1(context,"Concept By", "Mandar Lande,\nAnirudha Kotgire,\nShweta Dugad"),
+            CreditWidget1(context,"concept_by".tr, "Mandar Lande,\nAnirudha Kotgire,\nShweta Dugad"),
             const SizedBox(height: 20,),
-            CreditWidget2(context,"UI UX Designer ", "Arpan Kumar"),
+            CreditWidget2(context,"UI_UX_Designer".tr, "Arpan Kumar"),
             const SizedBox(height: 20,),
-            CreditWidget1(context,"Technology Architect ", "Pankaj Dhote"),
+            CreditWidget1(context,"technology_architect".tr, "Pankaj Dhote"),
             const SizedBox(height: 20,),
-            CreditWidget2(context,"Project Manager", "Nikhil Kamble"),
+            CreditWidget2(context,"project_manager".tr, "Nikhil Kamble"),
             const SizedBox(height: 20,),
-            CreditWidget1(context,"Backend Developer", "Numair Antule,\nAkansha Shrivastava, \nAjay Singh"),
+            CreditWidget1(context,"backend_developer".tr, "Numair Antule,\nAkansha Shrivastava, \nAjay Singh"),
             const SizedBox(height: 20,),
-            CreditWidget2(context,"Mobile Developer", "Pratik Rane,\nDhanshri Gunjawate"),
+            CreditWidget2(context,"mobile_developer".tr, "Pratik Rane,\nDhanshri Gunjawate"),
             const SizedBox(height: 20,),
-            CreditWidget1(context,"QA Engineer", "Pramod Gaikwad"),
+            CreditWidget1(context,"QA_Engineer".tr, "Pramod Gaikwad"),
             const SizedBox(height: 20,),
           ],
         ),

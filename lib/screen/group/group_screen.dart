@@ -6,6 +6,7 @@ import 'package:socialrecipe/screen/group/widget/group_member_widget.dart';
 import 'package:socialrecipe/screen/noticeboard/widget/all_notice_widget.dart';
 import 'package:socialrecipe/static_data.dart';
 import 'package:socialrecipe/utils/theme_colors.dart';
+import 'package:get/get.dart';
 
 
 class GroupScreen extends StatefulWidget {
@@ -35,7 +36,7 @@ class _GroupScreenState extends State<GroupScreen> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          bottom: const TabBar(
+          bottom:  TabBar(
             labelColor: ThemeColors.blackColor,
             labelStyle: TextStyle(
               fontSize: 18,
@@ -50,7 +51,7 @@ class _GroupScreenState extends State<GroupScreen> {
             unselectedLabelColor: ThemeColors.greyTextColor,
             tabs: [
               Tab(text: 'Feed',),
-              Tab(text: 'Noticeboard',),
+              Tab(text: 'Notice board',),
               Tab(text: 'Members',),
             ],
           ),

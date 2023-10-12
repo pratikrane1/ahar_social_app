@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:socialrecipe/screen/noticeboard/widget/all_notice_widget.dart';
 import 'package:socialrecipe/utils/theme_colors.dart';
+import 'package:get/get.dart';
 
 
 class NoticeBoardScreen extends StatefulWidget {
@@ -31,7 +32,7 @@ class _NoticeBoardScreenState extends State<NoticeBoardScreen> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          bottom: const TabBar(
+          bottom:  TabBar(
             labelColor: ThemeColors.blackColor,
             labelStyle: TextStyle(
               fontSize: 18,
@@ -45,11 +46,11 @@ class _NoticeBoardScreenState extends State<NoticeBoardScreen> {
            ),
             unselectedLabelColor: ThemeColors.greyTextColor,
             tabs: [
-              Tab(text: 'All',),
-              Tab(text: 'Group',),
+              Tab(text: 'all'.tr,),
+              Tab(text: 'group'.tr,),
             ],
           ),
-          title: Text('Noticeboard',style: Theme.of(context).textTheme.headline2!.copyWith(
+          title: Text('notice_board'.tr,style: Theme.of(context).textTheme.headline2!.copyWith(
             fontSize: 25,
             fontFamily: 'Poppins-Bold',
 

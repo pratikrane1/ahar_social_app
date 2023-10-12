@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SettingsAccountDetailsButton extends StatelessWidget {
   const SettingsAccountDetailsButton({
@@ -20,7 +21,7 @@ class SettingsAccountDetailsButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Account',
+              'Account'.tr,
               style: Theme.of(context)
                   .textTheme
                   .headline3!

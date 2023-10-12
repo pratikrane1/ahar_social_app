@@ -4,6 +4,7 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:socialrecipe/static_data.dart';
 import 'package:socialrecipe/utils/app_pages.dart';
 import 'package:socialrecipe/utils/constants.dart';
@@ -68,7 +69,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
           elevation: 0.0,
           bottomOpacity: 0.0,
           title: Text(
-            'Notification',
+            'notification'.tr,
             style: Theme.of(context).textTheme.headline2!.copyWith(
               fontSize: 25,
               fontFamily: 'Poppins-Bold',

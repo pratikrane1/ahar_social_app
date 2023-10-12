@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:socialrecipe/utils/constants.dart';
 import 'package:socialrecipe/src/models/user_model.dart';
 import 'package:socialrecipe/screen/profile/screens/edit_profile_screen.dart';
@@ -335,7 +336,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Group Name',style: TextStyle(
+                  Text('Group Name'.tr,style: TextStyle(
                     fontSize: 13,
                     fontFamily: 'Poppins-Bold',
                   )),
@@ -345,7 +346,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     children: [
                       Row(
                         children: [
-                          Text("Location: ",style: TextStyle(
+                          Text("Location".tr,style: TextStyle(
                             fontSize: 12,
                             fontFamily: 'Poppins-Light',
                               fontWeight: FontWeight.w500
@@ -363,7 +364,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         children: [
                           Icon(Icons.circle,size: 15,),
                           SizedBox(width: 4,),
-                          Text("Admin",style: TextStyle(
+                          Text("Admin".tr,style: TextStyle(
                             fontSize: 12,
                             fontFamily: 'Poppins-Light',
                             fontWeight: FontWeight.w500
@@ -373,7 +374,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ],
                   ),
                   SizedBox(height: 8,),
-                  Text('Total Members:',style: TextStyle(
+                  Text('Total Members:'.tr,style: TextStyle(
                       fontSize: 12,
                       fontFamily: 'Poppins-Light',
                       fontWeight: FontWeight.w500

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:socialrecipe/utils/constants.dart';
 import 'package:socialrecipe/screen/search_user/widgets/user_search_result_list.dart';
 import 'package:socialrecipe/providers/settings_provider.dart';
@@ -38,7 +39,7 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
         appBar: AppBar(
           centerTitle: true,
           title: Text(
-            'Find Friends',
+            'Find Friends'.tr,
             style: Theme.of(context)
                 .textTheme
                 .headline2!

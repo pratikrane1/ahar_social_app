@@ -80,12 +80,12 @@ class _HelpCentreScreenState extends State<HelpCentreScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
-                      child: const ExpansionTile(
+                      child: ExpansionTile(
                         backgroundColor: ThemeColors.whiteColor,
                         tilePadding: EdgeInsets.only(
                             left: 10, top: 10, bottom: 5,right: 15),
                         title: Text(
-                            "Question",
+                            "Question".tr,
                             style: TextStyle(
                                 color: Colors.black,
                                 fontFamily: 'Montserrat-Regular',
@@ -95,7 +95,7 @@ class _HelpCentreScreenState extends State<HelpCentreScreen> {
                           Padding(
                             padding: EdgeInsets.only(left: 20.0,right: 10,bottom: 5),
                             child: Text(
-                                "Answer",
+                                "Answer".tr,
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontFamily: 'Montserrat-Regular',

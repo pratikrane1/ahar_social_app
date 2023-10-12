@@ -37,7 +37,7 @@ class _CustomerSupportScreenState extends State<CustomerSupportScreen> {
 
   _launchWhatsapp(BuildContext context,) async {
     var whatsapp = "1234567890";
-    var message = "Hi Ahar team, I have a Query. Can you please help me?";
+    var message = "hi_ahar_team_I_have_a_Query_Can_you_please_help_me".tr;
 
     var whatsappURl_android = "whatsapp://send?phone=" + whatsapp + "&text=$message";
     var whatsappURL_WEB = "https://wa.me/$whatsapp/?text=${Uri.parse(message)}";
@@ -80,7 +80,7 @@ class _CustomerSupportScreenState extends State<CustomerSupportScreen> {
           ),
         ),
         title: Text(
-          'Customer Support'.tr,
+          'customer_support'.tr,
           style: Theme.of(context).textTheme.headline6!.copyWith(
                 fontSize: 25,
                 fontWeight: FontWeight.w600,
@@ -231,7 +231,7 @@ class _CustomerSupportScreenState extends State<CustomerSupportScreen> {
               child: RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(
-                  text: 'If you prefer to speak with a support representative directly, you can reach our helpline at '.tr,
+                  text: 'if_you_prefer_to_speak_with_a_support_representative_directly_you_can_reach_our_helpline_at'.tr,
                   style: const TextStyle(
                       fontSize: 19,
                       fontFamily: 'Montserrat-Bold',
@@ -245,7 +245,7 @@ class _CustomerSupportScreenState extends State<CustomerSupportScreen> {
                           fontWeight: FontWeight.w700,
                           color: ThemeColors.primaryColor,
                       ),),
-                    TextSpan(text: '.Our knowledgeable agents will be glad to assist you and provide step-by-step guidance.'.tr,),
+                    TextSpan(text: 'our_knowledgeable_agents_will_be_glad_to_assist_you_and_provide step-by-step_guidance'.tr,),
 
                   ],
                 ),

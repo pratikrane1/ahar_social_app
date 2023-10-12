@@ -4,6 +4,7 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:socialrecipe/utils/app_pages.dart';
 import 'package:socialrecipe/screen/profile/screens/profile_screen.dart';
 import 'package:socialrecipe/screen/settings/widgets/settings_back_button.dart';
@@ -28,7 +29,7 @@ class FollowingScreen extends StatelessWidget {
         elevation: 0.0,
         bottomOpacity: 0.0,
         title: Text(
-          'Following',
+          'Following'.tr,
           style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 18),
         ),
       ),

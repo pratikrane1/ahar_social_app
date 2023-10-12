@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:socialrecipe/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +25,7 @@ class ServingsAndReadyInSection extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    'Servings  ',
+                    'Servings'.tr,
                     style: Theme.of(context).textTheme.headline4!.copyWith(
                           fontSize: 14,
                           color: settingsManager.darkMode
@@ -44,7 +45,7 @@ class ServingsAndReadyInSection extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    'Ready In  ',
+                    'Ready In'.tr,
                     style: Theme.of(context).textTheme.headline4!.copyWith(
                           fontSize: 14,
                           color: settingsManager.darkMode

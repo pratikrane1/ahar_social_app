@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:socialrecipe/screen/notification/notification_screens.dart';
 import 'package:socialrecipe/screen/profile/screens/profile_screen.dart';
 import 'package:socialrecipe/utils/constants.dart';
@@ -73,16 +74,16 @@ class _FeedScreenState extends State<FeedScreen>
                               const SizedBox(width: 5,),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
+                                children:  [
                                   Text(
-                                    'AHAR',
+                                    'ahar'.tr,
                                     style: TextStyle(
                                         fontSize: 16,
                                         fontFamily: 'Poppins-Bold',
                                         fontWeight: FontWeight.w800),
                                   ),
                                   Text(
-                                    'Connect',
+                                    'connect'.tr,
                                     style: TextStyle(
                                         fontSize: 16,
                                         fontFamily: 'Poppins-Light',

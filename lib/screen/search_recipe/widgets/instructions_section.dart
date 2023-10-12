@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:socialrecipe/utils/constants.dart';
 import 'package:socialrecipe/src/models/data_class_models/instruction_model.dart';
 import 'package:socialrecipe/providers/settings_provider.dart';
@@ -20,7 +21,7 @@ class InstructionsSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Instructions",
+            "Instructions".tr,
             style: Theme.of(context).textTheme.headline2,
           ),
           const SizedBox(height: 20),

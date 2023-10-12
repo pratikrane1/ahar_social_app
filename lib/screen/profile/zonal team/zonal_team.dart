@@ -14,7 +14,7 @@ class ZonalTeamScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: ThemeColors.whiteColor,
         title: Text(
-          'Zonal Team',
+          'Zonal Team'.tr,
           style: Theme.of(context).textTheme.headline6!.copyWith(
             fontSize: 25,
             fontWeight: FontWeight.w600,

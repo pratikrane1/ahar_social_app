@@ -54,7 +54,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
           ),
         ),
         title: Text(
-          'Transaction',
+          'Transaction'.tr,
           style: Theme.of(context).textTheme.headline6!.copyWith(
             fontSize: 25,
             fontWeight: FontWeight.w600,
@@ -171,7 +171,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                                         const SizedBox(
                                           height: 3,
                                         ),
-                                        Text("Ahar",
+                                        Text("Ahar".tr,
                                           style: TextStyle(
                                             fontSize: Dimensions
                                                 .fontSizeExtraSmall,

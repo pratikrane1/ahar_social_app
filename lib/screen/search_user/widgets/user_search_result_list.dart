@@ -3,6 +3,7 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:socialrecipe/utils/app_pages.dart';
 import 'package:socialrecipe/src/models/user_model.dart';
 import 'package:socialrecipe/providers/settings_provider.dart';
@@ -28,9 +29,9 @@ class UserSearchResultList extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         searchName.isEmpty
-            ? const Padding(
+            ?  Padding(
                 padding: EdgeInsets.only(left: 14.0),
-                child: Text('Suggestions'),
+                child: Text('Suggestions'.tr),
               )
             : const SizedBox(),
         Expanded(

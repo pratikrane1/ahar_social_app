@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:socialrecipe/src/models/data_class_models/ingredient_model.dart';
 
 class IngredientsSection extends StatelessWidget {
@@ -15,7 +16,7 @@ class IngredientsSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Ingredients",
+            "Ingredients".tr,
             style: Theme.of(context).textTheme.headline2,
           ),
           const SizedBox(height: 20),
