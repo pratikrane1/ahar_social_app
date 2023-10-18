@@ -11,6 +11,7 @@ import 'helper/get_di.dart' as di;
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 
 void main() async {
   GoogleFonts.config.allowRuntimeFetching = false;
@@ -20,7 +21,7 @@ void main() async {
     DeviceOrientation.portraitDown,
   ]);
   await Firebase.initializeApp();
-
+  await FlutterDownloader.initialize();
   FlutterNativeSplash.remove();
   // if (Platform.isAndroid) {
   //   InAppUpdate.checkForUpdate().then((updateInfo) {
@@ -78,7 +79,8 @@ void main() async {
   // } catch (e) {}
 
   runApp(MyApp(
-    languages: _languages,fcmTitle: fcmTitle ?? "",
+    languages: _languages,
+    fcmTitle: fcmTitle ?? "",
   ));
 }
 

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -10,16 +9,15 @@ import '../../../utils/dimensions.dart';
 import '../../../utils/images.dart';
 import '../../../utils/theme_colors.dart';
 
-
 class TransactionHistoryScreen extends StatefulWidget {
   const TransactionHistoryScreen({Key? key}) : super(key: key);
 
   @override
-  State<TransactionHistoryScreen> createState() => _TransactionHistoryScreenState();
+  State<TransactionHistoryScreen> createState() =>
+      _TransactionHistoryScreenState();
 }
 
 class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
-
   String dropdownvalue = 'today'.tr;
 
   bool isToday = true;
@@ -31,7 +29,6 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
   void initState() {
     // TODO: implement initState
     //saveDeviceTokenAndId();
-
   }
 
   @override
@@ -56,11 +53,11 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
         title: Text(
           'Transaction',
           style: Theme.of(context).textTheme.headline6!.copyWith(
-            fontSize: 25,
-            fontWeight: FontWeight.w600,
-            fontFamily: 'Montserrat',
-            color: ThemeColors.blackColor,
-          ),
+                fontSize: 25,
+                fontWeight: FontWeight.w600,
+                fontFamily: 'Montserrat',
+                color: ThemeColors.blackColor,
+              ),
         ),
         centerTitle: true,
         elevation: 0.0,
@@ -108,8 +105,8 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                 itemCount: 4,
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: const EdgeInsets.only(
-                        right: 8.0, left: 8.0, top: 16),
+                    padding:
+                        const EdgeInsets.only(right: 8.0, left: 8.0, top: 16),
                     child: Container(
                       decoration: BoxDecoration(
                         border: Border.all(
@@ -124,26 +121,21 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                         child: Column(
                           children: [
                             Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Row(
                                   children: [
                                     Container(
-                                        decoration:
-                                        const BoxDecoration(
-                                          borderRadius:
-                                          BorderRadius.all(
-                                              Radius.circular(
-                                                  10)),
+                                        decoration: const BoxDecoration(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
                                           // border: Border.all(width: 1),
                                         ),
                                         height: 40,
                                         width: 40,
                                         child: ClipRRect(
                                           borderRadius:
-                                          BorderRadius.circular(
-                                              10),
+                                              BorderRadius.circular(10),
                                           child: SvgPicture.asset(
                                             Images.transaction_logo,
                                             height: 20,
@@ -153,34 +145,28 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                                     const SizedBox(width: 10),
                                     Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           "Paid for".tr,
                                           style: TextStyle(
-                                            fontSize: Dimensions
-                                                .fontSizeSmall,
-                                            fontFamily:
-                                            'Montserrat-Bold',
-                                            fontWeight:
-                                            FontWeight.w500,
-                                            color: ThemeColors
-                                                .blackColor,
+                                            fontSize: Dimensions.fontSizeSmall,
+                                            fontFamily: 'Montserrat-Bold',
+                                            fontWeight: FontWeight.w500,
+                                            color: ThemeColors.blackColor,
                                           ),
                                         ),
                                         const SizedBox(
                                           height: 3,
                                         ),
-                                        Text("Ahar",
+                                        Text(
+                                          "Ahar",
                                           style: TextStyle(
-                                            fontSize: Dimensions
-                                                .fontSizeExtraSmall,
-                                            fontFamily:
-                                            'Montserrat-Medium',
-                                            fontWeight:
-                                            FontWeight.normal,
-                                            color: ThemeColors
-                                                .blackColor,
+                                            fontSize:
+                                                Dimensions.fontSizeExtraSmall,
+                                            fontFamily: 'Montserrat-Medium',
+                                            fontWeight: FontWeight.normal,
+                                            color: ThemeColors.blackColor,
                                           ),
                                         ),
                                       ],
@@ -192,13 +178,10 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                                     Text(
                                       "\u{20B9}3999",
                                       style: TextStyle(
-                                        fontSize: Dimensions
-                                            .fontSizeSmall,
-                                        fontFamily:
-                                        'Montserrat-Bold',
+                                        fontSize: Dimensions.fontSizeSmall,
+                                        fontFamily: 'Montserrat-Bold',
                                         fontWeight: FontWeight.w600,
-                                        color:
-                                        ThemeColors.blackColor,
+                                        color: ThemeColors.blackColor,
                                       ),
                                     ),
                                     Text(""),
@@ -210,37 +193,29 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                               height: 10,
                             ),
                             Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment:
-                              CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  DateFormat('yMMMd').format(
-                                      DateTime.parse(DateTime.now().toString())),
+                                  DateFormat('yMMMd').format(DateTime.parse(
+                                      DateTime.now().toString())),
                                   style: TextStyle(
-                                    fontSize: Dimensions
-                                        .fontSizeSmall,
+                                    fontSize: Dimensions.fontSizeSmall,
                                     fontFamily: 'Montserrat-Medium',
                                     fontWeight: FontWeight.w500,
-                                    color:
-                                    ThemeColors.greyTextColor,
+                                    color: ThemeColors.greyTextColor,
                                   ),
                                 ),
                                 Row(
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       "TXN:",
                                       style: TextStyle(
-                                        fontSize: Dimensions
-                                            .fontSizeSmall,
-                                        fontFamily:
-                                        'Montserrat-Medium',
+                                        fontSize: Dimensions.fontSizeSmall,
+                                        fontFamily: 'Montserrat-Medium',
                                         fontWeight: FontWeight.w500,
-                                        color: ThemeColors
-                                            .greyTextColor,
+                                        color: ThemeColors.greyTextColor,
                                       ),
                                     ),
                                     Container(
@@ -251,13 +226,10 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                                         style: TextStyle(
                                           // overflow:
                                           //     TextOverflow.ellipsis,
-                                          fontSize: Dimensions
-                                              .fontSizeSmall,
-                                          fontFamily:
-                                          'Montserrat-Light',
+                                          fontSize: Dimensions.fontSizeSmall,
+                                          fontFamily: 'Montserrat-Light',
                                           // fontWeight: FontWeight.w500,
-                                          color: ThemeColors
-                                              .greyTextColor,
+                                          color: ThemeColors.greyTextColor,
                                         ),
                                       ),
                                     ),

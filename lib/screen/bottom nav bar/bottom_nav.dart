@@ -1,20 +1,20 @@
 import 'dart:ui';
+import 'package:aharconnect/controller/auth_controller.dart';
+import 'package:aharconnect/screen/create_post/screens/add_post_screen.dart';
+import 'package:aharconnect/screen/group/group_listing_screen.dart';
+import 'package:aharconnect/screen/zone/zone_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:aharconnect/providers/dynamic_link.dart';
-import 'package:aharconnect/screen/create_recipe_post/screens/add_recipe_post_screen.dart';
-import 'package:aharconnect/screen/group/group_listing_screen.dart';
-import 'package:aharconnect/screen/group/group_screen.dart';
+import 'package:aharconnect/helper/dynamic_link.dart';
+
 import 'package:aharconnect/screen/home/screens/home_screen1.dart';
 import 'package:aharconnect/screen/profile/profile.dart';
 import 'package:aharconnect/utils/theme_colors.dart';
-
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class BottomNavBar extends StatefulWidget {
-  BottomNavBar({
-    Key? key,
-    this.index
-  }) : super(key: key);
+  BottomNavBar({Key? key, this.index}) : super(key: key);
   int? index;
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
@@ -25,24 +25,28 @@ class _BottomNavBarState extends State<BottomNavBar> {
   int _pageIndex = 0;
   List<Widget>? _screens;
 
-
   @override
   void initState() {
     super.initState();
-    if(widget.index != null){
+    if (widget.index != null) {
       _pageIndex = widget.index!.toInt();
     }
     DynamicLinkService.initDynamicLinks(context);
-    _pageController = PageController(initialPage: widget.index != null ? widget.index!.toInt() : 0);
+    _pageController = PageController(
+        initialPage: widget.index != null ? widget.index!.toInt() : 0);
     _screens = [
       const HomeTab(),
       const ZoneScreen(),
-      const AddRecipePostScreen(),
+      // (Get.find<AuthController>().getUserRole() != "Member") ?
+      const AddPostScreen(),
+      // : SizedBox(),
       const GroupListScreen(),
       const ProfileScreen()
     ];
+    // if(Get.find<AuthController>().getUserRole() != "Member"){
+    //   _screens.removeAt(index)
+    // }
   }
-
 
   void _setPage(int pageIndex) {
     setState(() {
@@ -65,32 +69,34 @@ class _BottomNavBarState extends State<BottomNavBar> {
           body: PageView.builder(
             controller: _pageController,
             itemCount: _screens!.length,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               return _screens![index];
             },
           ),
           floatingActionButtonLocation:
-          FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: FloatingActionButton(
-            backgroundColor: ThemeColors.blackColor,
-            child: const Icon(
-              Icons.add_circle_outline_rounded,
-              size: 30,
-            ),
-            onPressed: () {
-              _setPage(2);
-              _pageIndex == 2;
-            },
-          ),
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton:
+              (Get.find<AuthController>().getUserRole() != "Member")
+                  ? FloatingActionButton(
+                      backgroundColor: ThemeColors.blackColor,
+                      child: const Icon(
+                        Icons.add_circle_outline_rounded,
+                        size: 30,
+                      ),
+                      onPressed: () {
+                        _setPage(2);
+                        _pageIndex == 2;
+                      },
+                    )
+                  : null,
           bottomNavigationBar: Theme(
             data: Theme.of(context).copyWith(
                 canvasColor: Colors.white,
                 primaryColor: Colors.white,
                 backgroundColor: Colors.white,
                 bottomAppBarColor: Colors.white,
-                bottomNavigationBarTheme:
-                const BottomNavigationBarThemeData(
+                bottomNavigationBarTheme: const BottomNavigationBarThemeData(
                     backgroundColor: Colors.white)),
             child: BottomAppBar(
               color: Colors.white,
@@ -101,8 +107,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               child: Container(
                 height: 70,
                 child: Padding(
-                  padding:
-                  const EdgeInsets.only(left: 20.0, right: 20.0),
+                  padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -135,10 +140,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
                             ? ThemeColors.selectedIconColor
                             : ThemeColors.blackColor,
                       ),
-                      IconButton(
-                        icon: SizedBox(),
-                        onPressed: () {},
-                      ),
+                      if (Get.find<AuthController>().getUserRole() != "Member")
+                        IconButton(
+                          icon: SizedBox(),
+                          onPressed: () {},
+                        ),
                       IconButton(
                         icon: const Icon(
                           Icons.group,

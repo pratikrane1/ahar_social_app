@@ -36,7 +36,9 @@ class CreditScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             const Padding(
               padding: EdgeInsets.only(left: 10.0),
               child: Align(
@@ -49,28 +51,47 @@ class CreditScreen extends StatelessWidget {
                         color: ThemeColors.blackColor)),
               ),
             ),
-            const SizedBox(height: 20,),
-            CreditWidget1(context,"Concept By", "Mandar Lande,\nAnirudha Kotgire,\nShweta Dugad"),
-            const SizedBox(height: 20,),
-            CreditWidget2(context,"UI UX Designer ", "Arpan Kumar"),
-            const SizedBox(height: 20,),
-            CreditWidget1(context,"Technology Architect ", "Pankaj Dhote"),
-            const SizedBox(height: 20,),
-            CreditWidget2(context,"Project Manager", "Nikhil Kamble"),
-            const SizedBox(height: 20,),
-            CreditWidget1(context,"Backend Developer", "Numair Antule,\nAkansha Shrivastava, \nAjay Singh"),
-            const SizedBox(height: 20,),
-            CreditWidget2(context,"Mobile Developer", "Pratik Rane,\nDhanshri Gunjawate"),
-            const SizedBox(height: 20,),
-            CreditWidget1(context,"QA Engineer", "Pramod Gaikwad"),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
+            CreditWidget1(context, "Concept By",
+                "Mandar Lande,\nAnirudha Kotgire,\nShweta Dugad"),
+            const SizedBox(
+              height: 20,
+            ),
+            CreditWidget2(context, "UI UX Designer ", "Arpan Kumar"),
+            const SizedBox(
+              height: 20,
+            ),
+            CreditWidget1(context, "Technology Architect ", "Pankaj Dhote"),
+            const SizedBox(
+              height: 20,
+            ),
+            CreditWidget2(context, "Project Manager", "Nikhil Kamble"),
+            const SizedBox(
+              height: 20,
+            ),
+            CreditWidget1(context, "Backend Developer",
+                "Numair Antule,\nAkansha Shrivastava, \nAjay Singh"),
+            const SizedBox(
+              height: 20,
+            ),
+            CreditWidget2(context, "Mobile Developer",
+                "Pratik Rane,\nDhanshri Gunjawate"),
+            const SizedBox(
+              height: 20,
+            ),
+            CreditWidget1(context, "QA Engineer", "Pramod Gaikwad"),
+            const SizedBox(
+              height: 20,
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget CreditWidget1(BuildContext context, String designation, String name){
+  Widget CreditWidget1(BuildContext context, String designation, String name) {
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
@@ -82,7 +103,7 @@ class CreditScreen extends StatelessWidget {
             child: Center(
               child: Container(
                 height: 125,
-                width: MediaQuery.of(context).size.width/1.5,
+                width: MediaQuery.of(context).size.width / 1.5,
                 decoration: const BoxDecoration(
                   color: ThemeColors.whiteColor,
                   borderRadius: BorderRadius.only(
@@ -98,7 +119,7 @@ class CreditScreen extends StatelessWidget {
                   ],
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 10.0,left: 0),
+                  padding: const EdgeInsets.only(top: 10.0, left: 0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -116,11 +137,13 @@ class CreditScreen extends StatelessWidget {
                       //         // color: ThemeColors.greyTextColor,
                       //       ),
                       //     )),
-                      SizedBox(width: 10,),
+                      SizedBox(
+                        width: 10,
+                      ),
                       Flexible(
                         child: Text("$name",
                             style: const TextStyle(
-                              height: 1.4,
+                                height: 1.4,
                                 fontSize: 18,
                                 fontFamily: 'Montserrat',
                                 fontWeight: FontWeight.w600,
@@ -137,7 +160,7 @@ class CreditScreen extends StatelessWidget {
             child: Center(
               child: Container(
                 height: 60,
-                width: MediaQuery.of(context).size.width/1.9,
+                width: MediaQuery.of(context).size.width / 1.9,
                 decoration: const BoxDecoration(
                   color: ThemeColors.primaryColor,
                   borderRadius: BorderRadius.only(
@@ -161,7 +184,7 @@ class CreditScreen extends StatelessWidget {
     );
   }
 
-  Widget CreditWidget2(BuildContext context, String designation, String name){
+  Widget CreditWidget2(BuildContext context, String designation, String name) {
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
@@ -173,7 +196,7 @@ class CreditScreen extends StatelessWidget {
             child: Center(
               child: Container(
                 height: 125,
-                width: MediaQuery.of(context).size.width/1.5,
+                width: MediaQuery.of(context).size.width / 1.5,
                 decoration: const BoxDecoration(
                   color: ThemeColors.whiteColor,
                   borderRadius: BorderRadius.only(
@@ -189,7 +212,7 @@ class CreditScreen extends StatelessWidget {
                   ],
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 10.0,left: 0),
+                  padding: const EdgeInsets.only(top: 10.0, left: 0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -207,7 +230,9 @@ class CreditScreen extends StatelessWidget {
                       //         // color: ThemeColors.greyTextColor,
                       //       ),
                       //     )),
-                      const SizedBox(width: 10,),
+                      const SizedBox(
+                        width: 10,
+                      ),
                       Flexible(
                         child: Text("$name",
                             style: const TextStyle(
@@ -227,7 +252,7 @@ class CreditScreen extends StatelessWidget {
             child: Center(
               child: Container(
                 height: 60,
-                width: MediaQuery.of(context).size.width/1.9,
+                width: MediaQuery.of(context).size.width / 1.9,
                 decoration: const BoxDecoration(
                   color: ThemeColors.primaryColor,
                   borderRadius: BorderRadius.only(
@@ -235,7 +260,7 @@ class CreditScreen extends StatelessWidget {
                     bottomLeft: Radius.circular(30),
                   ),
                 ),
-                child:  Padding(
+                child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Center(
                     child: Text("$designation",

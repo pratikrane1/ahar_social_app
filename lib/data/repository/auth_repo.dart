@@ -6,21 +6,23 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-
 class AuthRepo {
   final ApiClient apiClient;
   final SharedPreferences sharedPreferences;
   AuthRepo({required this.apiClient, required this.sharedPreferences});
 
   Future<Response> login(
-      {String? phone, String? token, String? deviceId,String? password,String? loginwith}) async {
+      {String? phone,
+      String? token,
+      String? deviceId,
+      String? password,
+      String? loginwith}) async {
     return await apiClient.postData(AppConstants.LOGIN, {
       "mobile_no": phone,
     });
   }
 
-  Future<Response> verifyOTP(
-      {String? userId,String? otp}) async {
+  Future<Response> verifyOTP({String? userId, String? otp}) async {
     return await apiClient.postData(AppConstants.VERIFY_OTP, {
       "user_id": userId,
       "otp": otp,
@@ -31,7 +33,8 @@ class AuthRepo {
   Future<bool> saveUserToken(String token) async {
     apiClient.token = token;
     apiClient.updateHeader(
-      token, sharedPreferences.getString(AppConstants.LANGUAGE_CODE).toString(),
+      token,
+      sharedPreferences.getString(AppConstants.LANGUAGE_CODE).toString(),
     );
     return await sharedPreferences.setString(AppConstants.TOKEN, token);
   }
@@ -44,6 +47,14 @@ class AuthRepo {
     try {
       await sharedPreferences.setString(
           AppConstants.USER_NUMBER, number.trim());
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  Future<void> saveUserRole(String role) async {
+    try {
+      await sharedPreferences.setString(AppConstants.USER_ROLE, role.trim());
     } catch (e) {
       throw e;
     }
@@ -82,12 +93,20 @@ class AuthRepo {
     return sharedPreferences.getString(AppConstants.USER_NUMBER) ?? "";
   }
 
+  String getUserRole() {
+    return sharedPreferences.getString(AppConstants.USER_ROLE) ?? "";
+  }
+
   String getNumberTemporary() {
     return sharedPreferences.getString(AppConstants.NUMBER_TEMPORARY) ?? "";
   }
 
   Future<bool> clearUserNumber() async {
     return await sharedPreferences.remove(AppConstants.USER_NUMBER);
+  }
+
+  Future<bool> clearToken() async {
+    return await sharedPreferences.remove(AppConstants.TOKEN);
   }
 
   bool isNotificationActive() {
@@ -97,9 +116,9 @@ class AuthRepo {
   Future<void> setNotificationActive(bool isActive) async {
     var fcmToken = await FirebaseMessaging.instance.getToken();
     print(fcmToken);
-    if(isActive) {
+    if (isActive) {
       // updateFirebaseFCM(Get.find<AuthController>().getUserId().toString(),fcmToken.toString(),1.toString());
-    }else {
+    } else {
       // updateFirebaseFCM(Get.find<AuthController>().getUserId().toString(),"",0.toString());
     }
     sharedPreferences.setBool(AppConstants.NOTIFICATION, isActive);

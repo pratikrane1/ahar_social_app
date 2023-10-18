@@ -6,8 +6,11 @@ class GroupRepo extends GetxService {
   final ApiClient apiClient;
   GroupRepo({required this.apiClient});
 
-  Future<Response> getZoneList() async {
-    return await apiClient
-        .getData(AppConstants.ZONE_LIST,);
+  Future<Response> getOfficeBearersList() async {
+    return await apiClient.postData(AppConstants.OFFICE_BEARERS, {});
+  }
+
+  Future<Response> getSubCommitteeList() async {
+    return await apiClient.postData(AppConstants.SUB_COMMITTEE, {});
   }
 }

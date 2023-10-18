@@ -15,6 +15,4 @@ class ThemeColors {
   static const Color whatsappButtonColor = Color(0xFF60D568);
   static const Color customerSupportTextColor = Color(0xFF70927F);
   static const Color greenColor = Color(0xFF00790C);
-
-
 }

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:aharconnect/controller/auth_controller.dart';
 import 'package:get/get_connect/http/src/request/request.dart';
 import 'package:get/get.dart';
 import 'package:flutter/foundation.dart' as Foundation;
@@ -11,21 +12,23 @@ class ApiClient extends GetxService {
   final String appBaseUrl;
   String? token;
   final SharedPreferences sharedPreferences;
-  ApiClient({
-    required this.appBaseUrl,required this.sharedPreferences
-  }){
+  ApiClient({required this.appBaseUrl, required this.sharedPreferences}) {
     token = sharedPreferences.getString(AppConstants.TOKEN);
     updateHeader(token ?? "",
-      sharedPreferences.getString(AppConstants.LANGUAGE_CODE).toString()
-    );
+        sharedPreferences.getString(AppConstants.LANGUAGE_CODE).toString());
   }
   static final String noInternetMessage = 'connection_to_api_server_failed'.tr;
   final int timeoutInSeconds = 30;
   Map<String, String>? _mainHeaders;
 
-  void updateHeader(String token,String languageCode,) {
+  void updateHeader(
+    String token,
+    String languageCode,
+  ) {
     Map<String, String> _header = {
-      AppConstants.LOCALIZATION_KEY: languageCode != "" ? languageCode : AppConstants.languages[0].languageCode,
+      AppConstants.LOCALIZATION_KEY: languageCode != ""
+          ? languageCode
+          : AppConstants.languages[0].languageCode,
       'Authorization': 'Bearer $token'
     };
 
@@ -37,10 +40,9 @@ class ApiClient extends GetxService {
       if (Foundation.kDebugMode) {
         print('====> API Call: $uri');
       }
-      Http.Response _response = await Http.get(
-        Uri.parse(appBaseUrl + uri),
-          headers: _mainHeaders
-      ).timeout(Duration(seconds: timeoutInSeconds));
+      Http.Response _response =
+          await Http.get(Uri.parse(appBaseUrl + uri), headers: _mainHeaders)
+              .timeout(Duration(seconds: timeoutInSeconds));
       print(_response.body);
       return handleResponse(_response, uri);
     } catch (e) {
@@ -70,12 +72,11 @@ class ApiClient extends GetxService {
       if (Foundation.kDebugMode) {
         print('====> API Body: $body');
       }
-      Http.Response _response = await Http.post(
-        Uri.parse(appBaseUrl + uri),
-        // body: jsonEncode(body),
-        body: body,
-          headers: _mainHeaders
-      ).timeout(Duration(seconds: timeoutInSeconds));
+      Http.Response _response = await Http.post(Uri.parse(appBaseUrl + uri),
+              // body: jsonEncode(body),
+              body: body,
+              headers: _mainHeaders)
+          .timeout(Duration(seconds: timeoutInSeconds));
       return handleResponse(_response, uri);
     } catch (e) {
       return Response(statusCode: 1, statusText: noInternetMessage);
@@ -124,14 +125,14 @@ class ApiClient extends GetxService {
       if (Foundation.kDebugMode) {
         print('====> API Body: $body');
       }
-      Http.Response _response = await Http.post(
-        Uri.parse(uri),
-        // body: jsonEncode(body),
-        body: jsonEncode(body),
-        headers: <String, String>{'Content-Type': 'application/json; charset=UTF-8',
-          'Authorization': 'Basic cnpwX2xpdmVfWVBxaTNMczFhNHRZaFA6QVl3SWx1aVBrTEFUWFU4SlllMG56Tllj'
-        }
-      ).timeout(Duration(seconds: timeoutInSeconds));
+      Http.Response _response = await Http.post(Uri.parse(uri),
+          // body: jsonEncode(body),
+          body: jsonEncode(body),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization':
+                'Basic cnpwX2xpdmVfWVBxaTNMczFhNHRZaFA6QVl3SWx1aVBrTEFUWFU4SlllMG56Tllj'
+          }).timeout(Duration(seconds: timeoutInSeconds));
       return handleResponse(_response, uri);
     } catch (e) {
       return Response(statusCode: 1, statusText: noInternetMessage);
@@ -144,13 +145,13 @@ class ApiClient extends GetxService {
     String file,
   ) async {
     try {
-
       Http.MultipartRequest _request =
           Http.MultipartRequest('POST', Uri.parse(appBaseUrl + uri));
-      var userProfileImg = await Http.MultipartFile.fromPath(
-          'image', file);
+      var userProfileImg = await Http.MultipartFile.fromPath('image', file);
       _request.files.add(userProfileImg);
       _request.fields.addAll(body);
+      _request.headers["Authorization"] =
+          "Bearer ${Get.find<AuthController>().getUserToken()}";
       Http.Response _response =
           await Http.Response.fromStream(await _request.send());
       return handleResponse(_response, uri);

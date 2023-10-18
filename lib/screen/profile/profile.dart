@@ -1,6 +1,10 @@
+import 'package:aharconnect/controller/auth_controller.dart';
 import 'package:aharconnect/controller/profile_controller.dart';
 import 'package:aharconnect/data/model/profile_model.dart';
+import 'package:aharconnect/screen/authentication/screens/log_in_screen.dart';
+import 'package:aharconnect/screen/group/zone/zone_screen.dart';
 import 'package:aharconnect/screen/profile/my%20profile/my_profile_screen.dart';
+import 'package:aharconnect/screen/group/office%20bearers/office_bearers_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -12,11 +16,9 @@ import 'package:aharconnect/utils/app_constants.dart';
 import 'package:aharconnect/utils/images.dart';
 import 'package:aharconnect/utils/theme_colors.dart';
 import 'package:aharconnect/widget/custom_image.dart';
-import '../group/group_listing_detail_screen.dart';
 import 'cutomer support/customer_support.dart';
 import 'faq/faq_screen.dart';
 import 'membership detail/membership_screen.dart';
-
 
 // ignore: must_be_immutable
 class ProfileScreen extends StatefulWidget {
@@ -35,7 +37,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.initState();
     Get.find<MyProfileController>().getProfileData();
   }
-
 
   @override
   void dispose() {
@@ -76,52 +77,79 @@ class _ProfileScreenState extends State<ProfileScreen> {
               GetBuilder<MyProfileController>(builder: (myAccountController) {
                 // _isLoading = myAccountController.isLoading;
                 _profileData = myAccountController.profileData;
-                return _profileData != null ? InkWell(
-                  onTap: () {
-                    // Get.toNamed(RouteHelper.myAccount);
-                    Navigator.push(context, MaterialPageRoute(
-                        builder: (context) => MyProfileScreen()
-                    ));
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: ThemeColors.whiteColor,
-                      border: Border.all(
-                          width: 1,
-                          color: ThemeColors.greyTextColor.withOpacity(0.3)),
-                      borderRadius: BorderRadius.circular(0),
-                    ),
-                    child: ListTile(
-                      leading: Container(
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(100)),
-                            // border: Border.all(width: 1),
+                return _profileData != null
+                    ? InkWell(
+                        onTap: () {
+                          // Get.toNamed(RouteHelper.myAccount);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MyProfileScreen()));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: ThemeColors.whiteColor,
+                            border: Border.all(
+                                width: 1,
+                                color:
+                                    ThemeColors.greyTextColor.withOpacity(0.3)),
+                            borderRadius: BorderRadius.circular(0),
                           ),
-                          height: 50,
-                          width: 50,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(100),
-                            child: _profileData!.profileImage != "" ? CustomImage(image: _profileData!.profileImage, fit: BoxFit.cover,fromProfile: true,)
-                                : SvgPicture.asset(
-                              _profileData!.name != null ? Images.my_account_logo : Images.my_account_logo, height: 25,
-                              // color: ThemeColors.greyTextColor,
-                            ),
-                          )),
-                      title: Text(_profileData!.name != null ? _profileData!.name!.split(" ").elementAt(0).toString() :  'My Account',
-                          style: TextStyle(
-                              fontSize: 14,
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.w600,
-                              color: _profileData!.name != null ? ThemeColors.primaryColor : ThemeColors.greyTextColor.withOpacity(1))),
-                      subtitle:  Text('view_and_update_your_profile_details'.tr,
-                          style:const TextStyle(
-                            fontSize: 12,
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w500,
-                          )),
-                    ),
-                  ),
-                ) : Center(child: CircularProgressIndicator(color: ThemeColors.primaryColor,),);
+                          child: ListTile(
+                            leading: Container(
+                                decoration: const BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(100)),
+                                  // border: Border.all(width: 1),
+                                ),
+                                height: 50,
+                                width: 50,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(100),
+                                  child: _profileData!.profileImage != ""
+                                      ? CustomImage(
+                                          image: _profileData!.profileImage,
+                                          fit: BoxFit.cover,
+                                          fromProfile: true,
+                                        )
+                                      : SvgPicture.asset(
+                                          _profileData!.name != null
+                                              ? Images.my_account_logo
+                                              : Images.my_account_logo,
+                                          height: 25,
+                                          // color: ThemeColors.greyTextColor,
+                                        ),
+                                )),
+                            title: Text(
+                                _profileData!.name != null
+                                    ? _profileData!.name!
+                                        .split(" ")
+                                        .elementAt(0)
+                                        .toString()
+                                    : 'My Account',
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600,
+                                    color: _profileData!.name != null
+                                        ? ThemeColors.primaryColor
+                                        : ThemeColors.greyTextColor
+                                            .withOpacity(1))),
+                            subtitle:
+                                Text('view_and_update_your_profile_details'.tr,
+                                    style: const TextStyle(
+                                      fontSize: 12,
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w500,
+                                    )),
+                          ),
+                        ),
+                      )
+                    : Center(
+                        child: CircularProgressIndicator(
+                          color: ThemeColors.primaryColor,
+                        ),
+                      );
               }),
 
               const SizedBox(
@@ -131,7 +159,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ///Ahar Office Bearers
               InkWell(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>GroupDetailScreen(title: "Office Bearers",)));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => OfficeBearersScreen()));
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -143,11 +174,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   child: ListTile(
                     leading: SvgPicture.asset(
-                      Images.refer_icon, height: 25,
+                      Images.refer_icon,
+                      height: 25,
                       color: ThemeColors.greyTextColor,
                     ),
-                    title:  Text('Office Bearers'.tr,
-                        style:const TextStyle(
+                    title: Text('Office Bearers'.tr,
+                        style: const TextStyle(
                             fontSize: 14,
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w600,
@@ -164,8 +196,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ///zonal team
               InkWell(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>GroupDetailScreen(title: "Zonal Team",)));
-
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ZoneScreen()));
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -177,11 +211,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   child: ListTile(
                     leading: SvgPicture.asset(
-                      Images.autopull_referal_list_icon, height: 25,
+                      Images.autopull_referal_list_icon,
+                      height: 25,
                       color: ThemeColors.greyTextColor,
                     ),
-                    title:  Text('Zonal Team'.tr,
-                        style:const TextStyle(
+                    title: Text('Zonal Team'.tr,
+                        style: const TextStyle(
                             fontSize: 14,
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w600,
@@ -199,9 +234,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               InkWell(
                 onTap: () {
                   // Get.toNamed(RouteHelper.membershipScreen);
-                  Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => MembershipScreen()
-                  ));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MembershipScreen()));
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -216,8 +252,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Images.membership_icon, height: 25,
                       // color: ThemeColors.greyTextColor,
                     ),
-                    title:  Text('Membership Detail'.tr,
-                        style:const TextStyle(
+                    title: Text('Membership Detail'.tr,
+                        style: const TextStyle(
                             fontSize: 14,
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w600,
@@ -234,9 +270,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ///Transaction history
               InkWell(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(
-                      builder: (context) =>  TransactionHistoryScreen()
-                  ));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TransactionHistoryScreen()));
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -251,8 +288,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Images.transaction_history, height: 25,
                       // color: ThemeColors.greyTextColor,
                     ),
-                    title:  Text("Transaction history".tr,
-                        style:const TextStyle(
+                    title: Text("Transaction history".tr,
+                        style: const TextStyle(
                             fontSize: 14,
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w600,
@@ -269,9 +306,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ///Terms And Conditions
               InkWell(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => TermsConditionsScreen()
-                  ));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TermsConditionsScreen()));
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -286,8 +324,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Images.terms_condition_icon, height: 25,
                       // color: ThemeColors.greyTextColor,
                     ),
-                    title:  Text("Terms And Conditions".tr,
-                        style:const TextStyle(
+                    title: Text("Terms And Conditions".tr,
+                        style: const TextStyle(
                             fontSize: 14,
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w600,
@@ -301,14 +339,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 10,
               ),
 
-
               ///Privacy Policies
               InkWell(
                 onTap: () {
-                 // Get.toNamed(RouteHelper.privacyPolicy);
-                  Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => PrivacyPolicyScreen()
-                  ));
+                  // Get.toNamed(RouteHelper.privacyPolicy);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => PrivacyPolicyScreen()));
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -323,8 +361,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Images.privacy_policy_icon, height: 25,
                       // color: ThemeColors.greyTextColor,
                     ),
-                    title:  Text('Privacy Policies'.tr,
-                        style:const TextStyle(
+                    title: Text('Privacy Policies'.tr,
+                        style: const TextStyle(
                             fontSize: 14,
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w600,
@@ -342,9 +380,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               InkWell(
                 onTap: () {
                   // Get.toNamed(RouteHelper.helpCentre);
-                  Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => const HelpCentreScreen()
-                  ));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const HelpCentreScreen()));
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -359,8 +398,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Images.faq_icon, height: 25,
                       // color: ThemeColors.greyTextColor,
                     ),
-                    title:  Text("FAQS".tr,
-                        style:const TextStyle(
+                    title: Text("FAQS".tr,
+                        style: const TextStyle(
                             fontSize: 14,
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w600,
@@ -374,14 +413,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 10,
               ),
 
-
               ///Customer Support
               InkWell(
                 onTap: () {
                   // Get.to(CustomerSupportScreen());
-                  Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => CustomerSupportScreen()
-                  ));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CustomerSupportScreen()));
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -396,8 +435,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Images.customer_support_icon, height: 25,
                       // color: ThemeColors.greyTextColor,
                     ),
-                    title:  Text("Customer Support".tr,
-                        style:const TextStyle(
+                    title: Text("Customer Support".tr,
+                        style: const TextStyle(
                             fontSize: 14,
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w600,
@@ -451,9 +490,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               InkWell(
                 onTap: () {
                   // Get.toNamed(RouteHelper.helpCentre);
-                  Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => SettingsScreen()
-                  ));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SettingsScreen()));
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -468,8 +508,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Images.settings_icon, height: 25,
                       // color: ThemeColors.greyTextColor,
                     ),
-                    title:  Text("Settings Screen".tr,
-                        style:const TextStyle(
+                    title: Text("Settings Screen".tr,
+                        style: const TextStyle(
                             fontSize: 14,
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w600,
@@ -483,13 +523,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 10,
               ),
 
-
               ///Logout
               InkWell(
                 onTap: () {
                   // showDialog(
                   //     context: context,
                   //     builder: (BuildContext context) => CustomDialog());
+                  Get.find<AuthController>().clearUserNumber();
+                  Get.find<AuthController>().cleartoken();
+
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => LogInScreen()));
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -504,8 +548,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Images.logout_icon, height: 25,
                       // color: ThemeColors.greyTextColor,
                     ),
-                    title:  Text('logout'.tr,
-                        style:const TextStyle(
+                    title: Text('logout'.tr,
+                        style: const TextStyle(
                             fontSize: 14,
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w600,
@@ -525,14 +569,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("version".tr,
-                        style:const TextStyle(
+                        style: const TextStyle(
                             fontSize: 14,
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w600,
                             color: ThemeColors.greyTextColor)),
-                    const SizedBox(width: 5,),
+                    const SizedBox(
+                      width: 5,
+                    ),
                     const Text(AppConstants.APP_VERSION,
-                        style:TextStyle(
+                        style: TextStyle(
                             fontSize: 14,
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w600,
@@ -565,11 +611,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         // color: ThemeColors.primaryColor,
                       ),
                       const Text("Powered by WAAYU",
-                          style:TextStyle(
-                              fontSize: 13,
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.w500,
-                              )),
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w500,
+                          )),
                     ],
                   ),
                 ),

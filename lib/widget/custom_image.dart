@@ -9,7 +9,12 @@ class CustomImage extends StatelessWidget {
   final double? width;
   final BoxFit? fit;
   bool fromProfile;
-  CustomImage({@required this.image, this.height, this.width, this.fit,this.fromProfile=false});
+  CustomImage(
+      {@required this.image,
+      this.height,
+      this.width,
+      this.fit,
+      this.fromProfile = false});
 
   @override
   Widget build(BuildContext context) {
@@ -18,16 +23,20 @@ class CustomImage extends StatelessWidget {
       height: height,
       width: width,
       fit: fit != null ? fit : BoxFit.fitHeight,
-      placeholder: (context, url) => fromProfile ? SvgPicture.asset(
-        Images.my_account_logo, height: 25,
-        // color: ThemeColors.greyTextColor,
-      ) : Image.asset(Images.placeholder,
-          height: height, width: width, fit: fit),
-      errorWidget: (context, url, error) =>fromProfile ? SvgPicture.asset(
-        Images.my_account_logo, height: 25,
-        // color: ThemeColors.greyTextColor,
-      ) :  Image.asset(Images.placeholder,
-          height: height, width: width, fit: fit),
+      placeholder: (context, url) => fromProfile
+          ? SvgPicture.asset(
+              Images.my_account_logo, height: 25,
+              // color: ThemeColors.greyTextColor,
+            )
+          : Image.asset(Images.placeholder,
+              height: height, width: width, fit: fit),
+      errorWidget: (context, url, error) => fromProfile
+          ? SvgPicture.asset(
+              Images.my_account_logo, height: 25,
+              // color: ThemeColors.greyTextColor,
+            )
+          : Image.asset(Images.placeholder,
+              height: height, width: width, fit: fit),
     );
   }
 }

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
 
-
 // class NotificationHelper {
 //   static Future<void> initialize(
 //       FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin) async {

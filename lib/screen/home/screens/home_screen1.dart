@@ -1,6 +1,10 @@
+import 'dart:ui';
+
+import 'package:aharconnect/controller/gallery_controller.dart';
+import 'package:aharconnect/controller/home_controller.dart';
+import 'package:aharconnect/controller/zone_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:aharconnect/screen/chat/screens/contacts_list_screen.dart';
 import 'package:aharconnect/screen/home/widget/banner_view.dart';
 import 'package:aharconnect/screen/home/widget/document_file.dart';
 import 'package:aharconnect/screen/home/widget/image_video_widget.dart';
@@ -13,7 +17,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../widget/feed_widget.dart';
 import '../widget/noticeboard_widget.dart';
-
 
 class HomeTab extends StatefulWidget {
   const HomeTab({Key? key}) : super(key: key);
@@ -31,7 +34,12 @@ class _HomeTabState extends State<HomeTab> {
     // TODO: implement initState
     //saveDeviceTokenAndId();
     super.initState();
+    Get.find<HomeController>().getBanner();
+    Get.find<ZoneController>().getFeedPostDataList("0", "Post");
+    Get.find<ZoneController>().getNoticePostList("0", "Noticboard");
+    Get.find<GalleryController>().getAlbumList();
   }
+
 //
   @override
   void dispose() {
@@ -45,7 +53,12 @@ class _HomeTabState extends State<HomeTab> {
     return SafeArea(
       child: RefreshIndicator(
         color: ThemeColors.primaryColor,
-        onRefresh: () async {    },
+        onRefresh: () async {
+          await Get.find<HomeController>().getBanner();
+          await Get.find<ZoneController>().getFeedPostDataList("0", "Post");
+          await Get.find<ZoneController>().getNoticePostList("0", "Noticboard");
+          await Get.find<GalleryController>().getAlbumList();
+        },
         child: CustomScrollView(
           controller: _scrollController,
           physics: const AlwaysScrollableScrollPhysics(),
@@ -70,8 +83,14 @@ class _HomeTabState extends State<HomeTab> {
                           padding: const EdgeInsets.only(left: 10.0),
                           child: Row(
                             children: [
-                              Image.asset(Images.logo,height: 70,width: 70,),
-                              const SizedBox(width: 5,),
+                              Image.asset(
+                                Images.logo,
+                                height: 70,
+                                width: 70,
+                              ),
+                              const SizedBox(
+                                width: 5,
+                              ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -80,23 +99,21 @@ class _HomeTabState extends State<HomeTab> {
                                     style: GoogleFonts.openSans(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w800,
-                                    color: ThemeColors.blackColor),
+                                        color: ThemeColors.blackColor),
                                   ),
                                   Text(
                                     'connect'.tr,
                                     style: GoogleFonts.openSans(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w400,
-                                        color: ThemeColors.blackColor
-                                    ),
+                                        color: ThemeColors.blackColor),
                                   ),
                                   Text(
                                     'powered_by_wAAYU'.tr,
                                     style: GoogleFonts.openSans(
                                         fontSize: 12,
                                         fontWeight: FontWeight.w400,
-                                        color: ThemeColors.blackColor
-                                    ),
+                                        color: ThemeColors.blackColor),
                                   ),
                                 ],
                               ),
@@ -106,10 +123,18 @@ class _HomeTabState extends State<HomeTab> {
                         Row(
                           children: [
                             InkWell(
-                              onTap: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=>NotificationScreen()));
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            NotificationScreen()));
                               },
-                              child: const Icon(Icons.notifications,size: 25,color: ThemeColors.blackColor,),
+                              child: const Icon(
+                                Icons.notifications,
+                                size: 25,
+                                color: ThemeColors.blackColor,
+                              ),
                             ),
                             // const SizedBox(width: 8,),
                             //
@@ -137,7 +162,6 @@ class _HomeTabState extends State<HomeTab> {
                         ),
                       ],
                     ),
-
                   ],
                 ),
               ),
@@ -158,15 +182,11 @@ class _HomeTabState extends State<HomeTab> {
                       ///NoticeBoard Slider
                       NoticeboardSlider(),
 
-                      ///Video Slider
-                      const VideoSlider(),
-
                       ///Document File
                       DocumentFile(),
 
                       ///Gallery Widget
                       GalleryWidget(),
-
                     ],
                   ),
                 ),
@@ -177,7 +197,4 @@ class _HomeTabState extends State<HomeTab> {
       ),
     );
   }
-
-
-
 }

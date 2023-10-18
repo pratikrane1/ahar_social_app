@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:aharconnect/screen/bottom%20nav%20bar/bottom_nav.dart';
+import 'package:aharconnect/screen/home/widget/post_detail_widget.dart';
 import 'package:aharconnect/screen/splash/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,30 +12,8 @@ class RouteHelper {
   static const String login = '/login';
   static const String otpVerify = '/otpVerify';
   static const String welcome = '/welcome';
-  static const String bottomNav = '/bottomNav';
-  static const String allApp = '/allApp';
-  static const String helpCentre = '/helpCentre';
-  static const String customerSupport = '/customerSupport';
-  static const String privacyPolicy = '/privacyPolicy';
-  static const String termsConditions = '/termsConditions';
-  static const String refer = '/refer';
-  static const String referList = '/refer_list';
-  static const String myAccount = '/myAccount';
-  static const String myAccountEdit = '/myAccountEdit';
-  static const String nomineeDetailsEdit = '/nomineeDetailsEdit';
-  static const String search = '/search';
-  static const String videoScreen = '/videoScreen';
-  static const String galleryVideoScreen = '/galleryVideoScreen';
-  static const String membershipScreen = '/membershipScreen';
-  static const String coupanScreen = '/coupanScreen';
-  static const String myPayoutScreen = '/myPayoutScreen';
-  static const String regularPayoutScreen = '/regularPayoutScreen';
-  static const String autoPullPayoutScreen = '/autoPullPayoutScreen';
-  static const String myAutoPullReferalScreen = '/myAutoPullReferalScreen';
-  static const String language = '/language';
-  static const String image = '/image';
-  static const String membershipDetail = '/membershipDetail';
-  static const String referralSearch = '/referralSearch';
+  static const String postDetail = '/postDetail';
+
 
   static String getInitialRoute(String index) => '$initial?index=$index';
   static String getSplashRoute(String title) {
@@ -56,6 +35,10 @@ class RouteHelper {
 
   static String getWelcomeRoute() => '$welcome';
 
+  static String getPostDetailRoute(String postId, String zoneId) {
+    return '$postDetail?postId=$postId&zoneId=$zoneId';
+  }
+
   static List<GetPage> routes = [
     GetPage(
         name: initial,
@@ -66,6 +49,14 @@ class RouteHelper {
         name: splash,
         page: () {
           return SplashScreen();
+        }),
+    GetPage(
+        name: postDetail,
+        page: () {
+          return PostDetailScreen(
+            postId: Get.parameters['postId'].toString(),
+            zoneId: Get.parameters['zoneId'].toString(),
+          );
         }),
   ];
 

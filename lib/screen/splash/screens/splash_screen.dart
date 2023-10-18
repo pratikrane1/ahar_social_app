@@ -16,7 +16,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   final int splashDuration = 5;
   // AuthBloc? authBloc;
 
@@ -34,27 +33,28 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _route() {
-    if (Get.find<AuthController>().getUserToken() != null) {
+    if (Get.find<AuthController>().getUserToken() != "") {
       var token = Get.find<AuthController>().getUserToken();
       print("Brearer Token: $token");
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => BottomNavBar()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => BottomNavBar()));
     } else {
       Navigator.push(context,
-          MaterialPageRoute(builder: (context) => WalkThroughScreen()));    }
+          MaterialPageRoute(builder: (context) => WalkThroughScreen()));
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-        decoration:  BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage(Images.splash),
           fit: BoxFit.fill,
           // fit: BoxFit.cover,
-    ),
-    ),
+        ),
+      ),
     ));
     //     StreamBuilder<User?>(
     //   stream: FirebaseAuth.instance.authStateChanges(),

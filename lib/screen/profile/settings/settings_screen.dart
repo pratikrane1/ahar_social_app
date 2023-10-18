@@ -13,28 +13,24 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  var langValue ;
+  var langValue;
   int? selectedIndex;
   bool isSwitched = false;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     // selectedIndex = Get.find<LocalizationController>().selectedIndex;
     // isSwitched = Get.find<AuthController>().notification;
   }
 
   void toggleSwitch(bool value) {
-
-    if(isSwitched == false)
-    {
+    if (isSwitched == false) {
       setState(() {
         isSwitched = true;
       });
       // Notifications.setPushNotificationsEnabled(true);
-    }
-    else
-    {
+    } else {
       setState(() {
         isSwitched = false;
       });
@@ -61,14 +57,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
         title: Text(
           "Settings".tr,
           style: Theme.of(context).textTheme.headline6!.copyWith(
-            fontSize: 25,
-            fontWeight: FontWeight.w600,
-            fontFamily: 'Montserrat',
-          ),
+                fontSize: 25,
+                fontWeight: FontWeight.w600,
+                fontFamily: 'Montserrat',
+              ),
         ),
         actions: [
           InkWell(
-            onTap: (){
+            onTap: () {
               // Get.find<LocalizationController>().setLanguage(Locale(
               //   AppConstants.languages[selectedIndex!].languageCode,
               //   AppConstants.languages[selectedIndex!].countryCode,
@@ -76,7 +72,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
               // Get.find<LocalizationController>().setSelectIndex(selectedIndex!);
               // Get.find<AuthController>().setNotificationActive(isSwitched);
               // showCustomSnackBar("Saved",isError: false);
-
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -93,11 +88,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     "Save".tr,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.headline6!.copyWith(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: 'Montserrat',
-                      color: ThemeColors.whiteColor
-                    ),
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'Montserrat',
+                        color: ThemeColors.whiteColor),
                   ),
                 ),
               ),
@@ -110,7 +104,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
       body: Column(
         children: [
-          SizedBox(height: 10,),
+          SizedBox(
+            height: 10,
+          ),
           Flexible(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -135,8 +131,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       Images.language_icon, height: 25,
                       // color: ThemeColors.greyTextColor,
                     ),
-                    title:  Text("Language".tr,
-                        style:const TextStyle(
+                    title: Text("Language".tr,
+                        style: const TextStyle(
                             fontSize: 16,
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w600,
@@ -150,11 +146,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   itemCount: 1,
                   itemBuilder: (context, index) {
                     return InkWell(
-                      onTap: () {
-                      },
+                      onTap: () {},
                       child: ListTile(
-                        title: Text(AppConstants.languages[index].languageName ?? "",
-                            style:const TextStyle(
+                        title: Text(
+                            AppConstants.languages[index].languageName ?? "",
+                            style: const TextStyle(
                                 fontSize: 15,
                                 fontFamily: 'Montserrat-Medium',
                                 fontWeight: FontWeight.w500,
@@ -171,17 +167,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                       ),
                     );
-                  },),
+                  },
+                ),
               ],
             ),
           ),
-
           Container(
             decoration: BoxDecoration(
               color: ThemeColors.whiteColor,
               border: Border.all(
-                  width: 1,
-                  color: ThemeColors.greyTextColor.withOpacity(0.3)),
+                  width: 1, color: ThemeColors.greyTextColor.withOpacity(0.3)),
               borderRadius: BorderRadius.circular(0),
               boxShadow: const [
                 BoxShadow(
@@ -196,8 +191,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 Images.notification_icon, height: 25,
                 // color: ThemeColors.greyTextColor,
               ),
-              title:  Text("Notification".tr,
-                  style:const TextStyle(
+              title: Text("Notification".tr,
+                  style: const TextStyle(
                       fontSize: 16,
                       fontFamily: 'Montserrat',
                       fontWeight: FontWeight.w600,
@@ -212,7 +207,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
           ),
-
         ],
       ),
     );

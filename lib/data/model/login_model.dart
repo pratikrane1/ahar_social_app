@@ -29,7 +29,7 @@ class LoginData {
   String? role;
   String? mobileNumber;
 
-  LoginData({this.userId,this.name,this.token});
+  LoginData({this.userId, this.name, this.token});
 
   LoginData.fromJson(Map<String, dynamic> json) {
     userId = json['user_id'];

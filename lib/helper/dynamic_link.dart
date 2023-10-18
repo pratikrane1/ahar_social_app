@@ -1,14 +1,13 @@
+import 'package:aharconnect/screen/home/widget/post_detail_widget.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:share_plus/share_plus.dart';
 
-
-
 class DynamicLinkService {
-
   // String shortDynamicLink = 'https://pulabazaarapp.page.link';
   String shortDynamicLink = 'https://aharsocial.page.link';
-
 
   @override
   void initState() {
@@ -22,7 +21,8 @@ class DynamicLinkService {
     );
   }
 
-  DynamicLinkParameters dynamicLinkParameters({Uri? url, String? title, String? image}) {
+  DynamicLinkParameters dynamicLinkParameters(
+      {Uri? url, String? title, String? image}) {
     return DynamicLinkParameters(
       uriPrefix: shortDynamicLink,
       link: url!,
@@ -44,7 +44,7 @@ class DynamicLinkService {
   Future<Uri> generateFirebaseDynamicLink(DynamicLinkParameters params) async {
     var dynamicLinks = FirebaseDynamicLinks.instance;
 
-    if (dynamicLinks!=null) {
+    if (dynamicLinks != null) {
       var shortDynamicLink = await dynamicLinks.buildShortLink(params);
       return shortDynamicLink.shortUrl;
     } else {
@@ -58,7 +58,8 @@ class DynamicLinkService {
     Uri? url,
     String? image,
   }) async {
-    var productParams = dynamicLinkParameters(url: url!,image: image!, title: title!);
+    var productParams =
+        dynamicLinkParameters(url: url!, image: image!, title: title!);
     var firebaseDynamicLink = await generateFirebaseDynamicLink(productParams);
     print('[firebase-dynamic-link] $firebaseDynamicLink');
     await Share.share(
@@ -66,75 +67,43 @@ class DynamicLinkService {
     );
   }
 
-
-
-
   static void initDynamicLinks(BuildContext context) async {
     FirebaseDynamicLinks.instance.onLink.listen((dynamicLinkData) async {
       Uri? deepLink = dynamicLinkData.link;
       print('[firebase-dynamic-link] getInitialLink: $deepLink');
 
-      String id = deepLink.queryParameters['id']!;
-      print(id);
 
-      // var postData = FirebaseFirestore.instance.collection('posts').doc(id);
-      // DocumentSnapshot doc = await postData.get();
-      // final data = doc.data() as Map<String, dynamic>;
-      // print(data);
-      // RecipePostModel post = RecipePostModel.fromJson(
-      //     data);
-      var post;
-      print(post);
-      // Navigator.pushNamed(
-      //   context,
-      //   AppPages.recipePostDetails,
-      //   arguments: post,
-      // );
+      String postId = deepLink.queryParameters['postId']!;
+      String zoneId = deepLink.queryParameters['zoneId']!;
+      print(postId);
+      print(zoneId);
 
-      handleDynamicLink(id,dynamicLinkData.link.path);
+
+      handleDynamicLink(postId,zoneId, dynamicLinkData.link.path);
     }).onError((e) {
       print('[firebase-dynamic-link] error: ${e.message}');
     });
 
-    final PendingDynamicLinkData? initialLink = await FirebaseDynamicLinks.instance.getInitialLink();
+    final PendingDynamicLinkData? initialLink =
+        await FirebaseDynamicLinks.instance.getInitialLink();
     if (initialLink != null) {
       Uri deepLink = initialLink.link;
 
       print('[firebase-dynamic-link] getInitialLink: $deepLink');
 
-      String id = deepLink.queryParameters['id']!;
-      print(id);
+      String postId = deepLink.queryParameters['postId']!;
+      String zoneId = deepLink.queryParameters['zoneId']!;
+      print(postId);
+      print(zoneId);
 
-      // var postData = FirebaseFirestore.instance.collection('posts').doc(id);
-      // DocumentSnapshot doc = await postData.get();
-      // final data = doc.data() as Map<String, dynamic>;
-      // print(data);
-      // RecipePostModel post = RecipePostModel.fromJson(
-      //     data);
-      var post;
-      print(post);
-      // Navigator.pushNamed(
-      //   context,
-      //   AppPages.recipePostDetails,
-      //   arguments: post,
-      // );
-
-      await handleDynamicLink(id, deepLink.path);
+      await handleDynamicLink(postId, zoneId, deepLink.path);
     }
   }
 
-  static Future<void> handleDynamicLink(
-      String id, final url) async {
-
+  static Future<void> handleDynamicLink(String postId,String zoneId, final url) async {
     bool item = url.contains('/item');
     print(item);
 
-    if(url.contains('/store')){
-
-    }else if(url.contains('/item')){
-
-    }
-
-
+    Get.to(()=>PostDetailScreen(postId: postId,zoneId: zoneId,));
   }
 }

@@ -1,9 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:aharconnect/static_data.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 import 'package:aharconnect/utils/theme_colors.dart';
 
 // ignore: must_be_immutable
@@ -17,8 +15,7 @@ class NotificationScreen extends StatefulWidget {
 class _NotificationScreenState extends State<NotificationScreen> {
   // NotificationScreen({Key? key}) : super(key: key);
   String lastMessage = '';
-  TextEditingController _phoneController= TextEditingController();
-
+  TextEditingController _phoneController = TextEditingController();
 
   @override
   void dispose() {
@@ -28,7 +25,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
   @override
   Widget build(BuildContext context) {
-        return Scaffold(
+    return Scaffold(
         appBar: AppBar(
           leading: IconButton(
             splashRadius: 20,
@@ -46,11 +43,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
           bottomOpacity: 0.0,
           title: Text(
             'Notification',
-            style: Theme.of(context).textTheme.headline2!.copyWith(
-              fontSize: 25,
-              fontFamily: 'Poppins-Bold',
-
-            ),
+            style: GoogleFonts.openSans(
+                  fontSize: 25,
+                ),
           ),
         ),
         body: SingleChildScrollView(
@@ -72,7 +67,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
                       child: Container(
                         // height: MediaQuery.of(context).size.height*0.11,
                         decoration: BoxDecoration(
-                          border: Border.all(width: 1,color: ThemeColors.greyTextColor.withOpacity(0.3)),
+                          border: Border.all(
+                              width: 1,
+                              color:
+                                  ThemeColors.greyTextColor.withOpacity(0.3)),
                           borderRadius: BorderRadius.circular(25),
                         ),
                         child: Padding(
@@ -92,42 +90,38 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                   child: ListTile(
                                     title: Text(
                                         "${Data().notificationList![index].title} ${DateFormat.jm().format(DateTime.now())}",
-                                        style:
-                                        TextStyle(
+                                        style: TextStyle(
                                           fontSize: 15,
                                           fontFamily: 'Poppins-Bold',
                                           fontWeight: FontWeight.w600,
-                                        )
-                                    ),
+                                        )),
                                     subtitle: Text(
-                                        Data().notificationList![index].body ?? "",
-                                        style:
-                                        const TextStyle(
+                                        Data().notificationList![index].body ??
+                                            "",
+                                        style: const TextStyle(
                                           fontSize: 14,
                                           fontFamily: 'Poppins-Bold',
                                           fontWeight: FontWeight.w600,
-                                        )
-                                    ),
+                                        )),
                                     leading: Container(
-                                      decoration:  BoxDecoration(
-                                        borderRadius:
-                                        BorderRadius.all(Radius.circular(100)),
-                                        border: Border.all(width: 1),
-
-                                      ),
-                                      height: 50,
-                                      width: 50,
-                                      child:
-                                      // contactUser.photoUrl == ""
-                                      //     ?
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(100),
-                                        child: Image.asset(
-                                          'assets/default_image.jpg',
-                                          fit: BoxFit.cover,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(100)),
+                                          border: Border.all(width: 1),
                                         ),
-                                      )
-                                    ),
+                                        height: 50,
+                                        width: 50,
+                                        child:
+                                            // contactUser.photoUrl == ""
+                                            //     ?
+                                            ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(100),
+                                          child: Image.asset(
+                                            'assets/default_image.jpg',
+                                            fit: BoxFit.cover,
+                                          ),
+                                        )),
                                     // trailing: Text(
                                     //   DateFormat.jm().format(DateTime.now()),
                                     //   style: const TextStyle(
@@ -138,7 +132,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                   ),
                                 ),
                               ),
-
                             ],
                           ),
                         ),
@@ -302,8 +295,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
               // ),
             ],
           ),
-        )
-
-    );
+        ));
   }
 }

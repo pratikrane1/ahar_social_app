@@ -11,13 +11,28 @@ class AppConstants {
   static const String LOGIN = '/login';
   static const String VERIFY_OTP = '/otp-verification';
   static const String ZONE_LIST = '/get-user-zone';
+  static const String OFFICE_BEARERS = '/office-bearer';
+  static const String SUB_COMMITTEE = '/committe-member';
+  static const String POST_DATA_LIST = '/get-zone-post';
+  static const String POST_LIKE = '/show-post-like';
+  static const String GET_MEMBERS_LIST = '/get-member';
+  static const String POST_LIKE_DISLIKE = '/post-like';
+  static const String GET_POST_COMMENT = '/show-post-comment';
+  static const String POST_COMMENT = '/create-post-comment';
   static const String GET_PROFILE = '/get-profile';
   static const String UPDATE_PROFILE = '/update-profile';
-
+  static const String UPLOAD_PROFILE_IMAGE = '/update-photo';
+  static const String UPLOAD_POST = '/create-post';
+  static const String ALBUM = '/show-all-album';
+  static const String ALBUM_IMAGES = '/show-all-gallery-photo';
+  static const String POST_DETAIL = '/show-post';
+  static const String BANNER_LIST = '/show-all-banner';
+  static const String PDF_URI = '/show-ppt';
 
   //Shared Key
   static const String TOKEN = 'token';
   static const String USER_NUMBER = 'user_number';
+  static const String USER_ROLE = 'user_role';
   static const String NUMBER_TEMPORARY = 'number_temporary';
   static const String USER_ID = 'user_id';
   static const String REFERAL_CODE = 'referal_code';

@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
 class SettingsChangePasswordButton extends StatelessWidget {
-  const SettingsChangePasswordButton({Key? key, required this.kGreyColorShade, required this.arrowForwardColor,required this.onTap,}) : super(key: key);
-final Color kGreyColorShade;
-final Color arrowForwardColor;
-final Function()? onTap;
+  const SettingsChangePasswordButton({
+    Key? key,
+    required this.kGreyColorShade,
+    required this.arrowForwardColor,
+    required this.onTap,
+  }) : super(key: key);
+  final Color kGreyColorShade;
+  final Color arrowForwardColor;
+  final Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return InkWell(

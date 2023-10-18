@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart' as Foundation;
 import 'package:http/http.dart' as Http;
 import 'package:aharconnect/src/group_model.dart';
 
-class ApiClient{
+class ApiClient {
   final int timeoutInSeconds = 30;
   List<GroupModel>? officeBearers;
 
@@ -16,7 +16,7 @@ class ApiClient{
         print('====> API Call: $uri');
       }
       Http.Response _response = await Http.get(
-          Uri.parse(uri),
+        Uri.parse(uri),
       ).timeout(Duration(seconds: timeoutInSeconds));
       print(_response.body);
       return handleResponse(_response, uri);
@@ -70,9 +70,9 @@ class ApiClient{
   Future<List<GroupModel>> getOfficeBearersList() async {
     // _isLoading = false;
     // _transactionList = [];
-    Response response = await getData("http://ahar.ezii.live/api/get-office-bearer");
+    Response response =
+        await getData("http://ahar.ezii.live/api/get-office-bearer");
     if (response.statusCode == 200) {
-
       final Iterable refactorProductList = response.body!["data"] ?? [];
       officeBearers = refactorProductList.map((item) {
         return GroupModel.fromJson(item);
@@ -93,7 +93,6 @@ class ApiClient{
     // _transactionList = [];
     Response response = await getData("http://ahar.ezii.live/api/get-members");
     if (response.statusCode == 200) {
-
       final Iterable refactorProductList = response.body!["data"] ?? [];
       officeBearers = refactorProductList.map((item) {
         return GroupModel.fromJson(item);
@@ -112,9 +111,9 @@ class ApiClient{
   Future<List<GroupModel>> getSubCommiteList() async {
     // _isLoading = false;
     // _transactionList = [];
-    Response response = await getData("http://ahar.ezii.live/api/get-committe-members");
+    Response response =
+        await getData("http://ahar.ezii.live/api/get-committe-members");
     if (response.statusCode == 200) {
-
       final Iterable refactorProductList = response.body!["data"] ?? [];
       officeBearers = refactorProductList.map((item) {
         return GroupModel.fromJson(item);
@@ -129,7 +128,4 @@ class ApiClient{
     // update();
     return officeBearers!;
   }
-
-
-
 }

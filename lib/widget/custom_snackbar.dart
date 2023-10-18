@@ -23,8 +23,7 @@ void showCustomSnackBar(String message, {bool isError = true}) {
           borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL)),
       content: Text(message,
           style: GoogleFonts.openSans(
-              color: Colors.white,
-              fontWeight: FontWeight.normal)),
+              color: Colors.white, fontWeight: FontWeight.normal)),
     ));
   }
 }

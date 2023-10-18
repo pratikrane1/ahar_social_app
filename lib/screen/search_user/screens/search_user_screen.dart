@@ -27,7 +27,7 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
 
   @override
   Widget build(BuildContext context) {
-        return GestureDetector(
+    return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -117,7 +117,7 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
                                 child: Icon(
                                   Icons.search_rounded,
                                   size: 20,
-                                  color:Colors.white,
+                                  color: Colors.white,
                                 ),
                               ),
                             ),

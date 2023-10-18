@@ -39,7 +39,9 @@ class SubCommitee {
 
   SubCommitee.fromJson(Map<String, dynamic> json) {
     success = json['success'];
-    data = json['data'] != null ? new SubCommiteeModel.fromJson(json['data']) : null;
+    data = json['data'] != null
+        ? new SubCommiteeModel.fromJson(json['data'])
+        : null;
     message = json['message'];
   }
 
@@ -106,10 +108,10 @@ class Police {
 
   Police(
       {this.committeName,
-        this.name,
-        this.businessName,
-        this.mobileNo,
-        this.email});
+      this.name,
+      this.businessName,
+      this.mobileNo,
+      this.email});
 
   Police.fromJson(Map<String, dynamic> json) {
     committeName = json['committe_name'];

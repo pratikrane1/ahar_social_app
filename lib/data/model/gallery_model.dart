@@ -1,111 +1,98 @@
 class AlbumModel {
   int? id;
-  String? albumName;
-  String? albumImage;
-  String? createdAt;
-  String? updatedAt;
-  String? isNewAlbum;
-  int? totalImages;
+  String? name;
+  String? coverPhoto;
+  Null? createdAt;
+  Null? updatedAt;
+  String? url;
 
   AlbumModel(
       {this.id,
-        this.albumName,
-        this.albumImage,
+        this.name,
+        this.coverPhoto,
         this.createdAt,
         this.updatedAt,
-        this.totalImages,
-        this.isNewAlbum});
+        this.url});
 
   AlbumModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    albumName = json['album_name'];
-    albumImage = json['album_image'];
+    name = json['name'];
+    coverPhoto = json['cover_photo'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    totalImages = json['total_images'];
-    isNewAlbum = json['new_album'];
+    url = json['url'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['album_name'] = this.albumName;
-    data['album_image'] = this.albumImage;
+    data['name'] = this.name;
+    data['cover_photo'] = this.coverPhoto;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
-    data['total_images'] = this.totalImages;
-    data['new_album'] = this.isNewAlbum;
+    data['url'] = this.url;
     return data;
   }
 }
 
-class AlbumImagesModel {
+
+class AlbumImageModel {
   int? id;
-  String? photoUrl;
-  int? albumId;
-  String? albumName;
+  String? documentableType;
+  int? documentableId;
+  String? path;
+  String? type;
+  Null? deletedAt;
   String? createdAt;
   String? updatedAt;
+  String? url;
   String? isLike;
-  int? likeCount;
-  int? totalShare;
+  String? likeCount;
+  String? totalShare;
 
-  AlbumImagesModel(
+  AlbumImageModel(
       {this.id,
-        this.photoUrl,
-        this.albumId,
-        this.albumName,
+        this.documentableType,
+        this.documentableId,
+        this.path,
+        this.type,
+        this.deletedAt,
         this.createdAt,
         this.updatedAt,
         this.isLike,
         this.likeCount,
-        this.totalShare});
+        this.totalShare,
+        this.url});
 
-  AlbumImagesModel.fromJson(Map<String, dynamic> json) {
+  AlbumImageModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    photoUrl = json['photo_url'];
-    albumId = json['album_id'];
-    albumName = json['album_name'];
+    documentableType = json['documentable_type'];
+    documentableId = json['documentable_id'];
+    path = json['path'];
+    type = json['type'];
+    deletedAt = json['deleted_at'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    isLike = json['is_like'];
-    likeCount = json['like_count'];
-    totalShare = json['total_share'];
+    url = json['url'];
+    isLike = json['isLike'];
+    likeCount = json['likeCount'];
+    totalShare = json['totalShare'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['photo_url'] = this.photoUrl;
-    data['album_id'] = this.albumId;
-    data['album_name'] = this.albumName;
+    data['documentable_type'] = this.documentableType;
+    data['documentable_id'] = this.documentableId;
+    data['path'] = this.path;
+    data['type'] = this.type;
+    data['deleted_at'] = this.deletedAt;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
-    data['is_like'] = this.isLike;
-    data['like_count'] = this.likeCount;
-    data['total_share'] = this.totalShare;
-    return data;
-  }
-}
-
-class LikedUserList {
-  int? id;
-  String? userName;
-  String? profileImage;
-
-  LikedUserList({this.id, this.userName, this.profileImage});
-
-  LikedUserList.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    userName = json['user_name'];
-    profileImage = json['profile_image'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['user_name'] = this.userName;
-    data['profile_image'] = this.profileImage;
+    data['url'] = this.url;
+    data['isLike'] = this.isLike;
+    data['likeCount'] = this.likeCount;
+    data['totalShare'] = this.totalShare;
     return data;
   }
 }

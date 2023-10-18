@@ -19,22 +19,23 @@ class AuthController extends GetxController implements GetxService {
   // LoginModel? _forgetPassword;
   bool get notification => _notification;
 
-
   bool get isLoading => _isLoading;
   bool get isVerifyEmailLoading => _isVerifyEmailLoading;
   bool get isVerifyOtpLoading => _isVerifyOtpLoading;
   LoginModel? get loginModel => _loginModel;
   // LoginModel? get forgetPassword => _forgetPassword;
 
-  Future<LoginModel> login(String phone,) async {
+  Future<LoginModel> login(
+    String phone,
+  ) async {
     Response response = await authRepo.login(
       phone: phone,
     );
     if (response.statusCode == 200) {
       _loginModel = LoginModel.fromJson(response.body);
-      if(_loginModel!.success == true){
+      if (_loginModel!.success == true) {
         // showCustomSnackBar(_loginModel!.message.toString(), isError: false);
-      }else{
+      } else {
         // showCustomSnackBar(_loginModel!.message.toString(), isError: true);
       }
     }
@@ -43,16 +44,14 @@ class AuthController extends GetxController implements GetxService {
     return _loginModel!;
   }
 
-  Future<LoginModel> verifyOTP(String userId,String otp) async {
-
-    Response response = await authRepo.verifyOTP(userId: userId,otp: otp);
+  Future<LoginModel> verifyOTP(String userId, String otp) async {
+    Response response = await authRepo.verifyOTP(userId: userId, otp: otp);
     if (response.statusCode == 200) {
       _loginModel = LoginModel.fromJson(response.body);
-      if(_loginModel!.success == true){
+      if (_loginModel!.success == true) {
         authRepo.saveUserToken(_loginModel!.data!.token!);
       }
-    } else {
-    }
+    } else {}
     _isVerifyOtpLoading = true;
     update();
     return _loginModel!;
@@ -108,9 +107,15 @@ class AuthController extends GetxController implements GetxService {
     authRepo.saveUserNumber(number.trim());
   }
 
+  void saveUserRole(
+    String role,
+  ) {
+    authRepo.saveUserRole(role.trim());
+  }
+
   void saveNumberTemp(
-      String number,
-      ) {
+    String number,
+  ) {
     authRepo.saveNumberTemporary(number.trim());
   }
 
@@ -132,6 +137,10 @@ class AuthController extends GetxController implements GetxService {
     return authRepo.getUserNumber() ?? "";
   }
 
+  String getUserRole() {
+    return authRepo.getUserRole() ?? "";
+  }
+
   String getNumberTemporary() {
     return authRepo.getNumberTemporary() ?? "";
   }
@@ -140,22 +149,7 @@ class AuthController extends GetxController implements GetxService {
     return authRepo.clearUserNumber();
   }
 
-  // Future<String> getUniqueDeviceId() async {
-  //   String uniqueDeviceId = '';
-  //
-  //   var deviceInfo = DeviceInfoPlugin();
-  //
-  //   if (Platform.isIOS) {
-  //     // import 'dart:io'
-  //     var iosDeviceInfo = await deviceInfo.iosInfo;
-  //     uniqueDeviceId =
-  //         '${iosDeviceInfo.name}:${iosDeviceInfo.identifierForVendor}'; // unique ID on iOS
-  //   } else if (Platform.isAndroid) {
-  //     var androidDeviceInfo = await deviceInfo.androidInfo;
-  //     uniqueDeviceId =
-  //         '${androidDeviceInfo.model}:${androidDeviceInfo.id}'; // unique ID on Android
-  //   }
-  //
-  //   return uniqueDeviceId;
-  // }
+  Future<bool> cleartoken() async {
+    return authRepo.clearToken();
+  }
 }

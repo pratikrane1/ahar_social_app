@@ -1,39 +1,39 @@
 import 'dart:io';
+import 'package:aharconnect/controller/gallery_controller.dart';
+import 'package:aharconnect/data/model/gallery_model.dart';
 import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:aharconnect/screen/home/widget/image_video_widget.dart';
 import 'package:aharconnect/utils/images.dart';
 import 'package:aharconnect/utils/theme_colors.dart';
 import 'package:aharconnect/widget/custom_image.dart';
-import 'package:http/http.dart' as http;
-
 import 'album_image_view.dart';
 
-
 class ImagesScreen extends StatefulWidget {
-  AlbumList? albumData;
-  ImagesScreen({Key? key,
-    required this.albumData
-  }) : super(key: key);
+  AlbumModel? albumData;
+  ImagesScreen({Key? key, required this.albumData}) : super(key: key);
 
   @override
   State<ImagesScreen> createState() => _ImagesScreenState();
 }
 
 class _ImagesScreenState extends State<ImagesScreen> {
-
-  List? _albumImagesList;
-
+  List<AlbumImageModel>? _albumImagesList;
+  bool _isAlbumImages = false;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    // Get.find<GalleryController>().getAlbumImages(widget.albumData!.id.toString(),Get.find<AuthController>().getUserId().toString(),false);
+    Get.find<GalleryController>()
+        .getAlbumImages(widget.albumData!.id.toString(), false);
   }
 
   @override
@@ -43,12 +43,11 @@ class _ImagesScreenState extends State<ImagesScreen> {
         backgroundColor: ThemeColors.whiteColor,
         surfaceTintColor: ThemeColors.whiteColor,
         title: Text(
-          widget.albumData!.albumName ?? "",
+          widget.albumData!.name ?? "",
           maxLines: 2,
-          style: Theme.of(context).textTheme.headline6!.copyWith(
+          style: GoogleFonts.openSans(
             fontSize: 18,
             fontWeight: FontWeight.w600,
-            fontFamily: 'Montserrat',
           ),
         ),
         leading: IconButton(
@@ -68,130 +67,264 @@ class _ImagesScreenState extends State<ImagesScreen> {
       ),
       body: RefreshIndicator(
         color: ThemeColors.primaryColor,
-        onRefresh: ()async{
+        onRefresh: () async {
           // await Get.find<GalleryController>().getAlbumImages(widget.albumData!.id.toString(),Get.find<AuthController>().getUserId().toString(),false);
         },
-        child:  Column(
-          children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: MasonryGridView.count(
-                    itemCount: widget.albumData!.albumImages!.length,
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 4,
-                    crossAxisSpacing: 4,
-                    itemBuilder:(context, index) {
-                      return Column(
+        child: GetBuilder<GalleryController>(builder: (galleryController) {
+          _albumImagesList = galleryController.albumImagesList;
+          _isAlbumImages = galleryController.isAlbumImagesLoading;
+          return _isAlbumImages
+              ? _albumImagesList!.isNotEmpty
+                  ? Column(
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: MasonryGridView.count(
+                                itemCount: _albumImagesList!.length,
+                                crossAxisCount: 2,
+                                mainAxisSpacing: 4,
+                                crossAxisSpacing: 4,
+                                itemBuilder: (context, index) {
+                                  return Column(
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ImageViewerScreen(
+                                                        albumImage:
+                                                        _albumImagesList!,
+                                                        initialIndex: index,
+                                                        albumData:
+                                                            widget.albumData!,
+                                                      )));
+                                        },
+                                        child: Container(
+                                          decoration: const BoxDecoration(
+                                              color: Colors.transparent,
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(15))),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                                    Radius.circular(15)),
+                                            child: CustomImage(
+                                              image: _albumImagesList![index]
+                                                  .url
+                                                  .toString(),
+                                              fit: BoxFit.cover,
+                                              // width: MediaQuery.of(context).size.width,
+                                              // height: 200,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 6.0,
+                                            right: 6.0,
+                                            bottom: 10.0,
+                                            top: 5.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                InkWell(
+                                                    onTap: () {
+                                                      // if (_albumImagesList![
+                                                      //             index]
+                                                      //         .isLike ==
+                                                      //     "1") {
+                                                      //   Get.find<GalleryController>()
+                                                      //       .setLikeUnlikePhoto(
+                                                      //           Get.find<
+                                                      //                   AuthController>()
+                                                      //               .getUserId(),
+                                                      //           widget
+                                                      //               .albumData!
+                                                      //               .id
+                                                      //               .toString(),
+                                                      //           _albumImagesList![
+                                                      //                   index]
+                                                      //               .id
+                                                      //               .toString(),
+                                                      //           0.toString());
+                                                      // } else {
+                                                      //   // _albumImagesList![index].isLike == '1';
+                                                      //   Get.find<GalleryController>()
+                                                      //       .setLikeUnlikePhoto(
+                                                      //           Get.find<
+                                                      //                   AuthController>()
+                                                      //               .getUserId(),
+                                                      //           widget
+                                                      //               .albumData!
+                                                      //               .id
+                                                      //               .toString(),
+                                                      //           _albumImagesList![
+                                                      //                   index]
+                                                      //               .id
+                                                      //               .toString(),
+                                                      //           1.toString());
+                                                      // }
+                                                    },
+                                                    child: Icon(
+                                                        _albumImagesList![index]
+                                                                    .isLike !=
+                                                                "1"
+                                                            ? CupertinoIcons
+                                                                .heart
+                                                            : CupertinoIcons
+                                                                .heart_fill,
+                                                        color: _albumImagesList![
+                                                                        index]
+                                                                    .isLike ==
+                                                                "1"
+                                                            ? ThemeColors
+                                                                .redColor
+                                                            : null,
+                                                        size: 20)),
+                                                const SizedBox(
+                                                  width: 4,
+                                                ),
+                                                InkWell(
+                                                  onTap: () {
+                                                    // _albumImagesList![index]
+                                                    //             .likeCount !=
+                                                    //         0
+                                                    //     ? Navigator.push(
+                                                    //         context,
+                                                    //         MaterialPageRoute(
+                                                    //             builder:
+                                                    //                 (context) =>
+                                                    //                     LikeUserListScreen(
+                                                    //                       photoId: _albumImagesList![index]
+                                                    //                           .id
+                                                    //                           .toString(),
+                                                    //                     )))
+                                                    //     : null;
+                                                  },
+                                                  child: Text(
+                                                    _albumImagesList![index]
+                                                                .likeCount !=
+                                                            0
+                                                        ? "${_albumImagesList![index].likeCount} ${_albumImagesList![index].likeCount == 1 ? "Like" : "Likes"}"
+                                                        : "",
+                                                    style: const TextStyle(
+                                                        decoration:
+                                                            TextDecoration
+                                                                .underline,
+                                                        fontSize: 13,
+                                                        color: ThemeColors
+                                                            .blackColor,
+                                                        fontFamily:
+                                                            'Montserrat',
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            Row(
+                                              children: [
+                                                InkWell(
+                                                  onTap: () {
+                                                    Get.find<
+                                                            GalleryController>()
+                                                        .shareImage(
+                                                            _albumImagesList![
+                                                                    index]
+                                                                .url!,
+                                                            _albumImagesList![
+                                                                index],
+                                                            widget.albumData!);
+                                                  },
+                                                  child: SvgPicture.asset(
+                                                    Images.share_icon,
+                                                    height: 20,
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  width: 2,
+                                                ),
+                                                _albumImagesList![index]
+                                                            .totalShare !=
+                                                        0
+                                                    ? Text(
+                                                        "(${_albumImagesList![index].totalShare ?? 0})",
+                                                        style: const TextStyle(
+                                                            fontSize: 13,
+                                                            color: ThemeColors
+                                                                .blackColor,
+                                                            fontFamily:
+                                                                'Montserrat',
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w500),
+                                                      )
+                                                    : Container(),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  );
+                                }),
+                          ),
+                        )
+                      ],
+                    )
+                  : Padding(
+                      padding: const EdgeInsets.only(top: 50.0),
+                      child: Column(
+                        // mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          GestureDetector(
-                            onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>ImageViewerScreen(albumImage: widget.albumData!.albumImages!,initialIndex: index,albumData: widget.albumData!,)));
-
-                              // Get.to(() => ImageViewerScreen(albumImage: _albumImagesList!,initialIndex: index,albumData: widget.albumData!,));
-                            },
+                          Center(
                             child: Container(
-                              decoration: const BoxDecoration(
-                                  color: Colors.transparent,
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(15))
-                              ),
-                              child: ClipRRect(
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(15)),
-                                child: CustomImage(
-                                  image: widget.albumData!.albumImages![index].albumImages.toString(),
-                                  fit: BoxFit.cover,
-                                  // width: MediaQuery.of(context).size.width,
-                                  // height: 200,
-                                ),
-                              ),
+                              // height: 40,
+                              // width: 40,
+
+                              child: Image.asset(Images.empty_images),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 6.0,right: 6.0,bottom: 10.0,top: 5.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children:  [
-                                Row(
-                                  children: [
-
-                                    InkWell(
-                                        onTap: (){
-                                        },
-                                        child: Icon(widget.albumData!.albumImages![index].likeCount != "1" ? CupertinoIcons.heart : CupertinoIcons.heart_fill,
-                                            color:widget.albumData!.albumImages![index].likeCount == "1" ? ThemeColors.redColor : null,
-                                            size: 20)),
-                                    const SizedBox(width: 4,),
-                                    InkWell(
-                                      onTap: (){
-                                        if(widget.albumData!.albumImages![index].likeCount != 1) {
-                                          setState(() {
-                                            widget
-                                                .albumData!
-                                                .albumImages![index]
-                                                .likeCount = 1;
-                                          });
-                                        }else{
-                                          setState(() {
-                                            widget.albumData!.albumImages![index].likeCount = 0;
-                                          });
-                                        }
-                                      },
-                                      child: Text(widget.albumData!.albumImages![index].likeCount != 0 ?
-                                      "${widget.albumData!.albumImages![index].likeCount} ${widget.albumData!.albumImages![index].likeCount == 1 ? "Like" : "Likes"}" : "",
-                                        style:const TextStyle(
-                                            decoration: TextDecoration.underline,
-                                            fontSize: 13,
-                                            color: ThemeColors.blackColor,
-                                            fontFamily: 'Montserrat',
-                                            fontWeight: FontWeight.w500),),
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    InkWell(
-                                      onTap: ()async{
-                                        final uri = Uri.parse(widget.albumData!.albumImages![index].albumImages.toString());
-                                        final response = await http.get(uri);
-                                        final bytes = response.bodyBytes;
-                                        final temp = await getTemporaryDirectory();
-                                        final path = '${temp.path}/image.jpg';
-                                        File(path).writeAsBytesSync(bytes);
-                                        await Share.shareFiles([path],);
-                                      },
-                                      child: SvgPicture.asset(
-                                        Images.share_icon,
-                                        height: 20,
-                                      ),),
-                                    const SizedBox(width: 2,),
-                                  ],
-                                ),
-                              ],
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            "oops_looks_like_there_are_no_images_available_right_now"
+                                .tr,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Montserrat',
                             ),
-                          )
+                          ),
                         ],
-                      );
-                    }
-                ),
-              ),
-            )
-
-          ],
-        ),
+                      ),
+                    )
+              : Center(
+                  child: CircularProgressIndicator(
+                    color: ThemeColors.primaryColor,
+                  ),
+                );
+        }),
       ),
     );
   }
 }
 
 class AlbumImageProvider extends EasyImageProvider {
-
   // final List<AlbumImagesModel> albumImage;
   final List albumImage;
   final int initialIndex;
 
-  AlbumImageProvider({ required this.albumImage, this.initialIndex = 0 });
+  AlbumImageProvider({required this.albumImage, this.initialIndex = 0});
 
   @override
   ImageProvider<Object> imageBuilder(BuildContext context, int index) {
@@ -202,13 +335,12 @@ class AlbumImageProvider extends EasyImageProvider {
       imageFile = File(localImagePath);
     }
 
-    ImageProvider imageProvider = imageFile != null ?
-    Image.network(albumImage[index].photoUrl.toString()).image : AssetImage(Images.placeholder) as ImageProvider;
-
+    ImageProvider imageProvider = imageFile != null
+        ? Image.network(albumImage[index].photoUrl.toString()).image
+        : AssetImage(Images.placeholder) as ImageProvider;
 
     return imageProvider;
   }
-
 
   @override
   int get imageCount => albumImage.length;

@@ -27,8 +27,8 @@ class _LogInScreenState extends State<LogInScreen> {
   void initState() {
     _phoneController = TextEditingController();
     super.initState();
-    Future<void>.delayed(const Duration(milliseconds: 300), _tryPasteCurrentPhone);
-
+    Future<void>.delayed(
+        const Duration(milliseconds: 300), _tryPasteCurrentPhone);
   }
 
   Future _tryPasteCurrentPhone() async {
@@ -43,7 +43,6 @@ class _LogInScreenState extends State<LogInScreen> {
       print('Failed to get mobile number because of: ${e.message}');
     }
   }
-
 
   @override
   void dispose() {
@@ -71,8 +70,8 @@ class _LogInScreenState extends State<LogInScreen> {
           ),
           Scaffold(
             backgroundColor: Colors.transparent,
-            extendBodyBehindAppBar: true,
             resizeToAvoidBottomInset: true,
+            extendBodyBehindAppBar: true,
             body: Padding(
               padding: const EdgeInsets.all(18.0).copyWith(top: 180),
               child: GetBuilder<AuthController>(builder: (authController) {
@@ -83,9 +82,7 @@ class _LogInScreenState extends State<LogInScreen> {
                     Text(
                       'welcome_back'.tr,
                       style: GoogleFonts.openSans(
-                          fontSize: 34,
-                          fontWeight: FontWeight.bold
-                      ),
+                          fontSize: 34, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 5),
                     Text(
@@ -93,8 +90,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       style: GoogleFonts.openSans(
                           fontSize: 14,
                           color: ThemeColors.greyTextColor,
-                          fontWeight: FontWeight.normal
-                      ),
+                          fontWeight: FontWeight.normal),
                     ),
                     const SizedBox(height: 50),
 
@@ -111,8 +107,8 @@ class _LogInScreenState extends State<LogInScreen> {
                     Container(
                       decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(
-                            Radius.circular(50),
-                          )),
+                        Radius.circular(50),
+                      )),
                       child: TextFormField(
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
@@ -160,26 +156,25 @@ class _LogInScreenState extends State<LogInScreen> {
                         onPressed: () async {
                           String? phone;
 
-
-
                           if (_phoneController.text != null) {
                             // String? num = phoneController.text.trim();
                             phone = _phoneController.text.trim();
                             // phone = num.substring(num.length - 10);
                           }
                           if (phone!.length < 10) {
-                            showCustomSnackBar('please_enter_10_digit_number'.tr);
+                            showCustomSnackBar(
+                                'please_enter_10_digit_number'.tr);
                           } else if (phone.length > 13) {
                             showCustomSnackBar('please_enter_valid_number'.tr);
                           } else if (phone.isEmpty) {
                             showCustomSnackBar('please_enter_phone_number'.tr);
-                          }else{
+                          } else {
                             setState(() {
                               loading = false;
                             });
 
-                            _login(authController, _phoneController.text.trim());
-
+                            _login(
+                                authController, _phoneController.text.trim());
                           }
                         },
                         height: 60,
@@ -199,14 +194,13 @@ class _LogInScreenState extends State<LogInScreen> {
                           // color:Colors.red,
                           shape: const RoundedRectangleBorder(
                               borderRadius:
-                              BorderRadius.all(Radius.circular(50))),
+                                  BorderRadius.all(Radius.circular(50))),
                         ),
                       ),
                     ),
                   ],
                 );
-              }
-              ),
+              }),
             ),
           ),
         ],
@@ -214,8 +208,9 @@ class _LogInScreenState extends State<LogInScreen> {
     );
   }
 
-  void _login(AuthController authController,String number) async {
-    String _numberWithCountryCode = number.length > 10 ? number.substring(number.length-10) : "${number}"  ;
+  void _login(AuthController authController, String number) async {
+    String _numberWithCountryCode =
+        number.length > 10 ? number.substring(number.length - 10) : "${number}";
     // String _numberWithCountryCode = number;
 
     var logData = await authController
@@ -229,7 +224,10 @@ class _LogInScreenState extends State<LogInScreen> {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => VerifyNumberScreen(mobileNumber: _numberWithCountryCode,)));
+                builder: (context) => VerifyNumberScreen(
+                      mobileNumber: _numberWithCountryCode,
+                      userId: status.data!.userId.toString(),
+                    )));
       } else {
         showCustomSnackBar(status.message!, isError: true);
 

@@ -8,7 +8,6 @@ import 'package:aharconnect/utils/images.dart';
 import 'package:aharconnect/utils/theme_colors.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-
 class GalleryVideoScreen extends StatefulWidget {
   VideoModel? videData;
   GalleryVideoScreen({Key? key, required this.videData}) : super(key: key);
@@ -25,7 +24,8 @@ class _GalleryVideoScreenState extends State<GalleryVideoScreen> {
   int activePage = 1;
   bool _fullScreen = false;
   String? videoId = "";
-  String? descriptionText = "Description: Welcome to the world of Destek Infosolutions Private Limited, a trailblazing IT services and products company that is revolutionizing businesses through digital transformation. With an extensive portfolio of successful projects and a talented team of over 250 experts, Destek is at the forefront of driving innovation and reshaping the way organizations harness the power of technology.Join us on an awe-inspiring journey as we unveil the exceptional story of Destek, showcasing our unwavering commitment to empowering businesses worldwide. From E-commerce to Robotics, LegalTech to Media & Entertainment, our diverse range of offerings caters to a wide array of industries, bringing cutting-edge solutions to fuel growth and success.Explore our remarkable partnerships, renowned clientele, and groundbreaking products such as Elektrify, a game-changing EV charging solution that is shaping the future of sustainable transportation.Discover how Destek is paving the way for the future of IT services, enabling businesses to thrive in the digital era. Immerse yourself in our world of innovation, expertise, and transformation.Join us today and unlock the power of digital transformation with Destek Pro!";
+  String? descriptionText =
+      "Description: Welcome to the world of Destek Infosolutions Private Limited, a trailblazing IT services and products company that is revolutionizing businesses through digital transformation. With an extensive portfolio of successful projects and a talented team of over 250 experts, Destek is at the forefront of driving innovation and reshaping the way organizations harness the power of technology.Join us on an awe-inspiring journey as we unveil the exceptional story of Destek, showcasing our unwavering commitment to empowering businesses worldwide. From E-commerce to Robotics, LegalTech to Media & Entertainment, our diverse range of offerings caters to a wide array of industries, bringing cutting-edge solutions to fuel growth and success.Explore our remarkable partnerships, renowned clientele, and groundbreaking products such as Elektrify, a game-changing EV charging solution that is shaping the future of sustainable transportation.Discover how Destek is paving the way for the future of IT services, enabling businesses to thrive in the digital era. Immerse yourself in our world of innovation, expertise, and transformation.Join us today and unlock the power of digital transformation with Destek Pro!";
 
   @override
   void initState() {
@@ -53,7 +53,7 @@ class _GalleryVideoScreenState extends State<GalleryVideoScreen> {
     });
   }
 
-  void dispose(){
+  void dispose() {
     super.dispose();
     _ytbPlayerController!.dispose();
   }
@@ -97,19 +97,8 @@ class _GalleryVideoScreenState extends State<GalleryVideoScreen> {
                 bottomOpacity: 0.0,
               ),
         body: _ytbPlayerController != null
-            ? _fullScreen ?
-        YoutubePlayerBuilder(
-          player: YoutubePlayer(
-            controller: _ytbPlayerController!,
-            showVideoProgressIndicator: true,
-          ),
-          builder: (context, player) {
-            return player;
-          },
-        ):ListView(
-                // crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  YoutubePlayerBuilder(
+            ? _fullScreen
+                ? YoutubePlayerBuilder(
                     player: YoutubePlayer(
                       controller: _ytbPlayerController!,
                       showVideoProgressIndicator: true,
@@ -117,59 +106,73 @@ class _GalleryVideoScreenState extends State<GalleryVideoScreen> {
                     builder: (context, player) {
                       return player;
                     },
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0,right: 10.0,top: 10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Image.asset(
-                          Images.logo,
-                          height: 35,
-                          // color: ThemeColors.primaryColor,
+                  )
+                : ListView(
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      YoutubePlayerBuilder(
+                        player: YoutubePlayer(
+                          controller: _ytbPlayerController!,
+                          showVideoProgressIndicator: true,
                         ),
-                        InkWell(
-                          onTap: (){
-                            // Get.find<VideoController>().shareYoutubeURL(videoId!);
-                            String toLaunch = 'https://www.youtube.com/watch?v=$videoId';
-                            Share.share("$toLaunch");
-                          },
-                          child: SvgPicture.asset(
-                            Images.share_button,
-                            height: 25,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  _fullScreen
-                      ? Container()
-                      : Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            widget.videData!.VideoName.toString(),
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Montserrat',
+                        builder: (context, player) {
+                          return player;
+                        },
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 10.0, right: 10.0, top: 10.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Image.asset(
+                              Images.logo,
+                              height: 35,
+                              // color: ThemeColors.primaryColor,
                             ),
-                          ),
-                        ),
-                  _fullScreen
-                      ? Container()
-                      : Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          widget.videData!.videoDesc.toString(),
-                          style: const TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.normal,
-                            fontFamily: 'Montserrat',
-                          ),
+                            InkWell(
+                              onTap: () {
+                                // Get.find<VideoController>().shareYoutubeURL(videoId!);
+                                String toLaunch =
+                                    'https://www.youtube.com/watch?v=$videoId';
+                                Share.share("$toLaunch");
+                              },
+                              child: SvgPicture.asset(
+                                Images.share_button,
+                                height: 25,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                ],
-              )
+                      _fullScreen
+                          ? Container()
+                          : Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                widget.videData!.VideoName.toString(),
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Montserrat',
+                                ),
+                              ),
+                            ),
+                      _fullScreen
+                          ? Container()
+                          : Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                widget.videData!.videoDesc.toString(),
+                                style: const TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.normal,
+                                  fontFamily: 'Montserrat',
+                                ),
+                              ),
+                            ),
+                    ],
+                  )
             : const Center(child: CircularProgressIndicator()),
       ),
     );

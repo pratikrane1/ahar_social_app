@@ -1,3 +1,5 @@
+import 'package:aharconnect/controller/gallery_controller.dart';
+import 'package:aharconnect/data/model/gallery_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,18 +11,19 @@ import 'package:aharconnect/screen/home/widget/image_video_widget.dart';
 import 'package:aharconnect/utils/images.dart';
 import 'package:aharconnect/utils/theme_colors.dart';
 
-
 import 'like_user_screen.dart';
-
 
 class ImageViewerScreen extends StatefulWidget {
   ImageViewerScreen(
-      {required this.albumImage, required this.initialIndex,required this.albumData, Key? key})
+      {required this.albumImage,
+      required this.initialIndex,
+      required this.albumData,
+      Key? key})
       : super(key: key);
 
-  List<AlbumImages> albumImage;
+  List<AlbumImageModel>? albumImage;
   final int initialIndex;
-  AlbumList? albumData;
+  AlbumModel? albumData;
 
   @override
   State<ImageViewerScreen> createState() => _ImageViewerScreenState();
@@ -34,7 +37,7 @@ class _ImageViewerScreenState extends State<ImageViewerScreen> {
   void initState() {
     super.initState();
     // _pageController = PageController(initialPage: widget.initialIndex);
-    currentImageUrl = widget.albumImage[widget.initialIndex].albumImages ?? "";
+    currentImageUrl = widget.albumImage![widget.initialIndex].url ?? "";
     currentIndex = widget.initialIndex;
   }
 
@@ -74,38 +77,36 @@ class _ImageViewerScreenState extends State<ImageViewerScreen> {
       body: Column(children: [
         Expanded(
             child: Stack(children: [
-              PhotoViewGallery.builder(
-                  itemCount: widget.albumImage.length,
-                  builder: (context, index) =>
-                      PhotoViewGalleryPageOptions.customChild(
-                        child: CachedNetworkImage(
-                          imageUrl: widget.albumImage[index].albumImages.toString(),
-                          placeholder: (context, url) => Container(
-                            color: Colors.grey,
-                          ),
-                          errorWidget: (context, url, error) => Container(
-                            color: Colors.red.shade400,
-                          ),
-                        ),
-                        minScale: PhotoViewComputedScale.covered,
-                        // heroAttributes: PhotoViewHeroAttributes(
-                        //     tag: widget.albumImage[index].id.toString()),
+          PhotoViewGallery.builder(
+              itemCount: widget.albumImage!.length,
+              builder: (context, index) =>
+                  PhotoViewGalleryPageOptions.customChild(
+                    child: CachedNetworkImage(
+                      imageUrl: widget.albumImage![index].url.toString(),
+                      placeholder: (context, url) => Container(
+                        color: Colors.grey,
                       ),
-                  pageController:
-                  PageController(initialPage: widget.initialIndex),
-                  enableRotation: true,
-                  onPageChanged: (int index) {
-                    // currentImageUrl = widget.albumImage[index].photoUrl;
-                    // currentIndex = index;
-                    // setState(() {
-                    //   widget.albumImage[index].isLike = widget.albumImage[index].isLike;
-                    //   widget.albumImage[index].likeCount = widget.albumImage[index].likeCount;
-                    //   widget.albumImage[index].totalShare = widget.albumImage[index].totalShare;
-                    //
-                    // });
-
-                  }),
-            ])),
+                      errorWidget: (context, url, error) => Container(
+                        color: Colors.red.shade400,
+                      ),
+                    ),
+                    minScale: PhotoViewComputedScale.covered,
+                    // heroAttributes: PhotoViewHeroAttributes(
+                    //     tag: widget.albumImage[index].id.toString()),
+                  ),
+              pageController: PageController(initialPage: widget.initialIndex),
+              enableRotation: true,
+              onPageChanged: (int index) {
+                // currentImageUrl = widget.albumImage[index].photoUrl;
+                // currentIndex = index;
+                // setState(() {
+                //   widget.albumImage[index].isLike = widget.albumImage[index].isLike;
+                //   widget.albumImage[index].likeCount = widget.albumImage[index].likeCount;
+                //   widget.albumImage[index].totalShare = widget.albumImage[index].totalShare;
+                //
+                // });
+              }),
+        ])),
       ]),
       bottomNavigationBar: Container(
         color: ThemeColors.blackColor,
@@ -118,7 +119,7 @@ class _ImageViewerScreenState extends State<ImageViewerScreen> {
               Row(
                 children: [
                   InkWell(
-                      onTap: (){
+                      onTap: () {
                         // if(widget.albumImage[currentIndex!].isLike == "1"){
                         //   Get.find<GalleryController>().setLikeUnlikePhoto(Get.find<AuthController>().getUserId(),
                         //       widget.albumData!.id.toString(),widget.albumImage[currentIndex!].id.toString(),0.toString()).
@@ -149,8 +150,14 @@ class _ImageViewerScreenState extends State<ImageViewerScreen> {
                         //   });
                         // }
                       },
-                      child: Icon(widget.albumImage[currentIndex!].likeCount != "1" ? CupertinoIcons.heart : CupertinoIcons.heart_fill,
-                          color:widget.albumImage[currentIndex!].likeCount == "1" ? ThemeColors.redColor : ThemeColors.whiteColor,
+                      child: Icon(
+                          widget.albumImage![currentIndex!].likeCount != "1"
+                              ? CupertinoIcons.heart
+                              : CupertinoIcons.heart_fill,
+                          color:
+                              widget.albumImage![currentIndex!].likeCount == "1"
+                                  ? ThemeColors.redColor
+                                  : ThemeColors.whiteColor,
                           size: 25)),
                   // const Icon(CupertinoIcons.heart,
                   //     size: 25, color: ThemeColors.whiteColor),
@@ -158,14 +165,14 @@ class _ImageViewerScreenState extends State<ImageViewerScreen> {
                     width: 5,
                   ),
                   InkWell(
-                    onTap: (){
+                    onTap: () {
                       // widget.albumImage[currentIndex!].likeCount != 0 ?
                       // Navigator.push(context, MaterialPageRoute(builder: (context)=>
                       //     LikeUserListScreen(photoId: widget.albumImage[currentIndex!].id.toString(),))) : null;
                     },
                     child: Text(
-                      widget.albumImage[currentIndex!].likeCount != 0
-                          ? "${widget.albumImage[currentIndex!].likeCount} ${widget.albumImage[currentIndex!].likeCount == 1 ? "Like" : "Likes"}"
+                      widget.albumImage![currentIndex!].likeCount != 0
+                          ? "${widget.albumImage![currentIndex!].likeCount} ${widget.albumImage![currentIndex!].likeCount == 1 ? "Like" : "Likes"}"
                           : "",
                       style: const TextStyle(
                           decoration: TextDecoration.underline,
@@ -180,40 +187,42 @@ class _ImageViewerScreenState extends State<ImageViewerScreen> {
               Row(
                 children: [
                   InkWell(
-                      onTap: () {
-                        // Get.find<GalleryController>().shareImage(currentImageUrl!,
-                        //     widget.albumImage[currentIndex!],widget.albumData!).
-                        // then((value) async{
-                        //   if(value == 1){
-                        //     await Get.find<GalleryController>().getAlbumImages(widget.albumData!.id.toString(),Get.find<AuthController>().getUserId().toString(),false);
-                        //
-                        //     setState(()  {
-                        //       widget.albumImage[currentIndex!].isLike = Get.find<GalleryController>().albumImagesList[currentIndex!].isLike;
-                        //       widget.albumImage[currentIndex!].isLike;
-                        //       widget.albumImage[currentIndex!].likeCount = Get.find<GalleryController>().albumImagesList[currentIndex!].likeCount;
-                        //       widget.albumImage[currentIndex!].totalShare = Get.find<GalleryController>().albumImagesList[currentIndex!].totalShare;
-                        //       widget.albumImage[currentIndex!].totalShare;
-                        //     });
-                        //   }
-                        // });
-                      },
-                      child: SvgPicture.asset(
-                        Images.share_icon,
-                        height: 25,
-                        color: ThemeColors.whiteColor,
-                      ),),
+                    onTap: () {
+                      Get.find<GalleryController>().shareImage(currentImageUrl!,
+                          widget.albumImage![currentIndex!],widget.albumData!).
+                      then((value) async{
+                        if(value == 1){
+                          // await Get.find<GalleryController>().getAlbumImages(widget.albumData!.id.toString(),Get.find<AuthController>().getUserId().toString(),false);
+                          //
+                          // setState(()  {
+                          //   widget.albumImage![currentIndex!].isLike = Get.find<GalleryController>().albumImagesList[currentIndex!].isLike;
+                          //   widget.albumImage![currentIndex!].isLike;
+                          //   widget.albumImage![currentIndex!].likeCount = Get.find<GalleryController>().albumImagesList[currentIndex!].likeCount;
+                          //   widget.albumImage![currentIndex!].totalShare = Get.find<GalleryController>().albumImagesList[currentIndex!].totalShare;
+                          //   widget.albumImage![currentIndex!].totalShare;
+                          // });
+                        }
+                      });
+                    },
+                    child: SvgPicture.asset(
+                      Images.share_icon,
+                      height: 25,
+                      color: ThemeColors.whiteColor,
+                    ),
+                  ),
                   const SizedBox(
                     width: 3,
                   ),
-                  widget.albumImage[currentIndex!].likeCount != 0 ?
-                  Text("(${widget.albumImage[currentIndex!].likeCount ?? 0})",
-                    style:const TextStyle(
-                        fontSize: 16,
-                        color: ThemeColors.whiteColor,
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.w600),
-                  ) : Container(),
-
+                  widget.albumImage![currentIndex!].likeCount != 0
+                      ? Text(
+                          "(${widget.albumImage![currentIndex!].likeCount ?? 0})",
+                          style: const TextStyle(
+                              fontSize: 16,
+                              color: ThemeColors.whiteColor,
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w600),
+                        )
+                      : Container(),
                 ],
               ),
             ],

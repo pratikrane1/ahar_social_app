@@ -1,14 +1,47 @@
+import 'dart:async';
+import 'dart:io';
+
+import 'package:aharconnect/controller/home_controller.dart';
+import 'package:aharconnect/screen/home/widget/pdf_view.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:pdftron_flutter/pdftron_flutter.dart';
 import 'package:aharconnect/utils/dimensions.dart';
 import 'package:aharconnect/utils/theme_colors.dart';
 import 'package:aharconnect/widget/app_button.dart';
+import 'package:path_provider/path_provider.dart';
+class DocumentFile extends StatefulWidget {
+  const DocumentFile({super.key});
 
+  @override
+  State<DocumentFile> createState() => _DocumentFileState();
+}
 
-class DocumentFile extends StatelessWidget {
-  DocumentFile();
+class _DocumentFileState extends State<DocumentFile> {
+  String remotePDFpath = "";
+
+    Future<File> createFileOfPdfUrl(String url) async {
+    Completer<File> completer = Completer();
+    print("Start download file from internet!");
+    try {
+      final filename = url.substring(url.lastIndexOf("/") + 1);
+      var request = await HttpClient().getUrl(Uri.parse(url));
+      var response = await request.close();
+      var bytes = await consolidateHttpClientResponseBytes(response);
+      var dir = await getTemporaryDirectory();
+      print("Download files");
+      print("${dir.path}/$filename");
+      File file = File("${dir.path}/$filename");
+
+      await file.writeAsBytes(bytes, flush: true);
+      completer.complete(file);
+    } catch (e) {
+      throw Exception('Error parsing asset file!');
+    }
+
+    return completer.future;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,12 +49,12 @@ class DocumentFile extends StatelessWidget {
     String? pdfFile;
 
     return Padding(
-      padding: const EdgeInsets.only(left: 10.0,right: 10.0,top: 20,bottom: 10.0),
+      padding:
+      const EdgeInsets.only(left: 10.0, right: 10.0, top: 20, bottom: 10.0),
       child: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
-          borderRadius:
-          BorderRadius.circular(Dimensions.RADIUS_SMALL),
+          borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL),
           boxShadow: const [
             BoxShadow(
               color: ThemeColors.primaryColor,
@@ -31,7 +64,8 @@ class DocumentFile extends StatelessWidget {
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.only(left: 12.0,right: 12.0,top: 10.0,bottom: 10.0),
+          padding: const EdgeInsets.only(
+              left: 12.0, right: 12.0, top: 10.0, bottom: 10.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -47,29 +81,20 @@ class DocumentFile extends StatelessWidget {
               ),
               AppButton(
                 onPressed: () async {
-                  // String url = "";
-                  String url = "http://ahar.ezii.live/public/assets/pdf/New-Doc-12-22-2022-18.22-1.pdf";
-                  var config = Config();
-                  // How to disable functionality:
-                  config.disabledElements = [ Buttons.searchButton];
-                  config.disabledTools = [Tools.annotationCreateLine, Tools.annotationCreateRectangle];
-                  // Other viewer configurations:
-                  config.hideAnnotationToolbarSwitcher = true;
-                  config.showLeadingNavButton = true;
-                  // config.hideBottomToolbar = true;
-                  config.multiTabEnabled = true;
-                  config.downloadDialogEnabled = false;
-                  config.readOnly=true;
-                  config.bottomToolbar=[Buttons.shareButton,Buttons.saveCopyButton];
-                  config.customHeaders = {'headerName': 'headerValue'};
+                  String url = await Get.find<HomeController>().getPdfUrl();
 
-                  await PdftronFlutter.openDocument(url,config: config);
+                  await createFileOfPdfUrl(url).then((f) {
+                    setState(() {
+                      remotePDFpath = f.path;
+                    });
+                  });
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>PDFVIEW(pdfLocalPath: remotePDFpath,pdfURL: "http://www.pdf995.com/samples/pdf.pdf",)));
                 },
                 height: 34,
                 width: 80,
                 text: Text(
                   'open'.tr,
-                  style:  TextStyle(
+                  style: TextStyle(
                       color: Colors.white,
                       fontSize: Dimensions.fontSizeDefault,
                       fontFamily: 'Montserrat-Bold',
@@ -89,7 +114,5 @@ class DocumentFile extends StatelessWidget {
         ),
       ),
     );
-
   }
-
 }
