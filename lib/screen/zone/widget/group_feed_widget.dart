@@ -6,6 +6,7 @@ import 'package:aharconnect/screen/comment/screens/comments_screen.dart';
 import 'package:aharconnect/screen/recipe_feed/widgets/animated_like_button.dart';
 import 'package:aharconnect/utils/theme_colors.dart';
 import 'package:aharconnect/widget/custom_image.dart';
+import 'package:aharconnect/widget/fullscreen_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -233,15 +234,21 @@ class _GroupFeedWidgetState extends State<GroupFeedWidget>
                                                                         borderRadius:
                                                                             BorderRadius.circular(20),
                                                                         child:
-                                                                            CustomImage(
+                                                                            InkWell(
+                                                                              onTap: (){
+                                                                                Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                                                                                FullScreenImage(imageUrl: _postDataList![index].post!.postImage.toString(),)));
+                                                                              },
+                                                                              child: CustomImage(
                                                                           image: _postDataList![index]
-                                                                              .post!
-                                                                              .postImage,
+                                                                                .post!
+                                                                                .postImage,
                                                                           fit: BoxFit
-                                                                              .cover,
+                                                                                .cover,
                                                                           fromProfile:
-                                                                              false,
+                                                                                false,
                                                                         ),
+                                                                            ),
                                                                       ),
                                                                     ),
                                                                   ],
@@ -403,41 +410,6 @@ class _GroupFeedWidgetState extends State<GroupFeedWidget>
                                                     ],
                                                   ),
                                                 ),
-                                                // PopupMenuButton(
-                                                //   splashRadius: 20,
-                                                //   icon: Icon(
-                                                //     Icons.more_vert,
-                                                //     size: 18,
-                                                //     color: Colors.grey.shade300,
-                                                //   ),
-                                                //   onSelected: (String value) {
-                                                //     // if (value == 'Delete') {
-                                                //     //   Provider.of<RecipePostProvider>(context,
-                                                //     //           listen: false)
-                                                //     //       .deletePost(widget.post.postId);
-                                                //     // }
-                                                //   },
-                                                //   itemBuilder: (BuildContext context) {
-                                                //     return popUpMenuItems
-                                                //         .map<CustomDropDownMenu<String>>(
-                                                //           (String value) => CustomDropDownMenu(
-                                                //         value: value,
-                                                //         text: value,
-                                                //         isRemovable: false,
-                                                //         callback: () {
-                                                //           setState(
-                                                //                 () {
-                                                //               FocusScope.of(context).unfocus();
-                                                //               popUpMenuItems.remove(value);
-                                                //               Navigator.pop(context);
-                                                //             },
-                                                //           );
-                                                //         },
-                                                //       ),
-                                                //     )
-                                                //         .toList();
-                                                //   },
-                                                // ),
                                               ],
                                             ),
                                           ),
@@ -485,51 +457,75 @@ class _GroupFeedWidgetState extends State<GroupFeedWidget>
     showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
-        return Padding(
-          padding: const EdgeInsets.all(8),
-          child: ListView.builder(
-            primary: false,
-            shrinkWrap: true,
-            physics: const BouncingScrollPhysics(),
-            itemCount: _postLikeList!.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  // height: MediaQuery.of(context).size.height * 0.11,
-                  child: Row(
-                    children: [
-                      Container(
-                          decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.all(
-                                Radius.circular(100)),
-                            border: Border.all(width: 1),
-                          ),
-                          height: 30,
-                          width: 30,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(100),
-                            child: CustomImage(
-                              image: _postLikeList[
-                              index]
-                                  .user!
-                                  .profilePhoto,
-                              fit: BoxFit.cover,
-                              fromProfile: true,
-                            ),
-                          )),
-                      const SizedBox(width: 5,),
-                      Text(_postLikeList[index].user!.name.toString(),
-                          style: GoogleFonts.openSans(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
-                          )),
-                    ],
-                  ),
-                ),
-              );
-            },
-          ),
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Divider(
+              endIndent: 160,
+              indent: 160,
+              thickness: 4,
+              color: ThemeColors.blackColor,
+            ),
+
+            const SizedBox(height: 4,),
+
+            Text("people_who_liked".tr,
+                style: GoogleFonts.openSans(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                )),
+
+            const Divider(
+              thickness: 1,
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: ListView.builder(
+                primary: false,
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                itemCount: _postLikeList!.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      // height: MediaQuery.of(context).size.height * 0.11,
+                      child: Row(
+                        children: [
+                          Container(
+                              decoration: BoxDecoration(
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(100)),
+                                border: Border.all(width: 1),
+                              ),
+                              height: 30,
+                              width: 30,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(100),
+                                child: CustomImage(
+                                  image: _postLikeList[
+                                  index]
+                                      .user!
+                                      .profilePhoto,
+                                  fit: BoxFit.cover,
+                                  fromProfile: true,
+                                ),
+                              )),
+                          const SizedBox(width: 5,),
+                          Text(_postLikeList[index].user!.name.toString(),
+                              style: GoogleFonts.openSans(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                              )),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
         );
       },
     );

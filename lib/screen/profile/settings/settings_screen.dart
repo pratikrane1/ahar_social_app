@@ -1,3 +1,6 @@
+import 'package:aharconnect/controller/auth_controller.dart';
+import 'package:aharconnect/controller/localization_controller.dart';
+import 'package:aharconnect/widget/custom_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -20,8 +23,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   void initState() {
     super.initState();
-    // selectedIndex = Get.find<LocalizationController>().selectedIndex;
-    // isSwitched = Get.find<AuthController>().notification;
+    selectedIndex = Get.find<LocalizationController>().selectedIndex;
+    isSwitched = Get.find<AuthController>().notification;
   }
 
   void toggleSwitch(bool value) {
@@ -65,13 +68,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
         actions: [
           InkWell(
             onTap: () {
-              // Get.find<LocalizationController>().setLanguage(Locale(
-              //   AppConstants.languages[selectedIndex!].languageCode,
-              //   AppConstants.languages[selectedIndex!].countryCode,
-              // ));
-              // Get.find<LocalizationController>().setSelectIndex(selectedIndex!);
-              // Get.find<AuthController>().setNotificationActive(isSwitched);
-              // showCustomSnackBar("Saved",isError: false);
+              Get.find<LocalizationController>().setLanguage(Locale(
+                AppConstants.languages[selectedIndex!].languageCode,
+                AppConstants.languages[selectedIndex!].countryCode,
+              ));
+              Get.find<LocalizationController>().setSelectIndex(selectedIndex!);
+              Get.find<AuthController>().setNotificationActive(isSwitched);
+              showCustomSnackBar("Saved",isError: false);
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -104,72 +107,75 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
       body: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Flexible(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: ThemeColors.whiteColor,
-                    border: Border.all(
-                        width: 1,
-                        color: ThemeColors.greyTextColor.withOpacity(0.3)),
-                    borderRadius: BorderRadius.circular(0),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: ThemeColors.greyTextColor,
-                        blurRadius: 3,
-                        spreadRadius: 0.2,
-                      )
-                    ],
-                  ),
-                  child: ListTile(
-                    leading: SvgPicture.asset(
-                      Images.language_icon, height: 25,
-                      // color: ThemeColors.greyTextColor,
-                    ),
-                    title: Text("Language".tr,
-                        style: const TextStyle(
-                            fontSize: 16,
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w600,
-                            color: ThemeColors.greyTextColor)),
-                  ),
-                ),
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: const ScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  itemCount: 1,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: () {},
-                      child: ListTile(
-                        title: Text(
-                            AppConstants.languages[index].languageName ?? "",
-                            style: const TextStyle(
-                                fontSize: 15,
-                                fontFamily: 'Montserrat-Medium',
-                                fontWeight: FontWeight.w500,
-                                color: ThemeColors.greyTextColor)),
-                        leading: Radio(
-                          activeColor: ThemeColors.greyTextColor,
-                          value: index,
-                          groupValue: selectedIndex,
-                          onChanged: (value) {
-                            setState(() {
-                              selectedIndex = value as int?;
-                            });
-                          },
-                        ),
+            child: GetBuilder<LocalizationController>(builder: (localizationController) {
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: ThemeColors.whiteColor,
+                        border: Border.all(
+                            width: 1,
+                            color: ThemeColors.greyTextColor.withOpacity(0.3)),
+                        borderRadius: BorderRadius.circular(0),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: ThemeColors.greyTextColor,
+                            blurRadius: 3,
+                            spreadRadius: 0.2,
+                          )
+                        ],
                       ),
-                    );
-                  },
-                ),
-              ],
+                      child: ListTile(
+                        leading: SvgPicture.asset(
+                          Images.language_icon, height: 25,
+                          // color: ThemeColors.greyTextColor,
+                        ),
+                        title: Text("Language".tr,
+                            style: const TextStyle(
+                                fontSize: 16,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w600,
+                                color: ThemeColors.greyTextColor)),
+                      ),
+                    ),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: const ScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      itemCount: localizationController.languages.length,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {},
+                          child: ListTile(
+                            title: Text(
+                                AppConstants.languages[index].languageName ?? "",
+                                style: const TextStyle(
+                                    fontSize: 15,
+                                    fontFamily: 'Montserrat-Medium',
+                                    fontWeight: FontWeight.w500,
+                                    color: ThemeColors.greyTextColor)),
+                            leading: Radio(
+                              activeColor: ThemeColors.greyTextColor,
+                              value: index,
+                              groupValue: selectedIndex,
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedIndex = value as int?;
+                                });
+                              },
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                );
+              }
             ),
           ),
           Container(

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:aharconnect/data/model/login_model.dart';
 import 'package:aharconnect/data/repository/auth_repo.dart';
 import 'package:aharconnect/widget/custom_snackbar.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController implements GetxService {
@@ -45,7 +46,10 @@ class AuthController extends GetxController implements GetxService {
   }
 
   Future<LoginModel> verifyOTP(String userId, String otp) async {
-    Response response = await authRepo.verifyOTP(userId: userId, otp: otp);
+    var fcmToken = await FirebaseMessaging.instance.getToken();
+    print("FCM TOKEN : ${fcmToken}");
+
+    Response response = await authRepo.verifyOTP(userId: userId, otp: otp, fcmToken: fcmToken);
     if (response.statusCode == 200) {
       _loginModel = LoginModel.fromJson(response.body);
       if (_loginModel!.success == true) {

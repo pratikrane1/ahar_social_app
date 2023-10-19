@@ -1,3 +1,4 @@
+import 'package:aharconnect/controller/auth_controller.dart';
 import 'package:aharconnect/data/api/api_client.dart';
 import 'package:aharconnect/utils/app_constants.dart';
 import 'package:get/get.dart';
@@ -22,11 +23,18 @@ class AuthRepo {
     });
   }
 
-  Future<Response> verifyOTP({String? userId, String? otp}) async {
+  Future<Response> verifyOTP(
+      {String? userId, String? otp, String? fcmToken}) async {
     return await apiClient.postData(AppConstants.VERIFY_OTP, {
       "user_id": userId,
       "otp": otp,
+      "fcm_token" : fcmToken,
     });
+  }
+
+  Future<Response> updateFirebaseFCM(String fcmToken) async {
+
+    return await apiClient.postData("${AppConstants.UPDATE_FCM}?fcm_token=$fcmToken", {});
   }
 
 // for  user token
@@ -117,9 +125,9 @@ class AuthRepo {
     var fcmToken = await FirebaseMessaging.instance.getToken();
     print(fcmToken);
     if (isActive) {
-      // updateFirebaseFCM(Get.find<AuthController>().getUserId().toString(),fcmToken.toString(),1.toString());
+      updateFirebaseFCM(fcmToken.toString(),);
     } else {
-      // updateFirebaseFCM(Get.find<AuthController>().getUserId().toString(),"",0.toString());
+      updateFirebaseFCM("");
     }
     sharedPreferences.setBool(AppConstants.NOTIFICATION, isActive);
   }

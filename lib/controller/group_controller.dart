@@ -15,15 +15,19 @@ class GroupController extends GetxController implements GetxService {
   GroupController({required this.groupRepo});
 
   bool _isLoading = false;
+  bool _isSubComLoading = false;
+  bool _isOffBearLoading = false;
   List<OfficeBearers>? _officeBearers;
   List<SubCommitteeModel>? _subCommitteeList;
 
   bool get isLoading => _isLoading;
+  bool get isSubComLoading => _isSubComLoading;
+  bool get isOffBearLoading => _isOffBearLoading;
   List<OfficeBearers>? get officeBearers => _officeBearers ?? [];
   List<SubCommitteeModel>? get subCommitteeList => _subCommitteeList ?? [];
 
   Future<List<OfficeBearers>> getOfficersBearersList() async {
-    // _isPostDataLoading = false;
+    _isOffBearLoading = false;
     // _postDataList = [];
     Response response = await groupRepo.getOfficeBearersList();
     if (response.statusCode == 200) {
@@ -32,7 +36,7 @@ class GroupController extends GetxController implements GetxService {
         return OfficeBearers.fromJson(item);
       }).toList();
       print(_officeBearers);
-      // _isPostDataLoading = true;
+      _isOffBearLoading = true;
     } else {
       ApiChecker.checkApi(response);
     }
@@ -41,8 +45,7 @@ class GroupController extends GetxController implements GetxService {
   }
 
   Future<List<SubCommitteeModel>> getSubCommitteeList() async {
-    // _isPostDataLoading = false;
-    // _postDataList = [];
+    _isSubComLoading = false;
     Response response = await groupRepo.getSubCommitteeList();
     if (response.statusCode == 200) {
       final Iterable refactorPostDataList = response.body!["data"] ?? [];
@@ -50,7 +53,7 @@ class GroupController extends GetxController implements GetxService {
         return SubCommitteeModel.fromJson(item);
       }).toList();
       print(_subCommitteeList);
-      // _isPostDataLoading = true;
+      _isSubComLoading = true;
     } else {
       ApiChecker.checkApi(response);
     }

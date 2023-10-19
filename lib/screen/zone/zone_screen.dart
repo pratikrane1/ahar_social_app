@@ -138,105 +138,129 @@ class _ZoneScreenState extends State<ZoneScreen> {
     showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
-        return Padding(
-          padding: const EdgeInsets.all(8),
-          child: ListView.builder(
-            primary: false,
-            shrinkWrap: true,
-            physics: const BouncingScrollPhysics(),
-            itemCount: zoneList.length,
-            itemBuilder: (context, index) {
-              // final contactUser =
-              // UserModel.fromSnapshot(contactUsersList[index]);
-              // getContactData(contactUser.id);
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.11,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                        width: 1,
-                        color: ThemeColors.greyTextColor.withOpacity(0.3)),
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 5.0),
-                    child: Column(
-                      children: [
-                        Expanded(
-                          child: InkWell(
-                            onTap: () {
-                              setState(() {
-                                defaultSelectedZone = zoneList[index].zoneName;
-                                defaultSelectedZone;
-                                defaultSelectedZoneId = zoneList[index].zoneId;
-                                defaultSelectedZoneId;
-                              });
-                              print(defaultSelectedZone);
-                              Get.find<ZoneController>().getFeedPostDataList(
-                                  defaultSelectedZoneId.toString(), "Post");
-                              Get.find<ZoneController>().getNoticePostList(
-                                  defaultSelectedZoneId.toString(),
-                                  "Noticboard");
-                              Get.find<ZoneController>().getMembersList(
-                                  defaultSelectedZoneId.toString());
-                              Navigator.pop(context);
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(bottom: 4.0),
-                              child: ListTile(
-                                title: Text(zoneList[index].zoneName.toString(),
-                                    style: GoogleFonts.openSans(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w600,
-                                    )),
-                                subtitle: Padding(
-                                  padding: const EdgeInsets.only(top: 6),
-                                  child: Text(
-                                    'Participants: ${zoneList[index].participantsCount.toString()}',
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: GoogleFonts.openSans(
-                                        fontSize: 13,
-                                        color: ThemeColors.greyTextColor),
-                                  ),
-                                ),
-                                leading: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(100)),
-                                      border: Border.all(width: 1),
-                                    ),
-                                    height: 50,
-                                    width: 50,
-                                    child:
-                                        // contactUser.photoUrl == ""
-                                        //     ?
-                                        ClipRRect(
-                                      borderRadius: BorderRadius.circular(100),
-                                      child: Image.asset(
-                                        'assets/default_image.jpg',
-                                        fit: BoxFit.cover,
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Divider(
+              endIndent: 160,
+              indent: 160,
+              thickness: 4,
+              color: ThemeColors.blackColor,
+            ),
+
+            const SizedBox(height: 4,),
+
+            Text("zone".tr,
+                style: GoogleFonts.openSans(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                )),
+
+            const Divider(
+              thickness: 1,
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: ListView.builder(
+                primary: false,
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                itemCount: zoneList.length,
+                itemBuilder: (context, index) {
+                  // final contactUser =
+                  // UserModel.fromSnapshot(contactUsersList[index]);
+                  // getContactData(contactUser.id);
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.11,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            width: 1,
+                            color: ThemeColors.greyTextColor.withOpacity(0.3)),
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 5.0),
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    defaultSelectedZone = zoneList[index].zoneName;
+                                    defaultSelectedZone;
+                                    defaultSelectedZoneId = zoneList[index].zoneId;
+                                    defaultSelectedZoneId;
+                                  });
+                                  print(defaultSelectedZone);
+                                  Get.find<ZoneController>().getFeedPostDataList(
+                                      defaultSelectedZoneId.toString(), "Post");
+                                  Get.find<ZoneController>().getNoticePostList(
+                                      defaultSelectedZoneId.toString(),
+                                      "Noticboard");
+                                  Get.find<ZoneController>().getMembersList(
+                                      defaultSelectedZoneId.toString());
+                                  Navigator.pop(context);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 4.0),
+                                  child: ListTile(
+                                    title: Text(zoneList[index].zoneName.toString(),
+                                        style: GoogleFonts.openSans(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w600,
+                                        )),
+                                    subtitle: Padding(
+                                      padding: const EdgeInsets.only(top: 6),
+                                      child: Text(
+                                        'Participants: ${zoneList[index].participantsCount.toString()}',
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: GoogleFonts.openSans(
+                                            fontSize: 13,
+                                            color: ThemeColors.greyTextColor),
                                       ),
-                                    )),
-                                trailing: Text(
-                                  zoneList[index].createdAt.toString(),
-                                  style: GoogleFonts.openSans(
-                                    fontSize: 12,
-                                    color: Colors.grey,
+                                    ),
+                                    leading: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(100)),
+                                          border: Border.all(width: 1),
+                                        ),
+                                        height: 50,
+                                        width: 50,
+                                        child:
+                                            // contactUser.photoUrl == ""
+                                            //     ?
+                                            ClipRRect(
+                                          borderRadius: BorderRadius.circular(100),
+                                          child: Image.asset(
+                                            'assets/default_image.jpg',
+                                            fit: BoxFit.cover,
+                                          ),
+                                        )),
+                                    trailing: Text(
+                                      zoneList[index].createdAt.toString(),
+                                      style: GoogleFonts.openSans(
+                                        fontSize: 12,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-              );
-            },
-          ),
+                  );
+                },
+              ),
+            ),
+          ],
         );
       },
     );

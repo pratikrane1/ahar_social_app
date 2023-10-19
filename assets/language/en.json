@@ -54,6 +54,7 @@
   "today_at":"Today at",
   "unlike":"Unlike",
   "like":"Like",
+  "people_who_liked":"People who liked",
   "create_your_post":"Create your Post",
   "add_your_post":"Add Your Feed",
   "add_your_notice":"Add Your Notice",
@@ -85,5 +86,6 @@
   "no_videos_to_show": "No videos to show.",
   "video_screen": "Video Screen",
   "oops_looks_like_there_are_no_images_available_right_now": "Oops, looks like there are no images available right now. Please check out other content!",
-  "pdf": "PDF"
+  "pdf": "PDF",
+  "zone": "Zone"
 }

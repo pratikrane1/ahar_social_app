@@ -218,11 +218,9 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                                                         1) {
                                                       Get.find<ZoneController>()
                                                           .addPostLike(
-                                                          _postDataList![0]
-                                                                  .post!.id
-                                                                  .toString(),
+                                                          _postDataList![0].post!.id.toString(),
                                                               '0',
-                                                              "0",
+                                                              widget.zoneId.toString(),
                                                               "Post");
                                                     } else {
                                                       Get.find<ZoneController>()
@@ -231,7 +229,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                                                                   .post!.id
                                                                   .toString(),
                                                               '1',
-                                                              "0",
+                                                          widget.zoneId.toString(),
                                                               "Post");
                                                     }
                                                   },

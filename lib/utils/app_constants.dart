@@ -28,6 +28,8 @@ class AppConstants {
   static const String POST_DETAIL = '/show-post';
   static const String BANNER_LIST = '/show-all-banner';
   static const String PDF_URI = '/show-ppt';
+  static const String MEMBERSHIP_DETAILS = '/show-selective-membership';
+  static const String UPDATE_FCM = '/update-fcm';
 
   //Shared Key
   static const String TOKEN = 'token';

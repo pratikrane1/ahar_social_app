@@ -2,6 +2,7 @@ import 'package:aharconnect/controller/zone_controller.dart';
 import 'package:aharconnect/data/model/zone_model.dart';
 import 'package:aharconnect/screen/home/widget/post_detail_widget.dart';
 import 'package:aharconnect/screen/home/widget/shimmer.dart';
+import 'package:aharconnect/widget/fullscreen_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:aharconnect/screen/bottom%20nav%20bar/bottom_nav.dart';
@@ -196,12 +197,15 @@ class _FeedSliderState extends State<FeedSlider> {
                                               const SizedBox(
                                                 height: 5,
                                               ),
-                                              InkWell(
-                                                onTap: () {},
-                                                child: ClipRRect(
-                                                  borderRadius: BorderRadius
-                                                      .circular(Dimensions
-                                                          .RADIUS_EXTRA_LARGE),
+                                              ClipRRect(
+                                                borderRadius: BorderRadius
+                                                    .circular(Dimensions
+                                                        .RADIUS_EXTRA_LARGE),
+                                                child: InkWell(
+                                                  onTap: (){
+                                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                                                        FullScreenImage(imageUrl: _postDataList![index].post!.postImage.toString(),)));
+                                                  },
                                                   child: CustomImage(
                                                     height: 150,
                                                     width: 220,

@@ -18,6 +18,7 @@ class SubCommitteeScreen extends StatefulWidget {
 
 class _SubCommitteeScreenState extends State<SubCommitteeScreen> {
   List<SubCommitteeModel>? _subCommitteeList;
+  bool _isSubComLoading = false;
 
   @override
   void initState() {
@@ -25,25 +26,10 @@ class _SubCommitteeScreenState extends State<SubCommitteeScreen> {
     Get.find<GroupController>().getSubCommitteeList();
   }
 
-  // apiCall() async {
-  //   if (widget.title == "Office Bearers") {
-  //     // officeBearers = await ApiClient().getOfficeBearersList();
-  //     Get.find<GroupController>().getOfficersBearersList();
-  //   } else if (widget.title == "Sub Committee") {
-  //     // officeBearers = await ApiClient().getSubCommiteList();
-  //   } else if (widget.title == "Zone") {
-  //     // officeBearers = await ApiClient().getZoneList();
-  //   } else if (widget.title == "Zonal Team") {
-  //     // officeBearers = await ApiClient().getZoneList();
-  //   }
-  //   // print(officeBearers);
-  //   setState(() {});
-  // }
 
   @override
   void dispose() {
     super.dispose();
-    // screenshotController.dispose();
   }
 
   @override
@@ -75,7 +61,8 @@ class _SubCommitteeScreenState extends State<SubCommitteeScreen> {
       ),
       body: GetBuilder<GroupController>(builder: (groupController) {
         _subCommitteeList = groupController.subCommitteeList;
-        return _subCommitteeList!.isNotEmpty
+        _isSubComLoading = groupController.isSubComLoading;
+        return _isSubComLoading ? _subCommitteeList!.isNotEmpty
             ? ListView(
           children: [
             ListView.builder(
@@ -231,6 +218,16 @@ class _SubCommitteeScreenState extends State<SubCommitteeScreen> {
               },
             ),
           ],
+        )
+            : Center(
+          child: Text(
+            "No Data Found",
+            overflow: TextOverflow.ellipsis,
+            style: GoogleFonts.openSans(
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                color: ThemeColors.blackColor),
+          ),
         )
             : const Center(
           child: CircularProgressIndicator(

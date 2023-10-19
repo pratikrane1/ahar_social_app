@@ -5,6 +5,7 @@ import 'package:aharconnect/controller/gallery_controller.dart';
 import 'package:aharconnect/controller/group_controller.dart';
 import 'package:aharconnect/controller/home_controller.dart';
 import 'package:aharconnect/controller/localization_controller.dart';
+import 'package:aharconnect/controller/membership_controller.dart';
 import 'package:aharconnect/controller/profile_controller.dart';
 import 'package:aharconnect/controller/zone_controller.dart';
 import 'package:aharconnect/data/api/api_client.dart';
@@ -15,6 +16,7 @@ import 'package:aharconnect/data/repository/gallery_repo.dart';
 import 'package:aharconnect/data/repository/group_repo.dart';
 import 'package:aharconnect/data/repository/home_repo.dart';
 import 'package:aharconnect/data/repository/language_repo.dart';
+import 'package:aharconnect/data/repository/membership_repo.dart';
 import 'package:aharconnect/data/repository/profile_repo.dart';
 import 'package:aharconnect/data/repository/zone_repo.dart';
 import 'package:aharconnect/utils/app_constants.dart';
@@ -39,6 +41,7 @@ Future<Map<String, Map<String, String>>> init() async {
   Get.lazyPut(() => GroupRepo(apiClient: Get.find()));
   Get.lazyPut(() => GalleryRepo(apiClient: Get.find()));
   Get.lazyPut(() => HomeRepo(apiClient: Get.find()));
+  Get.lazyPut(() => MembershipRepo(apiClient: Get.find()));
 
   // Controller
   Get.lazyPut(() => AuthController(authRepo: Get.find()));
@@ -50,6 +53,7 @@ Future<Map<String, Map<String, String>>> init() async {
   Get.lazyPut(() => GroupController(groupRepo: Get.find()));
   Get.lazyPut(() => GalleryController(galleryRepo: Get.find()));
   Get.lazyPut(() => HomeController(homeRepo: Get.find()));
+  Get.lazyPut(() => MembershipController(membershipRepo: Get.find()));
 
   // Retrieving localized data
   Map<String, Map<String, String>> _languages = Map();

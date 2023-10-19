@@ -21,6 +21,7 @@ class ZoneScreen extends StatefulWidget {
 
 class _ZoneScreenState extends State<ZoneScreen> {
   List<ZoneModel>? _zoneList;
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -62,7 +63,8 @@ class _ZoneScreenState extends State<ZoneScreen> {
       ),
       body: GetBuilder<ZoneController>(builder: (zoneController) {
         _zoneList = zoneController.zoneList;
-        return _zoneList!.isNotEmpty
+        isLoading = zoneController.isLoading;
+        return isLoading ? _zoneList!.isNotEmpty
             ? ListView(
           children: [
             ListView.builder(
@@ -154,6 +156,16 @@ class _ZoneScreenState extends State<ZoneScreen> {
               },
             ),
           ],
+        )
+        : Center(
+          child: Text(
+            "No Data Found",
+            overflow: TextOverflow.ellipsis,
+            style: GoogleFonts.openSans(
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                color: ThemeColors.blackColor),
+          ),
         )
             : const Center(
           child: CircularProgressIndicator(

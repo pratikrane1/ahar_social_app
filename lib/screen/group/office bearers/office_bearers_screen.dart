@@ -19,6 +19,7 @@ class OfficeBearersScreen extends StatefulWidget {
 class _OfficeBearersScreenState extends State<OfficeBearersScreen> {
   // List<GroupModel>? officeBearers;
   List<OfficeBearers>? officeBearers;
+  bool isOffBearLoading = false;
 
   @override
   void initState() {
@@ -61,7 +62,8 @@ class _OfficeBearersScreenState extends State<OfficeBearersScreen> {
       ),
       body: GetBuilder<GroupController>(builder: (groupController) {
         officeBearers = groupController.officeBearers;
-        return officeBearers!.isNotEmpty
+        isOffBearLoading = groupController.isOffBearLoading;;
+        return isOffBearLoading ? officeBearers!.isNotEmpty
             ? ListView(
                 children: [
                   ListView.builder(
@@ -225,6 +227,16 @@ class _OfficeBearersScreenState extends State<OfficeBearersScreen> {
                   ),
                 ],
               )
+            : Center(
+          child: Text(
+            "No Data Found",
+            overflow: TextOverflow.ellipsis,
+            style: GoogleFonts.openSans(
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                color: ThemeColors.blackColor),
+          ),
+        )
             : const Center(
                 child: CircularProgressIndicator(
                   color: ThemeColors.primaryColor,
