@@ -42,17 +42,19 @@ class MyProfileRepo extends GetxService {
     );
   }
 
-  // Future<Response> getFaqList() async {
-  //   return await apiClient.postData(AppConstants.FAQ, {});
-  // }
+  Future<Response> getFaqList() async {
+    return await apiClient.getData(AppConstants.FAQ, );
+  }
   //
   // Future<Response> getReferFaqList() async {
   //   return await apiClient.postData(AppConstants.REFER_FAQ, {});
   // }
   //
-  // Future<Response> getLegalPolicies() async {
-  //   return await apiClient.postData(AppConstants.LEGAL_POLICIES, {});
-  // }
+  Future<Response> getPolicies(String type) async {
+    return await apiClient.postData(AppConstants.LEGAL_POLICIES, {
+      "type" : type
+    });
+  }
   //
   // Future<Response> getTermsConditions() async {
   //   return await apiClient.postData(AppConstants.TERMS_CONDITION, {});

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:aharconnect/data/api/api_checker.dart';
 import 'package:aharconnect/data/model/gallery_model.dart';
+import 'package:aharconnect/data/model/response_model.dart';
 import 'package:aharconnect/data/repository/gallery_repo.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -110,21 +111,20 @@ class GalleryController extends GetxController implements GetxService {
   // }
   //
   //
-  // Future<ResponseModel> shareAlbumPhoto(int userId,String albumID,String photoId,String isShare) async {
-  //   ResponseModel? data;
-  //   Response response = await galleryRepo.sharePhoto(userId.toString(),albumID,photoId,isShare);
-  //   if (response.statusCode == 200) {
-  //     final refactorProductList = response.body!;
-  //     print(refactorProductList);
-  //     // data!.status = response.body!["status"];
-  //     data = ResponseModel(true, response.body!["msg"],response.body!["status"]);
-  //     getAlbumImages(albumID,userId.toString(),true);
-  //   } else {
-  //     ApiChecker.checkApi(response);
-  //   }
-  //   update();
-  //   return data!;
-  // }
+  Future<ResponseModel> shareAlbumPhoto(int imageId,AlbumModel? albumData) async {
+    ResponseModel? data;
+    Response response = await galleryRepo.sharePhoto(imageId.toString(),);
+    if (response.statusCode == 200) {
+      final refactorProductList = response.body!;
+      await Get.find<GalleryController>().getAlbumImages(albumData!.id.toString(), false);
+      print(refactorProductList);
+      // data = ResponseModel(true, response.body!["msg"],response.body!["status"]);
+    } else {
+      ApiChecker.checkApi(response);
+    }
+    update();
+    return data!;
+  }
   //
   //
   // Future<List<VideosModel>> getVideos() async {
@@ -160,8 +160,7 @@ class GalleryController extends GetxController implements GetxService {
   }
 
   Future<int> shareImage(String imageUrl,AlbumImageModel? albumImagesList,AlbumModel? albumData)async{
-    // Get.find<GalleryController>().shareAlbumPhoto(Get.find<AuthController>().getUserId(),
-    //     albumData!.id.toString(),albumImagesList!.id.toString(),1.toString());
+    Get.find<GalleryController>().shareAlbumPhoto(albumImagesList!.id!.toInt(),albumData);
     final uri = Uri.parse(imageUrl);
     final response = await http.get(uri);
     final bytes = response.bodyBytes;

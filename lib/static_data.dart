@@ -1,9 +1,7 @@
-import 'package:aharconnect/screen/zone/widget/group_feed_widget.dart';
-import 'package:aharconnect/screen/zone/zone_screen.dart';
-import 'package:intl/intl.dart';
-import 'package:aharconnect/screen/home/widget/image_video_widget.dart';
-import 'package:aharconnect/screen/home/widget/videoSlider.dart';
-import 'package:aharconnect/screen/noticeboard/widget/all_notice_widget.dart';
+
+import 'package:aharconnect/view/screen/home/widget/image_video_widget.dart';
+import 'package:aharconnect/view/screen/home/widget/videoSlider.dart';
+import 'package:aharconnect/view/screen/noticeboard/widget/all_notice_widget.dart';
 
 class Data {
   // TODO: implement Data

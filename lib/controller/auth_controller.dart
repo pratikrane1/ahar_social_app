@@ -1,8 +1,5 @@
-import 'dart:convert';
-import 'dart:io';
 import 'package:aharconnect/data/model/login_model.dart';
 import 'package:aharconnect/data/repository/auth_repo.dart';
-import 'package:aharconnect/widget/custom_snackbar.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 

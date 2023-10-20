@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:aharconnect/widget/custom_snackbar.dart';
+import 'package:aharconnect/view/widget/custom_snackbar.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
@@ -38,8 +38,7 @@ Future downloadPDF(String url) async {
         url,
         saveFile.path,
       );
-      showCustomSnackBar("pdf_downloaded_in_downloaded_folder".tr,
-          isError: false);
+      showCustomSnackBar("pdf_downloaded_in_downloaded_folder".tr, isError: false);
     }
   } catch (e) {
     showCustomSnackBar("Failed to download.".tr, isError: false);

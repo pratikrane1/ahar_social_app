@@ -124,6 +124,8 @@ class Profile {
   String? updatedAt;
   String? profileImage;
   String? bio;
+  String? supportnumber;
+  String? paymentKey;
 
   Profile(
       {this.id,
@@ -140,6 +142,8 @@ class Profile {
       this.createdAt,
       this.profileImage,
       this.bio,
+      this.supportnumber,
+      this.paymentKey,
       this.updatedAt});
 
   Profile.fromJson(Map<String, dynamic> json) {
@@ -158,6 +162,8 @@ class Profile {
     updatedAt = json['updated_at'];
     profileImage = json['url'];
     bio = json['bio'];
+    supportnumber = json['support_number'];
+    paymentKey = json['payment_key'];
   }
 
   Map<String, dynamic> toJson() {
@@ -177,6 +183,8 @@ class Profile {
     data['updated_at'] = this.updatedAt;
     data['url'] = this.profileImage;
     data['bio'] = this.bio;
+    data['supportnumber'] = this.supportnumber;
+    data['payment_key'] = this.paymentKey;
     return data;
   }
 }

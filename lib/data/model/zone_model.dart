@@ -37,6 +37,7 @@ class ZoneModel {
   String? createdAt;
   String? updatedAt;
   String? hostCity;
+  String? url;
   bool? isSelected = false;
 
   ZoneModel(
@@ -49,6 +50,7 @@ class ZoneModel {
       this.createdAt,
       this.updatedAt,
       this.hostCity,
+      this.url,
       this.isSelected = false});
 
   ZoneModel.fromJson(Map<String, dynamic> json) {
@@ -61,6 +63,7 @@ class ZoneModel {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     hostCity = json['host_city'];
+    url = json['url'];
   }
 
   Map<String, dynamic> toJson() {
@@ -74,6 +77,7 @@ class ZoneModel {
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
     data['host_city'] = this.hostCity;
+    data['url'] = this.url;
     return data;
   }
 }
@@ -254,6 +258,7 @@ class Post {
   String? type;
   String? status;
   int? userId;
+  int? isDeletable;
   String? zoneId;
   String? deletedAt;
   String? createdAt;
@@ -266,6 +271,7 @@ class Post {
       this.title,
       this.likes,
       this.islike,
+      this.isDeletable,
       this.comments,
       this.type,
       this.status,
@@ -281,6 +287,7 @@ class Post {
     postImage = json['post_image'];
     title = json['title'];
     likes = json['likes'];
+    isDeletable = json['is_deletable'];
     islike = json['is_like'];
     comments = json['comments'];
     type = json['type'];
@@ -300,6 +307,7 @@ class Post {
     data['title'] = this.title;
     data['likes'] = this.likes;
     data['is_like'] = this.islike;
+    data['is_deletable'] = this.isDeletable;
     data['comments'] = this.comments;
     data['type'] = this.type;
     data['status'] = this.status;

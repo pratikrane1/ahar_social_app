@@ -4,8 +4,7 @@ import 'dart:typed_data';
 import 'package:aharconnect/data/api/api_checker.dart';
 import 'package:aharconnect/data/model/response_model.dart';
 import 'package:aharconnect/data/repository/create_post_repo.dart';
-import 'package:aharconnect/data/repository/group_repo.dart';
-import 'package:aharconnect/screen/zone/zone_screen.dart';
+import 'package:aharconnect/view/widget/custom_snackbar.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
@@ -13,7 +12,6 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_disposable.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_compression_flutter/image_compression_flutter.dart';
-import '../widget/custom_snackbar.dart';
 
 class CreatePostController extends GetxController implements GetxService {
   final CreatePostRepo createPostRepo;

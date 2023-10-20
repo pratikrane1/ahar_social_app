@@ -43,29 +43,29 @@ class MembershipController extends GetxController implements GetxService {
   }
 
 
-  // Future<String> RazorPayOrderApi(String amount,String salerOrderId) async {
-  //   _isLoading = false;
-  //   Response response = await membershipRepo.RazorPayOrderApi(amount,salerOrderId);
-  //   if (response.statusCode == 200) {
-  //     _razorPayOrderApiResponse = response.body!["id"];
-  //     _isLoading = true;
-  //   } else {
-  //     ApiChecker.checkApi(response);
-  //   }
-  //   update();
-  //   return _razorPayOrderApiResponse!;
-  // }
+  Future<String> RazorPayOrderApi(String amount,String salerOrderId) async {
+    _isLoading = false;
+    Response response = await membershipRepo.RazorPayOrderApi(amount,salerOrderId);
+    if (response.statusCode == 200) {
+      _razorPayOrderApiResponse = response.body!["id"];
+      _isLoading = true;
+    } else {
+      ApiChecker.checkApi(response);
+    }
+    update();
+    return _razorPayOrderApiResponse!;
+  }
 
-  // Future<String> transactionResponseRazorPay(String userId,String amount,String txnId,var responseRazorpay, String isGainzPro) async {
-  //   _isLoading = false;
-  //   Response response = await membershipRepo.transactionResponseRazorpay(userId,amount,txnId,responseRazorpay,isGainzPro);
-  //   if (response.statusCode == 200) {
-  //     _razorPayTransResult = response.body!["Result"];
-  //     _isLoading = true;
-  //   } else {
-  //     ApiChecker.checkApi(response);
-  //   }
-  //   update();
-  //   return _razorPayTransResult!;
-  // }
+  Future<String> transactionResponseRazorPay(String userId,String amount,String txnId,var responseRazorpay, String payWith) async {
+    _isLoading = false;
+    Response response = await membershipRepo.transactionResponseRazorpay(userId,amount,txnId,responseRazorpay,payWith);
+    if (response.statusCode == 200) {
+      _razorPayTransResult = response.body!["message"];
+      _isLoading = true;
+    } else {
+      ApiChecker.checkApi(response);
+    }
+    update();
+    return _razorPayTransResult!;
+  }
 }

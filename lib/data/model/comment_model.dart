@@ -40,7 +40,7 @@ class CommentModel {
     updatedAt = json['updated_at'];
     userName = json['user_name'];
     commentlike = json['comment_like'];
-    islike = json['islike'];
+    islike = json['is_like'];
     url = json['url'];
     if (json['comment_reply'] != null) {
       commentReply = <CommentReply>[];
@@ -62,7 +62,7 @@ class CommentModel {
     data['updated_at'] = this.updatedAt;
     data['user_name'] = this.userName;
     data['comment_like'] = this.commentlike;
-    data['islike'] = this.islike;
+    data['is_like'] = this.islike;
     data['url'] = this.url;
     if (this.commentReply != null) {
       data['comment_reply'] =
@@ -113,7 +113,7 @@ class CommentReply {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     commentlike = json['comment_like'];
-    islike = json['islike'];
+    islike = json['is_like'];
     url = json['url'];
     user = json['user'] != null ? new User.fromJson(json['user']) : null;
   }
@@ -130,7 +130,7 @@ class CommentReply {
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
     data['comment_like'] = this.commentlike;
-    data['islike'] = this.islike;
+    data['is_like'] = this.islike;
     data['url'] = this.url;
     if (this.user != null) {
       data['user'] = this.user!.toJson();

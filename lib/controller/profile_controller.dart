@@ -1,8 +1,9 @@
 import 'package:aharconnect/data/api/api_checker.dart';
+import 'package:aharconnect/data/model/faq_model.dart';
 import 'package:aharconnect/data/model/profile_model.dart';
 import 'package:aharconnect/data/model/response_model.dart';
 import 'package:aharconnect/data/repository/profile_repo.dart';
-import 'package:aharconnect/widget/custom_snackbar.dart';
+import 'package:aharconnect/view/widget/custom_snackbar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:image_compression_flutter/image_compression_flutter.dart';
@@ -21,12 +22,16 @@ class MyProfileController extends GetxController implements GetxService {
   XFile? _pickedFile1;
   Uint8List? _rawFile;
   ImagePicker picker = ImagePicker();
+  List<FaqModel>? _faqList;
+  var _legalPolicies;
 
   bool get isLoading => _isLoading;
   Profile? get profileData => _profileData;
   String get updateProfileMessage => _updateProfileMessage!;
   XFile get pickedFile => _pickedFile!;
   Uint8List? get rawFile => _rawFile;
+  List<FaqModel> get faqList => _faqList ?? [];
+  String get legalPolicies => _legalPolicies ?? "";
 
   Future<Profile> getProfileData() async {
     _pickedFile = null;
@@ -123,6 +128,42 @@ class MyProfileController extends GetxController implements GetxService {
     }
     update();
   }
+
+  Future<void> getFaqList() async {
+    _isLoading = true;
+    Response response = await myProfileRepo.getFaqList();
+    if (response.statusCode == 200) {
+
+      final Iterable refactorFaqList = response.body!["data"] ?? [];
+      _faqList = refactorFaqList.map((item) {
+        return FaqModel.fromJson(item);
+      }).toList();
+      print(_faqList);
+      _isLoading = false;
+    } else {
+      ApiChecker.checkApi(response);
+    }
+    update();
+    // }
+  }
+
+  Future<void> getPolicy(String type) async {
+    _legalPolicies = null;
+    Response response = await myProfileRepo.getPolicies(type);
+    if (response.statusCode == 200) {
+      // _profileData = [];
+
+      _legalPolicies = response.body["data"]["dsc"];
+      print(_legalPolicies);
+      _isLoading = true;
+    } else {
+      ApiChecker.checkApi(response);
+    }
+    update();
+    // }
+  }
+
+
 
   static Future<XFile> compressImage(XFile file) async {
     final ImageFile _input =

@@ -2,23 +2,26 @@ class FaqModel {
   int? id;
   String? question;
   String? answer;
-  int? section;
+  Null? createdAt;
+  Null? updatedAt;
 
-  FaqModel({this.id, this.question, this.answer});
+  FaqModel({this.id, this.question, this.answer, this.createdAt, this.updatedAt});
 
   FaqModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     question = json['question'];
     answer = json['answer'];
-    section = json['section'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> FaqModel = new Map<String, dynamic>();
-    FaqModel['id'] = this.id;
-    FaqModel['question'] = this.question;
-    FaqModel['answer'] = this.answer;
-    FaqModel['section'] = this.section;
-    return FaqModel;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['question'] = this.question;
+    data['answer'] = this.answer;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
+    return data;
   }
 }

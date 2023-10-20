@@ -106,8 +106,8 @@ class ApiClient extends GetxService {
       }
       Http.Response _response = await Http.post(
         Uri.parse(uri),
-        // body: jsonEncode(body),
         body: body,
+          headers: _mainHeaders,
       ).timeout(Duration(seconds: timeoutInSeconds));
       return handleResponse(_response, uri);
     } catch (e) {

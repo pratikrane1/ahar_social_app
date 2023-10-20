@@ -36,15 +36,12 @@ class GalleryRepo extends GetxService {
   //   });
   // }
   //
-  // Future<Response> sharePhoto(String userId,String albumID,String photoId,String isShare) async {
-  //   return await apiClient
-  //       .postData(AppConstants.SHARE_ALBUM_IMAGES,{
-  //     "user_id" : userId,
-  //     "album_id" : albumID,
-  //     "photo_id" : photoId,
-  //     "is_share" : isShare
-  //   });
-  // }
+  Future<Response> sharePhoto(String imageId,) async {
+    return await apiClient
+        .postData(AppConstants.SHARE_ALBUM_IMAGES,{
+      "post_id" : imageId,
+    });
+  }
   //
   // Future<Response> getVideoList() async {
   //   return await apiClient

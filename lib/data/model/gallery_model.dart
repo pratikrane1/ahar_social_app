@@ -1,9 +1,11 @@
 class AlbumModel {
   int? id;
+  int? isNew;
+  int? imageCount;
   String? name;
   String? coverPhoto;
-  Null? createdAt;
-  Null? updatedAt;
+  String? createdAt;
+  String? updatedAt;
   String? url;
 
   AlbumModel(
@@ -21,6 +23,8 @@ class AlbumModel {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     url = json['url'];
+    isNew = json['is_new'];
+    imageCount = json['count'];
   }
 
   Map<String, dynamic> toJson() {
@@ -31,6 +35,8 @@ class AlbumModel {
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
     data['url'] = this.url;
+    data['is_new'] = this.isNew;
+    data['count'] = this.imageCount;
     return data;
   }
 }
@@ -46,9 +52,9 @@ class AlbumImageModel {
   String? createdAt;
   String? updatedAt;
   String? url;
-  String? isLike;
+  int? isLike;
   String? likeCount;
-  String? totalShare;
+  int? totalShare;
 
   AlbumImageModel(
       {this.id,
@@ -74,9 +80,9 @@ class AlbumImageModel {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     url = json['url'];
-    isLike = json['isLike'];
-    likeCount = json['likeCount'];
-    totalShare = json['totalShare'];
+    isLike = json['is_like'];
+    likeCount = json['likes'];
+    totalShare = json['share'];
   }
 
   Map<String, dynamic> toJson() {
@@ -90,9 +96,9 @@ class AlbumImageModel {
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
     data['url'] = this.url;
-    data['isLike'] = this.isLike;
-    data['likeCount'] = this.likeCount;
-    data['totalShare'] = this.totalShare;
+    data['is_like'] = this.isLike;
+    data['likes'] = this.likeCount;
+    data['share'] = this.totalShare;
     return data;
   }
 }

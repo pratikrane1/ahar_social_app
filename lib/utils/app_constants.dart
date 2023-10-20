@@ -19,6 +19,8 @@ class AppConstants {
   static const String POST_LIKE_DISLIKE = '/post-like';
   static const String GET_POST_COMMENT = '/show-post-comment';
   static const String POST_COMMENT = '/create-post-comment';
+  static const String COMMENT_LIKE = '/post-comment-like';
+  static const String DELETE_POST = '/delete-post';
   static const String GET_PROFILE = '/get-profile';
   static const String UPDATE_PROFILE = '/update-profile';
   static const String UPLOAD_PROFILE_IMAGE = '/update-photo';
@@ -30,6 +32,12 @@ class AppConstants {
   static const String PDF_URI = '/show-ppt';
   static const String MEMBERSHIP_DETAILS = '/show-selective-membership';
   static const String UPDATE_FCM = '/update-fcm';
+  static const String INITIATE_RAZORPAY = "https://api.razorpay.com/v1/orders";
+  static const String FAQ = "/show-all-faq";
+  static const String LEGAL_POLICIES = "/show-type-policy";
+  static const String SHARE_ALBUM_IMAGES = "/share-post";
+  static const String TRANSACTION_RAZORPAY = "http://ahar.ezii.live/api/create-payment";
+  static const String TRANSACTION_LIST = "/show-selective-payment";
 
   //Shared Key
   static const String TOKEN = 'token';

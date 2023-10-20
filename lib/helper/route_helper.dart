@@ -1,7 +1,6 @@
-import 'dart:convert';
-import 'package:aharconnect/screen/bottom%20nav%20bar/bottom_nav.dart';
-import 'package:aharconnect/screen/home/widget/post_detail_widget.dart';
-import 'package:aharconnect/screen/splash/screens/splash_screen.dart';
+import 'package:aharconnect/view/screen/bottom%20nav%20bar/bottom_nav.dart';
+import 'package:aharconnect/view/screen/home/widget/post_detail_widget.dart';
+import 'package:aharconnect/view/screen/splash/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

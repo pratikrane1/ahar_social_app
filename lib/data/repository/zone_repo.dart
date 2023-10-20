@@ -24,9 +24,10 @@ class ZoneRepo extends GetxService {
     });
   }
 
-  Future<Response> getPostLike(String postId,) async {
+  Future<Response> getPostLike(String postId,String type) async {
     return await apiClient.postData(AppConstants.POST_LIKE, {
       "post_id": postId,
+      "type": type
     });
   }
 
@@ -35,6 +36,17 @@ class ZoneRepo extends GetxService {
       "post_id": postId,
       "is_like": isLike,
     });
+  }
+
+  Future<Response> addCommentLike(String commentId, String isLike) async {
+    return await apiClient.postData(AppConstants.COMMENT_LIKE, {
+      "comment_id": commentId,
+      "is_like": isLike,
+    });
+  }
+
+  Future<Response> deletePost(String postId) async {
+    return await apiClient.getData(AppConstants.DELETE_POST+"/$postId",);
   }
 
   Future<Response> getPostComment(String postId,) async {

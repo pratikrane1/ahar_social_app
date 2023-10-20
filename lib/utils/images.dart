@@ -31,5 +31,6 @@ class Images {
   static const String share_button = 'assets/share_button.svg';
   static const String share_icon = 'assets/share_icon.svg';
   static const String empty_images = "assets/empty_image.jpg";
+  static const String divider_icon = "assets/divide_icon.png";
 
 }

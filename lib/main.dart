@@ -3,15 +3,24 @@ import 'package:aharconnect/data/model/messages.dart';
 import 'package:aharconnect/helper/route_helper.dart';
 import 'package:aharconnect/utils/app_constants.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:get/get.dart';
+import 'package:get/get_utils/src/platform/platform.dart';
 import 'helper/get_di.dart' as di;
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
+
+import 'helper/notification_helper.dart';
+
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+FlutterLocalNotificationsPlugin();
 
 void main() async {
   GoogleFonts.config.allowRuntimeFetching = false;
@@ -40,43 +49,43 @@ void main() async {
   //   });
   // }
 
-  // FirebaseMessaging messaging = FirebaseMessaging.instance;
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
   //
-  // NotificationSettings settings = await messaging.requestPermission(
-  //   alert: true,
-  //   announcement: false,
-  //   badge: true,
-  //   carPlay: false,
-  //   criticalAlert: false,
-  //   provisional: false,
-  //   sound: true,
-  // );
-  //
-  // if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-  //   print('User granted permission');
-  // } else if (settings.authorizationStatus == AuthorizationStatus.provisional) {
-  //   print('User granted provisional permission');
-  // } else {
-  //   print('User declined or has not accepted permission');
-  // }
-  //
-  // // await di.init();
+  NotificationSettings settings = await messaging.requestPermission(
+    alert: true,
+    announcement: false,
+    badge: true,
+    carPlay: false,
+    criticalAlert: false,
+    provisional: false,
+    sound: true,
+  );
+
+  if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+    print('User granted permission');
+  } else if (settings.authorizationStatus == AuthorizationStatus.provisional) {
+    print('User granted provisional permission');
+  } else {
+    print('User declined or has not accepted permission');
+  }
+
+  await di.init();
   Map<String, Map<String, String>> _languages = await di.init();
   String? fcmTitle;
-  // try {
-  //   if (GetPlatform.isMobile) {
-  //     final RemoteMessage? remoteMessage =
-  //     await FirebaseMessaging.instance.getInitialMessage();
-  //     if (remoteMessage != null) {
-  //       fcmTitle = remoteMessage.notification!.title != null ? remoteMessage.notification!.title : null;
-  //       Get.find<NotificationController>().getFcmNotificationTitle(fcmTitle!);
-  //       print(fcmTitle);
-  //     }
-  //     await NotificationHelper.initialize(flutterLocalNotificationsPlugin);
-  //     FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
-  //     // handles
-  //   }
-  // } catch (e) {}
+  try {
+    if (GetPlatform.isMobile) {
+      final RemoteMessage? remoteMessage =
+      await FirebaseMessaging.instance.getInitialMessage();
+      if (remoteMessage != null) {
+        fcmTitle = remoteMessage.notification!.title != null ? remoteMessage.notification!.title : null;
+        // Get.find<NotificationController>().getFcmNotificationTitle(fcmTitle!);
+        // print(fcmTitle);
+      }
+      await NotificationHelper.initialize(flutterLocalNotificationsPlugin);
+      FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
+      // handles
+    }
+  } catch (e) {}
 
   runApp(MyApp(
     languages: _languages,

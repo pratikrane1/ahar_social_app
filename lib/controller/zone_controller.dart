@@ -4,12 +4,17 @@ import 'package:aharconnect/data/api/api_checker.dart';
 import 'package:aharconnect/data/model/comment_model.dart';
 import 'package:aharconnect/data/model/zone_model.dart';
 import 'package:aharconnect/data/repository/zone_repo.dart';
+import 'package:aharconnect/view/widget/custom_snackbar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/response/response.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_disposable.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:path_provider/path_provider.dart';
+
+import 'gallery_controller.dart';
 
 class ZoneController extends GetxController implements GetxService {
   final ZoneRepo zoneRepo;
@@ -114,10 +119,10 @@ class ZoneController extends GetxController implements GetxService {
     return _postDataList!;
   }
 
-  Future<List<FeedPostLike>> getPostLike(String postId,) async {
+  Future<List<FeedPostLike>> getPostLike(String postId,String type) async {
     // _noticePostDataList = [];
     _postLikeList = [];
-    Response response = await zoneRepo.getPostLike(postId,);
+    Response response = await zoneRepo.getPostLike(postId,type);
     if (response.statusCode == 200) {
       final Iterable refactorPostDataList = response.body!["data"] ?? [];
       _postLikeList = refactorPostDataList.map((item) {
@@ -163,20 +168,55 @@ class ZoneController extends GetxController implements GetxService {
   }
 
 
-  Future<List<PostData>> addPostLike(
-      String postId, String isLike, String zoneId, String type) async {
+  Future<bool> addPostLike(
+      String postId, String isLike, String zoneId, String type,bool fromGalary,String albumId) async {
     Response response = await zoneRepo.addPostLike(postId, isLike);
     if (response.statusCode == 200) {
       // final Iterable refactorPostDataList = response.body!["data"] ?? [];
-      getFeedPostDataList(zoneId, type);
+      if(fromGalary) {
+        Get.find<GalleryController>().getAlbumImages(albumId, false);
+      }else{
+        getFeedPostDataList(zoneId, type);
+      }
       print(_postDataList);
       _isPostDataLoading = true;
     } else {
       ApiChecker.checkApi(response);
     }
     update();
-    return _postDataList!;
+    return response.body["success"]!;
   }
+
+  Future addCommentLike(String commentId, String isLike,String postId) async {
+    Response response = await zoneRepo.addCommentLike(commentId, isLike);
+    if (response.statusCode == 200) {
+      ///Get Comment api call
+      getPostComment(postId,false);
+
+      print(_postDataList);
+      _isPostDataLoading = true;
+    } else {
+      ApiChecker.checkApi(response);
+    }
+    update();
+    // return response.body["success"]!;
+  }
+
+  Future deletePost(String zoneId, String type,String postId) async {
+    Response response = await zoneRepo.deletePost(postId);
+    if (response.statusCode == 200) {
+      ///Get Comment api call
+      getFeedPostDataList(zoneId, type);
+
+      showCustomSnackBar("Post Deleted Successfully.", isError: false);
+
+    } else {
+      ApiChecker.checkApi(response);
+    }
+    update();
+    // return response.body["success"]!;
+  }
+
 
   Future<List<PostData>> getPostDataList(String zoneId, String postId) async {
     _isPostDataLoading = false;
@@ -198,49 +238,7 @@ class ZoneController extends GetxController implements GetxService {
 
 
   Future downloadPDF(String url) async {
-    // var localPath = await getApplicationDocumentsDirectory();
-    // await FlutterDownloader.enqueue(
-    //   url: url,
-    //   headers: {}, // optional: header send with url (auth token etc)
-    //   savedDir: localPath.path,
-    //   showNotification: true, // show download progress in status bar (for Android)
-    //   openFileFromNotification: true,
-    //   saveInPublicStorage: true,// click on notification to open downloaded file (for Android)
-    // );
     var fileName = url.split(Platform.pathSeparator).last;
 
-    // try {
-    //     Directory? directory;
-    //     directory = await getExternalStorageDirectory();
-    //     String newPath = "";
-    //     List<String> paths = directory!.path.split("/");
-    //     for (int x = 1; x < paths.length; x++) {
-    //       String folder = paths[x];
-    //       if (folder != "Android") {
-    //         newPath += "/" + folder;
-    //       } else {
-    //         break;
-    //       }
-    //     }
-    //     newPath = newPath + "/PDF_Download";
-    //     directory = Directory(newPath);
-    //
-    //     File saveFile = File(directory.path + "/$fileName");
-    //     if (kDebugMode) {
-    //       print(saveFile.path);
-    //     }
-    //     if (!await directory.exists()) {
-    //       await directory.create(recursive: true);
-    //     }
-    //     if (await directory.exists()) {
-    //       await Dio().download(
-    //         url,
-    //         saveFile.path,
-    //       );
-    //     }
-    //   return true;
-    // } catch (e) {
-    //   return false;
-    // }
   }
 }

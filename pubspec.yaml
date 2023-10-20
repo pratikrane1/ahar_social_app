@@ -99,18 +99,12 @@ flutter:
     - assets/language/
     - assets/anim/recipe.json
 
+
   fonts:
     - family: Open Sans
       fonts:
-        - asset: assets/fonts/OpenSans-Bold.ttf
-        - asset: assets/fonts/OpenSans-ExtraBold.ttf
-        - asset: assets/fonts/OpenSans-Light.ttf
-        - asset: assets/fonts/OpenSans-Regular.ttf
         - asset: assets/fonts/OpenSans-Medium.ttf
         - asset: assets/fonts/OpenSans-SemiBold.ttf
-
-    - family: Poppins
-      fonts:
-        - asset: assets/fonts/Poppins-Bold.ttf
-        - asset: assets/fonts/Poppins-Light.ttf
-        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/OpenSans-Bold.ttf
+        - asset: assets/fonts/OpenSans-ExtraBold.ttf
+        - asset: assets/fonts/OpenSans-Regular.ttf

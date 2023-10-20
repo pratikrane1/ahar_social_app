@@ -1,5 +1,5 @@
+import 'package:aharconnect/view/widget/custom_snackbar.dart';
 import 'package:get/get.dart';
-import 'package:aharconnect/widget/custom_snackbar.dart';
 
 class ApiChecker {
   static void checkApi(Response response) {

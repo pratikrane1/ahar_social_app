@@ -1,4 +1,4 @@
-import 'package:aharconnect/screen/home/widget/post_detail_widget.dart';
+import 'package:aharconnect/view/screen/home/widget/post_detail_widget.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,11 +26,11 @@ class DynamicLinkService {
     return DynamicLinkParameters(
       uriPrefix: shortDynamicLink,
       link: url!,
-      androidParameters: AndroidParameters(
+      androidParameters: const AndroidParameters(
         packageName: "com.ahar.social",
         minimumVersion: 0,
       ),
-      iosParameters: IOSParameters(
+      iosParameters: const IOSParameters(
         bundleId: "",
         minimumVersion: '0',
       ),

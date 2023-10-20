@@ -4,7 +4,7 @@ import 'package:aharconnect/data/api/api_checker.dart';
 import 'package:aharconnect/data/model/office_bearers_model.dart';
 import 'package:aharconnect/data/model/sub_committee_model.dart';
 import 'package:aharconnect/data/repository/group_repo.dart';
-import 'package:aharconnect/widget/custom_snackbar.dart';
+import 'package:aharconnect/view/widget/custom_snackbar.dart';
 import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_disposable.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
