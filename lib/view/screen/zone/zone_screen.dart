@@ -194,7 +194,6 @@ class _ZoneScreenState extends State<ZoneScreen> {
                                 onTap: () {
                                   setState(() {
                                     defaultSelectedZone = zoneList[index].zoneName;
-                                    defaultSelectedZoneURL = zoneList[index].url;
                                     defaultSelectedZone;
                                     defaultSelectedZoneURL = zoneList[index].url;
                                     defaultSelectedZoneURL;

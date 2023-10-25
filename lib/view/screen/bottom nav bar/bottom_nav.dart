@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'dart:ui';
 import 'package:aharconnect/controller/auth_controller.dart';
-import 'package:aharconnect/helper/responsive_helper.dart';
-import 'package:aharconnect/utils/dimensions.dart';
 import 'package:aharconnect/view/screen/create_post/screens/add_post_screen.dart';
 import 'package:aharconnect/view/screen/group/group_listing_screen.dart';
 import 'package:aharconnect/view/screen/home/screens/home_screen1.dart';

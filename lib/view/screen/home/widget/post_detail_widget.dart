@@ -200,100 +200,103 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                                         ),
                                       ),
                                       //Like && Comment & Share Button
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          //!: Like button:
-                                          AnimatedLikeButton(
-                                            isAnimating:
-                                                true == null ? false : true,
-                                            child: Row(
-                                              children: [
-                                                IconButton(
-                                                  splashRadius: 20,
-                                                  onPressed: () async {
-                                                    if (_postDataList![0].post!
-                                                            .islike ==
-                                                        1) {
-                                                      Get.find<ZoneController>()
-                                                          .addPostLike(
-                                                          _postDataList![0].post!.id.toString(),
-                                                              '0',
-                                                              widget.zoneId.toString(),
-                                                              "Post",false,"");
-                                                    } else {
-                                                      Get.find<ZoneController>()
-                                                          .addPostLike(
-                                                          _postDataList![0]
-                                                                  .post!.id
-                                                                  .toString(),
-                                                              '1',
-                                                          widget.zoneId.toString(),
-                                                              "Post",false,"");
-                                                    }
-                                                  },
-                                                  icon: _postDataList![0].post!
+                                      Padding(
+                                        padding: const EdgeInsets.only(right: 30.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            //!: Like button:
+                                            AnimatedLikeButton(
+                                              isAnimating:
+                                                  true == null ? false : true,
+                                              child: Row(
+                                                children: [
+                                                  IconButton(
+                                                    splashRadius: 20,
+                                                    onPressed: () async {
+                                                      if (_postDataList![0].post!
                                                               .islike ==
-                                                          1
-                                                      ? const Icon(
-                                                          CupertinoIcons.heart_fill,
-                                                          color:
-                                                              ThemeColors.redColor,
-                                                        )
-                                                      : const FaIcon(
-                                                    FontAwesomeIcons
-                                                        .heart,
-                                                    size: 23,
-                                                    color: ThemeColors
-                                                        .greyTextColor,
+                                                          1) {
+                                                        Get.find<ZoneController>()
+                                                            .addPostLike(
+                                                            _postDataList![0].post!.id.toString(),
+                                                                '0',
+                                                                widget.zoneId.toString(),
+                                                                "Post",false,"");
+                                                      } else {
+                                                        Get.find<ZoneController>()
+                                                            .addPostLike(
+                                                            _postDataList![0]
+                                                                    .post!.id
+                                                                    .toString(),
+                                                                '1',
+                                                            widget.zoneId.toString(),
+                                                                "Post",false,"");
+                                                      }
+                                                    },
+                                                    icon: _postDataList![0].post!
+                                                                .islike ==
+                                                            1
+                                                        ? const Icon(
+                                                            CupertinoIcons.heart_fill,
+                                                            color:
+                                                                ThemeColors.redColor,
+                                                          )
+                                                        : const FaIcon(
+                                                      FontAwesomeIcons
+                                                          .heart,
+                                                      size: 23,
+                                                      color: ThemeColors
+                                                          .greyTextColor,
+                                                    ),
                                                   ),
-                                                ),
-                                                Text(
-                                                  _postDataList![0].post!
-                                                              .likes !=
-                                                          "0"
-                                                      ? '${_postDataList![0].post!.likes} ${_postDataList![0].post!.likes == 1 ? "Like" : "Likes"}'
-                                                      : "",
-                                                  style: GoogleFonts.openSans(),
-                                                ),
-                                              ],
+                                                  Text(
+                                                    _postDataList![0].post!
+                                                                .likes !=
+                                                            "0"
+                                                        ? '${_postDataList![0].post!.likes} ${_postDataList![0].post!.likes == 1 ? "Like" : "Likes"}'
+                                                        : "",
+                                                    style: GoogleFonts.openSans(),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                          // SizedBox(width: 30,),
-                                          // Comment Button
-                                          IconButton(
-                                            splashRadius: 20,
-                                            onPressed: () {
-                                              // Navigator.pushNamed(
-                                              //   context,
-                                              //   AppPages.commentsPath,
-                                              //   arguments: widget.post,
-                                              // );
-                                            },
-                                            icon: const Icon(
-                                              Icons.comment,
-                                              color: ThemeColors.greyIconColor,
+                                            // SizedBox(width: 30,),
+                                            // Comment Button
+                                            IconButton(
+                                              splashRadius: 20,
+                                              onPressed: () {
+                                                // Navigator.pushNamed(
+                                                //   context,
+                                                //   AppPages.commentsPath,
+                                                //   arguments: widget.post,
+                                                // );
+                                              },
+                                              icon: const Icon(
+                                                Icons.comment,
+                                                color: ThemeColors.greyIconColor,
+                                              ),
                                             ),
-                                          ),
-                                          // SizedBox(width: 30,),
+                                            // SizedBox(width: 30,),
 
-                                          //Share Button
-                                          IconButton(
-                                            splashRadius: 20,
-                                            onPressed: () {
-                                              DynamicLinkService().shareProductLink(
-                                                  title: "${_postDataList![0].post!.dsc}",
-                                                  url: Uri.parse('https://aharsocialapp.in/post?postId=${_postDataList![0].post!.id}&&zoneId=${widget.zoneId}'),
-                                                  // url: Uri.parse('https://aharsocialapp.in/post?id=1'),
-                                                  image: '${_postDataList![0].post!.postImage}');
-                                            },
-                                            icon: const Icon(
-                                              Icons.share_outlined,
-                                              color: ThemeColors.greyIconColor,
+                                            //Share Button
+                                            IconButton(
+                                              splashRadius: 20,
+                                              onPressed: () {
+                                                DynamicLinkService().shareProductLink(
+                                                    title: "${_postDataList![0].post!.dsc}",
+                                                    url: Uri.parse('https://aharsocialapp.in/post?postId=${_postDataList![0].post!.id}&&zoneId=${widget.zoneId}'),
+                                                    // url: Uri.parse('https://aharsocialapp.in/post?id=1'),
+                                                    image: '${_postDataList![0].post!.postImage}');
+                                              },
+                                              icon: const Icon(
+                                                Icons.share_outlined,
+                                                color: ThemeColors.greyIconColor,
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ],
                                   ),

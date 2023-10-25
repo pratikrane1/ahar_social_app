@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:aharconnect/utils/dimensions.dart';
 import 'package:aharconnect/utils/theme_colors.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class FeedSlider extends StatefulWidget {
   const FeedSlider({Key? key}) : super(key: key);
@@ -148,9 +149,10 @@ class _FeedSliderState extends State<FeedSlider> {
                                                   Text(
                                                       _postDataList![index]
                                                               .user!
-                                                              .name!
-                                                              .split(" ")
-                                                              .elementAt(0) ??
+                                                              .name
+                                                              // .split(" ")
+                                                              // .elementAt(0)
+                                                          ??
                                                           "",
                                                       style: GoogleFonts.openSans(
                                                               fontSize: Dimensions
@@ -174,7 +176,7 @@ class _FeedSliderState extends State<FeedSlider> {
                                                                   index]
                                                               .zone!
                                                               .zoneName!
-                                                          : "All Zone",
+                                                          : "All Zone's",
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       style: GoogleFonts.openSans(
@@ -189,6 +191,14 @@ class _FeedSliderState extends State<FeedSlider> {
                                                               fontSize: 12)),
                                                 ],
                                               ),
+                                              Text(DateFormat("dd/MM/yyy").format(DateTime.parse(_postDataList![index].post!.createdAt.toString())),
+                                                  overflow: TextOverflow.ellipsis,
+                                                  style: GoogleFonts.openSans(
+                                                      fontSize: Dimensions.fontSizeSmall,
+                                                      fontWeight: FontWeight.normal,
+                                                      color: ThemeColors.blackColor)
+                                                      .copyWith(fontSize: 12)),
+
                                               const SizedBox(
                                                 height: 5,
                                               ),

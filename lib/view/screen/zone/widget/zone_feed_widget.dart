@@ -153,9 +153,10 @@ class _GroupFeedWidgetState extends State<GroupFeedWidget>
                                                                   Text(
                                                                     _postDataList![index]
                                                                             .user!
-                                                                            .name!
-                                                                            .split(" ")
-                                                                            .elementAt(0) ??
+                                                                            .name
+                                                                            // .split(" ")
+                                                                            // .elementAt(0)
+                                                                        ??
                                                                         "",
                                                                     maxLines: 1,
                                                                     overflow:
@@ -199,6 +200,7 @@ class _GroupFeedWidgetState extends State<GroupFeedWidget>
                                                             ),
 
                                                             ///Post Image
+                                                            _postDataList![index].post!.postImage != null ?
                                                             GestureDetector(
                                                               onTap: () {},
                                                               child: Material(
@@ -261,7 +263,7 @@ class _GroupFeedWidgetState extends State<GroupFeedWidget>
                                                                   ],
                                                                 ),
                                                               ),
-                                                            ),
+                                                            ) : const SizedBox(),
                                                             const SizedBox(
                                                               height: 10,
                                                             ),

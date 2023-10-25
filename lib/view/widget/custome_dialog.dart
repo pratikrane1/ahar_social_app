@@ -53,7 +53,7 @@ class CustomDialog extends StatelessWidget {
                     child: Padding(
                   padding:const EdgeInsets.all(10.0),
                   child: Text(
-                    "logout_from_gainz_pro".tr,
+                    "logout_from_ahar_connect".tr,
                     style:GoogleFonts.openSans(
                         fontSize: 18.0,
                         fontWeight: FontWeight.w600,

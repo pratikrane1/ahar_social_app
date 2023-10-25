@@ -1,5 +1,6 @@
 import 'package:aharconnect/controller/auth_controller.dart';
 import 'package:aharconnect/utils/constants.dart';
+import 'package:aharconnect/utils/dimensions.dart';
 import 'package:aharconnect/utils/images.dart';
 import 'package:aharconnect/utils/theme_colors.dart';
 import 'package:aharconnect/view/screen/authentication/screens/verify_number.dart';
@@ -54,11 +55,8 @@ class _LogInScreenState extends State<LogInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      extendBodyBehindAppBar: true,
-      resizeToAvoidBottomInset: false,
-      body: Stack(
+    return SafeArea(
+      child: Stack(
         children: [
           SafeArea(
             child: Image.asset(
@@ -80,9 +78,10 @@ class _LogInScreenState extends State<LogInScreen> {
                   // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'welcome_back'.tr,
+                      'welcome_to_ahar_connect'.tr,
                       style: GoogleFonts.openSans(
-                          fontSize: 34, fontWeight: FontWeight.bold),
+                          fontSize: Dimensions.fontSizeOverOverLarge,
+                          fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 5),
                     Text(
@@ -92,7 +91,7 @@ class _LogInScreenState extends State<LogInScreen> {
                           color: ThemeColors.greyTextColor,
                           fontWeight: FontWeight.normal),
                     ),
-                    const SizedBox(height: 50),
+                    const SizedBox(height: 30),
 
                     Text(
                       'mobile_no'.tr,
@@ -107,8 +106,8 @@ class _LogInScreenState extends State<LogInScreen> {
                     Container(
                       decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(
-                        Radius.circular(50),
-                      )),
+                            Radius.circular(50),
+                          )),
                       child: TextFormField(
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
@@ -137,7 +136,7 @@ class _LogInScreenState extends State<LogInScreen> {
                           contentPadding: const EdgeInsets.all(20),
                           hintText: 'your_mobile_number'.tr,
                           hintStyle: GoogleFonts.openSans(
-                            fontSize: 17,
+                            fontSize: Dimensions.fontSizeDefault,
                           ),
                           focusedErrorBorder: kFocusedErrorBorder,
                           errorBorder: kErrorBorder,
@@ -194,7 +193,7 @@ class _LogInScreenState extends State<LogInScreen> {
                           // color:Colors.red,
                           shape: const RoundedRectangleBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(50))),
+                              BorderRadius.all(Radius.circular(50))),
                         ),
                       ),
                     ),

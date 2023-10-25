@@ -156,19 +156,19 @@ class _MembershipScreenState extends State<MembershipScreen> {
                               padding: const EdgeInsets.only(left: 30.0, right: 30.0),
                               child: AppButton(
                                 onPressed: () async {
-                                  showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) => PaymentDialog(
-                                        amount: "${_membershipDetails!.membershipDetails}",paidAmount: "${_membershipDetails!.membershipDetails}",
-                                        profileData: _profileData,
-                                      ));
+                                  // showDialog(
+                                  //     context: context,
+                                  //     builder: (BuildContext context) => PaymentDialog(
+                                  //       amount: "${_membershipDetails!.membershipDetails}",paidAmount: "${_membershipDetails!.membershipDetails}",
+                                  //       profileData: _profileData,
+                                  //     ));
                                 },
                                 height: 50,
                                 width: MediaQuery.of(context).size.width,
                                 text:  Text("renew".tr,
                                   style: GoogleFonts.openSans(
                                       color: Colors.white,
-                                      fontSize: Dimensions.fontSizeDefault,
+                                      fontSize: Dimensions.fontSizeSmall,
                                       fontWeight: FontWeight.w700),
                                 ),
                                 loading: _isLoading,

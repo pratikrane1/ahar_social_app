@@ -8,7 +8,7 @@ class Dimensions {
   static double fontSizeExtraLarge = Get.context!.width >= 1300 ? 22 : 18;
   static double fontSizeOverLarge = Get.context!.width >= 1300 ? 28 : 24;
   // static double fontSizeOverOverLarge = Get.context.width >= 1300 ? 32 : 28;
-  static double fontSizeOverOverLarge = Get.context!.width >= 1300 ? 32 : 25;
+  static double fontSizeOverOverLarge = Get.context!.width >= 1300 ? 34 : 28;
 
   static const double PADDING_SIZE_EXTRA_SMALL = 5.0;
   static const double PADDING_SIZE_SMALL = 10.0;

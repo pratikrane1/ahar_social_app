@@ -192,7 +192,7 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
                                         )));
                           }
                         } else {
-                          if (file == null ||
+                          if (pdfFile == null ||
                               _descriptionController.text == "") {
                             showCustomSnackBar(
                                 "please_add_pdf_or_description".tr,
@@ -271,7 +271,7 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
                                       ? null
                                       : DecorationImage(
                                           image: MemoryImage(_imageFile!),
-                                          fit: BoxFit.fill,
+                                          fit: BoxFit.cover,
                                         ),
                                 ),
                                 child: Stack(
@@ -355,6 +355,10 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
                       ),
                     ),
 
+                    // TextField(
+                    //   controller: _descriptionController,
+                    // ),
+
                     ///Add PDF Field
                     widget.isFeed
                         ? const SizedBox()
@@ -427,6 +431,10 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
                               ),
                             ),
                           ),
+
+                    pdfFile != null
+                        ? const SizedBox(height: 5.0,) : const SizedBox(),
+
 
                     ///Selected PDF Name
                     pdfFile != null

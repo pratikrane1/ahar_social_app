@@ -243,36 +243,30 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
               ),
             ],
           )
-            : Padding(
-          padding: const EdgeInsets.only(top: 240.0),
-          child: Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    "no_transaction_found".tr,
-                    style: GoogleFonts.openSans(
-                      // overflow:
-                      //     TextOverflow.ellipsis,
-                      fontSize: Dimensions.fontSizeLarge,
-                      fontWeight: FontWeight.w600,
-                      color: ThemeColors.blackColor,
+            : Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "no_transaction_found".tr,
+                      style: GoogleFonts.openSans(
+                        // overflow:
+                        //     TextOverflow.ellipsis,
+                        fontSize: Dimensions.fontSizeLarge,
+                        fontWeight: FontWeight.w600,
+                        color: ThemeColors.blackColor,
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 7,
-                  ),
-                ],
-              )),
-        )
-            : const Padding(
-          padding: EdgeInsets.only(top: 220.0),
-          child: Center(
-            child: CircularProgressIndicator(
-              color: ThemeColors.primaryColor,
-            ),
-          ),
-        );
+                    const SizedBox(
+                      height: 7,
+                    ),
+                  ],
+                ))
+            : const Center(
+              child: CircularProgressIndicator(
+                color: ThemeColors.primaryColor,
+              ),
+            );
         }
       ),
     );

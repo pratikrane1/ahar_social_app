@@ -58,11 +58,11 @@ class _VerifyNumberScreenState extends State<VerifyNumberScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      extendBodyBehindAppBar: true,
-      resizeToAvoidBottomInset: false,
-      body: Stack(
+    return SafeArea(
+      // backgroundColor: Colors.white,
+      // extendBodyBehindAppBar: true,
+      // resizeToAvoidBottomInset: false,
+      child: Stack(
         children: [
           SafeArea(
             child: Image.asset(
@@ -103,7 +103,7 @@ class _VerifyNumberScreenState extends State<VerifyNumberScreen> {
                       // mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'welcome_back'.tr,
+                          'welcome_to_ahar_connect'.tr,
                           style: GoogleFonts.openSans(
                             fontSize: 34,
                             fontWeight: FontWeight.bold,

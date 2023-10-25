@@ -9,6 +9,7 @@ import 'package:aharconnect/utils/dimensions.dart';
 import 'package:aharconnect/utils/theme_colors.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class NoticeboardSlider extends StatefulWidget {
   const NoticeboardSlider({Key? key}) : super(key: key);
@@ -153,7 +154,7 @@ class _NoticeboardSliderState extends State<NoticeboardSlider> {
                                                                   index]
                                                               .zone!
                                                               .zoneName!
-                                                          : "All Zone",
+                                                          : "All Zone's",
                                                       style: GoogleFonts.openSans(
                                                               fontSize: Dimensions
                                                                   .fontSizeSmall,
@@ -163,9 +164,19 @@ class _NoticeboardSliderState extends State<NoticeboardSlider> {
                                                               color: ThemeColors
                                                                   .blackColor)
                                                           .copyWith(
-                                                              fontSize: 16)),
+                                                              fontSize: 16),
+                                                  ),
                                                 ],
-                                              )
+                                              ),
+                                              const SizedBox(width: 5.0,),
+
+                                              Text(DateFormat("dd/MM/yyy").format(DateTime.parse(_postDataList![index].post!.createdAt.toString())),
+                                                  overflow: TextOverflow.ellipsis,
+                                                  style: GoogleFonts.openSans(
+                                                      fontSize: Dimensions.fontSizeSmall,
+                                                      fontWeight: FontWeight.normal,
+                                                      color: ThemeColors.blackColor)
+                                                      .copyWith(fontSize: 12))
                                             ],
                                           ),
                                         ],

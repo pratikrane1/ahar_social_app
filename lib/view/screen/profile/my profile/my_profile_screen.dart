@@ -469,57 +469,6 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 height: 20,
                               ),
 
-                              ///Message
-                              Padding(
-                                padding: EdgeInsets.only(left: 5.0),
-                                child: Text('Message (Optional)',
-                                    style: GoogleFonts.openSans(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                        color: ThemeColors.blackColor
-                                            .withOpacity(0.6))),
-                              ),
-                              TextFormField(
-                                readOnly: true,
-                                controller: _messageController,
-                                textAlign: TextAlign.start,
-                                keyboardType: TextInputType.text,
-                                style: GoogleFonts.openSans(
-                                    fontSize: 18,
-                                    height: 1.5,
-                                    color: ThemeColors.blackColor
-                                        .withOpacity(0.6)),
-                                decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: Color(0xFFF8F7F7),
-                                  hintText: "Enter message",
-                                  hintStyle: GoogleFonts.openSans(
-                                      fontSize: 15,
-                                      color: _messageController.text == ""
-                                          ? Colors.red
-                                          : null),
-                                  enabledBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: ThemeColors.blackColor
-                                            .withOpacity(0.2)),
-                                  ),
-                                  focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: ThemeColors.blackColor
-                                            .withOpacity(0.2)),
-                                  ),
-                                  border: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: ThemeColors.blackColor
-                                            .withOpacity(0.2)),
-                                  ),
-                                ),
-                                validator: (value) {},
-                                onChanged: (value) {},
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
                             ],
                           ),
                         ),

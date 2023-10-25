@@ -72,7 +72,8 @@ class _ZoneScreenState extends State<ZoneScreen> {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> ZoneMembersScreen(zoneId: _zoneList![index].zoneId.toString(),)));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> ZoneMembersScreen(zoneId: _zoneList![index].zoneId.toString(),
+                    zoneName: _zoneList![index].zoneName.toString(),)));
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
