@@ -69,7 +69,7 @@ class User {
   String? city;
   String? address;
   String? mobileNo;
-  Null? altMobileNo;
+  String? altMobileNo;
   String? email;
   String? profilePhoto;
   String? bio;

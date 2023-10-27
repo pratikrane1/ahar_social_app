@@ -194,6 +194,9 @@ class _NoticeboardSliderState extends State<NoticeboardSlider> {
                                       const SizedBox(
                                         height: 5.0,
                                       ),
+                                      _postDataList![index]
+                                          .post!
+                                          .postImage != null ?
                                       Flexible(
                                         child: Padding(
                                           padding: const EdgeInsets.only(
@@ -255,7 +258,7 @@ class _NoticeboardSliderState extends State<NoticeboardSlider> {
                                             ],
                                           ),
                                         ),
-                                      ),
+                                      ) : const SizedBox(),
                                     ],
                                   ),
                                 ),

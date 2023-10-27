@@ -6,7 +6,7 @@ class AppConstants {
   static const String APP_NAME = 'Ahar Connect';
   static const String APP_VERSION = "1.0.0+1";
 
-  static const String BASE_URL = 'http://ahar.ezii.live/api';
+  static const String BASE_URL = 'https://apis.ahar.in/api';
 
   static const String LOGIN = '/login';
   static const String VERIFY_OTP = '/otp-verification';

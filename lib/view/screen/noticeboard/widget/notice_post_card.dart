@@ -73,7 +73,7 @@ class _NoticePostCardState extends State<NoticePostCard> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(100),
                           child: CustomImage(
-                            image: widget.noticeBoardData!.user!.profilePhoto,
+                            image: widget.noticeBoardData!.user!.profilePhoto ?? "",
                             fit: BoxFit.cover,
                             fromProfile: true,
                           ),
@@ -184,7 +184,7 @@ class _NoticePostCardState extends State<NoticePostCard> {
                               const SizedBox(
                                 height: 5.0,
                               ),
-                              widget.noticeBoardData!.post!.postImage != ""
+                              widget.noticeBoardData!.post!.postImage != null
                                   ? Padding(
                                       padding:
                                           const EdgeInsets.only(right: 10.0),

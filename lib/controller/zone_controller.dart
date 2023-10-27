@@ -89,7 +89,7 @@ class ZoneController extends GetxController implements GetxService {
 
   Future<List<PostData>> getFeedPostDataList(String zoneId, String type) async {
     _isPostDataLoading = false;
-    _postDataList = [];
+    // _postDataList = [];
     Response response = await zoneRepo.getPostDataList(zoneId, type);
     if (response.statusCode == 200) {
       final Iterable refactorPostDataList = response.body!["data"] ?? [];
