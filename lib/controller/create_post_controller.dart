@@ -7,11 +7,14 @@ import 'package:aharconnect/data/repository/create_post_repo.dart';
 import 'package:aharconnect/view/widget/custom_snackbar.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_disposable.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_compression_flutter/image_compression_flutter.dart';
+import 'package:filesystem_picker/filesystem_picker.dart';
+
 
 class CreatePostController extends GetxController implements GetxService {
   final CreatePostRepo createPostRepo;
@@ -52,7 +55,7 @@ class CreatePostController extends GetxController implements GetxService {
     // }
   }
 
-  Future pickPDF() async {
+  Future pickPDF(BuildContext context) async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['pdf'],
@@ -60,6 +63,15 @@ class CreatePostController extends GetxController implements GetxService {
     if (result != null) {
       _pickedFile = XFile(result.files.single.path.toString());
     }
+
+    // String? path = await FilesystemPicker.open(
+    //   title: 'Open file',
+    //   context: context,
+    //   // rootDirectory: rootPath,
+    //   fsType: FilesystemType.file,
+    //   allowedExtensions: ['.pdf'],
+    //   fileTileSelectMode: FileTileSelectMode.wholeTile,
+    // );
   }
 
   Future pickGalleryImage() async {

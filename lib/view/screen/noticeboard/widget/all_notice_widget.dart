@@ -29,43 +29,57 @@ class _AllNoticeScreenState extends State<AllNoticeScreen> {
     Get.find<ZoneController>().getNoticePostList(widget.zoneId, widget.type);
   }
 
+  Future<void> refreshTab() async {
+    await Future.delayed(const Duration(milliseconds: 2500), () async{
+      await Get.find<ZoneController>().getNoticePostList(widget.zoneId, widget.type);
+
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GetBuilder<ZoneController>(builder: (zoneController) {
-        _postDataList = zoneController.noticePostDataList;
-        _isPostDataLoading = zoneController.isPostDataLoading;
-        return _isPostDataLoading
-            ? _postDataList!.isNotEmpty
-                ? ListView.builder(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    physics: ScrollPhysics(),
-                    itemCount: _postDataList!.length,
-                    itemBuilder: ((context, index) {
-                      return NoticePostCard(
-                        noticeBoardData: _postDataList![index],
-                        zoneId: widget.zoneId,
-                        type: widget.type,
-                      );
-                    }),
-                  )
-                : Center(
-                    child: Text(
-                      "No Data Found",
-                      overflow: TextOverflow.ellipsis,
-                      style: GoogleFonts.openSans(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                          color: ThemeColors.blackColor),
-                    ),
-                  )
-            : const Center(
-                child: CircularProgressIndicator(
-                  color: ThemeColors.primaryColor,
-                ),
-              );
-      }),
+      extendBody: true,
+      body: RefreshIndicator(
+        onRefresh: refreshTab,
+        color: ThemeColors.primaryColor,
+        backgroundColor: Colors.white,
+        child: GetBuilder<ZoneController>(builder: (zoneController) {
+          _postDataList = zoneController.noticePostDataList;
+          _isPostDataLoading = zoneController.isPostDataLoading;
+          return _isPostDataLoading
+              ? _postDataList!.isNotEmpty
+                  ? ListView.builder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      physics: const ScrollPhysics(),
+                      itemCount: _postDataList!.length,
+                      itemBuilder: ((context, index) {
+                        return NoticePostCard(
+                          noticeBoardData: _postDataList![index],
+                          zoneId: widget.zoneId,
+                          type: widget.type,
+                        );
+                      }),
+                    )
+                  : Center(
+                      child: Text(
+                        "No Data Found",
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.openSans(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            color: ThemeColors.blackColor),
+                      ),
+                    )
+              : const Center(
+                  child: CircularProgressIndicator(
+                    color: ThemeColors.primaryColor,
+                  ),
+                );
+        }),
+      ),
     );
   }
 }

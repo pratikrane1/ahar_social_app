@@ -253,11 +253,17 @@ class _CustomerSupportScreenState extends State<CustomerSupportScreen> {
                       fontWeight: FontWeight.w500,
                       color: ThemeColors.customerSupportTextColor),
                   children: <TextSpan>[
-                    TextSpan(text: "${_profileData!.supportnumber}. " ?? "" ,
+                    TextSpan(text: "${_profileData!.supportnumber}/" ?? "" ,
                       style: GoogleFonts.openSans(
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
                           color: ThemeColors.primaryColor,
+                      ),),
+                    TextSpan(text: "${_profileData!.supportEmail}. " ?? "" ,
+                      style: GoogleFonts.openSans(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        color: ThemeColors.primaryColor,
                       ),),
                     TextSpan(text: 'our_knowledgeable_agents_will_be_glad_to_assist_you_and_provide step-by-step_guidance'.tr,),
 

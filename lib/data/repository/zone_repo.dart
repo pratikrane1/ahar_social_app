@@ -24,6 +24,18 @@ class ZoneRepo extends GetxService {
     });
   }
 
+  Future<Response> getHomePostDataList(String type) async {
+    return await apiClient.postData(AppConstants.HOME_POST_DATA_LIST, {
+      "type": type,
+    });
+  }
+
+  // Future<Response> getHomeNoticeBoardDataList(String type) async {
+  //   return await apiClient.postData(AppConstants.HOME_POST_DATA_LIST, {
+  //     "type": type,
+  //   });
+  // }
+
   Future<Response> getPostLike(String postId,String type) async {
     return await apiClient.postData(AppConstants.POST_LIKE, {
       "post_id": postId,

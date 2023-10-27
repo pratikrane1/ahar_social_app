@@ -1,5 +1,6 @@
 import 'package:aharconnect/controller/gallery_controller.dart';
 import 'package:aharconnect/data/model/gallery_model.dart';
+import 'package:aharconnect/data/model/video_model.dart';
 import 'package:aharconnect/view/screen/home/screens/gallery/Image/images_screen.dart';
 import 'package:aharconnect/view/screen/home/screens/gallery/gallery_screen.dart';
 import 'package:aharconnect/view/screen/home/screens/gallery/video/gallery_video_screen.dart';
@@ -28,7 +29,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
   String? videoId = "";
   bool _fullScreen = false;
   List<AlbumModel>? _albumList;
-  List? _videoList;
+  List<VideosModel>? _videoList;
 
   @override
   void initState() {
@@ -452,200 +453,227 @@ class _GalleryWidgetState extends State<GalleryWidget> {
               })
 
                   ///Video Widget
-                  : Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 0.0, right: 0.0),
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => GalleryVideoScreen(
-                                            videData: Data().videoList![0],
-                                          )));
-                            },
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                CustomImage(
-                                  image:
-                                      Data().videoList![0].thumbnailUrl ?? "",
-                                  fit: BoxFit.cover,
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 200,
-                                ),
-                                Positioned(
-                                    child: Container(
-                                  height: 200,
-                                  color: Colors.black.withOpacity(0.3),
-                                  child: const Center(
-                                    child: Icon(
-                                      Icons.play_arrow,
-                                      size: 60,
-                                      color: ThemeColors.whiteColor,
-                                    ),
-                                  ),
-                                )),
-                                Positioned(
-                                    top: 0,
-                                    right: 0,
-                                    child: Container(
-                                      width: 100,
-                                      height: 30,
-                                      color: Colors.black.withOpacity(0.5),
-                                      child: Center(
-                                        child: Text(
-                                          "new_video".tr,
-                                          textAlign: TextAlign.center,
-                                          style:  GoogleFonts.openSans(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: ThemeColors.whiteColor),
-                                        ),
-                                      ),
-                                    )),
-                                const Positioned(
-                                    top: 2,
-                                    right: 3,
-                                    child: Icon(
-                                        size: 8,
-                                        color: ThemeColors.redColor,
-                                        Icons.circle)),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(left: 5.0),
-                                child: Text(
-                                  "more_videos".tr,
-                                  style: GoogleFonts.openSans(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              InkWell(
+                  : GetBuilder<GalleryController>(builder: (galleryController) {
+                _videoList = galleryController.videoList;
+                _isVideoLoading = galleryController.isVideoLoading;
+                if(_videoList!.isNotEmpty) {
+                        DateTime dateTimeCreatedAt = DateTime.parse(
+                            _videoList![0].snippet!.publishedAt.toString());
+                        DateTime dateTimeNow = DateTime.now();
+                        final differenceInDays =
+                            dateTimeNow.difference(dateTimeCreatedAt).inDays;
+                        print('$differenceInDays');
+                        if (differenceInDays <= 5) {
+                          if (_videoList!.isNotEmpty) {
+                            _videoList![0].isTimePeriod = true;
+                          }
+                        }
+                      }
+                      return _isVideoLoading ? _videoList!.isNotEmpty
+                    ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 0.0, right: 0.0),
+                              child: GestureDetector(
                                 onTap: () {
+                                  _videoList!.length != 0 ?
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => GalleryScreen(
-                                                isImage: _isImage,
-                                              )));
+                                          builder: (context) => GalleryVideoScreen(
+                                                videData: _videoList![0],
+                                              ))) : null;
                                 },
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 8.0),
-                                  child: Text(
-                                    "see_all".tr,
-                                    style: GoogleFonts.openSans(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                      color: ThemeColors.primaryColor,
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    CustomImage(
+                                      image: _videoList!.isNotEmpty ? _videoList![0].snippet!.thumbnails!.high!.url ?? "" : "",
+                                      fit: BoxFit.cover,
+                                      width: MediaQuery.of(context).size.width,
+                                      height: 200,
                                     ),
-                                  ),
+                                    Positioned(
+                                        child: Container(
+                                      height: 200,
+                                      color: Colors.black.withOpacity(0.3),
+                                      child: const Center(
+                                        child: Icon(
+                                          Icons.play_arrow,
+                                          size: 60,
+                                          color: ThemeColors.whiteColor,
+                                        ),
+                                      ),
+                                    )),
+                                    Positioned(
+                                        top: 0,
+                                        right: 0,
+                                        child: Container(
+                                          width: 100,
+                                          height: 30,
+                                          color: Colors.black.withOpacity(0.5),
+                                          child: Center(
+                                            child: Text(
+                                              "new_video".tr,
+                                              textAlign: TextAlign.center,
+                                              style:  GoogleFonts.openSans(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: ThemeColors.whiteColor),
+                                            ),
+                                          ),
+                                        )),
+                                    const Positioned(
+                                        top: 2,
+                                        right: 3,
+                                        child: Icon(
+                                            size: 8,
+                                            color: ThemeColors.redColor,
+                                            Icons.circle)),
+                                  ],
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 5.0),
-                          child: SizedBox(
-                            height: 85,
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              physics: const ScrollPhysics(),
-                              scrollDirection: Axis.horizontal,
-                              itemCount: Data().videoList!.length,
-                              itemBuilder: (context, index) {
-                                // DateTime dateTimeCreatedAt = DateTime.parse(_videoList![index].snippet!.publishedAt.toString());
-                                // DateTime dateTimeNow = DateTime.now();
-                                // final differenceInDays = dateTimeNow.difference(dateTimeCreatedAt).inDays;
-                                // print('$differenceInDays');
-                                // if(differenceInDays <= 7){
-                                //   _videoList![index].isTimePeriod = true;
-                                // }
-                                return InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                GalleryVideoScreen(
-                                                  videData:
-                                                      Data().videoList![index],
-                                                )));
-                                  },
-                                  child: Container(
-                                    // height: 90,
-                                    // width: 250,
-                                    padding: const EdgeInsets.all(
-                                        Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(
-                                          Dimensions.RADIUS_SMALL),
-                                      child: Stack(
-                                        alignment: Alignment.center,
-                                        children: [
-                                          CustomImage(
-                                            image: Data()
-                                                    .videoList![index]
-                                                    .thumbnailUrl ??
-                                                "",
-                                            fit: BoxFit.cover,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                3.5,
-                                            height: 120,
-                                          ),
-                                          Positioned(
-                                              child: Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                3.5,
-                                            height: 120,
-                                            color:
-                                                Colors.black.withOpacity(0.3),
-                                            child: const Center(
-                                              child: Icon(
-                                                Icons.play_arrow,
-                                                size: 50,
-                                                color: ThemeColors.whiteColor,
-                                              ),
-                                            ),
-                                          )),
-
-                                          // _videoList![index].isTimePeriod! ?
-                                          const Positioned(
-                                              top: 2,
-                                              right: 3,
-                                              child: Icon(
-                                                  size: 8,
-                                                  color: ThemeColors.redColor,
-                                                  Icons.circle)),
-                                          // : Container(),
-                                        ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 5.0),
+                                    child: Text(
+                                      "more_videos".tr,
+                                      style: GoogleFonts.openSans(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                   ),
-                                );
-                              },
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => GalleryScreen(
+                                                    isImage: _isImage,
+                                                  )));
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(right: 8.0),
+                                      child: Text(
+                                        "see_all".tr,
+                                        style: GoogleFonts.openSans(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
+                                          color: ThemeColors.primaryColor,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ),
-                      ],
+                            Padding(
+                              padding: const EdgeInsets.only(left: 5.0),
+                              child: SizedBox(
+                                height: 85,
+                                child: ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const ScrollPhysics(),
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: _videoList!.length,
+                                  itemBuilder: (context, index) {
+                                    DateTime dateTimeCreatedAt = DateTime.parse(_videoList![index].snippet!.publishedAt.toString());
+                                    DateTime dateTimeNow = DateTime.now();
+                                    final differenceInDays = dateTimeNow.difference(dateTimeCreatedAt).inDays;
+                                    print('$differenceInDays');
+                                    if(differenceInDays <= 7){
+                                      _videoList![index].isTimePeriod = true;
+                                    }
+                                    return InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    GalleryVideoScreen(
+                                                      videData: _videoList![index],
+                                                    )));
+                                      },
+                                      child: Container(
+                                        // height: 90,
+                                        // width: 250,
+                                        padding: const EdgeInsets.all(
+                                            Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(
+                                              Dimensions.RADIUS_SMALL),
+                                          child: Stack(
+                                            alignment: Alignment.center,
+                                            children: [
+                                              CustomImage(
+                                                image:
+                                                _videoList![index].snippet!.thumbnails!.high!.url ?? "",
+                                                fit: BoxFit.cover,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    3.5,
+                                                height: 120,
+                                              ),
+                                              Positioned(
+                                                  child: Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    3.5,
+                                                height: 120,
+                                                color:
+                                                    Colors.black.withOpacity(0.3),
+                                                child: const Center(
+                                                  child: Icon(
+                                                    Icons.play_arrow,
+                                                    size: 50,
+                                                    color: ThemeColors.whiteColor,
+                                                  ),
+                                                ),
+                                              )),
+
+                                              _videoList![index].isTimePeriod! ?
+                                              const Positioned(
+                                                  top: 2,
+                                                  right: 3,
+                                                  child: Icon(
+                                                      size: 8,
+                                                      color: ThemeColors.redColor,
+                                                      Icons.circle))
+                                              : Container(),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                    :  Center(
+                  child: Text(
+                    "no_videos_to_show".tr,
+                    style:const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: 'Montserrat',
                     ),
+                  ),
+                )
+                    : Container();
+                    }
+                  ),
             ],
           ),
         ),

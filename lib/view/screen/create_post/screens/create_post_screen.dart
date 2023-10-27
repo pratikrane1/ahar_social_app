@@ -365,7 +365,7 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
                         : InkWell(
                             highlightColor: Colors.grey.shade400,
                             onTap: () async {
-                              await Get.find<CreatePostController>().pickPDF();
+                              await Get.find<CreatePostController>().pickPDF(context);
                               setState(() {
                                 // file = PlatformFile( name: '${Get.find<CreatePostController>().pickedFile.path}', size: 1);
                                 // print(file!.path);

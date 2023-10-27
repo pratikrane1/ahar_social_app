@@ -1,5 +1,6 @@
 import 'package:aharconnect/controller/gallery_controller.dart';
 import 'package:aharconnect/data/model/gallery_model.dart';
+import 'package:aharconnect/data/model/video_model.dart';
 import 'package:aharconnect/view/screen/home/screens/gallery/Image/images_screen.dart';
 import 'package:aharconnect/view/screen/home/screens/gallery/video/gallery_video_screen.dart';
 import 'package:aharconnect/view/widget/album_shimmer.dart';
@@ -10,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:aharconnect/static_data.dart';
 import 'package:aharconnect/utils/theme_colors.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shimmer/shimmer.dart';
 
 class GalleryScreen extends StatefulWidget {
   bool isImage;
@@ -24,8 +26,8 @@ class _GalleryScreenState extends State<GalleryScreen> {
   List<AlbumModel>? _albumList;
   bool _isAlbumLoading = false;
   bool _isVideoLoading = false;
-  List? _videoList;
-  List? videoList1;
+  List<VideosModel>? _videoList;
+  List<VideosModel>? videoList1;
 
   @override
   void initState() {
@@ -34,7 +36,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
     if (_isImage) {
       Get.find<GalleryController>().getAlbumList();
     } else {
-      // Get.find<GalleryController>().getVideos();
+      Get.find<GalleryController>().getYoutubeVideos();
     }
   }
 
@@ -80,7 +82,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                   setState(() {
                     _isImage = true;
                   });
-                  // Get.find<GalleryController>().getAlbumList();
+                  Get.find<GalleryController>().getAlbumList();
                 },
                 height: 34,
                 width: MediaQuery.of(context).size.width / 2.5,
@@ -112,7 +114,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                   setState(() {
                     _isImage = false;
                   });
-                  // Get.find<GalleryController>().getVideos();
+                  Get.find<GalleryController>().getYoutubeVideos();
                 },
                 height: 34,
                 width: MediaQuery.of(context).size.width / 2.5,
@@ -272,86 +274,150 @@ class _GalleryScreenState extends State<GalleryScreen> {
           ///Video Gallery
           _isImage
               ? const SizedBox()
-              : Expanded(
-                  child: ListView.builder(
-                  primary: false,
-                  shrinkWrap: true,
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: Data().videoList!.length,
-                  itemBuilder: (context, index) {
-                    // DateTime dateTimeCreatedAt = DateTime.parse(_videoList![index].snippet!.publishedAt.toString());
-                    // DateTime dateTimeNow = DateTime.now();
-                    // final differenceInDays = dateTimeNow.difference(dateTimeCreatedAt).inDays;
-                    // print('$differenceInDays');
-                    // if(differenceInDays <= 7){
-                    //   _videoList![index].isTimePeriod = true;
-                    // }
-                    return Padding(
-                      padding: const EdgeInsets.only(
-                          top: 5.0, bottom: 5.0, left: 10.0, right: 10.0),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => GalleryVideoScreen(
-                                        videData: Data().videoList![index],
-                                      )));
-                        },
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            CustomImage(
-                              image:
-                                  Data().videoList![index].thumbnailUrl ?? "",
-                              fit: BoxFit.cover,
-                              width: MediaQuery.of(context).size.width,
-                              height: 200,
-                            ),
-                            Positioned(
-                                child: Container(
-                              height: 200,
-                              color: Colors.black.withOpacity(0.3),
-                              child: const Center(
-                                child: Icon(
-                                  Icons.play_arrow,
-                                  size: 60,
-                                  color: ThemeColors.whiteColor,
+              : GetBuilder<GalleryController>(builder: (galleryController) {
+            _videoList = galleryController.videoList;
+            _isVideoLoading = galleryController.isVideoLoading;
+            return _isVideoLoading ? _videoList!.isNotEmpty ? Expanded(
+                      child: ListView.builder(
+                      primary: false,
+                      shrinkWrap: true,
+                      physics: const BouncingScrollPhysics(),
+                      itemCount: _videoList!.length,
+                      itemBuilder: (context, index) {
+                        DateTime dateTimeCreatedAt = DateTime.parse(_videoList![index].snippet!.publishedAt.toString());
+                        DateTime dateTimeNow = DateTime.now();
+                        final differenceInDays = dateTimeNow.difference(dateTimeCreatedAt).inDays;
+                        print('$differenceInDays');
+                        if(differenceInDays <= 7){
+                          _videoList![index].isTimePeriod = true;
+                        }
+                        return Padding(
+                          padding: const EdgeInsets.only(
+                              top: 5.0, bottom: 5.0, left: 10.0, right: 10.0),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => GalleryVideoScreen(
+                                            videData: _videoList![index],
+                                          )));
+                            },
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                CustomImage(
+                                  image:
+                                  _videoList![index].snippet!.thumbnails!.high!.url ??"",
+                                  fit: BoxFit.cover,
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 200,
                                 ),
-                              ),
-                            )),
-                            Positioned(
-                                top: 0,
-                                right: 0,
-                                child: Container(
-                                  width: 100,
-                                  height: 30,
-                                  color: Colors.black.withOpacity(0.5),
-                                  child: Center(
-                                    child: Text(
-                                      "new_video".tr,
-                                      textAlign: TextAlign.center,
-                                      style: GoogleFonts.openSans(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                          color: ThemeColors.whiteColor),
+                                Positioned(
+                                    child: Container(
+                                  height: 200,
+                                  color: Colors.black.withOpacity(0.3),
+                                  child: const Center(
+                                    child: Icon(
+                                      Icons.play_arrow,
+                                      size: 60,
+                                      color: ThemeColors.whiteColor,
                                     ),
                                   ),
                                 )),
-                            const Positioned(
-                                top: 2,
-                                right: 3,
-                                child: Icon(
-                                    size: 8,
-                                    color: ThemeColors.redColor,
-                                    Icons.circle)),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ))
+                                _videoList![index].isTimePeriod! ?
+                                Positioned(
+                                    top: 0,
+                                    right: 0,
+                                    child: Container(
+                                      width: 100,
+                                      height: 30,
+                                      color: Colors.black.withOpacity(0.5),
+                                      child: Center(
+                                        child: Text("new_video".tr,
+                                          textAlign: TextAlign.center,
+                                          style:const TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold,
+                                              fontFamily: 'Montserrat',
+                                              color: ThemeColors.whiteColor
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                ) : Container(),
+                                _videoList![index].isTimePeriod! ? const Positioned(
+                                    top: 2,
+                                    right: 3,
+                                    child: Icon(
+                                        size: 8,
+                                        color: ThemeColors.redColor,
+                                        Icons.circle)) : Container(),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ))
+                :  Center(
+              child: Text(
+                "no_videos_to_show".tr,
+                style:const TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: 'Montserrat',
+                ),
+              ),)
+                : VideoShimmer();
+
+              }
+              )
         ],
+      ),
+    );
+  }
+}
+
+class VideoShimmer extends StatelessWidget {
+  const VideoShimmer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.withOpacity(0.3),
+        highlightColor: Colors.white,
+        child: ListView.builder(
+          primary: false,
+          shrinkWrap: true,
+          physics: const BouncingScrollPhysics(),
+          itemCount: 5,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.only(top: 5.0,bottom: 5.0),
+              child: GestureDetector(
+                onTap: (){
+                },
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    CustomImage(
+                      image: "",
+                      fit: BoxFit.fill,
+                      width: MediaQuery.of(context).size.width,
+                      height: 200,
+                    ),
+                    const Positioned(
+                        child:Center(
+                          child: Icon(Icons.play_arrow,size: 60,color: ThemeColors.greyTextColor,),
+                        )
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

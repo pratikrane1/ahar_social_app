@@ -15,9 +15,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 class ZoneScreen extends StatefulWidget {
-  const ZoneScreen({
+  ZoneScreen({
+    required this.tabIndex,
     Key? key,
   }) : super(key: key);
+
+  int tabIndex;
   @override
   State<ZoneScreen> createState() => _ZoneScreenState();
 }
@@ -27,11 +30,15 @@ class _ZoneScreenState extends State<ZoneScreen> {
   String? defaultSelectedZoneURL;
   int? defaultSelectedZoneId = 0;
   List<ZoneModel>? _zoneList;
+  int? tabIndex = 0;
 
   @override
   void initState() {
     super.initState();
     Get.find<ZoneController>().getZoneList(false);
+    if(widget.tabIndex != null){
+      tabIndex = widget.tabIndex;
+    }
   }
 
   void setDefaultGroup() {
@@ -44,6 +51,7 @@ class _ZoneScreenState extends State<ZoneScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
+      initialIndex: tabIndex!,
       length: 3,
       child: GetBuilder<ZoneController>(builder: (zoneController) {
         _zoneList = zoneController.zoneList;

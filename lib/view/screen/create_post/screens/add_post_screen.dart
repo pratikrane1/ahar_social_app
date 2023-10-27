@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:aharconnect/utils/theme_colors.dart';
 import 'package:aharconnect/view/screen/create_post/screens/create_post_screen.dart';
 import 'package:aharconnect/view/widget/app_button.dart';
@@ -68,6 +70,7 @@ class AddPostScreen extends StatelessWidget {
             ),
 
             ///Upload your notice
+            Platform.isAndroid ?
             Padding(
               padding: const EdgeInsets.only(left: 0.0, right: 0.0, top: 10.0),
               child: AppButton(
@@ -98,7 +101,7 @@ class AddPostScreen extends StatelessWidget {
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                 ),
               ),
-            ),
+            ) : const SizedBox(),
           ],
         ),
       )),

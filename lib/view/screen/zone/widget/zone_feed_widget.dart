@@ -1,6 +1,7 @@
 import 'package:aharconnect/controller/zone_controller.dart';
 import 'package:aharconnect/data/model/zone_model.dart';
 import 'package:aharconnect/helper/dynamic_link.dart';
+import 'package:aharconnect/utils/dimensions.dart';
 import 'package:aharconnect/utils/theme_colors.dart';
 import 'package:aharconnect/view/screen/comment/screens/comments_screen.dart';
 import 'package:aharconnect/view/screen/home/screens/gallery/Image/like_user_screen.dart';
@@ -12,6 +13,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 import 'animated_like_button.dart';
 
@@ -47,9 +49,8 @@ class _GroupFeedWidgetState extends State<GroupFeedWidget>
   }
 
   Future<void> refreshTab() async {
-    await Future.delayed(const Duration(milliseconds: 2500), () {
-      Get.find<ZoneController>()
-          .getFeedPostDataList(widget.zoneId, widget.type);
+    await Future.delayed(const Duration(milliseconds: 2500), () async{
+      await Get.find<ZoneController>().getFeedPostDataList(widget.zoneId, widget.type);
       setState(() {});
     });
   }
@@ -176,7 +177,7 @@ class _GroupFeedWidgetState extends State<GroupFeedWidget>
                                                                           ? _postDataList![index]
                                                                               .zone!
                                                                               .zoneName!
-                                                                          : "All Zone",
+                                                                          : "All Zone's",
                                                                       maxLines:
                                                                           1,
                                                                       overflow:
@@ -195,6 +196,13 @@ class _GroupFeedWidgetState extends State<GroupFeedWidget>
                                                               ),
                                                             ),
 
+                                                            Text(DateFormat("dd/MM/yyy").format(DateTime.parse(_postDataList![index].post!.createdAt.toString())),
+                                                                overflow: TextOverflow.ellipsis,
+                                                                style: GoogleFonts.openSans(
+                                                                    fontSize: Dimensions.fontSizeSmall,
+                                                                    fontWeight: FontWeight.normal,
+                                                                    color: ThemeColors.blackColor)
+                                                                    .copyWith(fontSize: 12)),
                                                             const SizedBox(
                                                               height: 10,
                                                             ),
@@ -435,7 +443,7 @@ class _GroupFeedWidgetState extends State<GroupFeedWidget>
                                                 _postDataList![index].post!.isDeletable == 1 ?
                                                 PopupMenuButton(
                                                     splashRadius: 20,
-                                                    icon: FaIcon(
+                                                    icon: const FaIcon(
                                                       FontAwesomeIcons
                                                           .ellipsisVertical,
                                                       size: 18,
@@ -446,8 +454,9 @@ class _GroupFeedWidgetState extends State<GroupFeedWidget>
                                                           PopupMenuItem(
                                                             child:
                                                                 Text("delete".tr),
-                                                            onTap: () {
-                                                              zoneController.deletePost(widget.zoneId, widget.type,_postDataList![index].postId.toString());
+                                                            onTap: () async{
+                                                              await zoneController.deletePost(widget.zoneId, widget.type,_postDataList![index].postId.toString());
+                                                              await Get.find<ZoneController>().getFeedPostDataList(widget.zoneId, widget.type);
                                                             },
                                                           ),
                                                         ]) : const SizedBox(),

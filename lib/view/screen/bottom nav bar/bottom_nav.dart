@@ -14,8 +14,9 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 class BottomNavBar extends StatefulWidget {
-  BottomNavBar({Key? key, this.index}) : super(key: key);
+  BottomNavBar({Key? key, this.index,this.tabIndex}) : super(key: key);
   int? index;
+  int? tabIndex;
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
 }
@@ -23,6 +24,7 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   PageController? _pageController;
   int _pageIndex = 0;
+  int _tabIndex = 0;
   List<Widget>? _screens;
   bool _canExit = GetPlatform.isWeb ? true : false;
 
@@ -32,12 +34,15 @@ class _BottomNavBarState extends State<BottomNavBar> {
     if (widget.index != null) {
       _pageIndex = widget.index!.toInt();
     }
+    if (widget.tabIndex != null) {
+      _tabIndex = widget.tabIndex!.toInt();
+    }
     DynamicLinkService.initDynamicLinks(context);
     _pageController = PageController(
         initialPage: widget.index != null ? widget.index!.toInt() : 0);
     _screens = [
       const HomeTab(),
-      const ZoneScreen(),
+      ZoneScreen(tabIndex: _tabIndex),
       // (Get.find<AuthController>().getUserRole() != "Member") ?
       const AddPostScreen(),
       // : SizedBox(),

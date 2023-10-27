@@ -32,5 +32,8 @@ class Images {
   static const String share_icon = 'assets/share_icon.svg';
   static const String empty_images = "assets/empty_image.jpg";
   static const String divider_icon = "assets/divide_icon.png";
+  static const String office_bearers_icon = "assets/Office_Bearers.png";
+  static const String sub_committee_icon = "assets/Sub_Community.png";
+  static const String zone_icon = "assets/zone.png";
 
 }

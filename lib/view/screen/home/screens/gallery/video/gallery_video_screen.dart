@@ -1,3 +1,5 @@
+import 'package:aharconnect/controller/gallery_controller.dart';
+import 'package:aharconnect/data/model/video_model.dart';
 import 'package:aharconnect/view/screen/home/widget/videoSlider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,7 +12,7 @@ import 'package:aharconnect/utils/theme_colors.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class GalleryVideoScreen extends StatefulWidget {
-  VideoModel? videData;
+  VideosModel? videData;
   GalleryVideoScreen({Key? key, required this.videData}) : super(key: key);
 
   @override
@@ -34,9 +36,8 @@ class _GalleryVideoScreenState extends State<GalleryVideoScreen> {
     print(widget.videData);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {
-        videoId = widget.videData!.VideoId ?? "";
+        videoId = widget.videData!.snippet!.resourceId!.videoId ?? "";
         _ytbPlayerController = YoutubePlayerController(
-          // initialVideoId: "xcJtL7QggTI",
           initialVideoId: videoId.toString(),
           flags: const YoutubePlayerFlags(
             autoPlay: true,
@@ -133,10 +134,10 @@ class _GalleryVideoScreenState extends State<GalleryVideoScreen> {
                             ),
                             InkWell(
                               onTap: () {
-                                // Get.find<VideoController>().shareYoutubeURL(videoId!);
-                                String toLaunch =
-                                    'https://www.youtube.com/watch?v=$videoId';
-                                Share.share("$toLaunch");
+                                Get.find<GalleryController>().shareYoutubeURL(videoId!);
+                                // String toLaunch =
+                                //     'https://www.youtube.com/watch?v=$videoId';
+                                // Share.share("$toLaunch");
                               },
                               child: SvgPicture.asset(
                                 Images.share_button,
@@ -151,7 +152,7 @@ class _GalleryVideoScreenState extends State<GalleryVideoScreen> {
                           : Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                widget.videData!.VideoName.toString(),
+                                widget.videData!.snippet!.title.toString(),
                                 style: GoogleFonts.openSans(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -163,7 +164,7 @@ class _GalleryVideoScreenState extends State<GalleryVideoScreen> {
                           : Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                widget.videData!.videoDesc.toString(),
+                                widget.videData!.snippet!.description.toString(),
                                 style: GoogleFonts.openSans(
                                   fontSize: 15,
                                   fontWeight: FontWeight.normal,

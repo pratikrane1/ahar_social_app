@@ -43,8 +43,8 @@ class GalleryRepo extends GetxService {
     });
   }
   //
-  // Future<Response> getVideoList() async {
-  //   return await apiClient
-  //       .postData(AppConstants.VIDEOS,{});
-  // }
+  Future<Response> getVideoList() async {
+    return await apiClient
+        .getData(AppConstants.YOUTUBE_PLAYLIST,);
+  }
 }

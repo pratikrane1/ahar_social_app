@@ -1,8 +1,10 @@
 
+import 'package:aharconnect/utils/images.dart';
 import 'package:aharconnect/view/screen/group/sub%20committee/sub_committee.dart';
 import 'package:aharconnect/view/screen/group/zone/zone_screen.dart';
 import 'package:aharconnect/view/widget/custom_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:aharconnect/utils/theme_colors.dart';
@@ -50,7 +52,7 @@ class _GroupListScreenState extends State<GroupListScreen> {
                         MaterialPageRoute(
                             builder: (context) => OfficeBearersScreen()));
                   },
-                  child: groupWidget("Office Bearers")),
+                  child: groupWidget("Office Bearers",Images.office_bearers_icon)),
               InkWell(
                   onTap: () {
                     Navigator.push(
@@ -58,7 +60,7 @@ class _GroupListScreenState extends State<GroupListScreen> {
                         MaterialPageRoute(
                             builder: (context) => SubCommitteeScreen()));
                   },
-                  child: groupWidget("Sub Committee")),
+                  child: groupWidget("Sub Committee",Images.sub_committee_icon)),
               InkWell(
                   onTap: () {
                     Navigator.push(
@@ -66,13 +68,13 @@ class _GroupListScreenState extends State<GroupListScreen> {
                         MaterialPageRoute(
                             builder: (context) => ZoneScreen()));
                   },
-                  child: groupWidget("Zone")),
+                  child: groupWidget("Zone",Images.zone_icon)),
             ],
           ),
         ));
   }
 
-  Widget groupWidget(String title) {
+  Widget groupWidget(String title,String image) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -106,10 +108,10 @@ class _GroupListScreenState extends State<GroupListScreen> {
                           //     ?
                           ClipRRect(
                         borderRadius: BorderRadius.circular(100),
-                        child: CustomImage(
-                          image: "",
-                          fit: BoxFit.cover,
-                          fromProfile: true,
+                        child: Image.asset(
+                          image, height: 25,
+                          fit: BoxFit.fill,
+                          // color: ThemeColors.greyTextColor,
                         ),
                       )),
                 ),

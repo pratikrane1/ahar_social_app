@@ -34,9 +34,11 @@ class _HomeTabState extends State<HomeTab> {
     //saveDeviceTokenAndId();
     super.initState();
     Get.find<HomeController>().getBanner();
-    Get.find<ZoneController>().getFeedPostDataList("0", "Post");
-    Get.find<ZoneController>().getNoticePostList("0", "Noticboard");
+    // Get.find<ZoneController>().getFeedPostDataList("0", "Post");
+    // Get.find<ZoneController>().getNoticePostList("0", "Noticboard");
+    Get.find<ZoneController>().getHomeFeedPostDataList("Post");
     Get.find<GalleryController>().getAlbumList();
+    Get.find<GalleryController>().getYoutubeVideos();
   }
 
 //
@@ -54,9 +56,10 @@ class _HomeTabState extends State<HomeTab> {
         color: ThemeColors.primaryColor,
         onRefresh: () async {
           await Get.find<HomeController>().getBanner();
-          await Get.find<ZoneController>().getFeedPostDataList("0", "Post");
-          await Get.find<ZoneController>().getNoticePostList("0", "Noticboard");
+          await Get.find<ZoneController>().getHomeFeedPostDataList("Post");
+          await Get.find<ZoneController>().getHomeNoticeBoardPostDataList("Noticboard");
           await Get.find<GalleryController>().getAlbumList();
+          await Get.find<GalleryController>().getYoutubeVideos();
         },
         child: CustomScrollView(
           controller: _scrollController,

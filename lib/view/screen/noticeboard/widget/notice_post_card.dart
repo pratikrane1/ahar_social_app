@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:aharconnect/controller/zone_controller.dart';
 import 'package:aharconnect/data/model/zone_model.dart';
 import 'package:aharconnect/helper/download_file.dart';
+import 'package:aharconnect/utils/dimensions.dart';
 import 'package:aharconnect/view/widget/custom_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:aharconnect/utils/theme_colors.dart';
+import 'package:intl/intl.dart';
 
 class NoticePostCard extends StatefulWidget {
   NoticePostCard({
@@ -88,45 +90,80 @@ class _NoticePostCardState extends State<NoticePostCard> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              //username
-                              GestureDetector(
-                                onTap: () {},
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(
-                                      widget.noticeBoardData!.user!.name!
-                                              .split(" ")
-                                              .elementAt(0) ??
-                                          "",
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: GoogleFonts.openSans(
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                    const SizedBox(
-                                      width: 4,
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        widget.noticeBoardData!.zone != null
-                                            ? widget.noticeBoardData!.zone!
-                                                .zoneName!
-                                            : "All Zone",
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: GoogleFonts.openSans(
-                                            color: ThemeColors.greyTextColor,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.normal),
+                              ///username, zones name and delete button
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+
+                                          Text(
+                                            widget.noticeBoardData!.user!.name ??
+                                                "",
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: GoogleFonts.openSans(
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          const SizedBox(
+                                            width: 4,
+                                          ),
+                                          Text(
+                                            widget.noticeBoardData!.zone != null
+                                                ? widget.noticeBoardData!.zone!
+                                                    .zoneName!
+                                                : "All Zone's",
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: GoogleFonts.openSans(
+                                                color: ThemeColors.greyTextColor,
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.normal),
+                                          ),
+                                        ],
                                       ),
-                                    ),
-                                  ],
-                                ),
+                                      Text(DateFormat("dd/MM/yyy").format(DateTime.parse(widget.noticeBoardData!.post!.createdAt.toString())),
+                                          overflow: TextOverflow.ellipsis,
+                                          style: GoogleFonts.openSans(
+                                              fontSize: Dimensions.fontSizeSmall,
+                                              fontWeight: FontWeight.normal,
+                                              color: ThemeColors.blackColor)
+                                              .copyWith(fontSize: 12)),
+                                    ],
+                                  ),
+                                  ///Delete Button
+                                  widget.noticeBoardData!.post!.isDeletable == 1 ?
+                                  PopupMenuButton(
+                                      splashRadius: 20,
+                                      icon: const FaIcon(
+                                        FontAwesomeIcons
+                                            .ellipsisVertical,
+                                        size: 18,
+                                        color:
+                                        Colors.black,
+                                      ),
+                                      itemBuilder: (context) => [
+                                        PopupMenuItem(
+                                          child:
+                                          Text("delete".tr),
+                                          onTap: () async{
+                                            await Get.find<ZoneController>().deletePost(widget.zoneId, widget.type,widget.noticeBoardData!.postId.toString());
+                                            await Get.find<ZoneController>().getNoticePostList(widget.zoneId, widget.type);
+                                          },
+                                        ),
+                                      ]) : const SizedBox(),
+                                ],
                               ),
+
+
                               const SizedBox(
-                                height: 10,
+                                height: 7,
                               ),
 
                               Padding(
@@ -219,26 +256,7 @@ class _NoticePostCardState extends State<NoticePostCard> {
                     ),
                   ),
 
-                  ///Delete Button
-                  widget.noticeBoardData!.post!.isDeletable == 1 ?
-                  PopupMenuButton(
-                      splashRadius: 20,
-                      icon: const FaIcon(
-                        FontAwesomeIcons
-                            .ellipsisVertical,
-                        size: 18,
-                        color:
-                        Colors.black,
-                      ),
-                      itemBuilder: (context) => [
-                        PopupMenuItem(
-                          child:
-                          Text("delete".tr),
-                          onTap: () {
-                            Get.find<ZoneController>().deletePost(widget.zoneId, widget.type,widget.noticeBoardData!.postId.toString());
-                          },
-                        ),
-                      ]) : const SizedBox(),
+
                 ],
               ),
             ),

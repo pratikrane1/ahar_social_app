@@ -101,12 +101,12 @@ class _VideoSliderState extends State<VideoSlider> {
                   child: InkWell(
                     onTap: () {
                       // Get.toNamed(RouteHelper.getGalleryVideoScreen(_videoList![pagePosition]));
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => GalleryVideoScreen(
-                                    videData: Data().videoList![pagePosition],
-                                  )));
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => GalleryVideoScreen(
+                      //               videData: Data().videoList![pagePosition],
+                      //             )));
                     },
                     child: Container(
                       decoration: BoxDecoration(

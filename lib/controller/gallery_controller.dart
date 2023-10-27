@@ -3,13 +3,13 @@ import 'dart:io';
 import 'package:aharconnect/data/api/api_checker.dart';
 import 'package:aharconnect/data/model/gallery_model.dart';
 import 'package:aharconnect/data/model/response_model.dart';
+import 'package:aharconnect/data/model/video_model.dart';
 import 'package:aharconnect/data/repository/gallery_repo.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
-import 'auth_controller.dart';
 
 class GalleryController extends GetxController implements GetxService {
   final GalleryRepo galleryRepo;
@@ -21,7 +21,7 @@ class GalleryController extends GetxController implements GetxService {
   bool _isLikedImageListLoading = false;
   List<AlbumModel>? _albumList;
   List<AlbumImageModel>? _albumImagesList;
-  // List<VideosModel>? _videoList;
+  List<VideosModel>? _videoList;
   // List<LikedUserList>? _likedUserList;
   int _imageIndex = 0;
 
@@ -31,7 +31,7 @@ class GalleryController extends GetxController implements GetxService {
   bool get isLikedImageListLoading => _isLikedImageListLoading;
   List<AlbumModel> get albumList => _albumList ?? [];
   List<AlbumImageModel> get albumImagesList => _albumImagesList ?? [];
-  // List<VideosModel> get videoList => _videoList ?? [];
+  List<VideosModel> get videoList => _videoList ?? [];
   // List<LikedUserList> get likedUserList => _likedUserList ?? [];
   int get imageIndex => _imageIndex;
 
@@ -127,30 +127,35 @@ class GalleryController extends GetxController implements GetxService {
   }
   //
   //
-  // Future<List<VideosModel>> getVideos() async {
-  //   _isVideoLoading = false;
-  //   _videoList = [];
-  //   Response response = await galleryRepo.getVideoList();
-  //   if (response.statusCode == 200) {
-  //
-  //     for(int i = 0 ; i < response.body!["data"].length ; i++){
-  //       if(response.body!["data"][i]['snippet']["title"] == "EVENT HIGHLIGHTS"){
-  //         final Iterable refactorProductList = response.body!["data"][i]["videos"] ?? [];
-  //         _videoList = refactorProductList.map((item) {
-  //           return VideosModel.fromJson(item);
-  //         }).toList();
-  //       }
-  //     }
-  //
-  //     print(_videoList);
-  //     _isVideoLoading = true;
-  //     // Get.find<ProductController>().getTrendingApp();
-  //   } else {
-  //     ApiChecker.checkApi(response);
-  //   }
-  //   update();
-  //   return _videoList!;
-  // }
+  Future<List<VideosModel>> getYoutubeVideos() async {
+    _isVideoLoading = false;
+    _videoList = [];
+    Response response = await galleryRepo.getVideoList();
+    if (response.statusCode == 200) {
+
+      for(int i = 0 ; i < response.body!["data"].length ; i++){
+        if(response.body!["data"][i]['snippet']["title"] == "AHAR Connect"){
+          final Iterable refactorProductList = response.body!["data"][i]["videos"] ?? [];
+          _videoList = refactorProductList.map((item) {
+            return VideosModel.fromJson(item);
+          }).toList();
+        }
+      }
+
+      print(_videoList);
+      _isVideoLoading = true;
+      // Get.find<ProductController>().getTrendingApp();
+    } else {
+      ApiChecker.checkApi(response);
+    }
+    update();
+    return _videoList!;
+  }
+
+  Future<void> shareYoutubeURL(String videoId)async{
+    String toLaunch = 'https://www.youtube.com/watch?v=$videoId';
+    Share.share("$toLaunch");
+  }
 
   void setImageIndex(int index, bool notify) {
     _imageIndex = index;

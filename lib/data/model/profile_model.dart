@@ -125,6 +125,7 @@ class Profile {
   String? profileImage;
   String? bio;
   String? supportnumber;
+  String? supportEmail;
   String? paymentKey;
 
   Profile(
@@ -143,6 +144,7 @@ class Profile {
       this.profileImage,
       this.bio,
       this.supportnumber,
+      this.supportEmail,
       this.paymentKey,
       this.updatedAt});
 
@@ -163,6 +165,7 @@ class Profile {
     profileImage = json['url'];
     bio = json['bio'];
     supportnumber = json['support_number'];
+    supportEmail = json['support_email'];
     paymentKey = json['payment_key'];
   }
 
@@ -184,6 +187,7 @@ class Profile {
     data['url'] = this.profileImage;
     data['bio'] = this.bio;
     data['supportnumber'] = this.supportnumber;
+    data['support_email'] = this.supportEmail;
     data['payment_key'] = this.paymentKey;
     return data;
   }

@@ -19,23 +19,21 @@ class FeedSlider extends StatefulWidget {
 }
 
 class _FeedSliderState extends State<FeedSlider> {
-  PageController? _pageController;
   int activePage = 0;
-  // List? _videoList;
   List<PostData>? _postDataList;
   bool _isPostDataLoading = false;
 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(viewportFraction: 0.9, initialPage: 0);
-    Get.find<ZoneController>().getFeedPostDataList("0", "Post");
+    // Get.find<ZoneController>().getFeedPostDataList("0", "Post");
+    Get.find<ZoneController>().getHomeFeedPostDataList("Post");
   }
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ZoneController>(builder: (zoneController) {
-      _postDataList = zoneController.postDataList;
+      _postDataList = zoneController.homePostDataList;
       _isPostDataLoading = zoneController.isPostDataLoading;
       return _isPostDataLoading
           ? _postDataList != null
@@ -62,7 +60,7 @@ class _FeedSliderState extends State<FeedSlider> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => BottomNavBar(
-                                              index: 1,
+                                              index: 1, tabIndex: 0,
                                             )));
                               },
                               child: Text(
@@ -85,9 +83,7 @@ class _FeedSliderState extends State<FeedSlider> {
                         height: 200,
                         // width: 355,
                         child: ListView.builder(
-                          itemCount: _postDataList!.length >= 4
-                              ? 4
-                              : _postDataList!.length,
+                          itemCount: _postDataList!.length,
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
                             return Padding(
@@ -168,14 +164,12 @@ class _FeedSliderState extends State<FeedSlider> {
                                                     width: 2,
                                                   ),
                                                   Text(
+                                                      _postDataList![index].zone != null
+                                                          ?
                                                       _postDataList![
-                                                                      index]
-                                                                  .zone !=
-                                                              null
-                                                          ? _postDataList![
                                                                   index]
                                                               .zone!
-                                                              .zoneName!
+                                                              .zoneName.toString()
                                                           : "All Zone's",
                                                       overflow:
                                                           TextOverflow.ellipsis,

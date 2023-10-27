@@ -14,6 +14,7 @@ class AppConstants {
   static const String OFFICE_BEARERS = '/office-bearer';
   static const String SUB_COMMITTEE = '/committe-member';
   static const String POST_DATA_LIST = '/get-zone-post';
+  static const String HOME_POST_DATA_LIST = '/get-feed-post';
   static const String POST_LIKE = '/show-post-like';
   static const String GET_MEMBERS_LIST = '/get-member';
   static const String POST_LIKE_DISLIKE = '/post-like';
@@ -38,6 +39,8 @@ class AppConstants {
   static const String SHARE_ALBUM_IMAGES = "/share-post";
   static const String TRANSACTION_RAZORPAY = "http://ahar.ezii.live/api/create-payment";
   static const String TRANSACTION_LIST = "/show-selective-payment";
+  static const String NOTIFICATION_URI = "/show-user-notification";
+  static const String YOUTUBE_PLAYLIST = "/get_all_youtube_playlist_data";
 
   //Shared Key
   static const String TOKEN = 'token';

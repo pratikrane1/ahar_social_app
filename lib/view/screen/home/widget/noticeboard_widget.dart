@@ -19,7 +19,6 @@ class NoticeboardSlider extends StatefulWidget {
 }
 
 class _NoticeboardSliderState extends State<NoticeboardSlider> {
-  PageController? _pageController;
   int activePage = 0;
   List<PostData>? _postDataList;
   bool _isPostDataLoading = false;
@@ -27,8 +26,8 @@ class _NoticeboardSliderState extends State<NoticeboardSlider> {
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(viewportFraction: 0.9, initialPage: 0);
-    Get.find<ZoneController>().getNoticePostList("0", "Noticboard");
+    // Get.find<ZoneController>().getNoticePostList("0", "Noticboard");
+    Get.find<ZoneController>().getHomeNoticeBoardPostDataList("Noticboard");
   }
 
   @override
@@ -36,10 +35,10 @@ class _NoticeboardSliderState extends State<NoticeboardSlider> {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
       child: GetBuilder<ZoneController>(builder: (zoneController) {
-        _postDataList = zoneController.noticePostDataList;
+        _postDataList = zoneController.homeNoticeBoardDataList;
         _isPostDataLoading = zoneController.isPostDataLoading;
         return _isPostDataLoading
-            ? _postDataList!.isNotEmpty
+            ? _postDataList != null
             ? Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -61,7 +60,7 @@ class _NoticeboardSliderState extends State<NoticeboardSlider> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => BottomNavBar(
-                                    index: 1,
+                                    index: 1,tabIndex: 1,
                                   )));
                     },
                     child: Text(
@@ -82,9 +81,7 @@ class _NoticeboardSliderState extends State<NoticeboardSlider> {
                         height: 180,
                         child: ListView.builder(
                           shrinkWrap: true,
-                          itemCount: _postDataList!.length >= 4
-                              ? 4
-                              : _postDataList!.length,
+                          itemCount:_postDataList!.length,
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
                             return Padding(
@@ -166,17 +163,16 @@ class _NoticeboardSliderState extends State<NoticeboardSlider> {
                                                           .copyWith(
                                                               fontSize: 16),
                                                   ),
+                                                  Text(DateFormat("dd/MM/yyy").format(DateTime.parse(_postDataList![index].post!.createdAt.toString())),
+                                                      overflow: TextOverflow.ellipsis,
+                                                      style: GoogleFonts.openSans(
+                                                          fontSize: Dimensions.fontSizeSmall,
+                                                          fontWeight: FontWeight.normal,
+                                                          color: ThemeColors.blackColor)
+                                                          .copyWith(fontSize: 12)),
                                                 ],
                                               ),
-                                              const SizedBox(width: 5.0,),
 
-                                              Text(DateFormat("dd/MM/yyy").format(DateTime.parse(_postDataList![index].post!.createdAt.toString())),
-                                                  overflow: TextOverflow.ellipsis,
-                                                  style: GoogleFonts.openSans(
-                                                      fontSize: Dimensions.fontSizeSmall,
-                                                      fontWeight: FontWeight.normal,
-                                                      color: ThemeColors.blackColor)
-                                                      .copyWith(fontSize: 12))
                                             ],
                                           ),
                                         ],

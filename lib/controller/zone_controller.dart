@@ -25,6 +25,8 @@ class ZoneController extends GetxController implements GetxService {
   bool _isMemberLoading = false;
   List<ZoneModel>? _zoneList;
   List<PostData>? _postDataList;
+  List<PostData>? _homePostDataList;
+  List<PostData>? _homeNoticeBoardDataList;
   List<FeedPostLike>? _postLikeList;
   List<CommentModel>? _postCommentList;
   List<PostData>? _noticePostDataList;
@@ -35,6 +37,8 @@ class ZoneController extends GetxController implements GetxService {
   bool get isMemberLoading => _isMemberLoading;
   List<ZoneModel>? get zoneList => _zoneList;
   List<PostData>? get postDataList => _postDataList;
+  List<PostData>? get homeNoticeBoardDataList => _homeNoticeBoardDataList;
+  List<PostData>? get homePostDataList => _homePostDataList;
   List<CommentModel>? get postCommentList => _postCommentList;
   List<FeedPostLike>? get postLikeList => _postLikeList;
   List<PostData>? get noticePostDataList => _noticePostDataList;
@@ -85,7 +89,7 @@ class ZoneController extends GetxController implements GetxService {
 
   Future<List<PostData>> getFeedPostDataList(String zoneId, String type) async {
     _isPostDataLoading = false;
-    // _postDataList = [];
+    _postDataList = [];
     Response response = await zoneRepo.getPostDataList(zoneId, type);
     if (response.statusCode == 200) {
       final Iterable refactorPostDataList = response.body!["data"] ?? [];
@@ -118,6 +122,43 @@ class ZoneController extends GetxController implements GetxService {
     update();
     return _postDataList!;
   }
+
+  Future<List<PostData>> getHomeFeedPostDataList(String type) async {
+    _isPostDataLoading = false;
+    // _postDataList = [];
+    Response response = await zoneRepo.getHomePostDataList(type);
+    if (response.statusCode == 200) {
+      final Iterable refactorPostDataList = response.body!["data"][0] ?? [];
+      _homePostDataList = refactorPostDataList.map((item) {
+        return PostData.fromJson(item);
+      }).toList();
+      print(_homePostDataList);
+      _isPostDataLoading = true;
+    } else {
+      ApiChecker.checkApi(response);
+    }
+    update();
+    return _homePostDataList!;
+  }
+
+  Future<List<PostData>> getHomeNoticeBoardPostDataList(String type) async {
+    _isPostDataLoading = false;
+    // _homeNoticeBoardDataList = [];
+    Response response = await zoneRepo.getHomePostDataList(type);
+    if (response.statusCode == 200) {
+      final Iterable refactorPostDataList = response.body!["data"][0] ?? [];
+      _homeNoticeBoardDataList = refactorPostDataList.map((item) {
+        return PostData.fromJson(item);
+      }).toList();
+      print(_homeNoticeBoardDataList);
+      _isPostDataLoading = true;
+    } else {
+      ApiChecker.checkApi(response);
+    }
+    update();
+    return _homeNoticeBoardDataList!;
+  }
+
 
   Future<List<FeedPostLike>> getPostLike(String postId,String type) async {
     // _noticePostDataList = [];
