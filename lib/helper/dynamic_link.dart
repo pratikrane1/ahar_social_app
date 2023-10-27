@@ -27,7 +27,7 @@ class DynamicLinkService {
       uriPrefix: shortDynamicLink,
       link: url!,
       androidParameters: const AndroidParameters(
-        packageName: "com.ahar.social",
+        packageName: "com.ahar.connect",
         minimumVersion: 0,
       ),
       iosParameters: const IOSParameters(

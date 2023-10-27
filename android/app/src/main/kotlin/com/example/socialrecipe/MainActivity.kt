@@ -1,4 +1,4 @@
-package com.ahar.social
+package com.ahar.connect
 
 import io.flutter.embedding.android.FlutterActivity
 

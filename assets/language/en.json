@@ -166,7 +166,7 @@
   "logout":"Logout",
   "version":"Version",
   "Change Password":"Change Password",
-  "stay_connected_with_your_community":"Stay connected\nwith your Community",
+  "stay_connected_with_your_community":"Stay connected\nwith AHAR Community",
   "payment_options":"Payments options",
   "razorPay":"RazorPay",
   "exit_app":"Exit App",
@@ -180,5 +180,8 @@
   "connection_to_api_server_failed": "Connection to api server failed due to internet connection",
   "phone": "Phone",
   "email": "Email",
-  "new_video": "New Video"
+  "new_video": "New Video",
+  "protect": "Protect",
+  "empower": "Empower",
+  "grow": "Grow"
 }

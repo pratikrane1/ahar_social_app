@@ -43,13 +43,28 @@ class _WalkThroughScreenState extends State<WalkThroughScreen> {
                 GoogleFonts.openSans(fontSize: 24, fontWeight: FontWeight.w700),
           ),
         ),
+        const SizedBox(
+          height: 15.0,
+        ),
+        Align(
+          alignment: Alignment.center,
+          child: Text(
+            "${'protect'.tr} | ${'empower'.tr} | ${'grow'.tr}",
+            textAlign: TextAlign.center,
+            style:
+            GoogleFonts.openSans(fontSize: 18,
+                color: ThemeColors.greyTextColor,
+                fontWeight: FontWeight.w500),
+          ),
+        ),
         Image.asset(
           'assets/community.png',
           fit: BoxFit.cover,
+          height: 400.0,
         ),
         // SizedBox(height: 20,),
         Padding(
-          padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+          padding: const EdgeInsets.only(left: 30.0, right: 30.0,top: 20.0),
           child: AppButton(
             onPressed: () async {
               Navigator.pushReplacement(context,
