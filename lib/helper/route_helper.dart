@@ -1,3 +1,4 @@
+import 'package:aharconnect/view/screen/authentication/screens/log_in_screen.dart';
 import 'package:aharconnect/view/screen/bottom%20nav%20bar/bottom_nav.dart';
 import 'package:aharconnect/view/screen/home/widget/post_detail_widget.dart';
 import 'package:aharconnect/view/screen/splash/screens/splash_screen.dart';
@@ -48,6 +49,11 @@ class RouteHelper {
         name: splash,
         page: () {
           return SplashScreen();
+        }),
+    GetPage(
+        name: login,
+        page: () {
+          return LogInScreen();
         }),
     GetPage(
         name: postDetail,

@@ -144,7 +144,7 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
           useMaterial3: true,
         ),
         child: Scaffold(
-          resizeToAvoidBottomInset: false,
+          resizeToAvoidBottomInset: true,
           appBar: AppBar(
             leading: IconButton(
               splashRadius: 20,

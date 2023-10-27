@@ -7,7 +7,7 @@ import 'package:share_plus/share_plus.dart';
 
 class DynamicLinkService {
   // String shortDynamicLink = 'https://pulabazaarapp.page.link';
-  String shortDynamicLink = 'https://aharsocial.page.link';
+  String shortDynamicLink = 'https://aharconnect.page.link';
 
   @override
   void initState() {
@@ -31,7 +31,7 @@ class DynamicLinkService {
         minimumVersion: 0,
       ),
       iosParameters: const IOSParameters(
-        bundleId: "",
+        bundleId: "com.aharconnect.app",
         minimumVersion: '0',
       ),
       socialMetaTagParameters: SocialMetaTagParameters(

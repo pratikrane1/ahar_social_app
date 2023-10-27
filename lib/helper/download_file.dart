@@ -12,7 +12,12 @@ Future downloadPDF(String url) async {
   await Permission.storage.request();
   try {
     Directory? directory;
-    directory = await getExternalStorageDirectory();
+    if (Platform.isIOS) {
+      directory = await getApplicationDocumentsDirectory();
+    } else {
+      directory = await getExternalStorageDirectory();
+    }
+    // directory = await getExternalStorageDirectory();
     String newPath = "";
     List<String> paths = directory!.path.split("/");
     for (int x = 1; x < paths.length; x++) {

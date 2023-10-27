@@ -1,5 +1,6 @@
 import 'package:aharconnect/controller/auth_controller.dart';
 import 'package:aharconnect/controller/localization_controller.dart';
+import 'package:aharconnect/helper/route_helper.dart';
 import 'package:aharconnect/utils/app_constants.dart';
 import 'package:aharconnect/utils/theme_colors.dart';
 import 'package:aharconnect/view/screen/authentication/screens/log_in_screen.dart';
@@ -81,8 +82,10 @@ class CustomDialog extends StatelessWidget {
                             Get.find<AuthController>().clearUserNumber();
                             Get.find<AuthController>().cleartoken();
 
-                            Navigator.pushReplacement(context,
-                                MaterialPageRoute(builder: (context) => LogInScreen()));
+                            Get.offAllNamed(RouteHelper.getLoginRoute());
+
+                            // Navigator.pushReplacement(context,
+                            //     MaterialPageRoute(builder: (context) => const LogInScreen()));
                           },
                           shape: const RoundedRectangleBorder(
                               borderRadius:
