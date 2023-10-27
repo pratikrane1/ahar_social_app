@@ -4,7 +4,7 @@ import 'images.dart';
 
 class AppConstants {
   static const String APP_NAME = 'Ahar Connect';
-  static const String APP_VERSION = "1.0.0+1";
+  static const String APP_VERSION = "2.0.0+2";
 
   static const String BASE_URL = 'https://apis.ahar.in/api';
 
