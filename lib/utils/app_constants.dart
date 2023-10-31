@@ -56,7 +56,7 @@ class AppConstants {
   static const String NOTIFICATION = 'notification';
 
   //paymenet gateway key
-  static const String RAZORPAY_KEY = 'rzp_live_YPqi3Ls1a4tYhP';
+  // static const String RAZORPAY_KEY = 'rzp_live_YPqi3Ls1a4tYhP';
 
   static List<LanguageModel> languages = [
     LanguageModel(

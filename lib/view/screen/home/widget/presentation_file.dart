@@ -1,17 +1,13 @@
-import 'dart:async';
-import 'dart:io';
-
 import 'package:aharconnect/controller/home_controller.dart';
 import 'package:aharconnect/view/screen/home/widget/pdf_view.dart';
 import 'package:aharconnect/view/widget/app_button.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:aharconnect/utils/dimensions.dart';
 import 'package:aharconnect/utils/theme_colors.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:path_provider/path_provider.dart';
+
 class DocumentFile extends StatefulWidget {
   const DocumentFile({super.key});
 
@@ -22,27 +18,6 @@ class DocumentFile extends StatefulWidget {
 class _DocumentFileState extends State<DocumentFile> {
   String remotePDFpath = "";
 
-    Future<File> createFileOfPdfUrl(String url) async {
-    Completer<File> completer = Completer();
-    print("Start download file from internet!");
-    try {
-      final filename = url.substring(url.lastIndexOf("/") + 1);
-      var request = await HttpClient().getUrl(Uri.parse(url));
-      var response = await request.close();
-      var bytes = await consolidateHttpClientResponseBytes(response);
-      var dir = await getTemporaryDirectory();
-      print("Download files");
-      print("${dir.path}/$filename");
-      File file = File("${dir.path}/$filename");
-
-      await file.writeAsBytes(bytes, flush: true);
-      completer.complete(file);
-    } catch (e) {
-      throw Exception('Error parsing asset file!');
-    }
-
-    return completer.future;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,8 +57,7 @@ class _DocumentFileState extends State<DocumentFile> {
               AppButton(
                 onPressed: () async {
                   String url = await Get.find<HomeController>().getPdfUrl();
-
-                  await createFileOfPdfUrl(url).then((f) {
+                  await Get.find<HomeController>().createFileOfPdfUrl(url).then((f) {
                     setState(() {
                       remotePDFpath = f.path;
                     });

@@ -4,7 +4,7 @@ import 'package:aharconnect/controller/gallery_controller.dart';
 import 'package:aharconnect/controller/home_controller.dart';
 import 'package:aharconnect/controller/zone_controller.dart';
 import 'package:aharconnect/view/screen/home/widget/banner_view.dart';
-import 'package:aharconnect/view/screen/home/widget/document_file.dart';
+import 'package:aharconnect/view/screen/home/widget/presentation_file.dart';
 import 'package:aharconnect/view/screen/home/widget/image_video_widget.dart';
 import 'package:aharconnect/view/screen/notification/notification_screens.dart';
 import 'package:flutter/material.dart';

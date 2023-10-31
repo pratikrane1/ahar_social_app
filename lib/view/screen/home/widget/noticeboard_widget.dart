@@ -1,7 +1,9 @@
+import 'package:aharconnect/controller/home_controller.dart';
 import 'package:aharconnect/controller/zone_controller.dart';
 import 'package:aharconnect/data/model/zone_model.dart';
 import 'package:aharconnect/helper/download_file.dart';
 import 'package:aharconnect/view/screen/bottom%20nav%20bar/bottom_nav.dart';
+import 'package:aharconnect/view/screen/home/widget/pdf_view.dart';
 import 'package:aharconnect/view/screen/home/widget/shimmer.dart';
 import 'package:aharconnect/view/widget/custom_image.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +24,7 @@ class _NoticeboardSliderState extends State<NoticeboardSlider> {
   int activePage = 0;
   List<PostData>? _postDataList;
   bool _isPostDataLoading = false;
+  String remotePDFpath = "";
 
   @override
   void initState() {
@@ -248,9 +251,17 @@ class _NoticeboardSliderState extends State<NoticeboardSlider> {
                                                     onTap: () async {
                                                       // Get.find<ZoneController>().downloadPDF(_postDataList![index].post!.postImage!);
                                                       downloadPDF(
-                                                          _postDataList![index]
-                                                              .post!
-                                                              .postImage!);
+                                                          _postDataList![index].post!.postImage!);
+
+                                                      await Get.find<HomeController>().createFileOfPdfUrl(_postDataList![index]
+                                                          .post!
+                                                          .postImage!).then((f) {
+                                                        setState(() {
+                                                          remotePDFpath = f.path;
+                                                        });
+                                                      });
+                                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>PDFVIEW(pdfLocalPath: remotePDFpath,pdfURL: _postDataList![index].post!.postImage!,)));
+
                                                     },
                                                     child: const Icon(
                                                         Icons.download)),

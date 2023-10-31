@@ -1,8 +1,10 @@
 import 'dart:ui';
+import 'package:aharconnect/controller/home_controller.dart';
 import 'package:aharconnect/controller/zone_controller.dart';
 import 'package:aharconnect/data/model/zone_model.dart';
 import 'package:aharconnect/helper/download_file.dart';
 import 'package:aharconnect/utils/dimensions.dart';
+import 'package:aharconnect/view/screen/home/widget/pdf_view.dart';
 import 'package:aharconnect/view/widget/custom_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +27,9 @@ class NoticePostCard extends StatefulWidget {
 }
 
 class _NoticePostCardState extends State<NoticePostCard> {
+  String remotePDFpath = "";
+
+
   @override
   void initState() {
     // TODO: implement initState
@@ -239,10 +244,15 @@ class _NoticePostCardState extends State<NoticePostCard> {
                                           InkWell(
                                               onTap: () async {
                                                 // Get.find<ZoneController>().downloadPDF(widget.noticeBoardData!.post!.postImage!);
-                                                downloadPDF(widget
-                                                    .noticeBoardData!
-                                                    .post!
-                                                    .postImage!);
+                                                downloadPDF(widget.noticeBoardData!.post!.postImage!);
+
+                                                await Get.find<HomeController>().createFileOfPdfUrl(widget.noticeBoardData!.post!.postImage!).then((f) {
+                                                  setState(() {
+                                                    remotePDFpath = f.path;
+                                                  });
+                                                });
+                                                Navigator.push(context, MaterialPageRoute(builder: (context)=>PDFVIEW(pdfLocalPath: remotePDFpath,pdfURL: widget.noticeBoardData!.post!.postImage!,)));
+
                                               },
                                               child: const Icon(Icons.download))
                                         ],

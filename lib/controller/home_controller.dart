@@ -1,9 +1,14 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:aharconnect/data/api/api_checker.dart';
 import 'package:aharconnect/data/model/banner_model.dart';
 import 'package:aharconnect/data/repository/home_repo.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_disposable.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:path_provider/path_provider.dart';
 
 class HomeController extends GetxController implements GetxService {
   final HomeRepo homeRepo;
@@ -53,5 +58,27 @@ class HomeController extends GetxController implements GetxService {
     return _pdfFile!;
   }
 
+
+  Future<File> createFileOfPdfUrl(String url) async {
+    Completer<File> completer = Completer();
+    print("Start download file from internet!");
+    try {
+      final filename = url.substring(url.lastIndexOf("/") + 1);
+      var request = await HttpClient().getUrl(Uri.parse(url));
+      var response = await request.close();
+      var bytes = await consolidateHttpClientResponseBytes(response);
+      var dir = await getTemporaryDirectory();
+      print("Download files");
+      print("${dir.path}/$filename");
+      File file = File("${dir.path}/$filename");
+
+      await file.writeAsBytes(bytes, flush: true);
+      completer.complete(file);
+    } catch (e) {
+      throw Exception('Error parsing asset file!');
+    }
+
+    return completer.future;
+  }
 
 }
